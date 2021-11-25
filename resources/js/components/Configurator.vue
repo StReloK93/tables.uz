@@ -3,7 +3,7 @@
     <aside class="flex justify-between text-gray-600">
         <router-link to="/legstype" class="activelink text-center p-3 bg-gray-100 rounded-lg">
             <div class="h-16 w-28 flex items-center justify-center">
-                    <Icons icon="Legs"/>
+                <Icons icon="Legs"/>
             </div>
             <h3 class="text-sm font-medium">
                 Legs Type 

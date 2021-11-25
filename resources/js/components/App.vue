@@ -31,7 +31,7 @@
          </transition>
       </router-view>
 
-      <main class="text-right absolute bottom-0 left-0 p-10 w-full border-t border-gray-200">
+      <main class="text-right absolute bottom-0 left-0 p-10 w-full border-t border-gray-200 bg-white">
          <button class="h-16 w-52 bg-gray-400 hover:bg-red-500  text-xl text-center text-white rounded-xl">
             Get a Quote
          </button>
@@ -70,9 +70,9 @@ export default {
 }
 </script>
 <style>
-   .bg-my{
-      background-color: #3F4D74;
-   }
+.bg-my{
+   background-color: #3F4D74;
+}
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease;
@@ -82,5 +82,19 @@ export default {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+
+.heigth-anim-enter-active,
+.heigth-anim-leave-active {
+  transition: opacity 0.5s ease, height 0.5s ease;
+  max-height: 0px;
+}
+
+
+.heigth-anim-enter-from,
+.heigth-anim-leave-to {
+  opacity: 0;
+  max-height: 300px;
 }
 </style>
