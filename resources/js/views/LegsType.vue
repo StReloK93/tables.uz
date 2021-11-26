@@ -1,7 +1,7 @@
 <template>
     <section>
-        <main class="py-8">
-            <h3 class="font-bold mb-4 text-xl">
+        <main class="pb-8">
+            <h3 class="font-bold mb-4 text-xl text-gray-600">
                 Available legs
             </h3>
             <div class="flex text-center justify-between">
@@ -47,7 +47,7 @@
                 </aside>
             </div>
             <!-- new -->
-            <h3 class="font-bold mb-4 text-xl mt-6">
+            <h3 class="font-bold mb-4 text-xl mt-6 text-gray-600">
                 Standing desk material
             </h3>
             <div class="text-md flex flex-wrap">

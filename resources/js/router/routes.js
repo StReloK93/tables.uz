@@ -9,6 +9,26 @@ export default [
 		component: () => import('../Views/Designs.vue'),
 		name: "designs"
 	},
+	{
+		path: '/customization',
+		component: () => import('../Views/Designs.vue'),
+		name: "customization"
+	},
+	{
+		path: '/size',
+		component: () => import('../Views/Size.vue'),
+		name: "size"
+	},
+	{
+		path: '/room',
+		component: () => import('../Views/Room.vue'),
+		name: "room"
+	},
+	{
+		path: '/other',
+		component: () => import('../Views/Other.vue'),
+		name: "other"
+	},
 	// {
 	// 	path: '/:pathMatch(.*)*',
 	// 	redirect: '/',

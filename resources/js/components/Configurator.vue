@@ -1,7 +1,7 @@
 <template>
     <hr class="my-6">
     <aside class="flex justify-between text-gray-600">
-        <router-link to="/legstype" class="activelink text-center p-3 bg-gray-100 rounded-lg">
+        <router-link  to="/legstype" class="config text-center p-3 bg-gray-100 rounded-lg">
             <div class="h-16 w-28 flex items-center justify-center">
                 <Icons icon="Legs"/>
             </div>
@@ -9,7 +9,7 @@
                 Legs Type 
             </h3>
         </router-link>
-        <router-link to="/customization" class="text-center p-3 bg-gray-100 rounded-lg">
+        <router-link to="/customization" class="config text-center p-3 bg-gray-100 rounded-lg">
             <div class="h-16 w-28 flex items-center justify-center">
                 <Icons icon="Customization"/>
             </div>
@@ -17,7 +17,7 @@
                 Customization
             </h3>
         </router-link>
-        <router-link to="/size" class="text-center p-3 bg-gray-100 rounded-lg">
+        <router-link to="/size" class="config text-center p-3 bg-gray-100 rounded-lg">
             <div class="h-16 w-28 flex items-center justify-center">
                 <Icons icon="Size"/>
             </div>
@@ -25,7 +25,7 @@
                 Size
             </h3>
         </router-link>
-        <router-link to="/room" class="text-center p-3 bg-gray-100 rounded-lg">
+        <router-link to="/room" class="config text-center p-3 bg-gray-100 rounded-lg">
             <div class="h-16 w-28 flex items-center justify-center">
                 <Icons icon="Room"/>
             </div>
@@ -33,7 +33,7 @@
                 Room Color 
             </h3>
         </router-link>
-        <router-link to="/other" class="text-center p-3 bg-gray-100 rounded-lg">
+        <router-link to="/other" class="config text-center p-3 bg-gray-100 rounded-lg">
             <div class="h-16 w-28 flex items-center justify-center">
                 <Icons icon="Other"/>
             </div>
@@ -48,11 +48,11 @@ import Icons from './Icons.vue'
 export default {
     components:{
         Icons
-    }
+    },
 }
 </script>
 <style>
-.activelink{
+.config.router-link-active{
     background-color: #3DB7F6;
     color: white;
 }
