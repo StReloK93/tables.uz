@@ -4,11 +4,11 @@
          <h3 class="font-bold mb-4 text-xl text-gray-600">
             Size
          </h3>
-         <div class="text-md flex flex-wrap">
-            <button class="h-16 w-36 bg-my text-center text-white rounded-xl mr-4 mb-4">
+         <div class="text-md flex flex-wrap text-gray-600">
+            <button @click="setSize(0)" :class="{'bg-my text-white': $store.state.params.size == 0 }" class="h-16 w-36 text-center rounded-xl mr-4 mb-4 border">
                Small
             </button>
-            <button class="h-16 w-36 text-gray-600 text-center rounded-xl mr-4 mb-4 border">
+            <button @click="setSize(1)" :class="{'bg-my text-white': $store.state.params.size == 1 }"  class="h-16 w-36 text-center rounded-xl mr-4 mb-4 border">
                Large
             </button>
          </div>
@@ -35,3 +35,12 @@
       </main>
    </section>
 </template>
+<script>
+export default {
+   methods: {
+      setSize(sizeIndex){
+         this.$store.state.params.size = sizeIndex
+      }
+   },
+}
+</script>

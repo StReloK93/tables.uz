@@ -1,6 +1,5 @@
 <template>
 	<section>
-
 		<main class="pb-10 border-b border-gray-100 -mx-10 px-10">
 			<h3 class="font-bold mb-4 text-xl text-gray-600">Type</h3>
 			<div class="text-md flex flex-wrap">

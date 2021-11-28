@@ -2,18 +2,16 @@
    <!-- Left part -->
    <section class="w-1/2 relative">
       <Decorations class="absolute top-0 left-0"/>
-      <!-- <canvas class="w-full h-full outline-none" ref="canvas"></canvas> -->
-      <img src="/fon.png" class="h-full w-full object-cover">
+      <canvas class="w-full h-full outline-none" ref="canvas"></canvas>
    </section>
    <!-- Left part -->
-
 
 
    <!-- Configurator -->
    <section class="w-1/2 bg-white relative flex flex-col justify-between">
 
       <!-- Header -->
-      <main class="px-10 py-6 shadow-xl bg-gray-50 text-xl">
+      <main class="px-10 pt-3 pb-5 shadow-xl border-b border-gray-300 bg-gray-50 text-xl">
          <aside class="flex justify-between mb-5">
             <button class="bg-gray-100 px-3 py-2 inline-block rounded-full">
                <img src="/images/left.png" class="relative" style="left: -1px">
@@ -52,7 +50,7 @@
 
 
       <!-- Footer -->
-      <main class="text-right p-10 border-t border-gray-200 bg-white shadow-custom">
+      <main class="text-right p-10 border-t border-gray-200 bg-white shadow-custom hidden">
          <button class="h-16 w-52 bg-gray-400 hover:bg-red-500  text-xl text-center text-white rounded-xl">
             Get a Quote
          </button>
@@ -75,7 +73,7 @@ export default {
       }
    },
    mounted(){
-      // initScene(this.$refs.canvas)
+      window.Engine = initScene(this.$refs.canvas)
    },
    watch:{
       $route (to, from){

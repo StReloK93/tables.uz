@@ -6,7 +6,14 @@ export default createStore({
     state() {
         return {
             configurator: true,
-            tablesCount: 1,
+            customActiveLink: 1,
+            params: {
+                tablesCount: 1,
+                legColor: 1,
+                legType: 1,
+                size: 0,
+                deskMaterial: 1,
+            }
         }
     },
     getters: {
@@ -15,11 +22,10 @@ export default createStore({
     mutations: {
         setTablesCount(state,pay){
             if(pay < 1 && (state.tablesCount > 1)){
-                console.log();
-                state.tablesCount += pay
+                state.params.tablesCount += pay
             }
             else if(pay > -1){
-                state.tablesCount += pay
+                state.params.tablesCount += pay
             }
         },
         setConfigurator(state, payload){

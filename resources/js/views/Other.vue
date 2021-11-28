@@ -9,7 +9,7 @@
                <Icons icon="minus"/>
             </button>
             <span class="px-10 text-xl font-bold text-indigo-900">
-               {{$store.state.tablesCount}}
+               {{$store.state.params.tablesCount}}
             </span>
             <button class="px-5 border-l h-full" @click="$store.commit('setTablesCount', 1)">
                <Icons icon="plus"/>
