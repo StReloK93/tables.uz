@@ -1,6 +1,11 @@
-import scene from './elements/Scene'
+import Scene from './elements/Scene'
+import Camera from './elements/Camera'
 function initScene(canvas){
-    new scene(canvas)
+   const engine = {
+      scene: new Scene(canvas),
+      camera: new Camera(canvas)
+   }
+   return engine
 }
 
 export default initScene

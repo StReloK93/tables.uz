@@ -11,7 +11,7 @@ export default [
 	},
 	{
 		path: '/customization',
-		component: () => import('../Views/Designs.vue'),
+		component: () => import('../Views/Customization.vue'),
 		name: "customization"
 	},
 	{
