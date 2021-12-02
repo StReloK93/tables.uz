@@ -5,7 +5,7 @@ import { createStore } from 'vuex'
 export default createStore({
     state() {
         return {
-            inspector: false,
+            inspector: true,
             configurator: true,
             customActiveLink: 1,
             params: {
@@ -17,11 +17,11 @@ export default createStore({
                 wallColor: '#ffffff'
             },
             decor:{
-                lamp: false,
-                monitor: false,
+                lamp: true,
+                monitor: true,
                 image: true,
-                chair: false,
-                plant: false,
+                chair: true,
+                plant: true,
             }
         }
     },

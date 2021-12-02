@@ -1,7 +1,7 @@
 <template>
    <!-- Left part -->
    <section class="w-1/2 relative fullScreen">
-      <!-- <Decorations class="absolute top-0 left-0"/> -->
+      <Decorations class="absolute top-0 left-0"/>
       <canvas class="w-full h-full outline-none" ref="canvas"></canvas>
    </section>
    <!-- Left part -->
@@ -104,13 +104,17 @@ export default {
 }
 </script>
 <style>
-.fullScreen{
+/* .fullScreen{
    position: fixed;
    top: 0;
    left: 0;
    width: 100%;
    height: 100%;
    z-index: 10;
+} */
+
+#embed-host input,#embed-host select{
+   color: #333;
 }
 .bg-my{
    background-color: #3F4D74;
@@ -155,5 +159,9 @@ html *::-webkit-scrollbar-thumb {
 
 .shadow-custom{
    box-shadow: 0 0 7px 0 #d4d4d4;
+}
+
+.border-myblue{
+   border-color: #3DB7F6;
 }
 </style>

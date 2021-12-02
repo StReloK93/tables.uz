@@ -97,9 +97,6 @@ export default {
 }
 </script>
 <style>
-    .border-myblue{
-        border-color: #3DB7F6;
-    }
     .colorActive{
         border: 2px solid #3db7f6;
     }

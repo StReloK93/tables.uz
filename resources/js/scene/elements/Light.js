@@ -52,8 +52,8 @@ class Light{
    }
 
    sceneOnload(){this.scene.onReadyObservable.add(()=>{
-      this.UseShadow(this.shadowGenerator, ['legMetal','legMetalBottom','tableMain', 'image'])
-      this.AcceptShadows(['legMetal', 'legMetalBottom', 'wall', 'floor','lenolium']) // shu spiskadagi mesh yoki nodelar soya qabul qiladi
+      this.UseShadow(this.shadowGenerator, ['legMetal','legMetalBottom','tableMain', 'image','lamp','monitor'])
+      this.AcceptShadows(['legMetal', 'legMetalBottom', 'wall', 'floor','lenolium','tableMain']) // shu spiskadagi mesh yoki nodelar soya qabul qiladi
    })}
 }
 export default Light;

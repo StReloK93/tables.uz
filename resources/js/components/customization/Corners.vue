@@ -1,7 +1,6 @@
 <template>
     <section>
         <h3 class="font-bold mb-4 text-xl text-gray-600">Corners Finish</h3>
-
         <main class="flex -mx-3 text-center">
             <aside class="px-3 w-1/3">
                 <div class="px-3">
@@ -38,4 +37,3 @@ export default {
 <style>
     
 </style>
-
