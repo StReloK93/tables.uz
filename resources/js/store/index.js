@@ -5,6 +5,7 @@ import { createStore } from 'vuex'
 export default createStore({
     state() {
         return {
+            inspector: false,
             configurator: true,
             customActiveLink: 1,
             params: {
@@ -13,11 +14,16 @@ export default createStore({
                 legType: 1,
                 size: 0,
                 deskMaterial: 1,
+                wallColor: '#ffffff'
+            },
+            decor:{
+                lamp: false,
+                monitor: false,
+                image: true,
+                chair: false,
+                plant: false,
             }
         }
-    },
-    getters: {
-
     },
     mutations: {
         setTablesCount(state,pay){
@@ -32,7 +38,6 @@ export default createStore({
             state.configurator = payload
         }
     },
-
     actions: {
 
     },

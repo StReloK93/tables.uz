@@ -1,7 +1,7 @@
 <template>
    <!-- Left part -->
-   <section class="w-1/2 relative">
-      <Decorations class="absolute top-0 left-0"/>
+   <section class="w-1/2 relative fullScreen">
+      <!-- <Decorations class="absolute top-0 left-0"/> -->
       <canvas class="w-full h-full outline-none" ref="canvas"></canvas>
    </section>
    <!-- Left part -->
@@ -74,6 +74,20 @@ export default {
    },
    mounted(){
       window.Engine = initScene(this.$refs.canvas)
+      window.onkeyup = (event)=>{
+         if(event.keyCode == 107){
+            const scene = Engine.scene.get()
+            if(this.$store.state.inspector){
+                scene.debugLayer.show({
+                    embedMode: true,
+                });
+            }
+            else{
+                scene.debugLayer.hide()
+            }
+            this.$store.state.inspector = !this.$store.state.inspector
+         }
+      }
    },
    watch:{
       $route (to, from){
@@ -90,6 +104,14 @@ export default {
 }
 </script>
 <style>
+.fullScreen{
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   z-index: 10;
+}
 .bg-my{
    background-color: #3F4D74;
 }
@@ -97,7 +119,6 @@ export default {
 .fade-leave-active {
   transition: opacity 0.5s ease;
 }
-
 
 .fade-enter-from,
 .fade-leave-to {

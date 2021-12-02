@@ -11,7 +11,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      color: this.$store.state.params.wallColor
+    };
+  },
+  methods: {
+    wallColorChanger: function wallColorChanger() {
+      this.$store.state.params.wallColor = this.color;
+      var material = Engine.scene.get().getMaterialByName('wall');
+      material.albedoColor = BABYLON.Color3.FromHexString(this.color).toLinearSpace();
+    }
+  }
+});
 
 /***/ }),
 
@@ -27,12 +40,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
+var _hoisted_1 = {
+  "class": "pb-8"
+};
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<main class=\"pb-8\"><h3 class=\"font-bold mb-6 text-xl text-gray-600\"> Choose the wall color </h3><div><input type=\"color\"></div></main><main class=\"pb-8\"><h3 class=\"font-bold mb-6 text-xl text-gray-600\"> Choose the flooring color </h3><div class=\"flex flex-wrap -mx-3\"><aside class=\"w-1/5 px-3\"><main class=\"mb-6 p-1 shadow rounded-md\"><img src=\"/images/floors/1.jpg\" class=\"rounded-md\"></main></aside><aside class=\"w-1/5 px-3\"><main class=\"mb-6\"><img src=\"/images/floors/2.jpg\" class=\"rounded-md\"></main></aside><aside class=\"w-1/5 px-3\"><main class=\"mb-6\"><img src=\"/images/floors/3.jpg\" class=\"rounded-md\"></main></aside><aside class=\"w-1/5 px-3\"><main class=\"mb-6\"><img src=\"/images/floors/4.jpg\" class=\"rounded-md\"></main></aside><aside class=\"w-1/5 px-3\"><main class=\"mb-6\"><img src=\"/images/floors/5.jpg\" class=\"rounded-md\"></main></aside><aside class=\"w-1/5 px-3\"><main class=\"mb-6\"><img src=\"/images/floors/6.jpg\" class=\"rounded-md\"></main></aside><aside class=\"w-1/5 px-3\"><main class=\"mb-6\"><img src=\"/images/floors/7.jpg\" class=\"rounded-md\"></main></aside><aside class=\"w-1/5 px-3\"><main class=\"mb-6\"><img src=\"/images/floors/8.jpg\" class=\"rounded-md\"></main></aside></div></main>", 2);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "font-bold mb-6 text-xl text-gray-600"
+}, " Choose the wall color ", -1
+/* HOISTED */
+);
 
-var _hoisted_3 = [_hoisted_1];
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<main class=\"pb-8\"><h3 class=\"font-bold mb-6 text-xl text-gray-600\"> Choose the flooring color </h3><div class=\"flex flex-wrap -mx-3\"><aside class=\"w-1/5 px-3\"><main class=\"mb-6 p-1 shadow rounded-md\"><img src=\"/images/floors/1.jpg\" class=\"rounded-md\"></main></aside><aside class=\"w-1/5 px-3\"><main class=\"mb-6\"><img src=\"/images/floors/2.jpg\" class=\"rounded-md\"></main></aside><aside class=\"w-1/5 px-3\"><main class=\"mb-6\"><img src=\"/images/floors/3.jpg\" class=\"rounded-md\"></main></aside><aside class=\"w-1/5 px-3\"><main class=\"mb-6\"><img src=\"/images/floors/4.jpg\" class=\"rounded-md\"></main></aside><aside class=\"w-1/5 px-3\"><main class=\"mb-6\"><img src=\"/images/floors/5.jpg\" class=\"rounded-md\"></main></aside><aside class=\"w-1/5 px-3\"><main class=\"mb-6\"><img src=\"/images/floors/6.jpg\" class=\"rounded-md\"></main></aside><aside class=\"w-1/5 px-3\"><main class=\"mb-6\"><img src=\"/images/floors/7.jpg\" class=\"rounded-md\"></main></aside><aside class=\"w-1/5 px-3\"><main class=\"mb-6\"><img src=\"/images/floors/8.jpg\" class=\"rounded-md\"></main></aside></div></main>", 1);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", null, _hoisted_3);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "color",
+    onInput: _cache[0] || (_cache[0] = function () {
+      return $options.wallColorChanger && $options.wallColorChanger.apply($options, arguments);
+    }),
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.color = $event;
+    })
+  }, null, 544
+  /* HYDRATE_EVENTS, NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.color]])])]), _hoisted_3]);
 }
 
 /***/ }),

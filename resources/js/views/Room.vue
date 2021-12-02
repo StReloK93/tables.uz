@@ -5,7 +5,7 @@
             Choose the wall color
          </h3>
          <div>
-            <input type="color">
+            <input type="color" @input="wallColorChanger" v-model="color">
          </div>
       </main>
       <main class="pb-8">
@@ -61,7 +61,18 @@
 </template>
 <script>
 export default {
-
+   data() {
+      return {
+         color: this.$store.state.params.wallColor,
+      }
+   },
+   methods:{
+      wallColorChanger(){
+         this.$store.state.params.wallColor = this.color
+         var material = Engine.scene.get().getMaterialByName('wall')
+         material.albedoColor = BABYLON.Color3.FromHexString(this.color).toLinearSpace()
+      }
+   }
 }
 </script>
 <style>
