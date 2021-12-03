@@ -14,6 +14,11 @@ class Scene {
    createScene(canvas) {
       this.engine = new BABYLON.Engine(canvas)
       this.scene = new BABYLON.Scene(this.engine)
+
+      this.scene.getTextureByName = (name)=>{
+         return this.scene.textures.find(texture => texture.name === name)
+      }
+
       BABYLON.SceneLoader.ImportMesh("", "./models/", "room.glb", this.scene, function (meshes, particleSystems, skeletons) {
          meshes[0].scaling = new BABYLON.Vector3(20,20,-20)
       })
@@ -37,7 +42,7 @@ class Scene {
          if(node._isMesh){
             var material = node.material
             material.backFaceCulling = true;
-            material.reflectionTexture = new BABYLON.CubeTexture("skybox/skybox", this.scene);
+            material.reflectionTexture = new BABYLON.CubeTexture("/textures/skybox/skybox", this.scene);
             material.reflectionTexture.coordinatesMode = BABYLON.Texture.CUBIC_MODE;
          }
          else{
@@ -45,7 +50,7 @@ class Scene {
                node._children.forEach(element => {
                   var material = element.material
                   material.backFaceCulling = true;
-                  material.reflectionTexture = new BABYLON.CubeTexture("skybox/skybox", this.scene);
+                  material.reflectionTexture = new BABYLON.CubeTexture("/textures/skybox/skybox", this.scene);
                   material.reflectionTexture.coordinatesMode = BABYLON.Texture.CUBIC_MODE;
                });
             }
@@ -62,14 +67,6 @@ class Scene {
          material.lightmapTexture = new BABYLON.Texture(`/textures/${array[i]}.jpg`, this.scene);
          material.lightmapTexture.uAng = Math.PI
          material.ambientTexture.uAng = Math.PI
-   
-         if(array[i] == 'floor'){
-            material.albedoTexture = new BABYLON.Texture('/textures/3.jpg', this.scene);
-            material.albedoTexture.uScale = 6
-            material.albedoTexture.vScale = 6
-            // material.albedoTexture.wAng = Math.PI/2
-            material.metallic = 0.3
-         }
       }
    }
    
@@ -79,6 +76,7 @@ class Scene {
          this.AllAmbientWhite()
          this.MaterialLightMap(['wall','lenolium','floor','podokolnik','legMetal','legMetalBottom','tableMain','image']) // ambient va lightmap texturalarni ismiga qarab qoshadi
          this.UseSkyBox(['legMetalBottom', 'legMetal']) // skybox qoshish
+         store.dispatch('floorImage', {scene: this.scene,textureName: 'floor1'})
       })
    }
 }

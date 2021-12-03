@@ -1,17 +1,20 @@
 <template>
    <!-- Left part -->
-   <section class="w-1/2 relative fullScreen">
+   <section class="w-1/2 relative" ref="room">
       <Decorations class="absolute top-0 left-0"/>
       <canvas class="w-full h-full outline-none" ref="canvas"></canvas>
+      <button @click="requestFullScreen($refs.room)" class="zoom-button  py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 hover:bg-opacity-100">
+         <Icons icon="zoom"/>
+      </button>
    </section>
    <!-- Left part -->
 
 
    <!-- Configurator -->
-   <section class="w-1/2 bg-white relative flex flex-col justify-between">
+   <section class="w-1/2 bg-white relative flex flex-col justify-between overflow-hidden">
 
       <!-- Header -->
-      <main class="px-10 pt-3 pb-5 shadow-md bg-gray-50 text-xl">
+      <main class="px-10 pt-3 pb-5 shadow-custom bg-gray-50 text-xl">
          <aside class="flex justify-between mb-5">
             <button class="bg-gray-100 px-3 py-2 inline-block rounded-full">
                <img src="/images/left.png" class="relative" style="left: -1px">
@@ -50,7 +53,7 @@
 
 
       <!-- Footer -->
-      <main class="text-right p-10 border-t border-gray-200 bg-white shadow-custom hidden">
+      <main class="text-right p-10 bg-white shadow-custom">
          <button class="h-16 w-52 bg-gray-400 hover:bg-red-500  text-xl text-center text-white rounded-xl">
             Get a Quote
          </button>
@@ -62,10 +65,12 @@
 import initScene from '../scene/initScene'
 import Decorations from './Decorations.vue'
 import Configurator from './Configurator.vue'
+import Icons from './Icons.vue'
 export default {
    components:{
       Decorations,
-      Configurator
+      Configurator,
+      Icons
    },
    data() {
       return {
@@ -74,10 +79,14 @@ export default {
    },
    mounted(){
       window.Engine = initScene(this.$refs.canvas)
+      // window.onmousedown = window.onselectstart = function() {
+      //    return false;
+      // };
+      const scene = Engine.scene.get()
       window.onkeyup = (event)=>{
          if(event.keyCode == 107){
-            const scene = Engine.scene.get()
-            if(this.$store.state.inspector){
+
+            if(store.state.inspector){
                 scene.debugLayer.show({
                     embedMode: true,
                 });
@@ -85,7 +94,22 @@ export default {
             else{
                 scene.debugLayer.hide()
             }
-            this.$store.state.inspector = !this.$store.state.inspector
+            store.state.inspector = !store.state.inspector
+         }
+      }
+   },
+   methods:{
+      requestFullScreen(element) {
+         // Supports most browsers and their versions.
+         var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
+
+         if (requestMethod) { // Native full screen.
+            requestMethod.call(element);
+         } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
+            var wscript = new ActiveXObject("WScript.Shell");
+            if (wscript !== null) {
+                  wscript.SendKeys("{F11}");
+            }
          }
       }
    },
@@ -93,26 +117,27 @@ export default {
       $route (to, from){
          if(to.name == 'designs'){
             this.isActive = false
-            this.$store.commit('setConfigurator', false)
+            store.commit('setConfigurator', false)
          }
          else{
             this.isActive = true
-            this.$store.commit('setConfigurator', true)
+            store.commit('setConfigurator', true)
          }
       }
    } 
 }
 </script>
 <style>
-/* .fullScreen{
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   z-index: 10;
-} */
-
+.zoom-button{
+   position: absolute;
+   left: 50%;
+   bottom: 0;
+   transform: translateX(-50%);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+}
 #embed-host input,#embed-host select{
    color: #333;
 }
@@ -158,10 +183,22 @@ html *::-webkit-scrollbar-thumb {
 }
 
 .shadow-custom{
-   box-shadow: 0 0 7px 0 #d4d4d4;
+   box-shadow: 0 0 15px 0 #dcdcdc;
 }
 
 .border-myblue{
    border-color: #3DB7F6;
+}
+
+.shadow-blue{
+   box-shadow: 0 0 0px 2px #3db7f6;
+}
+*[unselectable=on] {
+    -moz-user-select: none;
+    -o-user-select:none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+     user-select: none;
 }
 </style>

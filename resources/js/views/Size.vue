@@ -39,7 +39,7 @@
 export default {
    methods: {
       setSize(sizeIndex){
-         this.$store.state.params.size = sizeIndex
+         store.state.params.size = sizeIndex
       }
    },
 }

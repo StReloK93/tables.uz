@@ -71,10 +71,10 @@
          </h3>
          <div class="flex flex-wrap -mx-3">
             <aside v-for="n in 3" :key="n" class="w-1/5 px-3">
-               <main  @click="setLegColor(n)" :class="{colorActive: $store.state.params.legColor == n}" class="p-1 rounded-md h-36">
-                   <div v-if="n == 1" class="w-full h-full bg-white border border-gray-300"></div>
-                   <div v-if="n == 2" class="w-full h-full bg-gray-400 border border-gray-300"></div>
-                   <div v-if="n == 3" class="w-full h-full bg-black border border-gray-300"></div>
+               <main  @click="setLegColor(n)" :class="{'shadow-blue': $store.state.params.legColor == n}" class="p-1 rounded-md h-36">
+                   <div v-if="n == 1" class="w-full h-full bg-white border border-gray-300 rounded-md"></div>
+                   <div v-if="n == 2" class="w-full h-full bg-gray-400 border border-gray-300 rounded-md"></div>
+                   <div v-if="n == 3" class="w-full h-full bg-black border border-gray-300 rounded-md"></div>
                </main>
             </aside>
          </div>
@@ -96,8 +96,3 @@ export default {
     },
 }
 </script>
-<style>
-    .colorActive{
-        border: 2px solid #3db7f6;
-    }
-</style>

@@ -13,44 +13,9 @@
             Choose the flooring color
          </h3>
          <div class="flex flex-wrap -mx-3">
-            <aside class="w-1/5 px-3">
-               <main class="mb-6 p-1 shadow rounded-md">
-                  <img src="/images/floors/1.jpg" class="rounded-md">
-               </main>
-            </aside>
-            <aside class="w-1/5 px-3">
-               <main class="mb-6">
-                  <img src="/images/floors/2.jpg" class="rounded-md">
-               </main>
-            </aside>
-            <aside class="w-1/5 px-3">
-               <main class="mb-6">
-                  <img src="/images/floors/3.jpg" class="rounded-md">
-               </main>
-            </aside>
-            <aside class="w-1/5 px-3">
-               <main class="mb-6">
-                  <img src="/images/floors/4.jpg" class="rounded-md">
-               </main>
-            </aside>
-            <aside class="w-1/5 px-3">
-               <main class="mb-6">
-                  <img src="/images/floors/5.jpg" class="rounded-md">
-               </main>
-            </aside>
-            <aside class="w-1/5 px-3">
-               <main class="mb-6">
-                  <img src="/images/floors/6.jpg" class="rounded-md">
-               </main>
-            </aside>
-            <aside class="w-1/5 px-3">
-               <main class="mb-6">
-                  <img src="/images/floors/7.jpg" class="rounded-md">
-               </main>
-            </aside>
-            <aside class="w-1/5 px-3">
-               <main class="mb-6">
-                  <img src="/images/floors/8.jpg" class="rounded-md">
+            <aside class="w-1/5 px-3" v-for="(img , index) in images" :key="img">
+               <main :class="{'shadow-blue': $store.state.params.floor == 'floor'+(index+1)}" @click="floorImage(`floor${index+1}`)" class="mb-6 p-1 rounded-md cursor-pointer">
+                  <img :src="`/textures/${img}`" class="rounded-md">
                </main>
             </aside>
          </div>
@@ -63,14 +28,21 @@
 export default {
    data() {
       return {
-         color: this.$store.state.params.wallColor,
+         images: null,
+         color: store.state.params.wallColor,
       }
+   },
+   async mounted() {
+     this.images = await store.dispatch('textures')
    },
    methods:{
       wallColorChanger(){
-         this.$store.state.params.wallColor = this.color
+         store.state.params.wallColor = this.color
          var material = Engine.scene.get().getMaterialByName('wall')
          material.albedoColor = BABYLON.Color3.FromHexString(this.color).toLinearSpace()
+      },
+      floorImage(pathImage){
+         store.dispatch('floorImage', {scene: Engine.scene.get(),textureName: pathImage})
       }
    }
 }

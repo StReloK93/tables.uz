@@ -1,18 +1,23 @@
 <template>
     <aside class="p-6 text-gray-500">
-        <div @click="toggleNode('lamp')" :class="{'bg-opacity-100 border-2 border-myblue': $store.state.decor.lamp}" class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 cursor-pointer">
+        <div @click="toggleNode('lamp')" :class="{'bg-opacity-100 border border-myblue': $store.state.decor.lamp}" 
+            class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 cursor-pointer hover:bg-opacity-75">
             <Icons icon="lamp" />
         </div>
-        <div @click="toggleNode('monitor')" :class="{'bg-opacity-100 border-2 border-myblue': $store.state.decor.monitor}"  class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 cursor-pointer">
+        <div @click="toggleNode('monitor')" :class="{'bg-opacity-100 border border-myblue': $store.state.decor.monitor}"  
+            class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 cursor-pointer hover:bg-opacity-75">
             <Icons icon="monitor" />
         </div>
-        <div @click="toggleNode('image')" :class="{'bg-opacity-100 border-2 border-myblue': $store.state.decor.image}"  class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 cursor-pointer">
+        <div @click="toggleNode('image')" :class="{'bg-opacity-100 border border-myblue': $store.state.decor.image}"  
+            class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 cursor-pointer hover:bg-opacity-75">
             <Icons icon="image" />
         </div>
-        <div @click="toggleNode('image')" :class="{'bg-opacity-100 border-2 border-myblue': $store.state.decor.chair}"  class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 cursor-pointer">
+        <div @click="toggleNode('chair')" :class="{'bg-opacity-100 border border-myblue': $store.state.decor.chair}"  
+            class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 cursor-pointer hover:bg-opacity-75">
             <Icons icon="chair" />
         </div>
-        <div @click="toggleNode('plant')" :class="{'bg-opacity-100 border-2 border-myblue': $store.state.decor.plant}"  class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 cursor-pointer">
+        <div @click="toggleNode('plant')" :class="{'bg-opacity-100 border border-myblue': $store.state.decor.plant}"  
+            class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 cursor-pointer hover:bg-opacity-75">
             <Icons icon="plant" />
         </div>
     </aside>
@@ -30,10 +35,10 @@ export default {
             var scene = Engine.scene.get()
             const lamp = scene.getNodeByName(node)
 
-            if(this.$store.state.decor[node]) this.animated('scaling', lamp, [{frame: 0,value: show},{frame: 5,value: hide}])
+            if(store.state.decor[node]) this.animated('scaling', lamp, [{frame: 0,value: show},{frame: 5,value: hide}])
             else this.animated('scaling', lamp, [{frame: 0,value: hide},{frame: 5,value: show}])
 
-            this.$store.state.decor[node] = !this.$store.state.decor[node]    
+            store.state.decor[node] = !store.state.decor[node]    
         },
         animated(parametr,mesh,keysArr){
             const anim = new BABYLON.Animation(`${mesh.name + parametr}`, parametr, 60, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT)

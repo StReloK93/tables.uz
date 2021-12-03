@@ -14,7 +14,8 @@ export default createStore({
                 legType: 1,
                 size: 0,
                 deskMaterial: 1,
-                wallColor: '#ffffff'
+                wallColor: '#ffffff',
+                floor: null
             },
             decor:{
                 lamp: true,
@@ -27,7 +28,8 @@ export default createStore({
     },
     mutations: {
         setTablesCount(state,pay){
-            if(pay < 1 && (state.tablesCount > 1)){
+            console.log(pay);
+            if(pay < 1 && (state.params.tablesCount > 1)){
                 state.params.tablesCount += pay
             }
             else if(pay > -1){
@@ -36,9 +38,21 @@ export default createStore({
         },
         setConfigurator(state, payload){
             state.configurator = payload
+        },
+        setFloor(state, payload){
+            state.params.floor = payload
         }
     },
     actions: {
+        async textures(){
+            var {data} = await axios.get('api/textures')
+            return data
+        },
 
+        floorImage({commit}, req){
+            commit('setFloor', req.textureName)
+            req.scene.getMaterialByName('floor').albedoTexture = req.scene.getTextureByName(req.textureName)
+        }
+        
     },
 })
