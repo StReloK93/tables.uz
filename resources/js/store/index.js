@@ -5,6 +5,7 @@ import { createStore } from 'vuex'
 export default createStore({
     state() {
         return {
+            onLoaded: false,
             inspector: true,
             configurator: true,
             customActiveLink: 1,
@@ -28,7 +29,6 @@ export default createStore({
     },
     mutations: {
         setTablesCount(state,pay){
-            console.log(pay);
             if(pay < 1 && (state.params.tablesCount > 1)){
                 state.params.tablesCount += pay
             }
@@ -41,7 +41,26 @@ export default createStore({
         },
         setFloor(state, payload){
             state.params.floor = payload
-        }
+        },
+        setLegType(state, payload){
+            const scene = payload.scene
+
+            let arrayLeg = [
+                scene.getNodeByName('oneleg'),
+                scene.getNodeByName('twoleg'),
+                scene.getNodeByName('threeleg'),
+                scene.getNodeByName('fourleg'),
+                scene.getNodeByName('fiveleg'),
+            ]
+
+            for (let i = 0; i < arrayLeg.length; i++) {
+                if(payload.legType == i+1) arrayLeg[i].scaling = new BABYLON.Vector3(1,1,1)
+                else arrayLeg[i].scaling = new BABYLON.Vector3(0,0,0)
+            }
+
+            state.params.legType = payload.legType
+
+        },
     },
     actions: {
         async textures(){

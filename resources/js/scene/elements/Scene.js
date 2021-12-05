@@ -1,5 +1,6 @@
-class Scene {
+import store from "../../store"
 
+class Scene {
    constructor(canvas) {
       this.createScene(canvas)
       this.sceneOnload()
@@ -7,19 +8,13 @@ class Scene {
       
    }
 
-   get(){
-      return this.scene
-   }
-
    createScene(canvas) {
       this.engine = new BABYLON.Engine(canvas)
-      this.scene = new BABYLON.Scene(this.engine)
-
+      var scene = this.scene = new BABYLON.Scene(this.engine)
       this.scene.getTextureByName = (name)=>{
          return this.scene.textures.find(texture => texture.name === name)
       }
-
-      BABYLON.SceneLoader.ImportMesh("", "./models/", "room.glb", this.scene, function (meshes, particleSystems, skeletons) {
+      BABYLON.SceneLoader.ImportMesh("", "./models/", "room.glb", scene, function (meshes) { 
          meshes[0].scaling = new BABYLON.Vector3(20,20,-20)
       })
    }
@@ -58,26 +53,30 @@ class Scene {
       }
    }
    
-   
    MaterialLightMap(array){
       for (let i = 0; i < array.length; i++) {
          var material = this.scene.getMaterialByName(array[i])
          material.useLightmapAsShadowmap = true
-         material.ambientTexture = new BABYLON.Texture(`/textures/${array[i]}.jpg`, this.scene);
+         // material.ambientTexture = new BABYLON.Texture(`/textures/${array[i]}.jpg`, this.scene);
+         // material.ambientTexture.uAng = Math.PI
          material.lightmapTexture = new BABYLON.Texture(`/textures/${array[i]}.jpg`, this.scene);
          material.lightmapTexture.uAng = Math.PI
-         material.ambientTexture.uAng = Math.PI
       }
    }
-   
 
    sceneOnload(){
       this.scene.onReadyObservable.add(()=>{
          this.AllAmbientWhite()
-         this.MaterialLightMap(['wall','lenolium','floor','podokolnik','legMetal','legMetalBottom','tableMain','image']) // ambient va lightmap texturalarni ismiga qarab qoshadi
-         this.UseSkyBox(['legMetalBottom', 'legMetal']) // skybox qoshish
+         // this.MaterialLightMap(['wall','lenolium','floor','podokolnik','legMetal','legMetalBottom','tableMain','image']) // ambient va lightmap texturalarni ismiga qarab qoshadi
+         // this.UseSkyBox(['legMetalBottom', 'legMetal']) // skybox qoshish
          store.dispatch('floorImage', {scene: this.scene,textureName: 'floor1'})
+         store.commit('setLegType', {scene: this.scene, legType: 1})
+         store.state.onLoaded = true
       })
+   }
+
+   get(){
+      return this.scene
    }
 }
 

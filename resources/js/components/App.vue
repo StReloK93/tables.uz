@@ -1,10 +1,13 @@
 <template>
    <!-- Left part -->
    <section class="w-1/2 relative" ref="room">
-      <Decorations class="absolute top-0 left-0"/>
+      <Decorations v-if="$store.state.onLoaded" class="absolute top-0 left-0"/>
       <canvas class="w-full h-full outline-none" ref="canvas"></canvas>
-      <button @click="requestFullScreen($refs.room)" class="zoom-button  py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 hover:bg-opacity-100">
+      <button v-if="!fullscreen" @click="requestFullScreen($refs.room)" class="zoom-button  py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 hover:bg-opacity-100">
          <Icons icon="zoom"/>
+      </button>
+      <button v-if="fullscreen" @click="closeFullscreen()" class="zoom-button py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 hover:bg-opacity-100">
+         Exit
       </button>
    </section>
    <!-- Left part -->
@@ -53,11 +56,11 @@
 
 
       <!-- Footer -->
-      <main class="text-right p-10 bg-white shadow-custom">
+      <!-- <main class="text-right p-10 bg-white shadow-custom">
          <button class="h-16 w-52 bg-gray-400 hover:bg-red-500  text-xl text-center text-white rounded-xl">
             Get a Quote
          </button>
-      </main>
+      </main> -->
       <!-- Footer -->
    </section>
 </template>
@@ -74,16 +77,25 @@ export default {
    },
    data() {
       return {
-         isActive: null
+         isActive: null,
+         fullscreen: false
       }
    },
    mounted(){
+      document.addEventListener("fullscreenchange", this.onFullScreenChange, false);
+      document.addEventListener("webkitfullscreenchange", this.onFullScreenChange, false);
+      document.addEventListener("mozfullscreenchange", this.onFullScreenChange, false);
+
+      
       window.Engine = initScene(this.$refs.canvas)
       // window.onmousedown = window.onselectstart = function() {
       //    return false;
       // };
       const scene = Engine.scene.get()
       window.onkeyup = (event)=>{
+         if(event.keyCode == 32){
+            this.requestFullScreen(this.$refs.room)
+         }
          if(event.keyCode == 107){
 
             if(store.state.inspector){
@@ -111,6 +123,25 @@ export default {
                   wscript.SendKeys("{F11}");
             }
          }
+      },
+      closeFullscreen() {
+         if (document.exitFullscreen) {
+            document.exitFullscreen();
+         } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+         } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
+         }
+      },
+      onFullScreenChange() {
+         var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
+         if(fullscreenElement){
+            this.fullscreen = true
+         }
+         else{
+            this.fullscreen = false
+         }
+      // if in fullscreen mode fullscreenElement won't be null
       }
    },
    watch:{
