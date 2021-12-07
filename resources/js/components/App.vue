@@ -3,10 +3,10 @@
    <section class="w-1/2 relative" ref="room">
       <Decorations v-if="$store.state.onLoaded" class="absolute top-0 left-0"/>
       <canvas class="w-full h-full outline-none" ref="canvas"></canvas>
-      <button v-if="!fullscreen" @click="requestFullScreen($refs.room)" class="zoom-button  py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 hover:bg-opacity-100">
+      <button v-if="!$store.state.fullscreen" @click="requestFullScreen($refs.room)" class="zoom-button  py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 hover:bg-opacity-100">
          <Icons icon="zoom"/>
       </button>
-      <button v-if="fullscreen" @click="closeFullscreen()" class="zoom-button py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 hover:bg-opacity-100">
+      <button v-if="$store.state.fullscreen" @click="closeFullscreen()" class="zoom-button py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 hover:bg-opacity-100">
          Exit
       </button>
    </section>
@@ -23,9 +23,9 @@
                <img src="/images/left.png" class="relative" style="left: -1px">
             </button>
             <div class="uppercase flex items-center font-bold">
-                  <span class="text-blue-900">eng</span>
-                  <span class="px-2 relative text-blue-400" style="top: -1px">/</span>
-                  <span class="text-gray-300">繁</span>
+               <span class="text-blue-900">eng</span>
+               <span class="px-2 relative text-blue-400" style="top: -1px">/</span>
+               <span class="text-gray-300">繁</span>
             </div>
          </aside>
          <router-link to="/" 
@@ -65,6 +65,7 @@
    </section>
 </template>
 <script>
+import Hotkeys from '../hotkeys'
 import initScene from '../scene/initScene'
 import Decorations from './Decorations.vue'
 import Configurator from './Configurator.vue'
@@ -78,70 +79,19 @@ export default {
    data() {
       return {
          isActive: null,
-         fullscreen: false
       }
    },
    mounted(){
-      document.addEventListener("fullscreenchange", this.onFullScreenChange, false);
-      document.addEventListener("webkitfullscreenchange", this.onFullScreenChange, false);
-      document.addEventListener("mozfullscreenchange", this.onFullScreenChange, false);
-
+      window.Engine = initScene(this.$refs.canvas) 
+      Hotkeys.loaderFile(this.$refs.room)
       
-      window.Engine = initScene(this.$refs.canvas)
-      // window.onmousedown = window.onselectstart = function() {
-      //    return false;
-      // };
-      const scene = Engine.scene.get()
-      window.onkeyup = (event)=>{
-         if(event.keyCode == 32){
-            this.requestFullScreen(this.$refs.room)
-         }
-         if(event.keyCode == 107){
-
-            if(store.state.inspector){
-                scene.debugLayer.show({
-                    embedMode: true,
-                });
-            }
-            else{
-                scene.debugLayer.hide()
-            }
-            store.state.inspector = !store.state.inspector
-         }
-      }
    },
-   methods:{
-      requestFullScreen(element) {
-         // Supports most browsers and their versions.
-         var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
-
-         if (requestMethod) { // Native full screen.
-            requestMethod.call(element);
-         } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
-            var wscript = new ActiveXObject("WScript.Shell");
-            if (wscript !== null) {
-                  wscript.SendKeys("{F11}");
-            }
-         }
+   computed:{
+      requestFullScreen(){
+         return Hotkeys.requestFullScreen
       },
-      closeFullscreen() {
-         if (document.exitFullscreen) {
-            document.exitFullscreen();
-         } else if (document.webkitExitFullscreen) { /* Safari */
-            document.webkitExitFullscreen();
-         } else if (document.msExitFullscreen) { /* IE11 */
-            document.msExitFullscreen();
-         }
-      },
-      onFullScreenChange() {
-         var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
-         if(fullscreenElement){
-            this.fullscreen = true
-         }
-         else{
-            this.fullscreen = false
-         }
-      // if in fullscreen mode fullscreenElement won't be null
+      closeFullscreen(){
+         return Hotkeys.closeFullscreen
       }
    },
    watch:{

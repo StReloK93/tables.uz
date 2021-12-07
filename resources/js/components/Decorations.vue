@@ -48,7 +48,6 @@ export default {
         toggleNode(node){
             var show = new BABYLON.Vector3(1,1,1)
             var hide = new BABYLON.Vector3(0,0,0)
-            var scene = Engine.scene.get()
             const lamp = scene.getNodeByName(node)
             if(lamp){
                 this[node] = true

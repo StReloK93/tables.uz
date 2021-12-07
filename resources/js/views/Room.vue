@@ -36,11 +36,11 @@ export default {
    methods:{
       wallColorChanger(){
          store.state.params.wallColor = this.color
-         var material = Engine.scene.get().getMaterialByName('wall')
+         var material = scene.getMaterialByName('wall')
          material.albedoColor = BABYLON.Color3.FromHexString(this.color).toLinearSpace()
       },
       floorImage(pathImage){
-         store.dispatch('floorImage', {scene: Engine.scene.get(),textureName: pathImage})
+         store.dispatch('floorImage', {scene: scene,textureName: pathImage})
       },
    },
 }

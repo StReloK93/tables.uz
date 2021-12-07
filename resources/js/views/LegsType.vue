@@ -86,19 +86,17 @@ export default {
     methods: {
         setLegColor(colorIndex){
             let colorArr = ['#ffffff','#ada7a7','#222222',]
-            const scene = Engine.scene.get()
             const metalOne = scene.getMaterialByName('legMetalBottom')
             const metalTwo = scene.getMaterialByName('legMetal')
             metalOne.albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace()
             metalTwo.albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace()
-            this.$store.state.params.legColor = colorIndex
+            store.state.params.legColor = colorIndex
         },
         setLegType(typeIndex){
-            const scene = Engine.scene.get()
             store.commit('setLegType', {scene: scene, legType: typeIndex})
         },
         setDeskMaterial(deskIndex){
-            this.$store.state.params.deskMaterial = deskIndex
+            store.state.params.deskMaterial = deskIndex
         }
     },
 }

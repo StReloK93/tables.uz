@@ -2,15 +2,15 @@ import Scene from './elements/Scene'
 import Camera from './elements/Camera'
 import Light from './elements/Light'
 import Textures from './elements/Textures'
+import Meshes from './elements/Meshes'
 function initScene(canvas){
-   const engine = {
+   return {
       scene: new Scene(canvas),
       camera: new Camera(canvas),
       light: new Light(),
-      
+      textures: new Textures(),
+      Meshes: new Meshes()
    }
-   engine.textures = new Textures(engine.scene.get())
-   return engine
 }
 
 export default initScene

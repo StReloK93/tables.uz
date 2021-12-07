@@ -1,17 +1,16 @@
 //FOR BABYLON.js
-require('./bootstrap');
+window.axios = require('axios');
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 import * as BABYLON from '@babylonjs/core';
-import "@babylonjs/loaders";
-
-
+import "@babylonjs/loaders/glTF";
+window.BABYLON = BABYLON;
+ 
 //FOR VUE 3
 import mainApp from './components/App.vue'
 import { createApp } from 'vue';
 import router from './router';
 import store from './store';
-
 window.store = store
-window.BABYLON = BABYLON;
 
 createApp(mainApp)
     .use(router)

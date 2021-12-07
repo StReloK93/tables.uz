@@ -5,6 +5,7 @@ import { createStore } from 'vuex'
 export default createStore({
     state() {
         return {
+            fullscreen: false,
             onLoaded: false,
             inspector: true,
             configurator: true,
@@ -70,7 +71,7 @@ export default createStore({
 
         floorImage({commit}, req){
             commit('setFloor', req.textureName)
-            req.scene.getMaterialByName('floor').albedoTexture = req.scene.getTextureByName(req.textureName)
+            scene.getMaterialByName('floor').albedoTexture = scene.getTextureByName(req.textureName)
         }
         
     },
