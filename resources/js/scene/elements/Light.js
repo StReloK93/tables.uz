@@ -8,9 +8,8 @@ class Light{
    creataLight() {
       var light = this.light = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(0, -1, 0))
       light.position = new BABYLON.Vector3(1,64,1)
-      light.direction = new BABYLON.Vector3(-0.14,-0.73,0.67)
-      light.intensity = 2
-      this.scene = this.light._scene
+      light.intensity = 1.6
+      light.direction = new BABYLON.Vector3(-0.54,-0.59,-0.60)
    }
 
    shadowGenerator(light){
@@ -21,7 +20,7 @@ class Light{
       shadowGenerator.useContactHardeningShadow = true
       shadowGenerator.contactHardeningLightSizeUVRatio = 0.25
       for (let i = 0; i < array.length; i++) {
-         var node = this.scene.getNodeByName(array[i])
+         var node = scene.getNodeByName(array[i])
          if(!node) continue
          if(node._isMesh){
             shadowGenerator.getShadowMap().renderList.push(node);
@@ -39,7 +38,7 @@ class Light{
 
    AcceptShadows(meshes){
       for (let i = 0; i < meshes.length; i++) {
-         var node = this.scene.getNodeByName(meshes[i])
+         var node = scene.getNodeByName(meshes[i])
          if(!node) continue
          if(node._isMesh){
             node.receiveShadows = true;
@@ -54,9 +53,9 @@ class Light{
       }
    }
 
-   sceneOnload(){this.scene.onReadyObservable.add(()=>{
-      // this.UseShadow(this.shadowGenerator, ['legMetal','legMetalBottom','tableMain', 'image','lamp','monitor'])
-      // this.AcceptShadows(['legMetal', 'legMetalBottom','wall', 'floor','lenolium','tableMain']) // shu spiskadagi mesh yoki nodelar soya qabul qiladi
+   sceneOnload(){scene.onReadyObservable.add(()=>{
+      this.UseShadow(this.shadowGenerator, ['legMetal','legMetalBottom','tableMain', 'image','lamp','monitor','plant'])
+      this.AcceptShadows(['legMetal', 'legMetalBottom','wall', 'floor','lenolium','tableMain','plintus']) // shu spiskadagi mesh yoki nodelar soya qabul qiladi
    })}
 }
 export default Light;

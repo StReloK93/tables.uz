@@ -14,50 +14,37 @@ class Scene {
    }
 
    AllAmbientWhite(){
-      scene.ambientColor = new BABYLON.Color3(1,1,1)
+      scene.ambientColor = BABYLON.Color3.FromHexString('#F8F8F8').toLinearSpace()
+      
       scene.materials.forEach(element => {
          element.ambientColor = new BABYLON.Color3(1,1,1)
       });
    }
 
    UseSkyBox(meshes){
+      var reflectionTexture = new BABYLON.HDRCubeTexture("./textures/allhdr.hdr", scene, 128, false, true, false, true);
       for (let i = 0; i < meshes.length; i++) {
-         var node = scene.getNodeByName(meshes[i])
-         if(node._isMesh){
-            var material = node.material
-            material.backFaceCulling = true;
-            material.reflectionTexture = new BABYLON.CubeTexture("/textures/skybox/skybox", scene);
-            material.reflectionTexture.coordinatesMode = BABYLON.Texture.CUBIC_MODE;
-         }
-         else{
-            if(Array.isArray(node._children)){
-               node._children.forEach(element => {
-                  var material = element.material
-                  material.backFaceCulling = true;
-                  material.reflectionTexture = new BABYLON.CubeTexture("/textures/skybox/skybox", scene);
-                  material.reflectionTexture.coordinatesMode = BABYLON.Texture.CUBIC_MODE;
-               });
-            }
-         }
+         var material = scene.getMaterialByName(meshes[i])
+         material.backFaceCulling = true;
+         material.reflectionTexture = reflectionTexture
+         material.reflectionTexture.coordinatesMode = BABYLON.Texture.CUBIC_MODE;
       }
    }
    
-   MaterialLightMap(array){
+   AmbientTexture(array){
       for (let i = 0; i < array.length; i++) {
          var material = scene.getMaterialByName(array[i])
-         material.useLightmapAsShadowmap = true
-         // material.ambientTexture = new BABYLON.Texture(`/textures/${array[i]}.jpg`, scene);
-         // material.ambientTexture.uAng = Math.PI
-         material.lightmapTexture = new BABYLON.Texture(`/textures/${array[i]}.jpg`, scene);
-         material.lightmapTexture.uAng = Math.PI
+         material.ambientTexture = new BABYLON.Texture(`/textures/${array[i]}.jpg`, scene);
+         material.ambientTexture.uAng = Math.PI
       }
    }
 
    sceneOnload(){
       scene.onReadyObservable.add(()=>{
          this.AllAmbientWhite()
-         // this.MaterialLightMap(['wall','lenolium','floor','podokolnik','legMetal','legMetalBottom','tableMain','image']) // ambient va lightmap texturalarni ismiga qarab qoshadi
-         // this.UseSkyBox(['legMetalBottom', 'legMetal']) // skybox qoshish
+         this.AmbientTexture(['wall','plintus','floor','podokolnik','tableMain', 'monitormain', 'lampwood', 'plantMain']) // ambient va lightmap texturalarni ismiga qarab qoshadi
+         this.UseSkyBox(['legMetalBottom', 'legMetal', 'lampmetal']) // skybox qoshish
+
          store.dispatch('floorImage', {scene: scene,textureName: 'floor1'})
          store.commit('setLegType', {scene: scene, legType: 1})
          store.state.onLoaded = true

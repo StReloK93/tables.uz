@@ -85,7 +85,7 @@
 export default {
     methods: {
         setLegColor(colorIndex){
-            let colorArr = ['#ffffff','#ada7a7','#222222',]
+            let colorArr = ['#EEFCFD','#ada7a7','#222222',]
             const metalOne = scene.getMaterialByName('legMetalBottom')
             const metalTwo = scene.getMaterialByName('legMetal')
             metalOne.albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace()

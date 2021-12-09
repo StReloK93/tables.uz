@@ -14,7 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     setLegColor: function setLegColor(colorIndex) {
-      var colorArr = ['#ffffff', '#ada7a7', '#222222'];
+      var colorArr = ['#EEFCFD', '#ada7a7', '#222222'];
       var metalOne = scene.getMaterialByName('legMetalBottom');
       var metalTwo = scene.getMaterialByName('legMetal');
       metalOne.albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace();
