@@ -7,9 +7,9 @@ class Light{
    //called in constructor
    creataLight() {
       var light = this.light = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(0, -1, 0))
-      light.position = new BABYLON.Vector3(1,64,1)
-      light.intensity = 1.6
-      light.direction = new BABYLON.Vector3(-0.54,-0.59,-0.60)
+      light.position = new BABYLON.Vector3(1,31,1)
+      light.intensity = 2.5
+      light.direction = new BABYLON.Vector3(-0.180,-0.372,-0.911)
    }
 
    shadowGenerator(light){
@@ -32,7 +32,6 @@ class Light{
                });
             }
          }
-         
       }
    }
 

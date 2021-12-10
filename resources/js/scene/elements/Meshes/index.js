@@ -5,8 +5,8 @@ class Meshes {
     //called in constructor
     Import() {
         BABYLON.SceneLoader.ImportMesh("", "./models/", "room.glb", scene, function (meshes) {
-            meshes[0].scaling = new BABYLON.Vector3(20,20,-20)
+            console.log(meshes[0]);
         })
     }
 }
-export default Meshes;
+export default Meshes

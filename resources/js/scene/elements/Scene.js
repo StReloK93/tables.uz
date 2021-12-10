@@ -3,6 +3,10 @@ class Scene {
       this.createScene(canvas)
       this.expansion()
       this.sceneOnload()
+
+      scene.executeWhenReady(() => { 
+         console.log('Simple dimple');
+      });
    }
 
    createScene(canvas) {
@@ -42,9 +46,8 @@ class Scene {
    sceneOnload(){
       scene.onReadyObservable.add(()=>{
          this.AllAmbientWhite()
-         this.AmbientTexture(['wall','plintus','floor','podokolnik','tableMain', 'monitormain', 'lampwood', 'plantMain']) // ambient va lightmap texturalarni ismiga qarab qoshadi
+         this.AmbientTexture(['wall','plintus','floor','podokolnik', 'monitormain', 'lampwood', 'plantMain']) // ambient va lightmap texturalarni ismiga qarab qoshadi
          this.UseSkyBox(['legMetalBottom', 'legMetal', 'lampmetal']) // skybox qoshish
-
          store.dispatch('floorImage', {scene: scene,textureName: 'floor1'})
          store.commit('setLegType', {scene: scene, legType: 1})
          store.state.onLoaded = true
