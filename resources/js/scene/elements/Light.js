@@ -29,7 +29,7 @@ class Light{
             if(Array.isArray(node._children)){
                node._children.forEach(element => {
                   shadowGenerator.getShadowMap().renderList.push(element);
-               });
+               })
             }
          }
       }
@@ -46,7 +46,7 @@ class Light{
             if(Array.isArray(node._children)){
                node._children.forEach(element => {
                   element.receiveShadows = true;
-               });
+               })
             }
          }
       }
@@ -57,4 +57,4 @@ class Light{
       this.AcceptShadows(['legMetal', 'legMetalBottom','wall', 'floor','lenolium','tableMain','plintus']) // shu spiskadagi mesh yoki nodelar soya qabul qiladi
    })}
 }
-export default Light;
+export default Light

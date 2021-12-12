@@ -5,7 +5,7 @@ class Scene {
       this.sceneOnload()
 
       scene.executeWhenReady(() => { 
-         console.log('Simple dimple');
+         //kogda vse zagrujona
       });
    }
 

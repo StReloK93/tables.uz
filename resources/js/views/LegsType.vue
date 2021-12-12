@@ -50,20 +50,28 @@
             <h3 class="font-bold mb-4 text-xl mt-6 text-gray-600">
                 Standing desk material
             </h3>
-            <div class="text-md flex flex-wrap text-center text-gray-600">
-                <button @click="setDeskMaterial(1)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 1}" class="h-16 w-36 rounded-xl mr-4 mb-4 border">
-                    SOHO
-                </button>
-                <button @click="setDeskMaterial(2)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 2}" class="h-16 w-36 rounded-xl mr-4 mb-4 border">
-                    Multi purpose <br> for Home
-                </button>
-                <button @click="setDeskMaterial(3)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 3}" class="h-16 w-36 rounded-xl mr-4 mb-4 border">
-                    Private Office <br> for Corporate
-                </button>
-                <button @click="setDeskMaterial(4)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 4}" class="h-16 w-36 rounded-xl mr-4 mb-4 border">
-                    Open Office <br> for Corporate
-                </button>
-            </div>
+				<Caruosel :itemCount="4" class="text-md text-center text-gray-600">
+					<main class="w-1/4 inline-block align-middle px-2">
+						<button @click="setDeskMaterial(1)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 1}" class="h-16 w-full rounded-xl border">
+							SOHO
+						</button>
+					</main>
+					<main class="w-1/4 inline-block align-middle px-2">
+						<button @click="setDeskMaterial(2)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 2}" class="h-16 w-full rounded-xl border">
+							Multi purpose <br> for Home
+						</button>
+					</main>
+					<main class="w-1/4 inline-block align-middle px-2">
+						<button @click="setDeskMaterial(3)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 3}" class="h-16 w-full rounded-xl border">
+							Private Office <br> for Corporate
+						</button>
+					</main>
+					<main class="w-1/4 inline-block align-middle px-2">
+						<button @click="setDeskMaterial(4)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 4}" class="h-16 w-full rounded-xl border">
+							Open Office <br> for Corporate
+						</button>
+					</main>
+				</Caruosel>
         </main>
       <main class="pb-8">
          <h3 class="font-bold mb-6 text-xl text-gray-600">
@@ -82,6 +90,7 @@
     </section>
 </template>
 <script>
+import Caruosel from '../components/Caruosel.vue'
 export default {
     methods: {
         setLegColor(colorIndex){
@@ -99,5 +108,8 @@ export default {
             store.state.params.deskMaterial = deskIndex
         }
     },
+    components:{
+        Caruosel
+    }
 }
 </script>

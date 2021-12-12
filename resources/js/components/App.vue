@@ -15,7 +15,6 @@
 
    <!-- Configurator -->
    <section class="w-1/2 bg-white relative flex flex-col justify-between overflow-hidden">
-
       <!-- Header -->
       <main class="px-10 pt-3 pb-5 shadow-custom bg-gray-50 text-xl">
          <aside class="flex justify-between mb-5">
@@ -74,7 +73,7 @@ export default {
    components:{
       Decorations,
       Configurator,
-      Icons
+      Icons,
    },
    data() {
       return {
@@ -84,7 +83,6 @@ export default {
    mounted(){
       window.Engine = initScene(this.$refs.canvas) 
       Hotkeys.loaderFile(this.$refs.room)
-      
    },
    computed:{
       requestFullScreen(){
@@ -173,6 +171,9 @@ html *::-webkit-scrollbar-thumb {
 
 .shadow-blue{
    box-shadow: 0 0 0px 2px #3db7f6;
+}
+.easy-transition{
+   transition: .5s;
 }
 *[unselectable=on] {
     -moz-user-select: none;
