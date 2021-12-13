@@ -55,11 +55,11 @@
 
 
       <!-- Footer -->
-      <!-- <main class="text-right p-10 bg-white shadow-custom">
+      <main class="text-right px-10 py-7 bg-white shadow-custom">
          <button class="h-16 w-52 bg-gray-400 hover:bg-red-500  text-xl text-center text-white rounded-xl">
             Get a Quote
          </button>
-      </main> -->
+      </main>
       <!-- Footer -->
    </section>
 </template>

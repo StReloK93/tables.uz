@@ -41,13 +41,28 @@ class Scene {
          material.ambientTexture = new BABYLON.Texture(`/textures/${array[i]}.jpg`, scene);
          material.ambientTexture.uAng = Math.PI
       }
+
+      var mainWall = scene.getMaterialByName('mainWall')
+      mainWall.ambientTexture = new BABYLON.Texture(`/textures/wall.jpg`, scene);
+      mainWall.ambientTexture.uAng = Math.PI
+      mainWall.bumpTexture = new BABYLON.Texture(`/textures/normalwall.jpg`, scene);
+      mainWall.bumpTexture.uScale = 20
+      mainWall.bumpTexture.vScale = 20
+      mainWall.bumpTexture.level = 0.75
+
+      var wall = scene.getMaterialByName('wall')
+      wall.bumpTexture = new BABYLON.Texture(`/textures/normalwall.jpg`, scene);
+      wall.bumpTexture.uScale = 15
+      wall.bumpTexture.vScale = 15
+      wall.bumpTexture.level = 0.75
+      // console.log(mainWall);
    }
 
    sceneOnload(){
       scene.onReadyObservable.add(()=>{
          this.AllAmbientWhite()
-         this.AmbientTexture(['wall','plintus','floor','podokolnik', 'monitormain', 'lampwood', 'plantMain']) // ambient va lightmap texturalarni ismiga qarab qoshadi
-         this.UseSkyBox(['legMetalBottom', 'legMetal', 'lampmetal']) // skybox qoshish
+         this.AmbientTexture(['wall','plintus','floor','podokolnik', 'monitormain', 'lampwood', 'plantMain', 'tumbochka','twoLegMetal','twoTable']) // ambient va lightmap texturalarni ismiga qarab qoshadi
+         this.UseSkyBox(['twoLegMetal', 'fourLegMetal', 'lampmetal', 'tumbochka metal', 'tumbochka', 'floor']) // skybox qoshish
          store.dispatch('floorImage', {scene: scene,textureName: 'floor1'})
          store.commit('setLegType', {scene: scene, legType: 1})
          store.state.onLoaded = true

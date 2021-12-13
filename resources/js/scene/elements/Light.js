@@ -10,6 +10,8 @@ class Light{
       light.position = new BABYLON.Vector3(1,31,1)
       light.intensity = 2.5
       light.direction = new BABYLON.Vector3(-0.180,-0.372,-0.911)
+      light.diffuse = BABYLON.Color3.FromHexString('#C3BFA9')
+      
    }
 
    shadowGenerator(light){
@@ -17,7 +19,7 @@ class Light{
    }
 
    UseShadow(shadowGenerator,array){
-      shadowGenerator.useContactHardeningShadow = true
+      shadowGenerator.useBlurExponentialShadowMap = true;
       shadowGenerator.contactHardeningLightSizeUVRatio = 0.25
       for (let i = 0; i < array.length; i++) {
          var node = scene.getNodeByName(array[i])
@@ -53,8 +55,8 @@ class Light{
    }
 
    sceneOnload(){scene.onReadyObservable.add(()=>{
-      this.UseShadow(this.shadowGenerator, ['legMetal','legMetalBottom','tableMain', 'image','lamp','monitor','plant'])
-      this.AcceptShadows(['legMetal', 'legMetalBottom','wall', 'floor','lenolium','tableMain','plintus']) // shu spiskadagi mesh yoki nodelar soya qabul qiladi
+      this.UseShadow(this.shadowGenerator, ['oneleg','twoleg', 'threeleg', 'fourleg', 'fiveleg','tumbochka', 'image','lamp','monitor','plant'])
+      this.AcceptShadows(['twoleg','wall', 'floor','plintus']) // shu spiskadagi mesh yoki nodelar soya qabul qiladi
    })}
 }
 export default Light

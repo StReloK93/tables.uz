@@ -52,23 +52,44 @@
             </h3>
 				<Caruosel :itemCount="4" class="text-md text-center text-gray-600">
 					<main class="w-1/4 inline-block align-middle px-2">
-						<button @click="setDeskMaterial(1)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 1}" class="h-16 w-full rounded-xl border">
-							SOHO
+						<button @click="setDeskMaterial(1)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 1}" class="h-20 w-full rounded-xl border">
+							Solid wood <br> Live Edge
 						</button>
 					</main>
 					<main class="w-1/4 inline-block align-middle px-2">
-						<button @click="setDeskMaterial(2)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 2}" class="h-16 w-full rounded-xl border">
-							Multi purpose <br> for Home
+						<button @click="setDeskMaterial(2)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 2}" class="h-20 w-full rounded-xl border">
+							Solid wood <br> Traditional
 						</button>
 					</main>
 					<main class="w-1/4 inline-block align-middle px-2">
-						<button @click="setDeskMaterial(3)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 3}" class="h-16 w-full rounded-xl border">
-							Private Office <br> for Corporate
+						<button @click="setDeskMaterial(3)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 3}" class="h-20 w-full rounded-xl border">
+							Solid wood <br> Epoxy
 						</button>
 					</main>
 					<main class="w-1/4 inline-block align-middle px-2">
-						<button @click="setDeskMaterial(4)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 4}" class="h-16 w-full rounded-xl border">
-							Open Office <br> for Corporate
+						<button @click="setDeskMaterial(4)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 4}" class="h-20 w-full rounded-xl border">
+							Melamine <br>
+                            With glass top
+						</button>
+					</main>
+					<main class="w-1/4 inline-block align-middle px-2">
+						<button @click="setDeskMaterial(5)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 5}" class="h-20 w-full rounded-xl border">
+							Veneer
+						</button>
+					</main>
+					<main class="w-1/4 inline-block align-middle px-2">
+						<button @click="setDeskMaterial(6)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 6}" class="h-20 w-full rounded-xl border">
+							Melamine
+						</button>
+					</main>
+					<main class="w-1/4 inline-block align-middle px-2">
+						<button @click="setDeskMaterial(7)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 7}" class="h-20 w-full rounded-xl border">
+							Bamboo
+						</button>
+					</main>
+					<main class="w-1/4 inline-block align-middle px-2">
+						<button @click="setDeskMaterial(8)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 8}" class="h-20 w-full rounded-xl border">
+							Laminate
 						</button>
 					</main>
 				</Caruosel>
@@ -90,15 +111,14 @@
     </section>
 </template>
 <script>
-import Caruosel from '../components/Caruosel.vue'
+import Caruosel from '../components/Carusel.vue'
+
 export default {
     methods: {
         setLegColor(colorIndex){
             let colorArr = ['#EEFCFD','#ada7a7','#222222',]
-            const metalOne = scene.getMaterialByName('legMetalBottom')
-            const metalTwo = scene.getMaterialByName('legMetal')
+            const metalOne = scene.getMaterialByName('twoLegMetal')
             metalOne.albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace()
-            metalTwo.albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace()
             store.state.params.legColor = colorIndex
         },
         setLegType(typeIndex){

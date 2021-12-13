@@ -6,6 +6,7 @@ function onFullScreenChange() {
    else {
       store.state.fullscreen = false
    }
+   window.dispatchEvent(new Event('resize'));
 }
 
 function requestFullScreen(element) {
