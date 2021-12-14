@@ -1,21 +1,28 @@
 class Light{
    constructor() {
       this.creataLight()
-      this.shadowGenerator(this.light)
+      this.creataLighttwo()
       this.sceneOnload()
    }
    //called in constructor
    creataLight() {
-      var light = this.light = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(0, -1, 0))
+      var light = this.light = new BABYLON.DirectionalLight("light1", new BABYLON.Vector3(0, -1, 0))
       light.position = new BABYLON.Vector3(1,31,1)
       light.intensity = 2.5
       light.direction = new BABYLON.Vector3(-0.180,-0.372,-0.911)
       light.diffuse = BABYLON.Color3.FromHexString('#C3BFA9')
-      
+
+      this.shadowGeneratorOne = new BABYLON.ShadowGenerator(1024, light);
    }
 
-   shadowGenerator(light){
-      this.shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
+
+   creataLighttwo() {
+      var light = this.light = new BABYLON.DirectionalLight("light2", new BABYLON.Vector3(0, -1, 0))
+      light.position = new BABYLON.Vector3(1,31,1)
+      light.intensity = 2.5
+      light.direction = new BABYLON.Vector3(-0.180,-0.372,-0.911)
+      
+      this.shadowGeneratorTwo = new BABYLON.ShadowGenerator(1024, light);
    }
 
    UseShadow(shadowGenerator,array){
@@ -55,7 +62,8 @@ class Light{
    }
 
    sceneOnload(){scene.onReadyObservable.add(()=>{
-      this.UseShadow(this.shadowGenerator, ['oneleg','twoleg', 'threeleg', 'fourleg', 'fiveleg','tumbochka', 'image','lamp','monitor','plant'])
+      this.UseShadow(this.shadowGeneratorOne, ['oneleg','twoleg', 'threeleg', 'fourleg', 'fiveleg','tumbochka', 'image','lamp','monitor','plant'])
+      this.UseShadow(this.shadowGeneratorTwo, ['oneleg','twoleg', 'threeleg', 'fourleg', 'fiveleg','tumbochka', 'image','lamp','monitor','plant'])
       this.AcceptShadows(['twoleg','wall', 'floor','plintus']) // shu spiskadagi mesh yoki nodelar soya qabul qiladi
    })}
 }
