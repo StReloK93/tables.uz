@@ -18,7 +18,7 @@ class Scene {
    }
 
    AllAmbientWhite(){
-      scene.ambientColor = BABYLON.Color3.FromHexString('#F8F8F8').toLinearSpace()
+      scene.ambientColor = BABYLON.Color3.FromHexString('#CAC1C1')
       
       scene.materials.forEach(element => {
          element.ambientColor = new BABYLON.Color3(1,1,1)
