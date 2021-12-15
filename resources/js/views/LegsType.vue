@@ -50,64 +50,64 @@
             <h3 class="font-bold mb-4 text-xl mt-6 text-gray-600">
                 Standing desk material
             </h3>
-				<Caruosel :itemCount="4" class="text-md text-center text-gray-600">
-					<main class="w-1/4 inline-block align-middle px-2">
-						<button @click="setDeskMaterial(1)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 1}" class="h-20 w-full rounded-xl border">
-							Solid wood <br> Live Edge
-						</button>
-					</main>
-					<main class="w-1/4 inline-block align-middle px-2">
-						<button @click="setDeskMaterial(2)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 2}" class="h-20 w-full rounded-xl border">
-							Solid wood <br> Traditional
-						</button>
-					</main>
-					<main class="w-1/4 inline-block align-middle px-2">
-						<button @click="setDeskMaterial(3)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 3}" class="h-20 w-full rounded-xl border">
-							Solid wood <br> Epoxy
-						</button>
-					</main>
-					<main class="w-1/4 inline-block align-middle px-2">
-						<button @click="setDeskMaterial(4)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 4}" class="h-20 w-full rounded-xl border">
-							Melamine <br>
-                            With glass top
-						</button>
-					</main>
-					<main class="w-1/4 inline-block align-middle px-2">
-						<button @click="setDeskMaterial(5)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 5}" class="h-20 w-full rounded-xl border">
-							Veneer
-						</button>
-					</main>
-					<main class="w-1/4 inline-block align-middle px-2">
-						<button @click="setDeskMaterial(6)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 6}" class="h-20 w-full rounded-xl border">
-							Melamine
-						</button>
-					</main>
-					<main class="w-1/4 inline-block align-middle px-2">
-						<button @click="setDeskMaterial(7)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 7}" class="h-20 w-full rounded-xl border">
-							Bamboo
-						</button>
-					</main>
-					<main class="w-1/4 inline-block align-middle px-2">
-						<button @click="setDeskMaterial(8)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 8}" class="h-20 w-full rounded-xl border">
-							Laminate
-						</button>
-					</main>
-				</Caruosel>
+            <Caruosel :itemCount="4" class="text-md text-center text-gray-600">
+                <main class="w-1/4 inline-block align-middle px-2">
+                    <button @click="setDeskMaterial(1)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 1}" class="h-20 w-full rounded-xl border">
+                        Solid wood <br> Live Edge
+                    </button>
+                </main>
+                <main class="w-1/4 inline-block align-middle px-2">
+                    <button @click="setDeskMaterial(2)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 2}" class="h-20 w-full rounded-xl border">
+                        Solid wood <br> Traditional
+                    </button>
+                </main>
+                <main class="w-1/4 inline-block align-middle px-2">
+                    <button @click="setDeskMaterial(3)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 3}" class="h-20 w-full rounded-xl border">
+                        Solid wood <br> Epoxy
+                    </button>
+                </main>
+                <main class="w-1/4 inline-block align-middle px-2">
+                    <button @click="setDeskMaterial(4)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 4}" class="h-20 w-full rounded-xl border">
+                        Melamine <br>
+                        With glass top
+                    </button>
+                </main>
+                <main class="w-1/4 inline-block align-middle px-2">
+                    <button @click="setDeskMaterial(5)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 5}" class="h-20 w-full rounded-xl border">
+                        Veneer
+                    </button>
+                </main>
+                <main class="w-1/4 inline-block align-middle px-2">
+                    <button @click="setDeskMaterial(6)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 6}" class="h-20 w-full rounded-xl border">
+                        Melamine
+                    </button>
+                </main>
+                <main class="w-1/4 inline-block align-middle px-2">
+                    <button @click="setDeskMaterial(7)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 7}" class="h-20 w-full rounded-xl border">
+                        Bamboo
+                    </button>
+                </main>
+                <main class="w-1/4 inline-block align-middle px-2">
+                    <button @click="setDeskMaterial(8)" :class="{'bg-my text-white': $store.state.params.deskMaterial == 8}" class="h-20 w-full rounded-xl border">
+                        Laminate
+                    </button>
+                </main>
+            </Caruosel>
         </main>
-      <main class="pb-8">
-         <h3 class="font-bold mb-6 text-xl text-gray-600">
-            Choose the leg color
-         </h3>
-         <div class="flex flex-wrap -mx-3">
-            <aside v-for="n in 3" :key="n" class="w-1/5 px-3">
-               <main  @click="setLegColor(n)" :class="{'shadow-blue': $store.state.params.legColor == n}" class="p-1 rounded-md h-36">
-                   <div v-if="n == 1" class="w-full h-full bg-white border border-gray-300 rounded-md"></div>
-                   <div v-if="n == 2" class="w-full h-full bg-gray-400 border border-gray-300 rounded-md"></div>
-                   <div v-if="n == 3" class="w-full h-full bg-black border border-gray-300 rounded-md"></div>
-               </main>
-            </aside>
-         </div>
-      </main>
+        <main class="pb-8">
+            <h3 class="font-bold mb-6 text-xl text-gray-600">
+                Choose the leg color
+            </h3>
+            <div class="flex flex-wrap -mx-3">
+                <aside v-for="n in 3" :key="n" class="w-1/5 px-3">
+                    <main  @click="setLegColor(n)" :class="{'shadow-blue': $store.state.params.legColor == n}" class="p-1 rounded-md h-36">
+                        <div v-if="n == 1" class="w-full h-full bg-white border border-gray-300 rounded-md"></div>
+                        <div v-if="n == 2" class="w-full h-full bg-gray-400 border border-gray-300 rounded-md"></div>
+                        <div v-if="n == 3" class="w-full h-full bg-black border border-gray-300 rounded-md"></div>
+                    </main>
+                </aside>
+            </div>
+        </main>
     </section>
 </template>
 <script>
@@ -116,13 +116,17 @@ import Caruosel from '../components/Carusel.vue'
 export default {
     methods: {
         setLegColor(colorIndex){
-            let colorArr = ['#EEFCFD','#ada7a7','#222222',]
-            const metalOne = scene.getMaterialByName('twoLegMetal')
-            metalOne.albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace()
+            let colorArr = ['#EEFCFD','#ada7a7','#222222']
+
+            const metalOne = scene.getMaterialByName('twoLeg')
+
+            let albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace()
+            //Animate(target,ParamterToEdit,Property, Keyframes, CallbackEndAnimation)
+            Animate(metalOne, 'albedoColor',COLOR3, [{frame: 0,value: metalOne.albedoColor},{frame: 15,value: albedoColor}])
             store.state.params.legColor = colorIndex
         },
-        setLegType(typeIndex){
-            store.commit('setLegType', {scene: scene, legType: typeIndex})
+        setLegType(legIndex){
+            store.commit('setLegType', legIndex)
         },
         setDeskMaterial(deskIndex){
             store.state.params.deskMaterial = deskIndex

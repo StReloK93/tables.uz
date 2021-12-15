@@ -13,18 +13,18 @@ export default createStore({
             params: {
                 tablesCount: 1,
                 legColor: 1,
-                legType: 1,
+                legType: 0,
                 size: 0,
                 deskMaterial: 1,
                 wallColor: '#ffffff',
                 floor: null
             },
             decor:{
-                lamp: true,
-                monitor: true,
-                image: true,
-                chair: true,
-                plant: true,
+                lamp: false,
+                monitor: false,
+                image: false,
+                chair: false,
+                plant: false,
             }
         }
     },
@@ -40,27 +40,29 @@ export default createStore({
         setConfigurator(state, payload){
             state.configurator = payload
         },
-        setFloor(state, payload){
-            state.params.floor = payload
+        floorImage(state, req){
+            state.params.floor = req.textureName
+            scene.getMaterialByName('floor').albedoTexture = scene.getTextureByName(req.textureName)
         },
-        setLegType(state, payload){
-            const scene = payload.scene
+        setLegType(state, defaultLeg){
+            //Qayta Chaqirilmaslik uchun
+            if(state.params.legType == defaultLeg) return
 
-            let arrayLeg = [
-                scene.getNodeByName('oneleg'),
-                scene.getNodeByName('twoleg'),
-                scene.getNodeByName('threeleg'),
-                scene.getNodeByName('fourleg'),
-                scene.getNodeByName('fiveleg'),
-            ]
+            let show = new BABYLON.Vector3(1,1,1),hide = new BABYLON.Vector3(0,0,0)
+            //Stol turlari
+            let Legs = ['oneleg','twoleg','threeleg','fourleg','fiveleg']
 
-            for (let i = 0; i < arrayLeg.length; i++) {
-                if(payload.legType == i+1) arrayLeg[i].scaling = new BABYLON.Vector3(1,1,1)
-                else arrayLeg[i].scaling = new BABYLON.Vector3(0,0,0)
+            //Tanlangan meshni paydo qiladi qolganlarini yashiradi
+            for (let i = 0; i < Legs.length; i++) {
+                const MeshParent = scene.getNodeByName(Legs[i])
+                if(defaultLeg == i+1) 
+                    Animate(MeshParent,'scaling', VECTOR3, [{frame: 0,value: hide},{frame: 15,value: show}])
+                else 
+                    Animate(MeshParent,'scaling', VECTOR3, [{frame: 0,value: MeshParent.scaling},{frame: 15,value: hide}])
             }
 
-            state.params.legType = payload.legType
-
+            //Style qo'shish uchun activeligini bildiradi
+            state.params.legType = defaultLeg
         },
     },
     actions: {
@@ -68,11 +70,5 @@ export default createStore({
             var {data} = await axios.get('api/textures')
             return data
         },
-
-        floorImage({commit}, req){
-            commit('setFloor', req.textureName)
-            scene.getMaterialByName('floor').albedoTexture = scene.getTextureByName(req.textureName)
-        }
-        
     },
 })

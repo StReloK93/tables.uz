@@ -55,16 +55,22 @@ class Scene {
       wall.bumpTexture.uScale = 15
       wall.bumpTexture.vScale = 15
       wall.bumpTexture.level = 0.75
-      // console.log(mainWall);
    }
 
    sceneOnload(){
       scene.onReadyObservable.add(()=>{
          this.AllAmbientWhite()
-         this.AmbientTexture(['wall','plintus','floor','podokolnik', 'monitormain', 'lampwood', 'plantMain', 'tumbochka','twoLegMetal','twoTable']) // ambient va lightmap texturalarni ismiga qarab qoshadi
-         this.UseSkyBox(['twoLegMetal', 'fourLegMetal', 'lampmetal', 'tumbochka metal', 'tumbochka', 'floor']) // skybox qoshish
-         store.dispatch('floorImage', {scene: scene,textureName: 'floor1'})
-         store.commit('setLegType', {scene: scene, legType: 1})
+         //Ambient textura qoshiladigan || :: Materiallar kiritiladi
+         this.AmbientTexture(['wall','plintus','floor','podokolnik', 'monitormain', 'lampwood', 'plantMain', 'tumbochka','twoLeg','twoTable']) // ambient va lightmap texturalarni ismiga qarab qoshadi
+         //Metal yoki clearCoatga Skyboxlar || :: Materiallar kiritiladi
+         this.UseSkyBox(['twoLeg', 'fourLeg', 'lampmetal', 'GlobalMetalicSilinder', 'tumbochka', 'floor']) // skybox qoshish
+
+         //Defautl texturani urnatadi
+         store.commit('floorImage', {scene: scene,textureName: 'floor1'})
+
+         //Default Stolni urnatadi
+         let defaultLeg = 2
+         store.commit('setLegType', defaultLeg)
          store.state.onLoaded = true
       })
    }
