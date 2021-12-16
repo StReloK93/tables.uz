@@ -14,6 +14,48 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Carusel_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Carusel.vue */ "./resources/js/components/Carusel.vue");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      Coordinates: [{
+        image: new BABYLON.Vector3(10, 19.117, -34.423),
+        plant: new BABYLON.Vector3(0, 1, -31),
+        monitor: new BABYLON.Vector3(10.368, 8.13698, -21.8846),
+        chair: new BABYLON.Vector3(15.5757, 1.38094, -11.7009),
+        lamp: new BABYLON.Vector3(22.511, 6.92616, -31.4137),
+        tumbochka: new BABYLON.Vector3(22.503, 1.178, -29.831)
+      }, //
+      {
+        image: new BABYLON.Vector3(1.215, 19.117, -34.423),
+        plant: new BABYLON.Vector3(3.080, 1, -31.333),
+        monitor: new BABYLON.Vector3(14.214, 7.689, -31.565),
+        chair: new BABYLON.Vector3(15.661, 1.381, -17.889),
+        lamp: new BABYLON.Vector3(19.627, 7.668, -31.414),
+        tumbochka: new BABYLON.Vector3(22.503, 1.178, -29.831)
+      }, //
+      {
+        image: new BABYLON.Vector3(1.215, 19.117, -34.423),
+        plant: new BABYLON.Vector3(-3.09833, 1, -31.333),
+        monitor: new BABYLON.Vector3(15.1378, 7.66257, -30.3906),
+        chair: new BABYLON.Vector3(17.7362, 1.38094, -18.8789),
+        lamp: new BABYLON.Vector3(20.8322, 7.62824, -31.414),
+        tumbochka: new BABYLON.Vector3(1, 1.178, -29.831)
+      }, {
+        image: new BABYLON.Vector3(9.82315, 19.117, -34.423),
+        plant: new BABYLON.Vector3(-1.77979, 1, -31.333),
+        monitor: new BABYLON.Vector3(1.45031, 7.68734, -7.10365),
+        chair: new BABYLON.Vector3(9.11413, 1.38094, -2.60271),
+        lamp: new BABYLON.Vector3(22.5794, 6.95014, -31.4137),
+        tumbochka: new BABYLON.Vector3(22.503, 1.178, -29.831)
+      }, {
+        image: new BABYLON.Vector3(2.96359, 19.117, -34.423),
+        plant: new BABYLON.Vector3(-1.35887, 1, -31.333),
+        monitor: new BABYLON.Vector3(13.7972, 8.53316, -31.3336),
+        chair: new BABYLON.Vector3(13.1428, 1.38094, -21.123),
+        lamp: new BABYLON.Vector3(21.2717, 8.50354, -31.4137),
+        tumbochka: new BABYLON.Vector3(3, 1.178, -29.831)
+      }]
+    };
+  },
   methods: {
     setLegColor: function setLegColor(colorIndex) {
       var colorArr = ['#EEFCFD', '#ada7a7', '#222222'];
@@ -29,17 +71,106 @@ __webpack_require__.r(__webpack_exports__);
       }]);
       store.state.params.legColor = colorIndex;
     },
+    //< ------------ main -- //
     setLegType: function setLegType(legIndex) {
+      var _this = this;
+
+      if (store.state.params.legType == legIndex) return;
+      var coords = this.Coordinates;
+      var activeDecors = this.getDecors();
+      activeDecors.forEach(function (Decors) {
+        if (store.state.decor[Decors]) {
+          _this.DecorsPosition(Decors, coords[legIndex - 1][Decors]);
+        } else {
+          _this.DecorsHide(Decors, coords[legIndex - 1][Decors]);
+        }
+      });
       store.commit('setLegType', legIndex);
     },
     setDeskMaterial: function setDeskMaterial(deskIndex) {
       store.state.params.deskMaterial = deskIndex;
+    },
+    //poisk active decors
+    getDecors: function getDecors() {
+      var decors = store.state.decor;
+      var arrayWithActiveDecors = [];
+
+      for (var key in decors) {
+        arrayWithActiveDecors.push(key);
+      }
+
+      return arrayWithActiveDecors;
+    },
+    //hide to active decors
+    DecorsHide: function DecorsHide(node, coords) {
+      var _this2 = this;
+
+      var hide = new BABYLON.Vector3(0, 0, 0); //soralgan meshni topamiz
+
+      var mesh = scene.getNodeByName(node); //Agar bu mesh bor bolsa agar bo'lmasa uni iconcasi ciqmaydi yani this['node'] = true ishlamaydi
+
+      Animate(mesh, 'scaling', VECTOR3, [{
+        frame: 0,
+        value: mesh.scaling
+      }, {
+        frame: 10,
+        value: hide
+      }], function () {
+        _this2.DecorsPosition(node, coords, function () {
+          _this2.DecorsShow(mesh);
+        });
+      });
+    },
+    DecorsPosition: function DecorsPosition(node, position) {
+      var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};
+      var mesh = scene.getNodeByName(node);
+      Animate(mesh, 'position', VECTOR3, [{
+        frame: 0,
+        value: mesh.position
+      }, {
+        frame: 1,
+        value: position
+      }], callback());
+    },
+    DecorsShow: function DecorsShow(mesh) {
+      var show = new BABYLON.Vector3(1, 1, 1);
+      Animate(mesh, 'scaling', VECTOR3, [{
+        frame: 0,
+        value: mesh.scaling
+      }, {
+        frame: 10,
+        value: show
+      }]);
     }
   },
   components: {
     Caruosel: _components_Carusel_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
-});
+}); //One leg Image     new BABYLON.Vector3(10,19.117,-34.423) //
+//One leg plant     new BABYLON.Vector3(0,1,-31) //
+//One leg Monitor   new BABYLON.Vector3(10.368,8.13698,-21.8846) //
+//One leg Chair     new BABYLON.Vector3(15.5757,1.38094,-11.7009) //
+//One leg Lamp      new BABYLON.Vector3(22.511,6.92616,-31.4137) //
+//two leg Image     new BABYLON.Vector3(1.215,19.117,-34.423) //
+//two leg plant     new BABYLON.Vector3(3.080,1,-31.333) //
+//two leg Monitor   new BABYLON.Vector3(14.214,7.689,-31.565) //
+//two leg Chair     new BABYLON.Vector3(15.661,1.381,-17.889) //
+//two leg Lamp      new BABYLON.Vector3(19.627,7.668,-31.414) //
+//three leg Image   new BABYLON.Vector3(1.215,19.117,-34.423) //
+//three leg plant   new BABYLON.Vector3(-3.09833,1,-31.333) //
+//three leg Monitor new BABYLON.Vector3(15.1378,7.66257,-30.3906) //
+//three leg Chair   new BABYLON.Vector3(17.7362,1.38094,-18.8789) //
+//three leg Lamp    new BABYLON.Vector3(20.8322,7.62824,-31.414) //
+//four leg Image    new BABYLON.Vector3(9.82315,19.117,-34.423) //
+//four leg plant    new BABYLON.Vector3(-1.77979,1,-31.333) // 
+//four leg Monitor  new BABYLON.Vector3(1.45031,7.68734,-7.10365) //
+//four leg Chair    new BABYLON.Vector3(9.11413,1.38094,-2.60271)  //
+//four leg Lamp     new BABYLON.Vector3(22.5794,6.95014,-31.4137) //
+//five leg Image    new BABYLON.Vector3(2.96359,19.117,-34.423) //
+//five leg plant    new BABYLON.Vector3(-1.35887,1,-31.333) // 
+//five leg Monitor  new BABYLON.Vector3(13.7972,8.53316,-31.3336) //
+//five leg Chair    new BABYLON.Vector3(13.1428,1.38094,-21.123) //
+//five leg Lamp     new BABYLON.Vector3(21.2717,8.50354,-31.4137) //
 
 /***/ }),
 
@@ -594,13 +725,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _LegsType_vue_vue_type_template_id_75dd31be__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LegsType.vue?vue&type=template&id=75dd31be */ "./resources/js/Views/LegsType.vue?vue&type=template&id=75dd31be");
 /* harmony import */ var _LegsType_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LegsType.vue?vue&type=script&lang=js */ "./resources/js/Views/LegsType.vue?vue&type=script&lang=js");
-/* harmony import */ var C_AMD_OSPanel_domains_tables_uz_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var D_media_openserver_domains_tables_uz_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,C_AMD_OSPanel_domains_tables_uz_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_LegsType_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_LegsType_vue_vue_type_template_id_75dd31be__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Views/LegsType.vue"]])
+const __exports__ = /*#__PURE__*/(0,D_media_openserver_domains_tables_uz_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_LegsType_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_LegsType_vue_vue_type_template_id_75dd31be__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Views/LegsType.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -622,7 +753,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Carusel_vue_vue_type_template_id_1bf5d304__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Carusel.vue?vue&type=template&id=1bf5d304 */ "./resources/js/components/Carusel.vue?vue&type=template&id=1bf5d304");
 /* harmony import */ var _Carusel_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Carusel.vue?vue&type=script&lang=js */ "./resources/js/components/Carusel.vue?vue&type=script&lang=js");
 /* harmony import */ var _Carusel_vue_vue_type_style_index_0_id_1bf5d304_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Carusel.vue?vue&type=style&index=0&id=1bf5d304&lang=css */ "./resources/js/components/Carusel.vue?vue&type=style&index=0&id=1bf5d304&lang=css");
-/* harmony import */ var C_AMD_OSPanel_domains_tables_uz_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var D_media_openserver_domains_tables_uz_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
@@ -630,7 +761,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,C_AMD_OSPanel_domains_tables_uz_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_Carusel_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Carusel_vue_vue_type_template_id_1bf5d304__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Carusel.vue"]])
+const __exports__ = /*#__PURE__*/(0,D_media_openserver_domains_tables_uz_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_Carusel_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Carusel_vue_vue_type_template_id_1bf5d304__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Carusel.vue"]])
 /* hot reload */
 if (false) {}
 

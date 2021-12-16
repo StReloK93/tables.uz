@@ -11,7 +11,7 @@ class Light{
       light.position = new BABYLON.Vector3(1,31,1)
       light.intensity = 2.5
       light.direction = new BABYLON.Vector3(-0.180,-0.372,-0.911)
-      light.diffuse = BABYLON.Color3.FromHexString('#C3BFA9')
+      
       this.shadowGeneratorOne = new BABYLON.ShadowGenerator(1024, light)
       this.shadowGeneratorOne.usePercentageCloserFiltering = true
    }
@@ -26,6 +26,7 @@ class Light{
       this.shadowGeneratorTwo.useBlurExponentialShadowMap = true
       this.shadowGeneratorTwo.blurBoxOffset = 15
       this.shadowGeneratorTwo.blurScale = 2
+      this.shadowGeneratorTwo.darkness = 0.5
    }
 
    UseShadow(shadowGenerator,array){

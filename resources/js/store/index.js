@@ -17,18 +17,21 @@ export default createStore({
                 size: 0,
                 deskMaterial: 1,
                 wallColor: '#ffffff',
+                mainWallColor: '#182249',
                 floor: null
             },
             decor:{
                 lamp: false,
                 monitor: false,
-                image: false,
+                image: true,
                 chair: false,
-                plant: false,
+                plant: true,
+                tumbochka: false,
             }
         }
     },
     mutations: {
+        //otherdagi counter
         setTablesCount(state,pay){
             if(pay < 1 && (state.params.tablesCount > 1)){
                 state.params.tablesCount += pay
@@ -37,13 +40,20 @@ export default createStore({
                 state.params.tablesCount += pay
             }
         },
+
+        //Create Your own intererdagi menularni yashiradi
         setConfigurator(state, payload){
             state.configurator = payload
         },
+
+        //Buni js/elements/scene.js da chaqiramiz va default textura beramiz polga
+        //shu funksiya roomda ham polni uzgartirish uchun chaqiriladi
         floorImage(state, req){
             state.params.floor = req.textureName
             scene.getMaterialByName('floor').albedoTexture = scene.getTextureByName(req.textureName)
         },
+
+
         setLegType(state, defaultLeg){
             //Qayta Chaqirilmaslik uchun
             if(state.params.legType == defaultLeg) return
@@ -65,6 +75,8 @@ export default createStore({
             state.params.legType = defaultLeg
         },
     },
+
+
     actions: {
         async textures(){
             var {data} = await axios.get('api/textures')
