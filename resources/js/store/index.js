@@ -60,7 +60,7 @@ export default createStore({
 
             let show = new BABYLON.Vector3(1,1,1),hide = new BABYLON.Vector3(0,0,0)
             //Stol turlari
-            let Legs = ['oneleg','twoleg','threeleg','fourleg','fiveleg']
+            let Legs = ['onelegParent','twolegParent','threelegParent','fourlegParent','fivelegParent']
 
             //Tanlangan meshni paydo qiladi qolganlarini yashiradi
             for (let i = 0; i < Legs.length; i++) {

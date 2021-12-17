@@ -41,8 +41,14 @@ function loaderFile(file) {
    //    return false;
    // };
    window.onkeyup = (event) => {
+      console.log(store.state.fullscreen);
       if (event.keyCode == 32) {
-         requestFullScreen(file)
+         if(store.state.fullscreen){
+            closeFullscreen()
+         }
+         else{
+            requestFullScreen(file)
+         }
       }
       if (event.keyCode == 107) {
          if (store.state.inspector) {

@@ -163,10 +163,14 @@ export default {
     methods: {
         setLegColor(colorIndex){
             let colorArr = ['#EEFCFD','#ada7a7','#222222']
-            const metalOne = scene.getMaterialByName('twoLeg')
-            let albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace()
-            //Animate(target,ParamterToEdit,Property, Keyframes, CallbackEndAnimation)
-            Animate(metalOne, 'albedoColor',COLOR3, [{frame: 0,value: metalOne.albedoColor},{frame: 15,value: albedoColor}])
+            let LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg','threeLegLeft', 'threeLegRight']
+
+            LegsArr.forEach(legName => {
+                const leg = scene.getMaterialByName(legName)
+                let albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace()
+                //Animate(target,ParamterToEdit,Property, Keyframes, CallbackEndAnimation)
+                Animate(leg, 'albedoColor',COLOR3, [{frame: 0,value: leg.albedoColor},{frame: 15,value: albedoColor}])
+            });
             store.state.params.legColor = colorIndex
         },
         //< ------------ main -- //

@@ -59,16 +59,19 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     setLegColor: function setLegColor(colorIndex) {
       var colorArr = ['#EEFCFD', '#ada7a7', '#222222'];
-      var metalOne = scene.getMaterialByName('twoLeg');
-      var albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace(); //Animate(target,ParamterToEdit,Property, Keyframes, CallbackEndAnimation)
+      var LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg', 'threeLegLeft', 'threeLegRight'];
+      LegsArr.forEach(function (legName) {
+        var leg = scene.getMaterialByName(legName);
+        var albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace(); //Animate(target,ParamterToEdit,Property, Keyframes, CallbackEndAnimation)
 
-      Animate(metalOne, 'albedoColor', COLOR3, [{
-        frame: 0,
-        value: metalOne.albedoColor
-      }, {
-        frame: 15,
-        value: albedoColor
-      }]);
+        Animate(leg, 'albedoColor', COLOR3, [{
+          frame: 0,
+          value: leg.albedoColor
+        }, {
+          frame: 15,
+          value: albedoColor
+        }]);
+      });
       store.state.params.legColor = colorIndex;
     },
     //< ------------ main -- //
