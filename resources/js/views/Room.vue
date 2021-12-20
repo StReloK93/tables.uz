@@ -26,7 +26,7 @@
          <div class="flex flex-wrap -mx-3">
             <aside class="w-1/5 px-3" v-for="(img , index) in images" :key="img">
                <main :class="{'shadow-blue': $store.state.params.floor == 'floor'+(index+1)}" @click="floorImage(`floor${index+1}`)" class="mb-6 p-1 rounded-xl cursor-pointer">
-                  <img :src="`/textures/${img}`" class="rounded-md">
+                  <img :src="`/floors/${img}`" class="rounded-md">
                </main>
             </aside>
          </div>

@@ -27,6 +27,13 @@ export default createStore({
                 chair: false,
                 plant: true,
                 tumbochka: false,
+            },
+            custom: {
+                corners: 1,
+                grommet: 1,
+                partition: 1,
+                accessories: 1,
+                chair: 1,
             }
         }
     },

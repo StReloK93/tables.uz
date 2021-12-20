@@ -21,11 +21,13 @@
             </aside>
 		</main>
         <main class="-mx-10 border-t border-gray-300 px-10 pt-10">
-            <Corners v-if="$store.state.customActiveLink == 1" />
-            <Grommet v-if="$store.state.customActiveLink == 2" />
-            <Partition v-if="$store.state.customActiveLink == 3" />
-            <Accessories v-if="$store.state.customActiveLink == 4" />
-            <Chair v-if="$store.state.customActiveLink == 5" />
+            <transition name="fade" mode="out-in">
+                <Corners v-if="$store.state.customActiveLink == 1" />
+                <Grommet v-else-if="$store.state.customActiveLink == 2" />
+                <Partition v-else-if="$store.state.customActiveLink == 3" />
+                <Accessories v-else-if="$store.state.customActiveLink == 4" />
+                <Chair v-else-if="$store.state.customActiveLink == 5" />
+            </transition>
         </main>
     </section>
 </template>

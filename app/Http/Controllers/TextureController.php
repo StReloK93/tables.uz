@@ -7,9 +7,7 @@ use Storage;
 class TextureController extends Controller
 {
     public function textures(){
-        $files = Storage::disk('textures')->files('/floors');
-        
-
+        $files = Storage::disk('textures')->files('/');
         return $files;
     }
 }

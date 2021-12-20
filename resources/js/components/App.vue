@@ -6,7 +6,7 @@
       <button v-if="!$store.state.fullscreen" @click="requestFullScreen($refs.room)" class="zoom-button  py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 hover:bg-opacity-100">
          <Icons icon="zoom"/>
       </button>
-      <button v-if="$store.state.fullscreen" @click="closeFullscreen()" class="zoom-button py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 hover:bg-opacity-100">
+      <button v-if="$store.state.fullscreen"  @click="closeFullscreen()" class="zoom-button py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 hover:bg-opacity-100">
          Exit
       </button>
    </section>
@@ -55,11 +55,11 @@
 
 
       <!-- Footer -->
-      <main class="text-right px-10 py-7 bg-white shadow-custom">
+      <!-- <main class="text-right px-10 py-7 bg-white shadow-custom">
          <button class="h-16 w-52 bg-gray-400 hover:bg-red-500  text-xl text-center text-white rounded-xl">
             Get a Quote
          </button>
-      </main>
+      </main> -->
       <!-- Footer -->
    </section>
 </template>

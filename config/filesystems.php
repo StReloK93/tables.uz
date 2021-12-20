@@ -44,7 +44,7 @@ return [
 
         'textures' => [
             'driver' => 'local',
-            'root'   => public_path('textures'),
+            'root'   => public_path('/floors'),
         ],
 
         's3' => [

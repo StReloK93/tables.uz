@@ -66,11 +66,11 @@ class Light{
    sceneOnload(){scene.onReadyObservable.add(()=>{
       this.UseShadow(this.shadowGeneratorOne, this.arrayShadowedMeshes)
       this.UseShadow(this.shadowGeneratorTwo, this.arrayShadowedMeshes)
-      this.AcceptShadows(['onelegParent','twolegParent','threeLegParent','fourLegParent','fiveLegParent','wall', 'floor','plintus']) // shu spiskadagi mesh yoki nodelar soya qabul qiladi
+      this.AcceptShadows(['onelegParent','twolegParent','threelegParent','fourlegParent','fivelegParent','wall', 'floor','plintus']) // shu spiskadagi mesh yoki nodelar soya qabul qiladi
    })}
 
 
-   arrayShadowedMeshes = ['onelegParent','twolegParent','threeLegParent','fourLegParent','fiveLegParent','tumbochka', 'image','lamp','monitor','plant','chair']
+   arrayShadowedMeshes = ['onelegParent','twolegParent','threelegParent','fourlegParent','fivelegParent','tumbochka', 'image','lamp','monitor','plant','chair']
 }
 export default Light
 

@@ -120,7 +120,7 @@ export default {
                 {
                     image:     new BABYLON.Vector3(10,19.117,-34.423),
                     plant:     new BABYLON.Vector3(0,1,-31),
-                    monitor:   new BABYLON.Vector3(10.368,8.13698,-21.8846),
+                    monitor:   new BABYLON.Vector3(10.368,8.01698,-21.8846),
                     chair:     new BABYLON.Vector3(15.5757,1.38094,-11.7009),
                     lamp:      new BABYLON.Vector3(22.511,6.92616,-31.4137),
                     tumbochka: new BABYLON.Vector3(22.503,1.178,-29.831),
@@ -136,15 +136,15 @@ export default {
                 {
                     image:     new BABYLON.Vector3(1.215,19.117,-34.423),
                     plant:     new BABYLON.Vector3(-3.09833,1,-31.333),
-                    monitor:   new BABYLON.Vector3(15.1378,7.66257,-30.3906),
+                    monitor:   new BABYLON.Vector3(15.1378,7.5,-30.3906),
                     chair:     new BABYLON.Vector3(17.7362,1.38094,-18.8789),
-                    lamp:      new BABYLON.Vector3(20.8322,7.62824,-31.414),
+                    lamp:      new BABYLON.Vector3(20.8322,7.5,-31.414),
                     tumbochka: new BABYLON.Vector3(1,1.178,-29.831),
                 },
                 {
                     image:     new BABYLON.Vector3(9.82315,19.117,-34.423),
                     plant:     new BABYLON.Vector3(-1.77979,1,-31.333), 
-                    monitor:   new BABYLON.Vector3(1.45031,7.68734,-7.10365),
+                    monitor:   new BABYLON.Vector3(1.45031,7.51,-7.10365),
                     chair:     new BABYLON.Vector3(9.11413,1.38094,-2.60271) ,
                     lamp:      new BABYLON.Vector3(22.5794,6.95014,-31.4137),
                     tumbochka: new BABYLON.Vector3(22.503,1.178,-29.831),
@@ -152,9 +152,9 @@ export default {
                 {
                     image:     new BABYLON.Vector3(2.96359,19.117,-34.423),
                     plant:     new BABYLON.Vector3(-1.35887,1,-31.333), 
-                    monitor:   new BABYLON.Vector3(13.7972,8.53316,-31.3336),
+                    monitor:   new BABYLON.Vector3(13.7972,8.32,-31.3336),
                     chair:     new BABYLON.Vector3(13.1428,1.38094,-21.123),
-                    lamp:      new BABYLON.Vector3(21.2717,8.50354,-31.4137),
+                    lamp:      new BABYLON.Vector3(21.2717,8.3,-31.4137),
                     tumbochka: new BABYLON.Vector3(3,1.178,-29.831),
                 }
             ]
@@ -162,7 +162,7 @@ export default {
     },
     methods: {
         setLegColor(colorIndex){
-            let colorArr = ['#EEFCFD','#ada7a7','#222222']
+            let colorArr = ['#C8C8C8','#6B6B6B','#222222']
             let LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg','threeLegLeft', 'threeLegRight']
 
             LegsArr.forEach(legName => {
