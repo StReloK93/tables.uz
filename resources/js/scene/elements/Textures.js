@@ -42,9 +42,6 @@ class Textures {
             new Texture({ materialName: 'fiveTable', textureName: '/textures/laminate/cw115.jpg' }),
          ])
 
-         //Metal yoki clearCoatga Skyboxlar || :: Materiallar kiritiladi
-         this.UseSkyBox(['twoLeg', 'fourLeg', 'oneLeg', 'fiveLeg', 'threeLegLeft', 'threeLegRight', 'lampmetal', 'GlobalMetalicSilinder', 'floor']) // skybox qoshish
-
       })
    }
 
@@ -65,17 +62,6 @@ class Textures {
       scene.materials.forEach(element => {
          element.ambientColor = new BABYLON.Color3(1, 1, 1)
       });
-   }
-
-   UseSkyBox(meshes) {
-      //--------HDR udalit
-      var reflectionTexture = new BABYLON.HDRCubeTexture("./textures/allhdr.hdr", scene, 128, false, true, false, true);
-      for (let i = 0; i < meshes.length; i++) {
-         var material = scene.getMaterialByName(meshes[i])
-         material.backFaceCulling = true;
-         material.reflectionTexture = reflectionTexture
-         material.reflectionTexture.coordinatesMode = BABYLON.Texture.CUBIC_MODE;
-      }
    }
 
    AmbientTexture(array) {
@@ -135,3 +121,15 @@ class Texture {
 }
 
 export default Textures;
+
+
+// UseSkyBox(meshes) {
+//    //--------HDR udalit
+//    var reflectionTexture = new BABYLON.HDRCubeTexture("./textures/allhdr.hdr", scene, 128, false, true, false, true);
+//    for (let i = 0; i < meshes.length; i++) {
+//       var material = scene.getMaterialByName(meshes[i])
+//       material.backFaceCulling = true;
+//       material.reflectionTexture = reflectionTexture
+//       material.reflectionTexture.coordinatesMode = BABYLON.Texture.CUBIC_MODE;
+//    }
+// }

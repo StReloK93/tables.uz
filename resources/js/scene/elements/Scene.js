@@ -12,11 +12,19 @@ class Scene {
    createScene(canvas) {
       const engine = new BABYLON.Engine(canvas)
       window.scene = new BABYLON.Scene(engine)
+
+      let hdr = BABYLON.CubeTexture.CreateFromPrefilteredData(
+         "./textures/hdr.env",
+         scene
+      )
+      
+      scene.environmentTexture = hdr
+
+      window.skybox = scene.createDefaultSkybox(hdr,true)
       //adaptive resize
       engine.runRenderLoop(() => { scene.render() })
       window.addEventListener("resize", () => { engine.resize() })
    }
-
 
    sceneOnload(){
       scene.onReadyObservable.add(()=>{

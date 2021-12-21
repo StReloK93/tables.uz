@@ -34,7 +34,24 @@ export default createStore({
                 partition: 1,
                 accessories: 1,
                 chair: 1,
-            }
+            },
+            deskMaterials: [
+                'Solid wood <br> Live Edge',
+                'Solid wood <br> Traditional',
+                'Solid wood <br> Epoxy',
+                'Melamine <br>With glass top',
+                'Veneer',
+                'Melamine',
+                'Bamboo',
+                'Laminate'
+            ],
+            legTypes: [
+                {img: '/images/1leg.png', name: '1 legs'},
+                {img: '/images/2leg.png', name: '2 legs'},
+                {img: '/images/3leg.png', name: '3 legs'},
+                {img: '/images/4leg.png', name: '4 legs'},
+                {img: '/images/5leg.png', name: 'Side cabinet'},
+            ]
         }
     },
     mutations: {
@@ -62,9 +79,7 @@ export default createStore({
 
 
         setLegType(state, defaultLeg){
-            //Qayta Chaqirilmaslik uchun
-            if(state.params.legType == defaultLeg) return
-
+            state.params.legType = defaultLeg
             let show = new BABYLON.Vector3(1,1,1),hide = new BABYLON.Vector3(0,0,0)
             //Stol turlari
             let Legs = ['onelegParent','twolegParent','threelegParent','fourlegParent','fivelegParent']
@@ -77,10 +92,29 @@ export default createStore({
                 else 
                     Animate(MeshParent,'scaling', VECTOR3, [{frame: 0,value: MeshParent.scaling},{frame: 15,value: hide}])
             }
-
             //Style qo'shish uchun activeligini bildiradi
-            state.params.legType = defaultLeg
+            
+            store.commit('setCorner', store.state.custom.corners)
         },
+        setCorner(state, indexCorners){
+            state.custom.corners = indexCorners
+
+            let sharp = ['oneTable', 'twoTable', 'threeTable', 'fourTable', 'fiveTable']
+            let circle = ['oneTableCircle', 'twoTableCircle', 'threeTable', 'fourTableCircle', 'fiveTableCircle']
+            let rounded = ['oneTableRound', 'twoTableRounded', 'threeTableRounded', 'fourTableRounded', 'fiveTableRounded']
+
+            let ArraySharpes = [sharp[state.params.legType - 1],circle[state.params.legType - 1],rounded[state.params.legType - 1]];
+            ArraySharpes.forEach((element, index) => {
+                if(index == indexCorners - 1){
+                    const mesh = scene.getNodeByName(element)
+                    mesh.scaling = new BABYLON.Vector3(1,1,1)
+                }
+                else{
+                    const mesh = scene.getNodeByName(element)
+                    mesh.scaling = new BABYLON.Vector3(0,0,0)
+                }
+            });
+        }
     },
 
 

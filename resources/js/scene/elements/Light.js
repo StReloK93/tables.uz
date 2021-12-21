@@ -21,12 +21,6 @@ class Light{
       light.position = new BABYLON.Vector3(1,31,1)
       light.intensity = 1
       light.direction = new BABYLON.Vector3(0,-1,0)
-      
-      this.shadowGeneratorTwo = new BABYLON.ShadowGenerator(1024, light)
-      this.shadowGeneratorTwo.useBlurExponentialShadowMap = true
-      this.shadowGeneratorTwo.blurBoxOffset = 15
-      this.shadowGeneratorTwo.blurScale = 2
-      this.shadowGeneratorTwo.darkness = 0.5
    }
 
    UseShadow(shadowGenerator,array){
@@ -65,7 +59,6 @@ class Light{
 
    sceneOnload(){scene.onReadyObservable.add(()=>{
       this.UseShadow(this.shadowGeneratorOne, this.arrayShadowedMeshes)
-      this.UseShadow(this.shadowGeneratorTwo, this.arrayShadowedMeshes)
       this.AcceptShadows(['onelegParent','twolegParent','threelegParent','fourlegParent','fivelegParent','wall', 'floor','plintus']) // shu spiskadagi mesh yoki nodelar soya qabul qiladi
    })}
 

@@ -41,7 +41,6 @@ function loaderFile(file) {
    //    return false;
    // };
    window.onkeyup = (event) => {
-      console.log(store.state.fullscreen);
       if (event.keyCode == 32) {
          if(store.state.fullscreen){
             closeFullscreen()
