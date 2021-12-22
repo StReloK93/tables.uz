@@ -3,24 +3,17 @@ class Scene {
       this.createScene(canvas)
       this.expansion()
       this.sceneOnload()
-
+      window.onload = function(){
+         console.log('Lolo Pepe Onload');
+      }
       scene.executeWhenReady(() => { 
-         //kogda vse zagrujona
+         console.log('its My Life');
       });
    }
 
    createScene(canvas) {
       const engine = new BABYLON.Engine(canvas)
       window.scene = new BABYLON.Scene(engine)
-
-      let hdr = BABYLON.CubeTexture.CreateFromPrefilteredData(
-         "./textures/hdr.env",
-         scene
-      )
-      
-      scene.environmentTexture = hdr
-
-      window.skybox = scene.createDefaultSkybox(hdr,true)
       //adaptive resize
       engine.runRenderLoop(() => { scene.render() })
       window.addEventListener("resize", () => { engine.resize() })

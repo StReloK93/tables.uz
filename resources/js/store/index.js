@@ -41,6 +41,7 @@ export default createStore({
                 'Solid wood <br> Epoxy',
                 'Melamine <br>With glass top',
                 'Veneer',
+                'Pyledge',
                 'Melamine',
                 'Bamboo',
                 'Laminate'
@@ -100,8 +101,8 @@ export default createStore({
             state.custom.corners = indexCorners
 
             let sharp = ['oneTable', 'twoTable', 'threeTable', 'fourTable', 'fiveTable']
-            let circle = ['oneTableCircle', 'twoTableCircle', 'threeTable', 'fourTableCircle', 'fiveTableCircle']
-            let rounded = ['oneTableRound', 'twoTableRounded', 'threeTableRounded', 'fourTableRounded', 'fiveTableRounded']
+            let circle = ['oneTableCircle', 'twoTableCircle', 'threeTableCircle', 'fourTableCircle', 'fiveTableCircle']
+            let rounded = ['oneTableRounded', 'twoTableRounded', 'threeTableRounded', 'fourTableRounded', 'fiveTableRounded']
 
             let ArraySharpes = [sharp[state.params.legType - 1],circle[state.params.legType - 1],rounded[state.params.legType - 1]];
             ArraySharpes.forEach((element, index) => {

@@ -37,9 +37,6 @@ function loaderFile(file) {
    document.addEventListener("webkitfullscreenchange", onFullScreenChange, false);
    document.addEventListener("mozfullscreenchange", onFullScreenChange, false);
 
-   // window.onmousedown = window.onselectstart = function() {
-   //    return false;
-   // };
    window.onkeyup = (event) => {
       if (event.keyCode == 32) {
          if(store.state.fullscreen){

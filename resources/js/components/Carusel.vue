@@ -6,7 +6,7 @@
 			</button>
 		</transition>
       <aside class="overflow-hidden flex-grow">
-         <main ref="mainBlock" :style="transform" class="whitespace-nowrap easy-transition">
+         <main ref="mainBlock" :style="transform" :class="{'-ml-2':prosent == 0}" class=" whitespace-nowrap easy-transition">
 				<slot></slot>
          </main>
       </aside>

@@ -1,5 +1,7 @@
 class Textures {
    constructor() {
+      let hdr = BABYLON.CubeTexture.CreateFromPrefilteredData("./textures/hdrmini.env", scene)
+      scene.environmentTexture = hdr
       this.allTextures()
       this.sceneOnload()
    }
@@ -12,49 +14,23 @@ class Textures {
 
    sceneOnload() {
       scene.onReadyObservable.add(() => {
-         this.AllAmbientWhite()
-         //Ambient textura qoshiladigan || :: Materiallar kiritiladi
-         this.AmbientTexture([
-            { materialName: 'mainWall', textureName: 'wall' },
-            { materialName: 'wallTop', textureName: 'wall' },
-            'oneLeg', 'twoLeg', 'threeLegLeft', 'threeLegRight', 'fourLeg', 'fiveLeg', //legs
-            'oneTable', 'twoTable', 'threeTable', 'fourTable', 'fiveTable', //tables
-            'fiveShkafEshik', 'fiveShkaf',
-            'stulback', 'stulbottom', 'stulLeg', //stull
-            'wall', 'plintus', 'floor', 'podokolnik',
-            'monitormain', 'lampwood', 'plantMain', 'tumbochka', //decoration
-
-         ]) // ambient va lightmap texturalarni ismiga qarab qoshadi
-
-         this.NormalTexture([
-            new Texture({ materialName: 'wall', textureName: '/textures/normalwall.jpg', uScale: 15, vScale: 15, level: 0.75 }),
-            new Texture({ materialName: 'mainWall', textureName: '/textures/normalwall.jpg', uScale: 20, vScale: 20, level: 0.75 }),
-            new Texture({ materialName: 'wallTop', textureName: '/textures/normalwall.jpg', uScale: 20, vScale: 20, level: 0.75 }),
-            new Texture({ materialName: 'stulback', textureName: '/textures/chair.jpg', uScale: 8, vScale: 8 }),
-            new Texture({ materialName: 'stulbottom', textureName: '/textures/chair.jpg', uScale: 8, vScale: 8 }),
-         ])
-
-         this.AlbedoTexture([
-            new Texture({ materialName: 'oneTable', textureName: '/textures/laminate/cw115.jpg' }),
-            new Texture({ materialName: 'twoTable', textureName: '/textures/laminate/cw115.jpg' }),
-            new Texture({ materialName: 'threeTable', textureName: '/textures/laminate/cw115.jpg',uScale: 2, vScale: 2}),
-            new Texture({ materialName: 'fourTable', textureName: '/textures/laminate/cw115.jpg',uScale: 2, vScale: 2 }),
-            new Texture({ materialName: 'fiveTable', textureName: '/textures/laminate/cw115.jpg' }),
-         ])
-
+         this.AllAmbientWhite() //Scenadagi Hamma Elementlarni Ambientni oq rang qiladi
+         this.AmbientTexture(this._AmbientTextures) //Material va textura path korsatilgan
+         this.NormalTexture(this._NormalTextures) //Material va textura path korsatilgan
+         this.AlbedoTexture(this._AlbedoTextures) //Material va textura path korsatilgan
       })
    }
 
-   async allTextures() {
-      //Massiv
-      let datas = this.textureData()
-      const images = await store.dispatch('textures')
-      images.forEach((imagepath, i) => {
-         var texture = this.newTexture(`floor${i + 1}`, `/floors/${imagepath}`)
-         texture.uScale = datas[i].uScale
-         texture.vScale = datas[i].vScale
-         texture.wAng = datas[i].wAng
-      });
+   allTextures() {
+      var datas = this._TextureData
+      store.dispatch('textures').then(images => {
+         images.forEach((imagepath, i) => {
+            var texture = this.newTexture(`floor${i + 1}`, `/floors/${imagepath}`)
+            texture.uScale = datas[i].uScale
+            texture.vScale = datas[i].vScale
+            texture.wAng = datas[i].wAng
+         });
+      })
    }
 
    AllAmbientWhite() {
@@ -66,70 +42,118 @@ class Textures {
 
    AmbientTexture(array) {
       for (let i = 0; i < array.length; i++) {
-         if (typeof array[i] == 'object') {
-            var material = scene.getMaterialByName(array[i].materialName)
-            material.ambientTexture = new BABYLON.Texture(`/textures/${array[i].textureName}.jpg`, scene);
-            material.ambientTexture.uAng = Math.PI
-         }
-         else {
-            var material = scene.getMaterialByName(array[i])
-            material.ambientTexture = new BABYLON.Texture(`/textures/${array[i]}.jpg`, scene);
-            material.ambientTexture.uAng = Math.PI
-         }
+         let newTexture = new BABYLON.Texture(array[i].texturePath, scene)
+         newTexture.uAng = Math.PI
+
+         var material = scene.getMaterialByName(array[i].materialName)
+         material.ambientTexture = newTexture
+
+         newTexture.onLoadObservable.add(() => {
+            console.log('AmbientTexture');
+         });
       }
    }
 
    NormalTexture(materials) {
       for (let i = 0; i < materials.length; i++) {
+         let newTexture = new BABYLON.Texture(materials[i].texturePath, scene)
+         newTexture.uScale = materials[i].uScale
+         newTexture.vScale = materials[i].vScale
+         newTexture.level = materials[i].level
+
          var material = scene.getMaterialByName(materials[i].materialName)
-         material.bumpTexture = new BABYLON.Texture(materials[i].textureName, scene);
-         material.bumpTexture.uScale = materials[i].uScale
-         material.bumpTexture.vScale = materials[i].vScale
-         material.bumpTexture.level = materials[i].level
+         material.bumpTexture = newTexture
+
+         newTexture.onLoadObservable.add(() => {
+            console.log('NormalTexture');
+         });
       }
    }
 
    AlbedoTexture(materials) {
       for (let i = 0; i < materials.length; i++) {
-         var material = scene.getMaterialByName(materials[i].materialName)
-         material.albedoTexture = new BABYLON.Texture(materials[i].textureName, scene);
-         material.albedoTexture.uScale = materials[i].uScale
-         material.albedoTexture.vScale = materials[i].vScale
-         material.albedoTexture.level = materials[i].level
+         let newTexture = new BABYLON.Texture(materials[i].texturePath, scene);
+         newTexture.uScale = materials[i].uScale
+         newTexture.vScale = materials[i].vScale
+         newTexture.level = materials[i].level
+
+         let material = scene.getMaterialByName(materials[i].materialName)
+         material.albedoTexture = newTexture;
+
+         newTexture.onLoadObservable.add(() => {
+            console.log('AlbedoTexture');
+         });
       }
    }
 
-   textureData() {
-      return [
-         { uScale: 3, vScale: 4, wAng: 0 },
-         { uScale: 3, vScale: 4, wAng: 0 },
-         { uScale: 2.5, vScale: 3, wAng: Math.PI / 2 },
-         { uScale: 3, vScale: 4, wAng: 0 },
-         { uScale: 3, vScale: 4, wAng: 0 },
-      ]
-   }
+   _TextureData = [
+      { uScale: 3, vScale: 4, wAng: 0 },
+      { uScale: 3, vScale: 4, wAng: 0 },
+      { uScale: 2.5, vScale: 3, wAng: Math.PI / 2 },
+      { uScale: 3, vScale: 4, wAng: 0 },
+      { uScale: 3, vScale: 4, wAng: 0 },
+   ]
+
+
+   _AmbientTextures = [
+      //room
+      new Texture({ materialName: 'mainWall', texturePath: '/textures/wall.jpg' }),
+      new Texture({ materialName: 'wallTop', texturePath: '/textures/wall.jpg' }),
+      new Texture({ materialName: 'wall', texturePath: '/textures/wall.jpg' }),
+      new Texture({ materialName: 'plintus', texturePath: '/textures/plintus.jpg' }),
+      new Texture({ materialName: 'floor', texturePath: '/textures/floor.jpg' }),
+      new Texture({ materialName: 'podokolnik', texturePath: '/textures/podokolnik.jpg' }),
+      //Legs
+      new Texture({ materialName: 'oneLeg', texturePath: '/textures/oneLeg.jpg' }),
+      new Texture({ materialName: 'twoLeg', texturePath: '/textures/twoLeg.jpg' }),
+      new Texture({ materialName: 'threeLegLeft', texturePath: '/textures/threeLegLeft.jpg' }),
+      new Texture({ materialName: 'threeLegRight', texturePath: '/textures/threeLegRight.jpg' }),
+      new Texture({ materialName: 'fourLeg', texturePath: '/textures/fourLeg.jpg' }),
+      new Texture({ materialName: 'fiveLeg', texturePath: '/textures/fiveLeg.jpg' }),
+      //Tables
+      new Texture({ materialName: 'oneTable', texturePath: '/textures/oneTable.jpg' }),
+      new Texture({ materialName: 'twoTable', texturePath: '/textures/twoTable.jpg' }),
+      new Texture({ materialName: 'threeTable', texturePath: '/textures/threeTable.jpg' }),
+      new Texture({ materialName: 'fourTable', texturePath: '/textures/fourTable.jpg' }),
+      new Texture({ materialName: 'fiveTable', texturePath: '/textures/fiveTable.jpg' }),
+      new Texture({ materialName: 'fiveShkafEshik', texturePath: '/textures/fiveShkafEshik.jpg' }),
+      new Texture({ materialName: 'fiveShkaf', texturePath: '/textures/fiveShkaf.jpg' }),
+      //Stul
+      new Texture({ materialName: 'stulback', texturePath: '/textures/stulback.jpg' }),
+      new Texture({ materialName: 'stulbottom', texturePath: '/textures/stulbottom.jpg' }),
+      new Texture({ materialName: 'stulLeg', texturePath: '/textures/stulLeg.jpg' }),
+      //Decorations
+      new Texture({ materialName: 'monitormain', texturePath: '/textures/monitormain.jpg' }),
+      new Texture({ materialName: 'lampwood', texturePath: '/textures/lampwood.jpg' }),
+      new Texture({ materialName: 'plantMain', texturePath: '/textures/plantMain.jpg' }),
+      new Texture({ materialName: 'tumbochka', texturePath: '/textures/tumbochka.jpg' })
+   ]
+
+   _NormalTextures = [
+      new Texture({ materialName: 'wall', texturePath: '/textures/normalwall.jpg', uScale: 15, vScale: 15, level: 0.75 }),
+      new Texture({ materialName: 'mainWall', texturePath: '/textures/normalwall.jpg', uScale: 20, vScale: 20, level: 0.75 }),
+      new Texture({ materialName: 'wallTop', texturePath: '/textures/normalwall.jpg', uScale: 20, vScale: 20, level: 0.75 }),
+      new Texture({ materialName: 'stulback', texturePath: '/textures/chair.jpg', uScale: 8, vScale: 8 }),
+      new Texture({ materialName: 'stulbottom', texturePath: '/textures/chair.jpg', uScale: 8, vScale: 8 }),
+   ]
+
+   _AlbedoTextures = [
+      new Texture({ materialName: 'oneTable', texturePath: '/textures/laminate/cw115.jpg' }),
+      new Texture({ materialName: 'twoTable', texturePath: '/textures/laminate/cw115.jpg' }),
+      new Texture({ materialName: 'threeTable', texturePath: '/textures/laminate/cw115.jpg', uScale: 2, vScale: 2 }),
+      new Texture({ materialName: 'fourTable', texturePath: '/textures/laminate/cw115.jpg', uScale: 2, vScale: 2 }),
+      new Texture({ materialName: 'fiveTable', texturePath: '/textures/laminate/cw115.jpg' }),
+   ]
 }
 
 class Texture {
-   constructor({ materialName = null, textureName = null, uScale = 1, vScale = 1, level = 1 }) {
+   constructor({ materialName = null, texturePath = null, uScale = 1, vScale = 1, level = 1 }) {
       this.materialName = materialName
-      this.textureName = textureName
+      this.texturePath = texturePath
       this.uScale = uScale
       this.vScale = vScale
       this.level = level
    }
 }
 
-export default Textures;
-
-
-// UseSkyBox(meshes) {
-//    //--------HDR udalit
-//    var reflectionTexture = new BABYLON.HDRCubeTexture("./textures/allhdr.hdr", scene, 128, false, true, false, true);
-//    for (let i = 0; i < meshes.length; i++) {
-//       var material = scene.getMaterialByName(meshes[i])
-//       material.backFaceCulling = true;
-//       material.reflectionTexture = reflectionTexture
-//       material.reflectionTexture.coordinatesMode = BABYLON.Texture.CUBIC_MODE;
-//    }
-// }
+export default Textures
