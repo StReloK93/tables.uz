@@ -1,17 +1,20 @@
+import store from "../../../store";
+
 class Meshes {
     constructor() {
         this.Import()
     }
-    //called in constructor
+
     Import() {
-        // BABYLON.SceneLoader.ImportMesh("", "./models/", "room.glb", scene, function (meshes) {
-        // })
+
         BABYLON.SceneLoader.ShowLoadingScreen = false;
         BABYLON.SceneLoader.AppendAsync('/models/room.glb', undefined, scene, function (event) {
-            const percentage = event.lengthComputable ? " " + Math.floor(event.loaded / event.total * 100) + "%" : "";
-      
-            console.log(percentage);
-         }, ".glb")
+
+            const percentage = event.lengthComputable ? (event.loaded / event.total * 100) : 0;
+
+            store.state.onLoaded = percentage/5
+        }, ".glb")
+
     }
 }
 export default Meshes

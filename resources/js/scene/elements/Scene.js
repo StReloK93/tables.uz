@@ -3,12 +3,9 @@ class Scene {
       this.createScene(canvas)
       this.expansion()
       this.sceneOnload()
-      window.onload = function(){
-         console.log('Lolo Pepe Onload');
-      }
-      scene.executeWhenReady(() => { 
-         console.log('its My Life');
-      });
+      // scene.executeWhenReady(() => { 
+      //    console.log('its My Life');
+      // });
    }
 
    createScene(canvas) {
@@ -21,13 +18,14 @@ class Scene {
 
    sceneOnload(){
       scene.onReadyObservable.add(()=>{
+
          //Default texturani urnatadi
          store.commit('floorImage', {scene: scene,textureName: 'floor1'})
 
          //Default Stolni urnatadi
-         let defaultLeg = 2
-         store.commit('setLegType', defaultLeg)
-         store.state.onLoaded = true
+         const DefautLeg = 2
+         store.commit('setLegType', DefautLeg)
+
       })
    }
    

@@ -1,14 +1,21 @@
 <template>
    <!-- Left part -->
    <section class="w-1/2 relative" ref="room">
-      <Decorations v-if="$store.state.onLoaded" class="absolute top-0 left-0"/>
-      <canvas class="w-full h-full outline-none" ref="canvas"></canvas>
-      <button v-if="!$store.state.fullscreen" @click="requestFullScreen($refs.room)" class="zoom-button  py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 hover:bg-opacity-100">
-         <Icons icon="zoom"/>
-      </button>
-      <button v-if="$store.state.fullscreen"  @click="closeFullscreen()" class="zoom-button py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 hover:bg-opacity-100">
-         Exit
-      </button>
+      <transition name="fade" mode="out-in">
+         <main v-if="$store.state.onLoaded.toFixed() != 100" class="absolute h-full w-full flex items-center justify-center top-0 left-0 z-50 bg-indigo-900 text-white text-2xl font-bold">
+            {{$store.state.onLoaded.toFixed()}} %
+         </main>
+      </transition>
+      <main class="h-full">
+         <Decorations v-if="$store.state.onLoaded.toFixed() == 100" class="absolute top-0 left-0"/>
+         <canvas class="w-full h-full outline-none" ref="canvas"></canvas>
+         <button v-if="!$store.state.fullscreen" @click="requestFullScreen($refs.room)" class="zoom-button  py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 hover:bg-opacity-100">
+            <Icons icon="zoom"/>
+         </button>
+         <button v-if="$store.state.fullscreen"  @click="closeFullscreen()" class="zoom-button py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 w-24 h-24 hover:bg-opacity-100">
+            Exit
+         </button>
+      </main>
    </section>
    <!-- Left part -->
 

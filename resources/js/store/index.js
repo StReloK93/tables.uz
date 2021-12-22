@@ -6,7 +6,7 @@ export default createStore({
     state() {
         return {
             fullscreen: false,
-            onLoaded: false,
+            onLoaded: 0,
             inspector: true,
             configurator: true,
             customActiveLink: 1,

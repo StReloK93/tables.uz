@@ -1,7 +1,7 @@
+import store from "../../store"
+
 class Textures {
    constructor() {
-      let hdr = BABYLON.CubeTexture.CreateFromPrefilteredData("./textures/hdrmini.env", scene)
-      scene.environmentTexture = hdr
       this.allTextures()
       this.sceneOnload()
    }
@@ -14,10 +14,13 @@ class Textures {
 
    sceneOnload() {
       scene.onReadyObservable.add(() => {
-         this.AllAmbientWhite() //Scenadagi Hamma Elementlarni Ambientni oq rang qiladi
-         this.AmbientTexture(this._AmbientTextures) //Material va textura path korsatilgan
-         this.NormalTexture(this._NormalTextures) //Material va textura path korsatilgan
-         this.AlbedoTexture(this._AlbedoTextures) //Material va textura path korsatilgan
+         let CountAllTextures = this._AmbientTextures.length + this._NormalTextures.length + this._AlbedoTextures.length
+         let addProsent = 80 / (CountAllTextures + 1);
+
+         this.AllAmbientWhite(addProsent) //Scenadagi Hamma Elementlarni Ambientni oq rang qiladi
+         new ImportTextures({ textureType: 'ambientTexture', materials: this._AmbientTextures, prosent: addProsent })
+         new ImportTextures({ textureType: 'bumpTexture', materials: this._NormalTextures, prosent: addProsent })
+         new ImportTextures({ textureType: 'albedoTexture', materials: this._AlbedoTextures, prosent: addProsent })
       })
    }
 
@@ -33,57 +36,16 @@ class Textures {
       })
    }
 
-   AllAmbientWhite() {
+   AllAmbientWhite(prosent) {
+      let hdr = BABYLON.CubeTexture.CreateFromPrefilteredData("./textures/hdrmini.env", scene)
+      hdr.onLoadObservable.add(() => {
+         store.state.onLoaded += prosent
+      });
+      scene.environmentTexture = hdr
       scene.ambientColor = BABYLON.Color3.FromHexString('#CAC1C1')
       scene.materials.forEach(element => {
          element.ambientColor = new BABYLON.Color3(1, 1, 1)
       });
-   }
-
-   AmbientTexture(array) {
-      for (let i = 0; i < array.length; i++) {
-         let newTexture = new BABYLON.Texture(array[i].texturePath, scene)
-         newTexture.uAng = Math.PI
-
-         var material = scene.getMaterialByName(array[i].materialName)
-         material.ambientTexture = newTexture
-
-         newTexture.onLoadObservable.add(() => {
-            console.log('AmbientTexture');
-         });
-      }
-   }
-
-   NormalTexture(materials) {
-      for (let i = 0; i < materials.length; i++) {
-         let newTexture = new BABYLON.Texture(materials[i].texturePath, scene)
-         newTexture.uScale = materials[i].uScale
-         newTexture.vScale = materials[i].vScale
-         newTexture.level = materials[i].level
-
-         var material = scene.getMaterialByName(materials[i].materialName)
-         material.bumpTexture = newTexture
-
-         newTexture.onLoadObservable.add(() => {
-            console.log('NormalTexture');
-         });
-      }
-   }
-
-   AlbedoTexture(materials) {
-      for (let i = 0; i < materials.length; i++) {
-         let newTexture = new BABYLON.Texture(materials[i].texturePath, scene);
-         newTexture.uScale = materials[i].uScale
-         newTexture.vScale = materials[i].vScale
-         newTexture.level = materials[i].level
-
-         let material = scene.getMaterialByName(materials[i].materialName)
-         material.albedoTexture = newTexture;
-
-         newTexture.onLoadObservable.add(() => {
-            console.log('AlbedoTexture');
-         });
-      }
    }
 
    _TextureData = [
@@ -97,36 +59,36 @@ class Textures {
 
    _AmbientTextures = [
       //room
-      new Texture({ materialName: 'mainWall', texturePath: '/textures/wall.jpg' }),
-      new Texture({ materialName: 'wallTop', texturePath: '/textures/wall.jpg' }),
-      new Texture({ materialName: 'wall', texturePath: '/textures/wall.jpg' }),
-      new Texture({ materialName: 'plintus', texturePath: '/textures/plintus.jpg' }),
-      new Texture({ materialName: 'floor', texturePath: '/textures/floor.jpg' }),
-      new Texture({ materialName: 'podokolnik', texturePath: '/textures/podokolnik.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'mainWall', texturePath: '/textures/wall.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'wallTop', texturePath: '/textures/wall.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'wall', texturePath: '/textures/wall.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'plintus', texturePath: '/textures/plintus.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'floor', texturePath: '/textures/floor.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'podokolnik', texturePath: '/textures/podokolnik.jpg' }),
       //Legs
-      new Texture({ materialName: 'oneLeg', texturePath: '/textures/oneLeg.jpg' }),
-      new Texture({ materialName: 'twoLeg', texturePath: '/textures/twoLeg.jpg' }),
-      new Texture({ materialName: 'threeLegLeft', texturePath: '/textures/threeLegLeft.jpg' }),
-      new Texture({ materialName: 'threeLegRight', texturePath: '/textures/threeLegRight.jpg' }),
-      new Texture({ materialName: 'fourLeg', texturePath: '/textures/fourLeg.jpg' }),
-      new Texture({ materialName: 'fiveLeg', texturePath: '/textures/fiveLeg.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'oneLeg', texturePath: '/textures/oneLeg.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'twoLeg', texturePath: '/textures/twoLeg.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'threeLegLeft', texturePath: '/textures/threeLegLeft.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'threeLegRight', texturePath: '/textures/threeLegRight.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'fourLeg', texturePath: '/textures/fourLeg.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'fiveLeg', texturePath: '/textures/fiveLeg.jpg' }),
       //Tables
-      new Texture({ materialName: 'oneTable', texturePath: '/textures/oneTable.jpg' }),
-      new Texture({ materialName: 'twoTable', texturePath: '/textures/twoTable.jpg' }),
-      new Texture({ materialName: 'threeTable', texturePath: '/textures/threeTable.jpg' }),
-      new Texture({ materialName: 'fourTable', texturePath: '/textures/fourTable.jpg' }),
-      new Texture({ materialName: 'fiveTable', texturePath: '/textures/fiveTable.jpg' }),
-      new Texture({ materialName: 'fiveShkafEshik', texturePath: '/textures/fiveShkafEshik.jpg' }),
-      new Texture({ materialName: 'fiveShkaf', texturePath: '/textures/fiveShkaf.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'oneTable', texturePath: '/textures/oneTable.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'twoTable', texturePath: '/textures/twoTable.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'threeTable', texturePath: '/textures/threeTable.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'fourTable', texturePath: '/textures/fourTable.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'fiveTable', texturePath: '/textures/fiveTable.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'fiveShkafEshik', texturePath: '/textures/fiveShkafEshik.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'fiveShkaf', texturePath: '/textures/fiveShkaf.jpg' }),
       //Stul
-      new Texture({ materialName: 'stulback', texturePath: '/textures/stulback.jpg' }),
-      new Texture({ materialName: 'stulbottom', texturePath: '/textures/stulbottom.jpg' }),
-      new Texture({ materialName: 'stulLeg', texturePath: '/textures/stulLeg.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'stulback', texturePath: '/textures/stulback.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'stulbottom', texturePath: '/textures/stulbottom.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'stulLeg', texturePath: '/textures/stulLeg.jpg' }),
       //Decorations
-      new Texture({ materialName: 'monitormain', texturePath: '/textures/monitormain.jpg' }),
-      new Texture({ materialName: 'lampwood', texturePath: '/textures/lampwood.jpg' }),
-      new Texture({ materialName: 'plantMain', texturePath: '/textures/plantMain.jpg' }),
-      new Texture({ materialName: 'tumbochka', texturePath: '/textures/tumbochka.jpg' })
+      new Texture({ uAng: Math.PI, materialName: 'monitormain', texturePath: '/textures/monitormain.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'lampwood', texturePath: '/textures/lampwood.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'plantMain', texturePath: '/textures/plantMain.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'tumbochka', texturePath: '/textures/tumbochka.jpg' })
    ]
 
    _NormalTextures = [
@@ -147,12 +109,34 @@ class Textures {
 }
 
 class Texture {
-   constructor({ materialName = null, texturePath = null, uScale = 1, vScale = 1, level = 1 }) {
+   constructor({ materialName = null, texturePath = null, uScale = 1, vScale = 1, level = 1, uAng = 0 }) {
       this.materialName = materialName
       this.texturePath = texturePath
       this.uScale = uScale
       this.vScale = vScale
       this.level = level
+      this.uAng = uAng
+   }
+}
+
+class ImportTextures {
+   constructor({ textureType, materials, prosent }) {
+      for (let i = 0; i < materials.length; i++) {
+         //texture Settings
+         let newTexture = new BABYLON.Texture(materials[i].texturePath, scene)
+         newTexture.uScale = materials[i].uScale
+         newTexture.vScale = materials[i].vScale
+         newTexture.level = materials[i].level
+         newTexture.uAng = materials[i].uAng
+
+
+         let material = scene.getMaterialByName(materials[i].materialName)
+         material[textureType] = newTexture;
+
+         newTexture.onLoadObservable.add(() => {
+            store.state.onLoaded += prosent
+         });
+      }
    }
 }
 

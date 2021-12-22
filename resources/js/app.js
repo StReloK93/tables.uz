@@ -1,4 +1,3 @@
-//FOR BABYLON.js
 window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 import * as BABYLON from '@babylonjs/core';
