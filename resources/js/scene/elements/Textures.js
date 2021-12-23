@@ -38,10 +38,10 @@ class Textures {
 
    AllAmbientWhite(prosent) {
       let hdr = BABYLON.CubeTexture.CreateFromPrefilteredData("./textures/hdrmini.env", scene)
+      scene.environmentTexture = hdr
       hdr.onLoadObservable.add(() => {
          store.state.onLoaded += prosent
       });
-      scene.environmentTexture = hdr
       scene.ambientColor = BABYLON.Color3.FromHexString('#CAC1C1')
       scene.materials.forEach(element => {
          element.ambientColor = new BABYLON.Color3(1, 1, 1)
