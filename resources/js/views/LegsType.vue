@@ -18,7 +18,7 @@
             <h3 class="font-bold mb-4 text-xl mt-6 text-gray-600">
                 Standing desk material
             </h3>
-            <Caruosel :itemCount="4" class="text-md text-center text-gray-600">
+            <Caruosel v-if="deskMaterials" :itemCount="4" class="text-md text-center text-gray-600">
                 <main v-for="materials in deskMaterials" :key="materials" class="w-1/4 inline-block align-middle px-2">
                     <button @click="deskFolder(materials.path)" :class="{'bg-my text-white': $store.state.params.deskMaterial == materials.path}" v-html="materials.text" class="h-20 w-full rounded-xl border"></button>
                 </main>
@@ -67,10 +67,6 @@ export default {
         this.folderImages = desks.images
         this.imagearr = this.folderImages[store.state.params.deskMaterial]
     },
-    // async mounted() {
-    //     this.folderImages = Engine.textures.desks.images
-    //     this.imagearr = this.folderImages[store.state.params.deskMaterial]
-    // },
     methods: {
         setLegColor(colorIndex){
             let colorArr = ['#C8C8C8','#6B6B6B','#222222']

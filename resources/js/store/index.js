@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { createStore } from 'vuex'
-import coor from '../locale/eng'
+import languages from '../locale/languages'
 
 export default createStore({
     state() {
         return {
-            coor: coor,
+            language: languages['eng'],
             fullscreen: false,
             onLoaded: 0,
             inspector: true,
@@ -46,6 +46,10 @@ export default createStore({
         }
     },
     mutations: {
+        setLang(state,pay){
+            localStorage.setItem('lang' , pay)
+            state.language = languages[pay]
+        },
         //otherdagi counter
         setTablesCount(state,pay){
             if(pay < 1 && (state.params.tablesCount > 1)){

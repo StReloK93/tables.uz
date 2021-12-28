@@ -1,7 +1,5 @@
 export default {
-    Hello: 'hello',
-    name: 'aziz',
-    family: 'soliyev',
-    Hello: 'hello',
-    Hello: 'hello',
+    createYour: 'create your own interior',
+    browseOur: 'Browse Our Suggested Design',
+    getQuote: 'Get a Quote',
 }

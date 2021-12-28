@@ -30,22 +30,16 @@ export default {
 		transform(){
 			return {transform: `translateX(${this.prosent}%)`}
 		},
-		casr(){
-			var count = this.$refs.mainBlock.children.length
-			if((count%this.itemCount) == 0) return 0
-			return this.itemCount - (count%this.itemCount) 
-		}
 	},
 	mounted() {
 		let countItem = this.$refs.mainBlock.children.length - this.itemCount //10 - 4
-		let viewItem = this.itemCount
-		this.endItem = -countItem*100/viewItem
+		this.endItem = -countItem*100/this.itemCount
 	},
    methods: {
       next() {
-			let viewItem = this.itemCount
-			if((this.endItem) < this.prosent)
-				this.prosent += -100/viewItem
+			if(this.endItem < this.prosent){
+				this.prosent += -100/this.itemCount
+			}
 		},
 
 		prev(){
