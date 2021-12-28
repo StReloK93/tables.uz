@@ -43,9 +43,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context.prev = _context.next) {
             case 0:
               _this.folderImages = Engine.textures.desks.images;
+              console.log(Engine, 'engine');
+              console.log(Engine.textures, 'engine');
+              console.log(Engine.textures.desks, 'engine');
               _this.imagearr = _this.folderImages[store.state.params.deskMaterial];
 
-            case 2:
+            case 5:
             case "end":
               return _context.stop();
           }

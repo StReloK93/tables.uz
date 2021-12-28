@@ -66,7 +66,9 @@ export default {
     },
     async mounted() {
         this.folderImages = Engine.textures.desks.images
-
+        console.log(Engine,'engine');
+        console.log(Engine.textures,'engine');
+        console.log(Engine.textures.desks,'engine');
         this.imagearr = this.folderImages[store.state.params.deskMaterial]
     },
     methods: {
