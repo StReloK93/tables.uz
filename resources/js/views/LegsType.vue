@@ -67,7 +67,10 @@ export default {
     async mounted() {
         console.log(store.state.coor);
         this.folderImages = Engine.textures.desks.images
+        console.log(this.folderImages);
+        console.log(store.state.params.deskMaterial);
         this.imagearr = this.folderImages[store.state.params.deskMaterial]
+        console.log(this.imagearr, 'end');
     },
     methods: {
         setLegColor(colorIndex){
