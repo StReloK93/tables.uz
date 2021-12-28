@@ -28,7 +28,7 @@
       <main class="px-10 pt-3 pb-5 shadow-custom bg-gray-50 text-xl">
          <aside class="flex justify-between mb-5">
             <button @click="setLeftBar(true)" class="bg-gray-100 px-3 py-2 inline-block rounded-full">
-               <img src="/images/left.png" class="relative" style="left: -1px">
+               <img src="/images/left.png" class="relative transform rotate-180" style="left: 2px">
             </button>
             <div class="uppercase flex items-center font-bold">
                <span @click="setLang('eng')" :class="{'text-blue-900':lang == 'eng'}"  class="text-gray-300 cursor-pointer">eng</span>
