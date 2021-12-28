@@ -32,23 +32,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   created: function created() {
-    this.deskMaterials = Engine.textures.desks.folders;
-  },
-  mounted: function mounted() {
     var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var desks;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _this.folderImages = Engine.textures.desks.images;
-              console.log(Engine, 'engine');
-              console.log(Engine.textures, 'engine');
-              console.log(Engine.textures.desks, 'engine');
+              _context.next = 2;
+              return Engine.textures.deskTextures();
+
+            case 2:
+              desks = _context.sent;
+              _this.deskMaterials = desks.folders;
+              _this.folderImages = desks.images;
               _this.imagearr = _this.folderImages[store.state.params.deskMaterial];
 
-            case 5:
+            case 6:
             case "end":
               return _context.stop();
           }
@@ -56,6 +57,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee);
     }))();
   },
+  // async mounted() {
+  //     this.folderImages = Engine.textures.desks.images
+  //     this.imagearr = this.folderImages[store.state.params.deskMaterial]
+  // },
   methods: {
     setLegColor: function setLegColor(colorIndex) {
       var colorArr = ['#C8C8C8', '#6B6B6B', '#222222'];

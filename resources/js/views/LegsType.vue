@@ -61,16 +61,16 @@ export default {
             deskMaterials: null,
         }
     },
-    created(){
-        this.deskMaterials = Engine.textures.desks.folders
-    },
-    async mounted() {
-        this.folderImages = Engine.textures.desks.images
-        console.log(Engine,'engine');
-        console.log(Engine.textures,'engine');
-        console.log(Engine.textures.desks,'engine');
+    async created(){
+        let desks = await Engine.textures.deskTextures()
+        this.deskMaterials = desks.folders
+        this.folderImages = desks.images
         this.imagearr = this.folderImages[store.state.params.deskMaterial]
     },
+    // async mounted() {
+    //     this.folderImages = Engine.textures.desks.images
+    //     this.imagearr = this.folderImages[store.state.params.deskMaterial]
+    // },
     methods: {
         setLegColor(colorIndex){
             let colorArr = ['#C8C8C8','#6B6B6B','#222222']

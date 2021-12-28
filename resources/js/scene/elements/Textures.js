@@ -1,11 +1,8 @@
 class Textures {
 
    floors = []
-   desks = []
    constructor() {
       this.floorTextures()
-      this.deskTextures()
-      console.log('constructor');
       scene.onReadyObservable.add(() => {
          let CountAllTextures = this._AmbientTextures.length + this._NormalTextures.length + this._AlbedoTextures.length
          let addProsent = 80 / (CountAllTextures + 1);
@@ -37,14 +34,13 @@ class Textures {
    }
 
    async deskTextures(){
-      console.log('deskTextures');
       let folders = await store.dispatch('deskTextures')
       for (const key in folders.images) {
          folders.images[key].forEach(image => {
             this.newTexture(image, `/floors/${image}`)
          })
       }
-      this.desks = folders
+      return folders
    }
 
    AllAmbientWhite(prosent) {
