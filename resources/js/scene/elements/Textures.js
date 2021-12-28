@@ -111,11 +111,11 @@ class Textures {
    ]
 
    _AlbedoTextures = [
-      new Texture({ materialName: 'oneTable', texturePath: '/textures/laminate/cw115.jpg' }),
-      new Texture({ materialName: 'twoTable', texturePath: '/textures/laminate/cw115.jpg' }),
-      new Texture({ materialName: 'threeTable', texturePath: '/textures/laminate/cw115.jpg', uScale: 2, vScale: 2 }),
-      new Texture({ materialName: 'fourTable', texturePath: '/textures/laminate/cw115.jpg', uScale: 2, vScale: 2 }),
-      new Texture({ materialName: 'fiveTable', texturePath: '/textures/laminate/cw115.jpg' }),
+      new Texture({ materialName: 'oneTable', texturePath: '/floors/desks/laminate/cw115.jpg' }),
+      new Texture({ materialName: 'twoTable', texturePath: '/floors/desks/laminate/cw115.jpg' }),
+      new Texture({ materialName: 'threeTable', texturePath: '/floors/desks/laminate/cw115.jpg', uScale: 2, vScale: 2 }),
+      new Texture({ materialName: 'fourTable', texturePath: '/floors/desks/laminate/cw115.jpg', uScale: 2, vScale: 2 }),
+      new Texture({ materialName: 'fiveTable', texturePath: '/floors/desks/laminate/cw115.jpg' }),
    ]
 }
 
