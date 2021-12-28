@@ -36,13 +36,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
-              return store.dispatch('textures');
+              _this.images = Engine.textures.floors;
 
-            case 2:
-              _this.images = _context.sent;
-
-            case 3:
+            case 1:
             case "end":
               return _context.stop();
           }
@@ -70,11 +66,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var mainWall = scene.getMaterialByName('mainWall');
       wall.albedoColor = BABYLON.Color3.FromHexString(this.colorOne).toLinearSpace();
       mainWall.albedoColor = BABYLON.Color3.FromHexString(this.colorOne).toLinearSpace();
-    },
-    floorImage: function floorImage(pathImage) {
-      store.commit('floorImage', {
-        textureName: pathImage
-      });
     }
   }
 });
@@ -195,19 +186,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.join]])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.images, function (img, index) {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.join]])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.images, function (img) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("aside", {
       "class": "w-1/5 px-3",
       key: img
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-        'shadow-blue': _ctx.$store.state.params.floor == 'floor' + (index + 1)
+        'shadow-blue': _ctx.$store.state.params.floor == img.name
       }, "mb-6 p-1 rounded-xl cursor-pointer"]),
       onClick: function onClick($event) {
-        return $options.floorImage("floor".concat(index + 1));
+        return _ctx.$store.commit('floorImage', {
+          textureName: img.name
+        });
       }
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-      src: "/floors/".concat(img),
+      src: img.path,
       "class": "rounded-md"
     }, null, 8
     /* PROPS */

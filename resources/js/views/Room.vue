@@ -24,9 +24,9 @@
             Choose the flooring color
          </h3>
          <div class="flex flex-wrap -mx-3">
-            <aside class="w-1/5 px-3" v-for="(img , index) in images" :key="img">
-               <main :class="{'shadow-blue': $store.state.params.floor == 'floor'+(index+1)}" @click="floorImage(`floor${index+1}`)" class="mb-6 p-1 rounded-xl cursor-pointer">
-                  <img :src="`/floors/${img}`" class="rounded-md">
+            <aside class="w-1/5 px-3" v-for="img in images" :key="img">
+               <main :class="{'shadow-blue': $store.state.params.floor == img.name}" @click="$store.commit('floorImage', {textureName: img.name})" class="mb-6 p-1 rounded-xl cursor-pointer">
+                  <img :src="img.path" class="rounded-md">
                </main>
             </aside>
          </div>
@@ -44,7 +44,7 @@ export default {
       }
    },
    async mounted() {
-     this.images = await store.dispatch('textures')
+     this.images = Engine.textures.floors
    },
    methods:{
       wallColorChanger(wallName){
@@ -66,9 +66,6 @@ export default {
          let mainWall = scene.getMaterialByName('mainWall')
          wall.albedoColor = BABYLON.Color3.FromHexString(this.colorOne).toLinearSpace()
          mainWall.albedoColor = BABYLON.Color3.FromHexString(this.colorOne).toLinearSpace()
-      },
-      floorImage(pathImage){
-         store.commit('floorImage', {textureName: pathImage})
       },
    },
 }

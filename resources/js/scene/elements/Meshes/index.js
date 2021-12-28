@@ -1,5 +1,3 @@
-import store from "../../../store";
-
 class Meshes {
     constructor() {
         this.Import()

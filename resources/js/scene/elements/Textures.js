@@ -1,18 +1,10 @@
-import store from "../../store"
-
 class Textures {
+
+   floors = []
+   desks = []
    constructor() {
-      this.allTextures()
-      this.sceneOnload()
-   }
-
-   newTexture(name, path) {
-      const texture = new BABYLON.Texture(path)
-      texture.name = name
-      return texture
-   }
-
-   sceneOnload() {
+      this.floorTextures()
+      this.deskTextures()
       scene.onReadyObservable.add(() => {
          let CountAllTextures = this._AmbientTextures.length + this._NormalTextures.length + this._AlbedoTextures.length
          let addProsent = 80 / (CountAllTextures + 1);
@@ -24,16 +16,33 @@ class Textures {
       })
    }
 
-   allTextures() {
+   newTexture(name, path) {
+      const texture = new BABYLON.Texture(path)
+      texture.name = name
+      return texture
+   }
+
+   floorTextures() {
       var datas = this._TextureData
       store.dispatch('textures').then(images => {
          images.forEach((imagepath, i) => {
             var texture = this.newTexture(`floor${i + 1}`, `/floors/${imagepath}`)
             texture.uScale = datas[i].uScale
             texture.vScale = datas[i].vScale
-            texture.wAng = datas[i].wAng
+            texture.wAng   = datas[i].wAng
+            this.floors.push({name: `floor${i + 1}`, path: `/floors/${imagepath}`})
          });
       })
+   }
+
+   async deskTextures(){
+      let folders = await store.dispatch('deskTextures')
+      for (const key in folders.images) {
+         folders.images[key].forEach(image => {
+            this.newTexture(image, `/floors/${image}`)
+         })
+      }
+      this.desks = folders
    }
 
    AllAmbientWhite(prosent) {
@@ -48,6 +57,7 @@ class Textures {
       });
    }
 
+
    _TextureData = [
       { uScale: 3, vScale: 4, wAng: 0 },
       { uScale: 3, vScale: 4, wAng: 0 },
@@ -58,6 +68,7 @@ class Textures {
 
 
    _AmbientTextures = [
+
       //room
       new Texture({ uAng: Math.PI, materialName: 'mainWall', texturePath: '/textures/wall.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'wallTop', texturePath: '/textures/wall.jpg' }),
@@ -100,22 +111,23 @@ class Textures {
    ]
 
    _AlbedoTextures = [
-      new Texture({ materialName: 'oneTable', texturePath: '/textures/laminate/cw115.jpg' }),
-      new Texture({ materialName: 'twoTable', texturePath: '/textures/laminate/cw115.jpg' }),
-      new Texture({ materialName: 'threeTable', texturePath: '/textures/laminate/cw115.jpg', uScale: 2, vScale: 2 }),
-      new Texture({ materialName: 'fourTable', texturePath: '/textures/laminate/cw115.jpg', uScale: 2, vScale: 2 }),
-      new Texture({ materialName: 'fiveTable', texturePath: '/textures/laminate/cw115.jpg' }),
+      new Texture({ materialName: 'oneTable', texturePath: '/floors/desks/laminate/cw115.jpg' }),
+      new Texture({ materialName: 'twoTable', texturePath: '/floors/desks/laminate/cw115.jpg' }),
+      new Texture({ materialName: 'threeTable', texturePath: '/floors/desks/laminate/cw115.jpg', uScale: 2, vScale: 2 }),
+      new Texture({ materialName: 'fourTable', texturePath: '/floors/desks/laminate/cw115.jpg', uScale: 2, vScale: 2 }),
+      new Texture({ materialName: 'fiveTable', texturePath: '/floors/desks/laminate/cw115.jpg' }),
    ]
 }
 
 class Texture {
-   constructor({ materialName = null, texturePath = null, uScale = 1, vScale = 1, level = 1, uAng = 0 }) {
+   constructor({ materialName = null, texturePath = null, uScale = 1, vScale = 1, level = 1, uAng = 0 , wAng = 0}) {
       this.materialName = materialName
       this.texturePath = texturePath
       this.uScale = uScale
       this.vScale = vScale
       this.level = level
       this.uAng = uAng
+      this.wAng = wAng
    }
 }
 
@@ -128,6 +140,7 @@ class ImportTextures {
          newTexture.vScale = materials[i].vScale
          newTexture.level = materials[i].level
          newTexture.uAng = materials[i].uAng
+         newTexture.wAng = materials[i].wAng
 
 
          let material = scene.getMaterialByName(materials[i].materialName)

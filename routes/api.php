@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('/textures', [TextureController::class, 'textures']);
+Route::get('/desks', [TextureController::class, 'desks']);
