@@ -14,6 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Carusel_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Carusel.vue */ "./resources/js/components/Carusel.vue");
+/* harmony import */ var _LegsCoordinates__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../LegsCoordinates */ "./resources/js/LegsCoordinates.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -21,46 +22,17 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      Coordinates: [{
-        image: new BABYLON.Vector3(10, 19.117, -34.423),
-        plant: new BABYLON.Vector3(0, 1, -31),
-        monitor: new BABYLON.Vector3(10.368, 8.01698, -21.8846),
-        chair: new BABYLON.Vector3(15.5757, 1.38094, -11.7009),
-        lamp: new BABYLON.Vector3(22.511, 6.92616, -31.4137),
-        tumbochka: new BABYLON.Vector3(22.503, 1.178, -29.831)
-      }, {
-        image: new BABYLON.Vector3(1.215, 19.117, -34.423),
-        plant: new BABYLON.Vector3(3.080, 1, -31.333),
-        monitor: new BABYLON.Vector3(14.214, 7.689, -31.565),
-        chair: new BABYLON.Vector3(15.661, 1.381, -17.889),
-        lamp: new BABYLON.Vector3(19.627, 7.668, -31.414),
-        tumbochka: new BABYLON.Vector3(22.503, 1.178, -29.831)
-      }, {
-        image: new BABYLON.Vector3(1.215, 19.117, -34.423),
-        plant: new BABYLON.Vector3(-3.09833, 1, -31.333),
-        monitor: new BABYLON.Vector3(15.1378, 7.7, -30.3906),
-        chair: new BABYLON.Vector3(17.7362, 1.38094, -18.8789),
-        lamp: new BABYLON.Vector3(20.8322, 7.5, -31.414),
-        tumbochka: new BABYLON.Vector3(1, 1.178, -29.831)
-      }, {
-        image: new BABYLON.Vector3(9.82315, 19.117, -34.423),
-        plant: new BABYLON.Vector3(-1.77979, 1, -31.333),
-        monitor: new BABYLON.Vector3(1.45031, 7.7, -7.10365),
-        chair: new BABYLON.Vector3(9.11413, 1.38094, -2.60271),
-        lamp: new BABYLON.Vector3(22.5794, 6.95014, -31.4137),
-        tumbochka: new BABYLON.Vector3(22.503, 1.178, -29.831)
-      }, {
-        image: new BABYLON.Vector3(2.96359, 19.117, -34.423),
-        plant: new BABYLON.Vector3(-1.35887, 1, -31.333),
-        monitor: new BABYLON.Vector3(13.7972, 8.52, -31.3336),
-        chair: new BABYLON.Vector3(13.1428, 1.38094, -21.123),
-        lamp: new BABYLON.Vector3(21.2717, 8.3, -31.4137),
-        tumbochka: new BABYLON.Vector3(3, 1.178, -29.831)
-      }]
+      imagearr: null,
+      folderImages: null,
+      deskMaterials: null
     };
+  },
+  created: function created() {
+    this.deskMaterials = Engine.textures.desks.folders;
   },
   mounted: function mounted() {
     var _this = this;
@@ -70,11 +42,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
-              return store.dispatch('textures');
-
-            case 2:
-              _this.images = _context.sent;
+              console.log(store.state.coor);
+              _this.folderImages = Engine.textures.desks.images;
+              _this.imagearr = _this.folderImages[store.state.params.deskMaterial];
 
             case 3:
             case "end":
@@ -107,19 +77,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       if (store.state.params.legType == legIndex) return;
-      var coords = this.Coordinates;
       var activeDecors = this.getDecors();
       activeDecors.forEach(function (Decors) {
         if (store.state.decor[Decors]) {
-          _this2.DecorsPosition(Decors, coords[legIndex - 1][Decors]);
+          _this2.DecorsPosition(Decors, _LegsCoordinates__WEBPACK_IMPORTED_MODULE_2__["default"][legIndex - 1][Decors]);
         } else {
-          _this2.DecorsHide(Decors, coords[legIndex - 1][Decors]);
+          _this2.DecorsHide(Decors, _LegsCoordinates__WEBPACK_IMPORTED_MODULE_2__["default"][legIndex - 1][Decors]);
         }
       });
       store.commit('setLegType', legIndex);
     },
-    setDeskMaterial: function setDeskMaterial(deskIndex) {
-      store.state.params.deskMaterial = deskIndex;
+    deskFolder: function deskFolder(deskIndex) {
+      var _this3 = this;
+
+      this.imagearr = null;
+      setTimeout(function () {
+        _this3.imagearr = _this3.folderImages[deskIndex];
+        store.state.params.deskMaterial = deskIndex;
+      }, 100);
     },
     //poisk active decors
     getDecors: function getDecors() {
@@ -134,7 +109,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     //hide to active decors
     DecorsHide: function DecorsHide(node, coords) {
-      var _this3 = this;
+      var _this4 = this;
 
       var hide = new BABYLON.Vector3(0, 0, 0); //soralgan meshni topamiz
 
@@ -147,8 +122,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         frame: 10,
         value: hide
       }], function () {
-        _this3.DecorsPosition(node, coords, function () {
-          _this3.DecorsShow(mesh);
+        _this4.DecorsPosition(node, coords, function () {
+          _this4.DecorsShow(mesh);
         });
       });
     },
@@ -172,6 +147,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         frame: 10,
         value: show
       }]);
+    },
+    setDeskMaterial: function setDeskMaterial(textureName) {
+      var materialNames = ['oneTable', 'twoTable', 'threeTable', 'fourTable', 'fiveTable'];
+      materialNames.forEach(function (element) {
+        var material = scene.getMaterialByName(element);
+        material.albedoTexture = scene.getTextureByName(textureName);
+      });
     }
   },
   components: {
@@ -272,32 +254,34 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 var _hoisted_9 = ["onClick", "innerHTML"];
 var _hoisted_10 = {
+  key: 0,
   "class": "flex flex-wrap -mx-3 mt-6"
 };
-var _hoisted_11 = ["src"];
-var _hoisted_12 = {
+var _hoisted_11 = ["onClick"];
+var _hoisted_12 = ["src"];
+var _hoisted_13 = {
   "class": "pb-8"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
   "class": "font-bold mb-6 text-xl text-gray-600"
 }, " Choose the leg color ", -1
 /* HOISTED */
 );
 
-var _hoisted_14 = {
+var _hoisted_15 = {
   "class": "flex flex-wrap -mx-3"
 };
-var _hoisted_15 = ["onClick"];
-var _hoisted_16 = {
+var _hoisted_16 = ["onClick"];
+var _hoisted_17 = {
   key: 0,
   "class": "w-full h-full bg-white border border-gray-300 rounded-md"
 };
-var _hoisted_17 = {
+var _hoisted_18 = {
   key: 1,
   "class": "w-full h-full bg-gray-400 border border-gray-300 rounded-md"
 };
-var _hoisted_18 = {
+var _hoisted_19 = {
   key: 2,
   "class": "w-full h-full bg-black border border-gray-300 rounded-md"
 };
@@ -330,18 +314,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "text-md text-center text-gray-600"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.$store.state.deskMaterials, function (materials, num) {
+      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.deskMaterials, function (materials) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("main", {
-          key: num,
+          key: materials,
           "class": "w-1/4 inline-block align-middle px-2"
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
           onClick: function onClick($event) {
-            return $options.setDeskMaterial(num + 1);
+            return $options.deskFolder(materials.path);
           },
           "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-            'bg-my text-white': _ctx.$store.state.params.deskMaterial == num + 1
+            'bg-my text-white': _ctx.$store.state.params.deskMaterial == materials.path
           }, "h-20 w-full rounded-xl border"]),
-          innerHTML: materials
+          innerHTML: materials.text
         }, null, 10
         /* CLASS, PROPS */
         , _hoisted_9)]);
@@ -352,25 +336,36 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.images, function (img, index) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("aside", {
-      "class": "w-1/5 px-3",
-      key: img
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", {
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-        'shadow-blue': _ctx.$store.state.params.floor == 'floor' + (index + 1)
-      }, "mb-6 p-1 rounded-xl cursor-pointer"])
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-      src: "/floors/".concat(img),
-      "class": "rounded-md"
-    }, null, 8
-    /* PROPS */
-    , _hoisted_11)], 2
-    /* CLASS */
-    )]);
-  }), 128
-  /* KEYED_FRAGMENT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(3, function (n) {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
+    name: "fade",
+    mode: "in-out"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [$data.imagearr ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.imagearr, function (img) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("aside", {
+          "class": "w-1/5 px-3",
+          key: img
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" :class=\"{'shadow-blue': $store.state.params.floor == img.name}\" "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", {
+          onClick: function onClick($event) {
+            return $options.setDeskMaterial(img);
+          },
+          "class": "mb-6 p-1 h-32 rounded-xl cursor-pointer shadow-md"
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+          src: "/floors/".concat(img),
+          "class": "rounded-md object-cover w-full h-full"
+        }, null, 8
+        /* PROPS */
+        , _hoisted_12)], 8
+        /* PROPS */
+        , _hoisted_11)]);
+      }), 128
+      /* KEYED_FRAGMENT */
+      ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+    }),
+    _: 1
+    /* STABLE */
+
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(3, function (n) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", {
       key: n,
       "class": "w-1/5 px-3"
@@ -381,9 +376,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
         'shadow-blue': _ctx.$store.state.params.legColor == n
       }, "p-1 rounded-md h-36"])
-    }, [n == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), n == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), n == 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_18)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 10
+    }, [n == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), n == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_18)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), n == 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_19)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 10
     /* CLASS, PROPS */
-    , _hoisted_15)]);
+    , _hoisted_16)]);
   }), 64
   /* STABLE_FRAGMENT */
   ))])])]);
@@ -470,6 +465,55 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   })]);
 }
+
+/***/ }),
+
+/***/ "./resources/js/LegsCoordinates.js":
+/*!*****************************************!*\
+  !*** ./resources/js/LegsCoordinates.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
+  image: new BABYLON.Vector3(10, 19.117, -34.423),
+  plant: new BABYLON.Vector3(0, 1, -31),
+  monitor: new BABYLON.Vector3(10.368, 8.01698, -21.8846),
+  chair: new BABYLON.Vector3(15.5757, 1.38094, -11.7009),
+  lamp: new BABYLON.Vector3(22.511, 6.92616, -31.4137),
+  tumbochka: new BABYLON.Vector3(22.503, 1.178, -29.831)
+}, {
+  image: new BABYLON.Vector3(1.215, 19.117, -34.423),
+  plant: new BABYLON.Vector3(3.080, 1, -31.333),
+  monitor: new BABYLON.Vector3(14.214, 7.689, -31.565),
+  chair: new BABYLON.Vector3(15.661, 1.381, -17.889),
+  lamp: new BABYLON.Vector3(19.627, 7.668, -31.414),
+  tumbochka: new BABYLON.Vector3(22.503, 1.178, -29.831)
+}, {
+  image: new BABYLON.Vector3(1.215, 19.117, -34.423),
+  plant: new BABYLON.Vector3(-3.09833, 1, -31.333),
+  monitor: new BABYLON.Vector3(15.1378, 7.7, -30.3906),
+  chair: new BABYLON.Vector3(17.7362, 1.38094, -18.8789),
+  lamp: new BABYLON.Vector3(20.8322, 7.5, -31.414),
+  tumbochka: new BABYLON.Vector3(1, 1.178, -29.831)
+}, {
+  image: new BABYLON.Vector3(9.82315, 19.117, -34.423),
+  plant: new BABYLON.Vector3(-1.77979, 1, -31.333),
+  monitor: new BABYLON.Vector3(1.45031, 7.7, -7.10365),
+  chair: new BABYLON.Vector3(9.11413, 1.38094, -2.60271),
+  lamp: new BABYLON.Vector3(22.5794, 6.95014, -31.4137),
+  tumbochka: new BABYLON.Vector3(22.503, 1.178, -29.831)
+}, {
+  image: new BABYLON.Vector3(2.96359, 19.117, -34.423),
+  plant: new BABYLON.Vector3(-1.35887, 1, -31.333),
+  monitor: new BABYLON.Vector3(13.7972, 8.52, -31.3336),
+  chair: new BABYLON.Vector3(13.1428, 1.38094, -21.123),
+  lamp: new BABYLON.Vector3(21.2717, 8.3, -31.4137),
+  tumbochka: new BABYLON.Vector3(3, 1.178, -29.831)
+}]);
 
 /***/ }),
 

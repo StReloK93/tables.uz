@@ -1,11 +1,19 @@
 class Scene {
+   DefautLeg = 2
    constructor(canvas) {
       this.createScene(canvas)
       this.expansion()
-      this.sceneOnload()
-      // scene.executeWhenReady(() => { 
-      //    console.log('its My Life');
-      // });
+
+      scene.onReadyObservable.add(()=>{
+
+         //Default texturani urnatadi
+         store.commit('floorImage', {scene: scene,textureName: 'floor1'})
+
+         //Default Stolni urnatadi
+         
+         store.commit('setLegType', this.DefautLeg)
+
+      })
    }
 
    createScene(canvas) {
@@ -15,20 +23,6 @@ class Scene {
       engine.runRenderLoop(() => { scene.render() })
       window.addEventListener("resize", () => { engine.resize() })
    }
-
-   sceneOnload(){
-      scene.onReadyObservable.add(()=>{
-
-         //Default texturani urnatadi
-         store.commit('floorImage', {scene: scene,textureName: 'floor1'})
-
-         //Default Stolni urnatadi
-         const DefautLeg = 2
-         store.commit('setLegType', DefautLeg)
-
-      })
-   }
-   
 
    expansion(){
       scene.getTextureByName = (name)=>{

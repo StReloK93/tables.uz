@@ -19,17 +19,20 @@
                 Standing desk material
             </h3>
             <Caruosel :itemCount="4" class="text-md text-center text-gray-600">
-                <main v-for="(materials , num) in $store.state.deskMaterials" :key="num" class="w-1/4 inline-block align-middle px-2">
-                    <button @click="setDeskMaterial(num+1)" :class="{'bg-my text-white': $store.state.params.deskMaterial == num+1}" v-html="materials" class="h-20 w-full rounded-xl border"></button>
+                <main v-for="materials in deskMaterials" :key="materials" class="w-1/4 inline-block align-middle px-2">
+                    <button @click="deskFolder(materials.path)" :class="{'bg-my text-white': $store.state.params.deskMaterial == materials.path}" v-html="materials.text" class="h-20 w-full rounded-xl border"></button>
                 </main>
             </Caruosel>
-            <div class="flex flex-wrap -mx-3 mt-6">
-                <aside class="w-1/5 px-3" v-for="(img , index) in images" :key="img">
-                <main :class="{'shadow-blue': $store.state.params.floor == 'floor'+(index+1)}" class="mb-6 p-1 rounded-xl cursor-pointer">
-                    <img :src="`/floors/${img}`" class="rounded-md">
-                </main>
-                </aside>
-            </div>
+            <transition name="fade" mode="in-out">
+                <div v-if="imagearr" class="flex flex-wrap -mx-3 mt-6">
+                    <aside class="w-1/5 px-3" v-for="img in imagearr" :key="img">
+                    <!-- :class="{'shadow-blue': $store.state.params.floor == img.name}" -->
+                        <main @click="setDeskMaterial(img)" class="mb-6 p-1 h-32 rounded-xl cursor-pointer shadow-md">
+                            <img :src="`/floors/${img}`" class="rounded-md object-cover w-full h-full">
+                        </main>
+                    </aside>
+                </div>
+            </transition>
         </main>
         <main class="pb-8">
             <h3 class="font-bold mb-6 text-xl text-gray-600">
@@ -49,61 +52,27 @@
 </template>
 <script>
 import Caruosel from '../components/Carusel.vue'
-
+import coords from '../LegsCoordinates'
 export default {
     data() {
         return {
-            Coordinates: [
-                {
-                    image:     new BABYLON.Vector3(10,19.117,-34.423),
-                    plant:     new BABYLON.Vector3(0,1,-31),
-                    monitor:   new BABYLON.Vector3(10.368,8.01698,-21.8846),
-                    chair:     new BABYLON.Vector3(15.5757,1.38094,-11.7009),
-                    lamp:      new BABYLON.Vector3(22.511,6.92616,-31.4137),
-                    tumbochka: new BABYLON.Vector3(22.503,1.178,-29.831),
-                },
-                {
-                    image:     new BABYLON.Vector3(1.215,19.117,-34.423),
-                    plant:     new BABYLON.Vector3(3.080,1,-31.333),
-                    monitor:   new BABYLON.Vector3(14.214,7.689,-31.565),
-                    chair:     new BABYLON.Vector3(15.661,1.381,-17.889),
-                    lamp:      new BABYLON.Vector3(19.627,7.668,-31.414),
-                    tumbochka: new BABYLON.Vector3(22.503,1.178,-29.831),
-                },
-                {
-                    image:     new BABYLON.Vector3(1.215,19.117,-34.423),
-                    plant:     new BABYLON.Vector3(-3.09833,1,-31.333),
-                    monitor:   new BABYLON.Vector3(15.1378,7.7,-30.3906),
-                    chair:     new BABYLON.Vector3(17.7362,1.38094,-18.8789),
-                    lamp:      new BABYLON.Vector3(20.8322,7.5,-31.414),
-                    tumbochka: new BABYLON.Vector3(1,1.178,-29.831),
-                },
-                {
-                    image:     new BABYLON.Vector3(9.82315,19.117,-34.423),
-                    plant:     new BABYLON.Vector3(-1.77979,1,-31.333), 
-                    monitor:   new BABYLON.Vector3(1.45031,7.7,-7.10365),
-                    chair:     new BABYLON.Vector3(9.11413,1.38094,-2.60271) ,
-                    lamp:      new BABYLON.Vector3(22.5794,6.95014,-31.4137),
-                    tumbochka: new BABYLON.Vector3(22.503,1.178,-29.831),
-                },
-                {
-                    image:     new BABYLON.Vector3(2.96359,19.117,-34.423),
-                    plant:     new BABYLON.Vector3(-1.35887,1,-31.333), 
-                    monitor:   new BABYLON.Vector3(13.7972,8.52,-31.3336),
-                    chair:     new BABYLON.Vector3(13.1428,1.38094,-21.123),
-                    lamp:      new BABYLON.Vector3(21.2717,8.3,-31.4137),
-                    tumbochka: new BABYLON.Vector3(3,1.178,-29.831),
-                }
-            ]
+            imagearr: null,
+            folderImages: null,
+            deskMaterials: null,
         }
     },
+    created(){
+        this.deskMaterials = Engine.textures.desks.folders
+    },
     async mounted() {
-        this.images = await store.dispatch('textures')
+        console.log(store.state.coor);
+        this.folderImages = Engine.textures.desks.images
+        this.imagearr = this.folderImages[store.state.params.deskMaterial]
     },
     methods: {
         setLegColor(colorIndex){
             let colorArr = ['#C8C8C8','#6B6B6B','#222222']
-            let LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg','threeLegLeft', 'threeLegRight']
+            let LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg','threeLegLeft', 'threeLegRight'] 
 
             LegsArr.forEach(legName => {
                 const leg = scene.getMaterialByName(legName)
@@ -119,7 +88,6 @@ export default {
         setLegType(legIndex){
             if(store.state.params.legType == legIndex) return
             
-            let coords = this.Coordinates
             let activeDecors = this.getDecors()
             activeDecors.forEach(Decors => {
                 if(store.state.decor[Decors]){
@@ -132,8 +100,12 @@ export default {
             store.commit('setLegType', legIndex)
         },
 
-        setDeskMaterial(deskIndex){
-            store.state.params.deskMaterial = deskIndex
+        deskFolder(deskIndex){
+            this.imagearr = null
+            setTimeout(()=>{
+                this.imagearr = this.folderImages[deskIndex]
+                store.state.params.deskMaterial = deskIndex
+            },100)
         },
 
         //poisk active decors
@@ -165,6 +137,14 @@ export default {
             var show = new BABYLON.Vector3(1,1,1)
             Animate(mesh,'scaling', VECTOR3, [{frame: 0,value: mesh.scaling},{frame: 10,value: show}])
         },
+
+        setDeskMaterial(textureName){
+            let materialNames = ['oneTable', 'twoTable', 'threeTable', 'fourTable', 'fiveTable']
+            materialNames.forEach(element => {
+                let material = scene.getMaterialByName(element)
+                material.albedoTexture = scene.getTextureByName(textureName)
+            });
+        }
     },
     components:{
         Caruosel

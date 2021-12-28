@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { createStore } from 'vuex'
-
+import coor from '../locale/eng'
 
 export default createStore({
     state() {
         return {
+            coor: coor,
             fullscreen: false,
             onLoaded: 0,
             inspector: true,
@@ -15,7 +16,7 @@ export default createStore({
                 legColor: 1,
                 legType: 0,
                 size: 0,
-                deskMaterial: 1,
+                deskMaterial: 'desks/bamboo',
                 wallColor: '#ffffff',
                 mainWallColor: '#182249',
                 floor: null
@@ -35,17 +36,6 @@ export default createStore({
                 accessories: 1,
                 chair: 1,
             },
-            deskMaterials: [
-                'Solid wood <br> Live Edge',
-                'Solid wood <br> Traditional',
-                'Solid wood <br> Epoxy',
-                'Melamine <br>With glass top',
-                'Veneer',
-                'Pyledge',
-                'Melamine',
-                'Bamboo',
-                'Laminate'
-            ],
             legTypes: [
                 {img: '/images/1leg.png', name: '1 legs'},
                 {img: '/images/2leg.png', name: '2 legs'},
@@ -121,8 +111,13 @@ export default createStore({
 
     actions: {
         async textures(){
-            var {data} = await axios.get('api/textures')
+            let {data} = await axios.get('api/textures')
             return data
         },
+
+        async deskTextures(){
+            let {data} = await axios.get('/api/desks')
+            return data
+        }
     },
 })
