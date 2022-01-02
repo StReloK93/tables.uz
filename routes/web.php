@@ -12,7 +12,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+    return view('desktop');
+});
 
-Route::get('{path}', function () {
-    return view('welcome');
+Route::get('/desktop', function () {
+    return view('desktop');
+});
+
+Route::get('/desktop/{path}', function () {
+    return view('desktop');
+})->where('path', '.*');
+
+Route::get('/mobile', function () {
+    return view('mobile');
+});
+
+Route::get('/mobile/{path}', function () {
+    return view('mobile');
 })->where('path', '.*');

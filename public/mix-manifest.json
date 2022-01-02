@@ -1,4 +1,6 @@
 {
-    "/js/app.js": "/js/app.js?id=c60d248353e8c2c146cf",
-    "/css/app.css": "/css/app.css?id=18fdaca508c8598f05db"
+    "/js/desktop.js": "/js/desktop.js?id=bda9bb6f4e2f518b5d84",
+    "/js/mobile.js": "/js/mobile.js?id=26a8085bd88a7bc83064",
+    "/css/mobile.css": "/css/mobile.css?id=35e754a2737197773fa7",
+    "/css/desktop.css": "/css/desktop.css?id=35e754a2737197773fa7"
 }

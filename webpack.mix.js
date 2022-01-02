@@ -16,8 +16,14 @@ mix.webpackConfig({
         chunkFilename: 'js/[name].js?id=[hash]',
     }
 })
-mix.js('resources/js/app.js', 'public/js')
+mix.js('resources/js/desktop/desktop.js', 'public/js')
 .version()
 .vue()
-.postCss('resources/css/app.css', 'public/css', [require("tailwindcss"),]);
+.postCss('resources/css/desktop.css', 'public/css', [require("tailwindcss"),])
+
+mix.js('resources/js/mobile/mobile.js', 'public/js')
+.version()
+.vue()
+.postCss('resources/css/mobile.css', 'public/css', [require("tailwindcss"),])
+
 mix.disableSuccessNotifications();
