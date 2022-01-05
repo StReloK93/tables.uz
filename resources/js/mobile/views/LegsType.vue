@@ -1,16 +1,16 @@
 <template>
     <section>
         <main>
-            <h3 class="color-title text-center font-bold mb-4 xl:text-xl md:text-md text-gray-600">
+            <h3 class="color-title text-center font-bold mb-1 xl:text-xl md:text-md text-gray-600">
                 Available legs
             </h3>
             <div class="text-center whitespace-nowrap py-1 overflow-hidden overflow-x-scroll noscroll -mr-2">
-                <aside v-for="(legs , index) in $store.state.legTypes" :key="index" @click="setLegType(index + 1)" class="w-1/3 inline-block pr-2 cursor-pointer">
+                <aside v-for="(legs , index) in $store.state.legTypes" :key="index" @click="setLegType(index + 1)" class="w-custom inline-block pr-2 cursor-pointer">
 					<section  :class="{'border-myblue': $store.state.params.legType == index + 1}" class="py-2 rounded-md border border-transparent">
-						<main class="h-24 text-center">
-							<img :src="legs.img" class="w-9/12 inline">
+						<main class="h-20 flex items-center justify-center">
+							<img :src="legs.img" class="w-9/12">
 						</main>
-						<div>
+						<div :class="{'text-xs': index == 4}">
 							{{legs.name}}
 						</div>
 					</section>
@@ -153,3 +153,8 @@ export default {
     }
 }
 </script>
+<style scoped>
+.w-custom{
+    width: 29%;
+}
+</style>

@@ -17,17 +17,17 @@
       <aside class="counter px-6 rounded py-1 shadow-xl z-40">
          1 <span class="relative text-sm px-1" style="top: -1px">/</span> 3
       </aside>
-      <main class="overflow-hidden flex-grow flex items-center">
+      <main class="overflow-hidden flex-grow px-1 flex items-center">
          <router-view class="w-full"></router-view>
       </main>
       <main class="flex text-center text-white">
-         <div class="w-1/4 bg-my py-3 hover:bg-green-700 border-r border-white flex justify-center items-center">
+         <div class="w-1/4 bg-my py-2 hover:bg-green-700 border-r border-white flex justify-center items-center">
             <img src="/images/leftmob.png" style="filter: brightness(0) invert(1)" class="w-1/4">
          </div>
          <div @click="toggleMenu(true)" class="w-2/4 bg-my flex hover:bg-green-700 justify-center items-center">
             <img src="/images/menu.png" style="filter: brightness(0) invert(1)" class="w-1/6">
          </div>
-         <div class="w-1/4 bg-my py-3 hover:bg-green-700 border-l border-white flex justify-center items-center">
+         <div class="w-1/4 bg-my py-2 hover:bg-green-700 border-l border-white flex justify-center items-center">
             <img src="/images/rightmob.png" style="filter: brightness(0) invert(1)" class="w-1/4">
          </div>
       </main>
