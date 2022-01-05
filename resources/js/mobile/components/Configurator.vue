@@ -1,52 +1,51 @@
 <template>
-    <hr class="xl:my-6 md:my-3">
-    <aside class="flex justify-between text-gray-600 -mr-2">
-        <main class="w-1/5 pr-2">
-            <router-link  :to="{name: 'legstype'}" class="config text-center xl:py-3 md:py-2 block bg-gray-100 rounded-lg">
+    <aside class="word-wrap flex flex-wrap text-gray-600 -mr-3 text-xs font-bold">
+        <main class="w-1/3 sm:w-1/5 pr-3 mb-3">
+            <router-link  :to="{name: 'legstype'}" class="config text-center py-2 px-1 block bg-gray-100 rounded-lg">
                 <div class="h-16 w-full flex items-center justify-center">
                     <Icons icon="Legs"/>
                 </div>
-                <h3 class="xl:text-sm md:text-xs font-medium">
+                <h3>
                     Legs Type 
                 </h3>
             </router-link>
         </main>
-        <main class="w-1/5 pr-2">
-            <router-link :to="{name: 'customization'}" class="config text-center xl:py-3 md:py-2 block bg-gray-100 rounded-lg">
+        <main class="w-1/3 sm:w-1/5 pr-3 mb-3">
+            <router-link :to="{name: 'customization'}" class="config text-center py-2 px-1 block bg-gray-100 rounded-lg">
                 <div class="h-16 w-full flex items-center justify-center">
                     <Icons icon="Customization"/>
                 </div>
-                <h3 class="xl:text-sm md:text-xs font-medium">
+                <h3>
                     Customization
                 </h3>
             </router-link>
         </main>
-        <main class="w-1/5 pr-2">
-            <router-link :to="{name: 'size'}" class="config text-center xl:py-3 md:py-2 block bg-gray-100 rounded-lg">
+        <main class="w-1/3 sm:w-1/5 pr-3 mb-3">
+            <router-link :to="{name: 'size'}" class="config text-center py-2 px-1 block bg-gray-100 rounded-lg">
                 <div class="h-16 w-full flex items-center justify-center">
                     <Icons icon="Size"/>
                 </div>
-                <h3 class="xl:text-sm md:text-xs font-medium">
+                <h3>
                     Size
                 </h3>
             </router-link>
         </main>
-        <main class="w-1/5 pr-2">
-            <router-link :to="{name: 'room'}" class="config text-center xl:py-3 md:py-2 block bg-gray-100 rounded-lg">
+        <main class="w-1/3 sm:w-1/5 pr-3 mb-3">
+            <router-link :to="{name: 'room'}" class="config text-center py-2 px-1 block bg-gray-100 rounded-md">
                 <div class="h-16 w-full flex items-center justify-center">
                     <Icons icon="Room"/>
                 </div>
-                <h3 class="xl:text-sm md:text-xs font-medium">
+                <h3>
                     Room Color 
                 </h3>
             </router-link>
         </main>
-        <main class="w-1/5 pr-2">
-            <router-link :to="{name: 'other'}" class="config text-center xl:py-3 md:py-2 block bg-gray-100 rounded-lg">
+        <main class="w-1/3 sm:w-1/5 pr-3 mb-3">
+            <router-link :to="{name: 'other'}" class="config text-center py-2 px-1 block bg-gray-100 rounded-md">
                 <div class="h-16 w-full flex items-center justify-center">
                     <Icons icon="Other"/>
                 </div>
-                <h3 class="xl:text-sm md:text-xs font-medium">
+                <h3>
                     Other requests
                 </h3>
             </router-link>
@@ -62,8 +61,8 @@ export default {
 }
 </script>
 <style>
-.config{
-
+.word-wrap{
+    word-wrap: break-word;
 }
 .config.router-link-active{
     background-color: #3DB7F6;

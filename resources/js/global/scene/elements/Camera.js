@@ -9,8 +9,7 @@ class Camera{
         this.camera.target = new BABYLON.Vector3(-3.938, 10.611, -14.277)
         this.camera.attachControl(canvas, false);
         this.camera.useBouncingBehavior = true;
-        this.camera.useAutoRotationBehavior = true;
-        // camera.inputs.attached.mousewheel.wheelPrecision = 100;
+        if(window.innerWidth > 991) this.camera.useAutoRotationBehavior = true
         this.camera.inputs.attached.pointers.buttons = [0,1]
     }
 

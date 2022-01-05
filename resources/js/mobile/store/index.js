@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createStore } from 'vuex'
-import languages from '../locale/languages'
+import languages from '../../global/locale/languages'
 
 export default createStore({
     state() {

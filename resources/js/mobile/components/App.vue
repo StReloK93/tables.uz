@@ -1,76 +1,71 @@
 <template>
    <!-- Left part -->
-   <section :class="{'w-full': leftBar}" class="w-1/2 relative" ref="room">
+   <section class="h-3/5 relative" ref="room">
       <transition name="fade" mode="out-in">
-         <main v-if="$store.state.onLoaded.toFixed() != 100" class="absolute h-full w-full flex items-center justify-center top-0 left-0 z-50 bg-indigo-900 text-white text-2xl font-bold">
+         <main v-if="$store.state.onLoaded.toFixed() != 100" class="absolute h-full w-full flex items-center justify-center top-0 left-0 z-30 bg-indigo-900 text-white text-2xl font-bold">
             {{$store.state.onLoaded.toFixed()}} %
          </main>
       </transition>
       <main class="h-full">
          <Decorations v-if="$store.state.onLoaded.toFixed() == 100" class="absolute top-0 left-0"/>
          <canvas class="w-full h-full outline-none" ref="canvas"></canvas>
-         <button v-if="!$store.state.fullscreen" @click="requestFullScreen($refs.room)" class="zoom-button block  p-3 bg-white rounded-lg bg-opacity-50 mb-3 xl:w-24 md:w-20 xl:h-24 md:h-20  hover:bg-opacity-100">
-            <Icons icon="zoom"/>
-         </button>
-         <button v-if="$store.state.fullscreen"  @click="closeFullscreen()" class="zoom-button block p-3 bg-white rounded-lg bg-opacity-50 mb-3 xl:w-24 md:w-20 xl:h-24 md:h-20  hover:bg-opacity-100">
-            Exit
-         </button>
-         <button v-if="leftBar" @click="setLeftBar(false)" class="absolute bg-gray-100 my-3 mx-5 px-3 py-2 inline-block rounded-full top-0 right-0 shadow">
-            <img src="/images/left.png" class="relative" style="left: -1px">
-         </button>
       </main>
    </section>
-   <!-- Left part -->
 
-   <!-- Configurator -->
-   <section v-if="!leftBar" class="w-1/2 bg-white relative flex flex-col justify-between overflow-hidden">
-      <!-- Header -->
-      <main class="xl:px-10 md:px-5 pt-3 xl:pb-5 md:pb-3 shadow-custom bg-gray-50 xl:text-xl md:text-md">
-         <aside class="flex justify-between xl:mb-5 md:mb-3">
-            <button @click="setLeftBar(true)" class="bg-gray-100 px-3 py-2 inline-block rounded-full">
-               <img src="/images/left.png" class="relative transform rotate-180" style="left: 2px">
+
+   <section class="h-2/5 bg-white relative flex flex-col justify-between">
+      <aside class="counter px-6 rounded py-1 shadow-xl z-40">
+         1 <span class="relative text-sm px-1" style="top: -1px">/</span> 3
+      </aside>
+      <main class="overflow-hidden flex-grow flex items-center">
+         <router-view class="w-full"></router-view>
+      </main>
+      <main class="flex text-center text-white">
+         <div class="w-1/4 bg-my py-3 hover:bg-green-700 border-r border-white flex justify-center items-center">
+            <img src="/images/leftmob.png" style="filter: brightness(0) invert(1)" class="w-1/4">
+         </div>
+         <div @click="toggleMenu(true)" class="w-2/4 bg-my flex hover:bg-green-700 justify-center items-center">
+            <img src="/images/menu.png" style="filter: brightness(0) invert(1)" class="w-1/6">
+         </div>
+         <div class="w-1/4 bg-my py-3 hover:bg-green-700 border-l border-white flex justify-center items-center">
+            <img src="/images/rightmob.png" style="filter: brightness(0) invert(1)" class="w-1/4">
+         </div>
+      </main>
+   </section>
+
+
+
+   <transition @after-enter="enter" name="fade">
+      <section v-if="menu" class="menu flex items-end fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-25 z-50" @click="toggleMenu(false)">
+         <main :class="{'translate-y-0': podmenu}" class="p-5 relative rounded-t-2xl w-full bg-white transform translate-y-full easy-transition" @click.stop="">
+
+            <button @click="toggleMenu(false)" class="absolute top-0 right-0 p-4">
+               <img src="/images/cancel.png" class="w-4">
             </button>
-            <div class="uppercase flex items-center font-bold">
-               <span @click="setLang('eng')" :class="{'text-blue-900':lang == 'eng'}"  class="text-gray-300 cursor-pointer">eng</span>
-               <span class="px-2 relative text-blue-400" style="top: -1px">/</span>
-               <span @click="setLang('gk')" :class="{'text-blue-900':lang == 'gk'}" class="text-gray-300 cursor-pointer">繁</span>
-            </div>
-         </aside>
-         <router-link :to="{name: 'legstype'}" 
-            :class="{ 'border-blue-400 border-l-4 pl-4 text-blue-900 font-bold': isActive }" 
-            class="xl:text-2xl md:text-md capitalize text-gray-300 transition-all duration-300 ease-in-out block mb-2">
-               {{$store.state.language.createYour}}
-         </router-link>
-         <router-link :to="{name: 'designs'}" 
-            :class="{ 'border-blue-400 border-l-4 pl-4 text-blue-900 font-bold': !isActive }" 
-            class="xl:text-2xl md:text-md capitalize text-gray-300 transition-all duration-300 ease-in-out block">
-            {{$store.state.language.browseOur}}
-         </router-link>
-         <Configurator v-if="$store.state.configurator"/>
-      </main>
-      <!-- Header -->
+
+            <router-link :to="{name: 'legstype'}" :class="{ 'border-blue-400 border-l-4 pl-4 text-blue-900 font-bold': isActive }" class="leading-3 text-md md:text-md capitalize text-gray-300 easy-transition block mb-3">
+                  {{$store.state.language.createYour}}
+            </router-link>
+            <router-link :to="{name: 'designs'}" :class="{ 'border-blue-400 border-l-4 pl-4 text-blue-900 font-bold': !isActive }" class="leading-3 text-md md:text-md capitalize text-gray-300 easy-transition block">
+               {{$store.state.language.browseOur}}
+            </router-link>
+
+            <hr class="my-5">
+            <transition name="higth">
+               <Configurator v-if="$store.state.configurator"/>
+            </transition>
+
+            <button class="bg-green-800 font-bold w-full p-3 text-center text-white rounded-md">
+               {{$store.state.language.getQuote}}
+            </button>
+         </main>
+      </section>
+   </transition>
 
 
-      <!-- Pages  -->
-      <router-view class="flex-grow overflow-hidden overflow-y-auto xl:px-10 md:px-5 xl:pt-8 md:pt-4" v-slot="{ Component }">
-         <transition name="fade" mode="out-in">
-            <component :is="Component" />
-         </transition>
-      </router-view>
-      <!-- Pages -->
 
-
-      <!-- Footer -->
-      <main class="text-right xl:px-10 md:px-5 xl:py-7 md:py-4 bg-white shadow-custom">
-         <button class="xl:h-16 md:h-14 xl:w-52 md:w-40 bg-gray-400 hover:bg-red-500  xl:text-xl md:text-md text-center text-white rounded-xl">
-            {{$store.state.language.getQuote}}
-         </button>
-      </main>
-      <!-- Footer -->
-   </section>
 </template>
 <script>
-import Hotkeys from '../../global/hotkeys.js'
 import initScene from '../../global/scene/initScene'
 import Decorations from './Decorations.vue'
 import Configurator from './Configurator.vue'
@@ -80,35 +75,36 @@ export default {
       return {
          isActive: null,
          lang: 'eng',
-         leftBar: false
+         menu: false,
+         podmenu: false
       }
    },
    mounted(){
       window.Engine = initScene(this.$refs.canvas) 
-      Hotkeys.loaderFile(this.$refs.room)
-      if(localStorage.getItem('lang')){
-         this.setLang(localStorage.getItem('lang'))
-      }
-   },
-   computed:{
-      requestFullScreen(){
-         return Hotkeys.requestFullScreen
-      },
-      closeFullscreen(){
-         return Hotkeys.closeFullscreen
-      }
+      // if(localStorage.getItem('lang')){
+      //    this.setLang(localStorage.getItem('lang'))
+      // }
    },
    methods: {
-      setLang(lang){
-         this.lang = lang
-         store.commit('setLang', lang)
+      // setLang(lang){
+      //    this.lang = lang
+      //    store.commit('setLang', lang)
+      // },
+      toggleMenu(bool){
+         if(bool){
+            this.menu = bool
+         }
+         else{
+            this.podmenu = false
+            setTimeout(()=>{
+               this.menu = bool
+            },300)
+         }
       },
-      setLeftBar(boolean){
-         this.leftBar = boolean
-         setTimeout(()=>{
-            window.dispatchEvent(new Event('resize'))
-         },10)
-      }
+
+      enter() {
+         this.podmenu = true
+      },
    },
    watch:{
       $route (to, from){
@@ -130,15 +126,17 @@ export default {
 }
 </script>
 <style>
-.zoom-button{
+.color-title{
+   color: #3F4D74;
+}
+.translate-y-0{
+   --tw-translate-y: 0px!important;
+}
+.counter{
    position: absolute;
    left: 50%;
-   bottom: 0;
-   transform: translateX(-50%);
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   cursor: pointer;
+   transform: translate(-50%,-50%);
+   background: white;
 }
 #embed-host input,#embed-host select{
    color: #333;
@@ -156,18 +154,17 @@ export default {
   opacity: 0;
 }
 
-
-.heigth-anim-enter-active,
-.heigth-anim-leave-active {
-  transition: opacity 0.5s ease, height 0.5s ease;
-  max-height: 0px;
+.higth-enter-active,
+.higth-leave-active {
+  transition: 0.6s ease;
+  max-height: 400px;
+  overflow: hidden;
 }
 
-
-.heigth-anim-enter-from,
-.heigth-anim-leave-to {
+.higth-enter-from,
+.higth-leave-to {
   opacity: 0;
-  max-height: 300px;
+  max-height: 0;
 }
 
 *::-webkit-scrollbar,
@@ -184,6 +181,17 @@ html *::-webkit-scrollbar-thumb {
   background-color: #3DB7F6;
 }
 
+.noscroll::-webkit-scrollbar{
+  height: 0px;
+  width: 0px;
+}
+.noscroll::-webkit-scrollbar-track{
+  background: white;
+}
+.noscroll::-webkit-scrollbar-thumb{
+  background-color: white;
+}
+
 .shadow-custom{
    box-shadow: 0 0 15px 0 #dcdcdc;
 }
@@ -197,13 +205,5 @@ html *::-webkit-scrollbar-thumb {
 }
 .easy-transition{
    transition: .5s;
-}
-*[unselectable=on] {
-    -moz-user-select: none;
-    -o-user-select:none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-     user-select: none;
 }
 </style>

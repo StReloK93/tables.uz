@@ -1,38 +1,34 @@
 export default [
-	{ path: '/', redirect: '/desktop/legstype' },
-	{ path: '/desktop', redirect: '/desktop/legstype' },
+	{ path: '/', redirect: '/mobile/legstype' },
+	{ path: '/mobile', redirect: '/mobile/legstype' },
 	{
-		path: '/desktop/legstype',
+		path: '/mobile/legstype',
 		component: () => import('../Views/LegsType.vue'),
 		name: 'legstype'
 	},
 	{
-		path: '/desktop/designs',
+		path: '/mobile/designs',
 		component: () => import('../Views/Designs.vue'),
 		name: "designs"
 	},
 	{
-		path: '/desktop/customization',
+		path: '/mobile/customization',
 		component: () => import('../Views/Customization.vue'),
 		name: "customization"
 	},
 	{
-		path: '/desktop/size',
+		path: '/mobile/size',
 		component: () => import('../Views/Size.vue'),
 		name: "size"
 	},
 	{
-		path: '/desktop/room',
+		path: '/mobile/room',
 		component: () => import('../Views/Room.vue'),
 		name: "room"
 	},
 	{
-		path: '/desktop/other',
+		path: '/mobile/other',
 		component: () => import('../Views/Other.vue'),
 		name: "other"
 	},
-	// {
-	// 	path: '/:pathMatch(.*)*',
-	// 	redirect: '/',
-	// }
 ];

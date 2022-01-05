@@ -225,70 +225,37 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "font-bold mb-4 xl:text-xl md:text-md text-gray-600"
+  "class": "color-title text-center font-bold mb-4 xl:text-xl md:text-md text-gray-600"
 }, " Available legs ", -1
 /* HOISTED */
 );
 
 var _hoisted_2 = {
-  "class": "flex text-center justify-between -mr-2"
+  "class": "text-center whitespace-nowrap py-1 overflow-hidden overflow-x-scroll noscroll -mr-2"
 };
 var _hoisted_3 = ["onClick"];
 var _hoisted_4 = {
-  "class": "xl:h-28 md:h-24 flex items-center"
+  "class": "h-24 text-center"
 };
 var _hoisted_5 = ["src"];
-var _hoisted_6 = {
-  "class": "xl:text-sm md:text-xs"
-};
-
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "font-bold mb-4 xl:text-xl md:text-md xl:mt-6 md:mt-4 text-gray-600"
-}, " Standing desk material ", -1
-/* HOISTED */
-);
-
-var _hoisted_8 = ["onClick", "innerHTML"];
-var _hoisted_9 = {
-  key: 0,
-  "class": "flex flex-wrap -mr-2 xl:mt-6 md:mt-4"
-};
-var _hoisted_10 = ["onClick"];
-var _hoisted_11 = ["src", "title"];
-var _hoisted_12 = {
-  "class": "xl:pb-8 md:pb-4"
-};
-
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "font-bold xl:mb-6 md:mb-4 xl:text-xl md:text-md text-gray-600"
-}, " Choose the leg color ", -1
-/* HOISTED */
-);
-
-var _hoisted_14 = {
-  "class": "flex flex-wrap -mr-2"
-};
-var _hoisted_15 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_Caruosel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Caruosel");
-
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.$store.state.legTypes, function (legs, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("aside", {
       key: index,
       onClick: function onClick($event) {
         return $options.setLegType(index + 1);
       },
-      "class": "w-1/5 pr-2 cursor-pointer"
+      "class": "w-1/3 inline-block pr-2 cursor-pointer"
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
         'border-myblue': _ctx.$store.state.params.legType == index + 1
-      }, "p-2 pt-1 rounded-xl border bg-white"])
+      }, "py-2 rounded-md border border-transparent"])
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: legs.img,
-      alt: ""
+      "class": "w-9/12 inline"
     }, null, 8
     /* PROPS */
-    , _hoisted_5)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(legs.name), 1
+    , _hoisted_5)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(legs.name), 1
     /* TEXT */
     )], 2
     /* CLASS */
@@ -297,102 +264,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , _hoisted_3);
   }), 128
   /* KEYED_FRAGMENT */
-  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" new "), _hoisted_7, $data.deskMaterials ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Caruosel, {
-    key: 0,
-    itemCount: 4,
-    "class": "text-md text-center text-gray-600"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.deskMaterials, function (materials) {
-        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("main", {
-          key: materials,
-          "class": "w-1/4 inline-block align-middle px-2"
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-          onClick: function onClick($event) {
-            return $options.deskFolder(materials.path);
-          },
-          "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-            'bg-my text-white': _ctx.$store.state.params.deskMaterial == materials.path
-          }, "xl:h-16 md:h-14 xl:text-sm md:text-xs w-full rounded-xl border"]),
-          innerHTML: materials.text
-        }, null, 10
-        /* CLASS, PROPS */
-        , _hoisted_8)]);
-      }), 128
-      /* KEYED_FRAGMENT */
-      ))];
-    }),
-    _: 1
-    /* STABLE */
-
-  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
-    name: "fade",
-    mode: "in-out"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [$data.imagearr ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.imagearr, function (img) {
-        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("aside", {
-          "class": "w-1/5 pr-2",
-          key: img
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", {
-          onClick: function onClick($event) {
-            return $options.setDeskMaterial(img);
-          },
-          "class": "mb-6 xl:h-24 md:h-20 cursor-pointer"
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-          "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-            'shadow-blue': _ctx.$store.state.params.deskimage == img
-          }, "border-2 border-white rounded-md object-cover w-full h-full"]),
-          src: "/floors/".concat(img),
-          title: img
-        }, null, 10
-        /* CLASS, PROPS */
-        , _hoisted_11)], 8
-        /* PROPS */
-        , _hoisted_10)]);
-      }), 128
-      /* KEYED_FRAGMENT */
-      ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
-    }),
-    _: 1
-    /* STABLE */
-
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(3, function (n) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", {
-      key: n,
-      "class": "w-1/5 pr-2"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", {
-      onClick: function onClick($event) {
-        return $options.setLegColor(n);
-      },
-      "class": "xl:h-24 md:h-20"
-    }, [n == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      key: 0,
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-        'shadow-blue border-2 border-white': _ctx.$store.state.params.legColor == n
-      }, "w-full h-full bg-white border border-gray rounded-md"])
-    }, null, 2
-    /* CLASS */
-    )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), n == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      key: 1,
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-        'shadow-blue': _ctx.$store.state.params.legColor == n
-      }, "w-full h-full bg-gray-400 border-2 border-white rounded-md"])
-    }, null, 2
-    /* CLASS */
-    )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), n == 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      key: 2,
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-        'shadow-blue': _ctx.$store.state.params.legColor == n
-      }, "w-full h-full bg-black border-2 border-white rounded-md"])
-    }, null, 2
-    /* CLASS */
-    )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 8
-    /* PROPS */
-    , _hoisted_15)]);
-  }), 64
-  /* STABLE_FRAGMENT */
-  ))])])]);
+  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" \r\n            <h3 class=\"color-title text-center font-bold mb-4 xl:text-xl md:text-md xl:mt-6 md:mt-4 text-gray-600\">\r\n                Standing desk material\r\n            </h3>\r\n            <Caruosel v-if=\"deskMaterials\" :itemCount=\"4\" class=\"text-md text-center text-gray-600\">\r\n                <main v-for=\"materials in deskMaterials\" :key=\"materials\" class=\"w-1/4 inline-block align-middle px-2\">\r\n                    <button @click=\"deskFolder(materials.path)\" :class=\"{'bg-my text-white': $store.state.params.deskMaterial == materials.path}\" v-html=\"materials.text\" class=\"xl:h-16 md:h-14 xl:text-sm md:text-xs w-full rounded-xl border\"></button>\r\n                </main>\r\n            </Caruosel>\r\n            <transition name=\"fade\" mode=\"in-out\">\r\n                <div v-if=\"imagearr\" class=\"flex flex-wrap -mr-2 xl:mt-6 md:mt-4\">\r\n                    <aside class=\"w-1/5 pr-2\" v-for=\"img in imagearr\" :key=\"img\">\r\n                        <main @click=\"setDeskMaterial(img)\" class=\"mb-6 xl:h-24 md:h-20 cursor-pointer\">\r\n                            <img :class=\"{'shadow-blue': $store.state.params.deskimage == img}\" :src=\"`/floors/${img}`\" :title=\"img\" class=\"border-2 border-white rounded-md object-cover w-full h-full\">\r\n                        </main>\r\n                    </aside>\r\n                </div>\r\n            </transition> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <main class=\"xl:pb-8 md:pb-4\">\r\n            <h3 class=\"color-title text-center  font-bold xl:mb-6 md:mb-4 xl:text-xl md:text-md text-gray-600\">\r\n                Choose the leg color\r\n            </h3>\r\n            <div class=\"flex flex-wrap -mr-2\">\r\n                <aside v-for=\"n in 3\" :key=\"n\" class=\"w-1/5 pr-2\">\r\n                    <main @click=\"setLegColor(n)\" class=\"xl:h-24 md:h-20\">\r\n                        <div v-if=\"n == 1\" :class=\"{'shadow-blue border-2 border-white': $store.state.params.legColor == n}\" class=\"w-full h-full bg-white border border-gray rounded-md\"></div>\r\n                        <div v-if=\"n == 2\" :class=\"{'shadow-blue': $store.state.params.legColor == n}\" class=\"w-full h-full bg-gray-400 border-2 border-white rounded-md\"></div>\r\n                        <div v-if=\"n == 3\" :class=\"{'shadow-blue': $store.state.params.legColor == n}\" class=\"w-full h-full bg-black border-2 border-white rounded-md\"></div>\r\n                    </main>\r\n                </aside>\r\n            </div>\r\n        </main> ")]);
 }
 
 /***/ }),

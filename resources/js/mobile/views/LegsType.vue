@@ -1,23 +1,24 @@
 <template>
     <section>
         <main>
-            <h3 class="font-bold mb-4 xl:text-xl md:text-md text-gray-600">
+            <h3 class="color-title text-center font-bold mb-4 xl:text-xl md:text-md text-gray-600">
                 Available legs
             </h3>
-            <div class="flex text-center justify-between -mr-2">
-                <aside v-for="(legs , index) in $store.state.legTypes" :key="index" @click="setLegType(index + 1)" class="w-1/5 pr-2 cursor-pointer">
-					<section  :class="{'border-myblue': $store.state.params.legType == index + 1}" class="p-2 pt-1 rounded-xl border bg-white">
-						<main class="xl:h-28 md:h-24 flex items-center">
-							<img :src="legs.img" alt="">
+            <div class="text-center whitespace-nowrap py-1 overflow-hidden overflow-x-scroll noscroll -mr-2">
+                <aside v-for="(legs , index) in $store.state.legTypes" :key="index" @click="setLegType(index + 1)" class="w-1/3 inline-block pr-2 cursor-pointer">
+					<section  :class="{'border-myblue': $store.state.params.legType == index + 1}" class="py-2 rounded-md border border-transparent">
+						<main class="h-24 text-center">
+							<img :src="legs.img" class="w-9/12 inline">
 						</main>
-						<div class="xl:text-sm md:text-xs">
+						<div>
 							{{legs.name}}
 						</div>
 					</section>
                 </aside>
             </div>
-            <!-- new -->
-            <h3 class="font-bold mb-4 xl:text-xl md:text-md xl:mt-6 md:mt-4 text-gray-600">
+
+<!-- 
+            <h3 class="color-title text-center font-bold mb-4 xl:text-xl md:text-md xl:mt-6 md:mt-4 text-gray-600">
                 Standing desk material
             </h3>
             <Caruosel v-if="deskMaterials" :itemCount="4" class="text-md text-center text-gray-600">
@@ -33,10 +34,10 @@
                         </main>
                     </aside>
                 </div>
-            </transition>
+            </transition> -->
         </main>
-        <main class="xl:pb-8 md:pb-4">
-            <h3 class="font-bold xl:mb-6 md:mb-4 xl:text-xl md:text-md text-gray-600">
+        <!-- <main class="xl:pb-8 md:pb-4">
+            <h3 class="color-title text-center  font-bold xl:mb-6 md:mb-4 xl:text-xl md:text-md text-gray-600">
                 Choose the leg color
             </h3>
             <div class="flex flex-wrap -mr-2">
@@ -48,7 +49,7 @@
                     </main>
                 </aside>
             </div>
-        </main>
+        </main> -->
     </section>
 </template>
 <script>

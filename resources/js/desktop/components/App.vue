@@ -156,20 +156,6 @@ export default {
   opacity: 0;
 }
 
-
-.heigth-anim-enter-active,
-.heigth-anim-leave-active {
-  transition: opacity 0.5s ease, height 0.5s ease;
-  max-height: 0px;
-}
-
-
-.heigth-anim-enter-from,
-.heigth-anim-leave-to {
-  opacity: 0;
-  max-height: 300px;
-}
-
 *::-webkit-scrollbar,
 html *::-webkit-scrollbar {
   height: 3px;
