@@ -156,7 +156,7 @@ export default {
 
 .higth-enter-active,
 .higth-leave-active {
-  transition: 0.6s ease;
+  transition: 0.5s ease;
   max-height: 400px;
   overflow: hidden;
 }

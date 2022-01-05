@@ -6,9 +6,9 @@
             </h3>
             <div class="flex text-center justify-between -mr-2">
                 <aside v-for="(legs , index) in $store.state.legTypes" :key="index" @click="setLegType(index + 1)" class="w-1/5 pr-2 cursor-pointer">
-					<section  :class="{'border-myblue': $store.state.params.legType == index + 1}" class="p-2 pt-1 rounded-xl border bg-white">
-						<main class="xl:h-28 md:h-24 flex items-center">
-							<img :src="legs.img" alt="">
+					<section  :class="{'border-myblue': $store.state.params.legType == index + 1}" class="p-2 pt-1 overflow-hidden rounded-xl border bg-white">
+						<main class="xl:h-28 md:h-24 flex items-center justify-center">
+							<img :src="legs.img" class="w-10/12">
 						</main>
 						<div class="xl:text-sm md:text-xs">
 							{{legs.name}}
@@ -68,9 +68,14 @@ export default {
         this.folderImages = desks.images
         this.imagearr = this.folderImages[store.state.params.deskMaterial]
     },
+    mounted() {
+        scene.onReadyObservable.add(()=>{
+            this.setLegColor(1)
+        })
+    },
     methods: {
         setLegColor(colorIndex){
-            let colorArr = ['#C8C8C8','#6B6B6B','#222222']
+            let colorArr = ['#D6D6D6','#8B8B8B','#222222']
             let LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg','threeLegLeft', 'threeLegRight'] 
 
             LegsArr.forEach(legName => {

@@ -57,9 +57,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee);
     }))();
   },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    scene.onReadyObservable.add(function () {
+      _this2.setLegColor(1);
+    });
+  },
   methods: {
     setLegColor: function setLegColor(colorIndex) {
-      var colorArr = ['#C8C8C8', '#6B6B6B', '#222222'];
+      var colorArr = ['#D6D6D6', '#8B8B8B', '#222222'];
       var LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg', 'threeLegLeft', 'threeLegRight'];
       LegsArr.forEach(function (legName) {
         var leg = scene.getMaterialByName(legName);
@@ -77,25 +84,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     //< ------------ main -- //
     setLegType: function setLegType(legIndex) {
-      var _this2 = this;
+      var _this3 = this;
 
       if (store.state.params.legType == legIndex) return;
       var activeDecors = this.getDecors();
       activeDecors.forEach(function (Decors) {
         if (store.state.decor[Decors]) {
-          _this2.DecorsPosition(Decors, _global_LegsCoordinates__WEBPACK_IMPORTED_MODULE_2__["default"][legIndex - 1][Decors]);
+          _this3.DecorsPosition(Decors, _global_LegsCoordinates__WEBPACK_IMPORTED_MODULE_2__["default"][legIndex - 1][Decors]);
         } else {
-          _this2.DecorsHide(Decors, _global_LegsCoordinates__WEBPACK_IMPORTED_MODULE_2__["default"][legIndex - 1][Decors]);
+          _this3.DecorsHide(Decors, _global_LegsCoordinates__WEBPACK_IMPORTED_MODULE_2__["default"][legIndex - 1][Decors]);
         }
       });
       store.commit('setLegType', legIndex);
     },
     deskFolder: function deskFolder(deskIndex) {
-      var _this3 = this;
+      var _this4 = this;
 
       this.imagearr = null;
       setTimeout(function () {
-        _this3.imagearr = _this3.folderImages[deskIndex];
+        _this4.imagearr = _this4.folderImages[deskIndex];
         store.state.params.deskMaterial = deskIndex;
       }, 100);
     },
@@ -112,7 +119,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     //hide to active decors
     DecorsHide: function DecorsHide(node, coords) {
-      var _this4 = this;
+      var _this5 = this;
 
       var hide = new BABYLON.Vector3(0, 0, 0); //soralgan meshni topamiz
 
@@ -125,8 +132,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         frame: 10,
         value: hide
       }], function () {
-        _this4.DecorsPosition(node, coords, function () {
-          _this4.DecorsShow(mesh);
+        _this5.DecorsPosition(node, coords, function () {
+          _this5.DecorsShow(mesh);
         });
       });
     },
@@ -235,7 +242,7 @@ var _hoisted_2 = {
 };
 var _hoisted_3 = ["onClick"];
 var _hoisted_4 = {
-  "class": "xl:h-28 md:h-24 flex items-center"
+  "class": "xl:h-28 md:h-24 flex items-center justify-center"
 };
 var _hoisted_5 = ["src"];
 var _hoisted_6 = {
@@ -282,10 +289,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
         'border-myblue': _ctx.$store.state.params.legType == index + 1
-      }, "p-2 pt-1 rounded-xl border bg-white"])
+      }, "p-2 pt-1 overflow-hidden rounded-xl border bg-white"])
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: legs.img,
-      alt: ""
+      "class": "w-10/12"
     }, null, 8
     /* PROPS */
     , _hoisted_5)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(legs.name), 1
