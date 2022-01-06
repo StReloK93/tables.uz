@@ -5,6 +5,7 @@ import languages from '../../global/locale/languages'
 export default createStore({
     state() {
         return {
+            other: false,
             maxPage: null,
             currentPage: null,
             language: languages['eng'],

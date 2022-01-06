@@ -41,7 +41,7 @@
             </router-link>
         </main>
         <main class="w-1/3 sm:w-1/5 pr-3 mb-3">
-            <aside class="config text-center py-2 px-1 block bg-gray-100 rounded-md">
+            <aside @click="$store.state.other =true" class="config text-center py-2 px-1 block bg-gray-100 rounded-md">
                 <div class="h-16 w-full flex items-center justify-center">
                     <Icons icon="Other"/>
                 </div>

@@ -1,60 +1,81 @@
 <template>
-   <section class="fixed top-0 left-0 w-full h-full bg-white z-50">
-      <main class="xl:pb-8 md:pb-4">
-         <h3 class="font-bold xl:mb-6 md:mb-4 xl:text-xl md:text-md text-gray-600">
-            Table’s quantity
-         </h3>
-         <div class="border border-gray-200 inline-flex items-center xl:h-12 md:h-10 xl:rounded-lg md:rounded-md">
-            <button class="px-5 border-r h-full" @click="$store.commit('setTablesCount', -1)">
-               <Icons icon="minus"/>
-            </button>
-            <span class="px-10 xl:text-xl md:text-md font-bold text-indigo-900">
-               {{$store.state.params.tablesCount}}
-            </span>
-            <button class="px-5 border-l h-full" @click="$store.commit('setTablesCount', 1)">
-               <Icons icon="plus"/>
-            </button>
-         </div>
-      </main>
+   <section class="fixed flex flex-col justify-between top-0 left-0 w-full h-full bg-white z-50 p-5">
+      <button  @click="$store.state.other = false" class="absolute top-0 right-0 p-3">
+         <img src="/images/cancel.png" class="w-3">
+      </button>
+      <aside>
+         <main>
+            <h3 class="font-bold text-xl mb-4 text-gray-600">
+               Table’s quantity
+            </h3>
+            <div class="border border-gray-300 inline-flex items-center h-9 rounded-md mb-5">
+               <button class="px-3 border-r border-gray-300 h-full" @click="$store.commit('setTablesCount', -1)">
+                  <Icons icon="minus"/>
+               </button>
+               <span class="px-7 font-bold text-indigo-900">
+                  {{$store.state.params.tablesCount}}
+               </span>
+               <button class="px-3 border-l border-gray-300 h-full" @click="$store.commit('setTablesCount', 1)">
+                  <Icons icon="plus"/>
+               </button>
+            </div>
+         </main>
 
-      <main class="xl:pb-8 md:pb-4">
-         <h3 class="font-bold xl:mb-6 md:mb-4 xl:text-xl md:text-md text-gray-600">
-            Other Requests
-         </h3>
-         <div class="flex items-center mb-4 xl:text-xl md:text-md">
-            <input type="checkbox" class="transform scale-150 ml-1 xl:mr-6 md:mr-3"> We are a corporation that needs space planning service as well.
-         </div>
-         <div class="flex items-center mb-4 xl:text-xl md:text-md">
-            <input type="checkbox" class="transform scale-150 ml-1 xl:mr-6 md:mr-3">  I also need a chair, if you can tell us your height and physiqe we can recommend.
-         </div>
-        <aside class="flex">
-           <main class="mr-4">
-              <p class="mb-2 text-gray-400 xl:text-md md:text-sm">Your total height </p>
+         <main>
+            <h3 class="font-bold text-xl mb-3 text-gray-600">
+               Other Requests
+            </h3>
+            <div class="flex items-center mb-3 text-sm text-gray-500">
+               <input type="checkbox" class="transform scale-150 ml-1 mr-3"> We are a corporation that needs space planning service as well.
+            </div>
+            <div class="flex items-center mb-3 text-sm text-gray-500">
+               <input type="checkbox" v-model="forChair" class="transform scale-150 ml-1 mr-3">  I also need a chair, if you can tell us your height and physiqe we can recommend.
+            </div>
+         <aside class="flex">
+            <main class="mr-4 w-1/2">
+               <p class="mb-2 text-gray-400 flex items-center">
+                  Your total height 
+                  <img class="ml-3" src="/images/undo.svg">
+               </p>
                <div>
-                  <input type="text" class="rounded-lg border border-indigo-900 xl:p-3 md:p-2 outline-none focus:border-blue-600">
+                  <input :disabled="!forChair" :class="{'border-indigo-900': forChair}" type="text" class="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-600">
                </div>
-           </main>
-           <main>
-              <p class="mb-2 text-gray-400 xl:text-md md:text-sm">Your legs lenght  </p>
+            </main>
+            <main class="w-1/2">
+               <p class="mb-2 text-gray-400 flex items-center">
+                  Your legs lenght
+                  <img class="ml-3" src="/images/undo.svg">
+               </p>
                <div>
-                  <input type="text" class="rounded-lg border border-indigo-900 xl:p-3 md:p-2 outline-none focus:border-blue-600">
+                  <input :disabled="!forChair" :class="{'border-indigo-900': forChair}" type="text" class="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-600">
                </div>
-           </main>
-        </aside>
-      </main>
-      <main class="xl:pb-8 md:pb-4">
-         <h3 class="font-bold xl:mb-6 md:mb-4  xl:text-xl md:text-md text-gray-600">
-            Leave a message
-         </h3>
-         <div>
-            <textarea class="w-full border border-gray-400 rounded-lg xl:h-40 md:h-32 p-3 outline-none focus:border-blue-600"></textarea>
-         </div>
-      </main>
+            </main>
+         </aside>
+         </main>
+         <main>
+            <h3 class="font-bold text-xl my-3 text-gray-600">
+               Leave a message
+            </h3>
+            <div>
+               <textarea class="w-full border border-gray-400 rounded-md h-24 p-2 outline-none focus:border-blue-600"></textarea>
+            </div>
+         </main>
+      </aside>
+      <aside>
+         <button class="bg-green-800 font-bold w-full p-3 text-center text-white rounded-md">
+            Continue
+         </button>
+      </aside>
    </section>
 </template>
 <script>
 import Icons from './Icons.vue'
 export default {
+   data() {
+      return {
+         forChair: false,
+      }
+   },
    components:{
       Icons
    }

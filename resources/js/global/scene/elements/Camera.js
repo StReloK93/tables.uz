@@ -5,7 +5,7 @@ class Camera{
     }
     //called in constructor
     creataCamera(canvas) {
-        this.camera = new BABYLON.ArcRotateCamera("camera", 2, 1.5, 20, new BABYLON.Vector3(-3.938, 10.611, -14.277));
+        this.camera = new BABYLON.ArcRotateCamera("camera", 1.340, 1.5, 20, new BABYLON.Vector3(-3.938, 10.611, -14.277));
         this.camera.target = new BABYLON.Vector3(-3.938, 10.611, -14.277)
         this.camera.attachControl(canvas, false);
         this.camera.useBouncingBehavior = true;

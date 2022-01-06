@@ -1,20 +1,20 @@
 <template>
     <section>
-        <h3 class="font-bold mb-4 xl:text-xl md:text-md text-gray-600">Partitiob or Modesty Panel</h3>
-        <main class="flex -mx-2 text-center pb-10">
-            <aside class="px-2 w-1/3">
-                <div @click="setPart(1)" :class="{'border-myblue': $store.state.custom.partition == 1}" class="cursor-pointer py-4 border border-transparent rounded-md">
-                    <img src="/images/rect/part1.png" alt="">
-                    <p class="text-sm">
-                        Sharp corners
+        <h3 class="color-title text-center font-medium text-xl  mb-3 text-gray-600">Partition or Modesty Panel</h3>
+        <main class="flex -mr-2 text-center justify-center">
+            <aside class="mr-2 w-1/3">
+                <div @click="setPart(1)" :class="{'border-myblue': $store.state.custom.partition == 1}" class="h-full py-2 border border-transparent rounded-md">
+                    <img src="/images/rect/part1.png" class="w-10/12 inline">
+                    <p class="leading-none">
+                        Sharp <br> corners
                     </p>
                 </div>
             </aside>
-            <aside class="px-2 w-1/3">
-                <div @click="setPart(2)" :class="{'border-myblue': $store.state.custom.partition == 2}" class="cursor-pointer py-4 border border-transparent rounded-md">
-                    <img src="/images/rect/part2.png" alt="">
-                    <p class="text-sm">
-                        Combined corners
+            <aside class="mr-2 w-1/3">
+                <div @click="setPart(2)" :class="{'border-myblue': $store.state.custom.partition == 2}" class="h-full py-2 border border-transparent rounded-md">
+                    <img src="/images/rect/part2.png" class="w-10/12 inline">
+                    <p class="leading-none">
+                        Combined <br> corners
                     </p>
                 </div>
             </aside>

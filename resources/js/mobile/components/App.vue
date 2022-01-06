@@ -21,9 +21,11 @@
          <!-- router -->
          <router-view class="w-full h-full relative"></router-view>
       </main>
-
       <Menu/>
-
+      
+      <transition name="fade">
+         <Other v-if="$store.state.other"/>
+      </transition>
    </section>
 </template>
 
@@ -33,8 +35,9 @@ import initScene from '../../global/scene/initScene'
 import Decorations from './Decorations.vue'
 import Menu from './Menu.vue'
 import Icons from './Icons.vue'
+import Other from './Other.vue'
 export default {
-   components:{Decorations,Preloader,Icons,Menu},
+   components:{Decorations,Preloader,Icons,Menu,Other},
    mounted(){
       window.Engine = initScene(this.$refs.canvas)
    }
