@@ -1,37 +1,54 @@
 <template>
-   <section>
-      <main class="xl:pb-8 md:pb-4">
-         <h3 class="font-bold xl:mb-6 md:mb-4 xl:text-xl md:text-md text-gray-600">
+<section>
+   <transition name="fade">
+      <main v-show="$store.state.currentPage == 1" class="miniRoutes">
+         <h3 class="color-title text-center font-medium text-xl  mb-3 text-gray-600">
             Choose the wall color
          </h3>
-         <div class="xl:text-md md:text-sm text-gray-500">
+         <div class="text-gray-400 w-full px-2">
             <transition name="fade" mode="out-in">
                <div v-if="!join" class="flex items-center">
-                  Wall One <input class="xl:mx-5 md:mx-3 inputColor w-20" type="color" @input="wallColorChanger('wall')" v-model="colorOne">
-                  Wall Two <input class="xl:ml-5 md:ml-3 inputColor w-20" type="color" @input="wallColorChanger('mainWall')" v-model="colorTwo">
+                  <main class="relative pt-1 mr-3 w-1/2">
+                     <label class="absolute mix-blend-difference uppercase text-xs w-full h-full top-0 left-0 flex items-center justify-center" for="colorOne"> <span> First Wall</span></label>
+                     <input id="colorOne" class="inputColor w-full h-12" type="color" @input="wallColorChanger('wall')" v-model="colorOne">
+                  </main>
+                  <main class="relative pt-1 w-1/2">
+                     <label class="absolute mix-blend-difference uppercase text-xs w-full h-full top-0 left-0 flex items-center justify-center" for="colorTwo"> <span> Second Wall</span></label>
+                     <input id="colorTwo" class="inputColor w-full h-12" type="color" @input="wallColorChanger('mainWall')" v-model="colorTwo">
+                  </main>
                </div>
                <div v-else class="flex items-center">
-                  All Wall<input class="xl:ml-5 md:ml-3 inputColor w-20" type="color" @input="JoinColorChanger()" v-model="colorOne">
+                  <main class="relative pt-1 w-1/2">
+                     <label class="absolute mix-blend-difference uppercase text-xs w-full h-full top-0 left-0 flex items-center justify-center" for="colorThree"> <span> All Walls</span></label>
+                     <input id="colorThree" class="inputColor w-full h-12" type="color" @input="JoinColorChanger()" v-model="colorOne">
+                  </main>
                </div>
             </transition>
-            <main class="mt-4">
-               Join <input  type="checkbox" class="ml-2 joinCheck" v-model="join">
+            <main class="text-gray-600 mt-4 flex items-center">
+               <label for="join" class="join inline-block rounded-full w-8 border border-gray-500 mr-2">
+                  <main :class="{'joincheck': join}" class="w-3 easy-transition h-3 rounded-full bg-my"></main>
+               </label>
+               <input hidden id="join" type="checkbox" v-model="join"> Join
             </main>
          </div>
       </main>
-      <main class="pb-8">
-         <h3 class="font-bold xl:mb-6 md:mb-4 xl:text-xl md:text-md text-gray-600">
+   </transition>
+
+   <transition name="fade">
+      <main v-show="$store.state.currentPage == 2" class="miniRoutes">
+         <h3 class="color-title text-center font-medium text-xl  mb-3 text-gray-600">
             Choose the flooring color
          </h3>
-         <div class="flex flex-wrap -mr-3">
-            <aside class="w-1/5 pr-2" v-for="img in images" :key="img">
-               <main @click="$store.commit('floorImage', {textureName: img.name})" class="mb-6 cursor-pointer">
+         <div class="whitespace-nowrap px-1 py-1 overflow-hidden overflow-x-scroll noscroll -mr-2">
+            <aside class="w-custom mr-2 inline-block" v-for="img in images" :key="img">
+               <main @click="$store.commit('floorImage', {textureName: img.name})">
                   <img :class="{'shadow-blue': $store.state.params.floor == img.name}" :src="img.path" class="border-2 border-white rounded-md">
                </main>
             </aside>
          </div>
       </main>
-   </section>
+   </transition>
+</section>
 </template>
 <script>
 export default {
@@ -44,7 +61,8 @@ export default {
       }
    },
    async mounted() {
-     this.images = Engine.textures.floors
+      store.commit('setRoute')
+      this.images = Engine.textures.floors
    },
    methods:{
       wallColorChanger(wallName){
@@ -70,13 +88,17 @@ export default {
    },
 }
 </script>
-<style>
+<style scope>
 .inputColor{
    background: none;
 }
-.joinCheck{
-   position: relative;
-   top: 1px;
-   transform: scale(1.3);
+.join{
+   padding: 2px;
+}
+.joincheck{
+   margin-left: 14px;
+}
+.w-custom{
+    width: 27%;
 }
 </style>

@@ -5,10 +5,10 @@ import languages from '../../global/locale/languages'
 export default createStore({
     state() {
         return {
+            maxPage: null,
+            currentPage: null,
             language: languages['eng'],
-            fullscreen: false,
             onLoaded: 0,
-            inspector: true,
             configurator: true,
             customActiveLink: 1,
             params: {
@@ -60,12 +60,15 @@ export default createStore({
                 state.params.tablesCount += pay
             }
         },
-
+        setRoute(){
+            const tags = document.querySelectorAll('.miniRoutes')
+            store.state.maxPage = tags.length
+            store.state.currentPage = 1
+        },
         //Create Your own intererdagi menularni yashiradi
         setConfigurator(state, payload){
             state.configurator = payload
         },
-
         //Buni js/elements/scene.js da chaqiramiz va default textura beramiz polga
         //shu funksiya roomda ham polni uzgartirish uchun chaqiriladi
         floorImage(state, req){

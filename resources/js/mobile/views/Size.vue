@@ -1,42 +1,55 @@
 <template>
    <section>
-      <main class="xl:pb-4">
-         <h3 class="font-bold mb-4 xl:text-xl md:text-md text-gray-600">
-            Size
-         </h3>
-         <div class="text-md flex flex-wrap text-gray-600">
-            <button @click="setSize(0)" :class="{'bg-my text-white': $store.state.params.size == 0 }" class="xl:h-16 md:h-14 xl:text-md md:text-xs w-1/5 text-center rounded-xl mr-3 mb-4 border">
-               Small
-            </button>
-            <button @click="setSize(1)" :class="{'bg-my text-white': $store.state.params.size == 1 }"  class="xl:h-16 md:h-14 xl:text-md md:text-xs w-1/5 text-center rounded-xl mr-3 mb-4 border">
-               Large
-            </button>
-         </div>
-      </main>
+      <transition name="fade">
+         <main v-show="$store.state.currentPage == 1" class="miniRoutes">
+            <h3 class="color-title text-center font-medium text-xl  mb-3 text-gray-600">
+               Size
+            </h3>
+            <div class="text-md flex flex-wrap text-gray-600 w-full justify-center">
+               <button @click="setSize(0)" :class="{'bg-my text-white': $store.state.params.size == 0 }" class="w-1/3 h-28 text-center rounded-xl mr-3 border">
+                  Small
+               </button>
+               <button @click="setSize(1)" :class="{'bg-my text-white': $store.state.params.size == 1 }"  class="w-1/3 h-28 text-center rounded-xl border">
+                  Large
+               </button>
+            </div>
+         </main>
+      </transition>
 
-      <main class="xl:pb-8">
-         <h3 class="font-bold  xl:mb-6 md:mb-4  xl:text-xl md:text-md text-gray-600">
-            Enter your requested size
-         </h3>
-        <aside class="flex">
-           <main class="mr-4">
-              <p class="mb-2 text-gray-400 xl:text-md md:text-sm">Your total height </p>
-               <div>
-                  <input type="text" class="rounded-lg border border-indigo-900 xl:p-3 md:p-2 outline-none focus:border-blue-600">
-               </div>
-           </main>
-           <main>
-              <p class="mb-2 text-gray-400 xl:text-md md:text-sm">Your legs lenght  </p>
-               <div>
-                  <input type="text" class="rounded-lg border border-indigo-900 xl:p-3 md:p-2 outline-none focus:border-blue-600">
-               </div>
-           </main>
-        </aside>
-      </main>
+      <transition name="fade">
+         <main v-show="$store.state.currentPage == 2" class="miniRoutes">
+            <h3 class="color-title text-center font-medium text-xl  mb-4 text-gray-600">
+               Enter your requested size
+            </h3>
+         <aside class="flex w-full px-2">
+            <main class="mr-2 w-1/3">
+               <p class="mb-2 text-gray-400 xl:text-md md:text-sm">Length </p>
+                  <div>
+                     <input placeholder="00mm" type="text" class="p-2 rounded-lg w-full border border-indigo-900 outline-none focus:border-blue-600">
+                  </div>
+            </main>
+            <main  class="mr-2 w-1/3">
+               <p class="mb-2 text-gray-400 xl:text-md md:text-sm">Width </p>
+                  <div>
+                     <input placeholder="00mm" type="text" class="p-2 rounded-lg w-full border border-indigo-900 outline-none focus:border-blue-600">
+                  </div>
+            </main>
+            <main  class="w-1/3">
+               <p class="mb-2 text-gray-400 xl:text-md md:text-sm">Thickness </p>
+                  <div>
+                     <input placeholder="00mm" type="text" class="p-2 rounded-lg w-full border border-indigo-900 outline-none focus:border-blue-600">
+                  </div>
+            </main>
+         </aside>
+         </main>
+      </transition>
    </section>
 </template>
 <script>
 export default {
+   mounted() {
+      store.commit('setRoute')
+   },
    methods: {
       setSize(sizeIndex){
          store.state.params.size = sizeIndex

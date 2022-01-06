@@ -1,9 +1,7 @@
-class Light{
-
+export default class Light{
    constructor() {
       this.creataLightOne()
       this.creataLighttwo()
-      console.log(window.innerWidth);
       if(window.innerWidth > 767) this.sceneOnload()
    }
    //called in constructor
@@ -66,6 +64,3 @@ class Light{
    _arrayAcceptShadows = ['onelegParent','twolegParent','threelegParent','fourlegParent','fivelegParent','wall', 'floor','plintus']
    _arrayShadowedMeshes = ['onelegParent','twolegParent','threelegParent','fourlegParent','fivelegParent','tumbochka', 'image','lamp','monitor','plant','chair']
 }
-export default Light
-
-// 5A6D45

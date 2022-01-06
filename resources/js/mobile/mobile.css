@@ -1,0 +1,78 @@
+.color-title {
+	color: #3F4D74;
+}
+
+.miniRoutes {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: white;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+
+.counter {
+	display: flex;
+	align-items: center;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: white;
+}
+
+.bg-my {
+	background-color: #3F4D74;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
+}
+
+.higth-enter-active,
+.higth-leave-active {
+	transition: 0.5s ease;
+	max-height: 400px;
+	overflow: hidden;
+}
+
+.higth-enter-from,
+.higth-leave-to {
+	opacity: 0;
+	max-height: 0;
+}
+
+.noscroll::-webkit-scrollbar {
+	height: 0px;
+	width: 0px;
+}
+
+.noscroll::-webkit-scrollbar-track {
+	background: white;
+}
+
+.noscroll::-webkit-scrollbar-thumb {
+	background-color: white;
+}
+
+.border-myblue {
+	border-color: #3DB7F6;
+}
+
+.shadow-blue {
+	box-shadow: 0 0 0px 2px #3db7f6;
+}
+
+.easy-transition {
+	transition: .5s;
+}

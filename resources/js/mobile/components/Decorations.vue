@@ -1,5 +1,5 @@
 <template>
-    <aside class="p-4 text-center text-gray-500">
+    <aside class="absolute top-0 left-0 p-4 text-center text-gray-500">
         <button  class="bg-gray-100 mb-3 px-3 py-2 inline-block rounded-full shadow">
             <img src="/images/left.png" class="relative" style="left: -1px">
         </button>

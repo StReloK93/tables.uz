@@ -25,10 +25,5 @@ export default [
 		path: '/mobile/room',
 		component: () => import('../Views/Room.vue'),
 		name: "room"
-	},
-	{
-		path: '/mobile/other',
-		component: () => import('../Views/Other.vue'),
-		name: "other"
-	},
+	}
 ];

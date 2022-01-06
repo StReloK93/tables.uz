@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<main class="pb-10 border-b border-gray-100 -mx-10 px-10">
+		<main class="miniRoutes pb-10 border-b border-gray-100 -mx-10 px-10">
 			<h3 class="font-bold mb-4 text-xl text-gray-600">Type</h3>
 			<div class="text-md flex flex-wrap">
 				<main class="w-1/5 pr-4">
@@ -12,8 +12,7 @@
 			</div>
 		</main>
 
-
-		<main class="py-8">
+		<main class="miniRoutes py-8">
 			<h3 class="font-bold mb-4 text-xl text-gray-600">Disegn style</h3>
 			<div class="text-md flex flex-wrap">
 				<main class="w-1/5 pr-4">
@@ -45,8 +44,6 @@
 				</main>
 			</div>
 		</main>
-
-      
 	</section>
 </template>
 <script>

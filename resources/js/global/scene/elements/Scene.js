@@ -5,14 +5,11 @@ class Scene {
       this.expansion()
 
       scene.onReadyObservable.add(()=>{
-
          //Default texturani urnatadi
          store.commit('floorImage', {scene: scene,textureName: 'floor1'})
 
          //Default Stolni urnatadi
-         
          store.commit('setLegType', this.DefautLeg)
-
       })
    }
 

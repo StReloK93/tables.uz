@@ -1,0 +1,94 @@
+<template>
+    <main class="flex text-center text-white">
+        <div @click="oldPage()" class="w-1/4 bg-my py-2 hover:bg-green-700 border-r border-white flex justify-center items-center">
+        <img src="/images/leftmob.png" style="filter: brightness(0) invert(1)" class="w-1/4">
+        </div>
+        <div @click="toggleMenu(true)" class="w-2/4 bg-my flex hover:bg-green-700 justify-center items-center">
+        <img src="/images/menu.png" style="filter: brightness(0) invert(1)" class="w-1/6">
+        </div>
+        <div @click="nextPage()" class="w-1/4 bg-my py-2 hover:bg-green-700 border-l border-white flex justify-center items-center">
+        <img src="/images/rightmob.png" style="filter: brightness(0) invert(1)" class="w-1/4">
+        </div>
+    </main>
+   <transition @after-enter="enter" name="fade">
+      <section v-if="menu" class="menu flex items-end fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-25 z-50" @click="toggleMenu(false)">
+         <main :class="{'translate-y-0': podmenu}" class="p-5 relative rounded-t-2xl w-full bg-white transform translate-y-full easy-transition" @click.stop="">
+
+            <button @click="toggleMenu(false)" class="absolute top-0 right-0 p-4">
+               <img src="/images/cancel.png" class="w-4">
+            </button>
+
+            <router-link :to="{name: 'legstype'}" :class="{ 'border-blue-400 border-l-4 pl-4 text-blue-900 font-bold': isActive }" class="leading-3 text-md md:text-md capitalize text-gray-300 easy-transition block mb-3">
+                  {{$store.state.language.createYour}}
+            </router-link>
+            <router-link :to="{name: 'designs'}" :class="{ 'border-blue-400 border-l-4 pl-4 text-blue-900 font-bold': !isActive }" class="leading-3 text-md md:text-md capitalize text-gray-300 easy-transition block">
+               {{$store.state.language.browseOur}}
+            </router-link>
+
+            <hr class="my-5">
+            <transition name="higth">
+               <Configurator v-if="$store.state.configurator"/>
+            </transition>
+
+            <button class="bg-green-800 font-bold w-full p-3 text-center text-white rounded-md">
+               {{$store.state.language.getQuote}}
+            </button>
+         </main>
+      </section>
+   </transition>
+</template>
+<script>
+import Configurator from './Configurator.vue'
+
+export default {
+    data() {
+        return {
+            isActive: null,
+            menu: false,
+            podmenu: false
+        }
+    },
+    methods:{
+        oldPage(){
+            if(store.state.currentPage > 1) store.state.currentPage--
+        },
+        nextPage(){
+            if(store.state.maxPage > store.state.currentPage) store.state.currentPage++
+        },
+        toggleMenu(bool){
+            if(bool){
+            this.menu = bool
+            }
+            else{
+            this.podmenu = false
+            setTimeout(()=>{
+                this.menu = bool
+            },300)
+            }
+        },
+        enter() {
+            this.podmenu = true
+        },
+    },
+    watch:{
+        $route (to){
+            if(to.name == 'designs'){
+                this.isActive = false
+                store.commit('setConfigurator', false)
+            }
+            else{
+                this.isActive = true
+                store.commit('setConfigurator', true)
+            }
+        }
+    },
+    components:{
+        Configurator
+    }
+}
+</script>
+<style>
+.translate-y-0{
+   --tw-translate-y: 0px!important;
+}
+</style>

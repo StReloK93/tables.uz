@@ -41,14 +41,14 @@
             </router-link>
         </main>
         <main class="w-1/3 sm:w-1/5 pr-3 mb-3">
-            <router-link :to="{name: 'other'}" class="config text-center py-2 px-1 block bg-gray-100 rounded-md">
+            <aside class="config text-center py-2 px-1 block bg-gray-100 rounded-md">
                 <div class="h-16 w-full flex items-center justify-center">
                     <Icons icon="Other"/>
                 </div>
                 <h3>
                     Other requests
                 </h3>
-            </router-link>
+            </aside>
         </main>
     </aside>
 </template>
