@@ -67,6 +67,7 @@
 import Caruosel from '../components/Carusel.vue'
 import coords from '../../global/LegsCoordinates'
 export default {
+    props: ['old'],
     data() {
         return {
             routeTag: null,
@@ -82,7 +83,7 @@ export default {
         this.imagearr = this.folderImages[store.state.params.deskMaterial]
     },
     mounted() {
-        store.commit('setRoute')
+        store.commit('setRoute', this.old)
     },
     methods: {
         setLegColor(colorIndex){

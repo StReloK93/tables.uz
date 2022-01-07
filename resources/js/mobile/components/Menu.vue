@@ -51,9 +51,34 @@ export default {
     methods:{
         oldPage(){
             if(store.state.currentPage > 1) store.state.currentPage--
+            else{
+                if(this.$route.name == 'customization'){
+                    this.$router.push({ name: 'legstype', params: { old: true } })
+                }
+                if(this.$route.name == 'size'){
+                    this.$router.push({ name: 'customization', params: { old: true } })
+                }
+                if(this.$route.name == 'room'){
+                    this.$router.push({ name: 'size', params: { old: true } })
+                }
+            }
         },
         nextPage(){
             if(store.state.maxPage > store.state.currentPage) store.state.currentPage++
+            else{
+                if(this.$route.name == 'legstype'){
+                    this.$router.push({ name: 'customization' })
+                }
+                if(this.$route.name == 'customization'){
+                    this.$router.push({ name: 'size' })
+                }
+                if(this.$route.name == 'size'){
+                    this.$router.push({ name: 'room' })
+                }
+                if(this.$route.name == 'room'){
+                    store.state.other = true
+                }
+            }
         },
         toggleMenu(bool){
             if(bool){

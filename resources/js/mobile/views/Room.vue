@@ -52,6 +52,7 @@
 </template>
 <script>
 export default {
+   props: ['old'],
    data() {
       return {
          images: null,
@@ -61,7 +62,7 @@ export default {
       }
    },
    async mounted() {
-      store.commit('setRoute')
+      store.commit('setRoute', this.old)
       this.images = Engine.textures.floors
    },
    methods:{

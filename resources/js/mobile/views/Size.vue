@@ -47,8 +47,9 @@
 </template>
 <script>
 export default {
+   props: ['old'],
    mounted() {
-      store.commit('setRoute')
+      store.commit('setRoute', this.old)
    },
    methods: {
       setSize(sizeIndex){

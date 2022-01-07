@@ -12,8 +12,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['old'],
   mounted: function mounted() {
-    store.commit('setRoute');
+    store.commit('setRoute', this.old);
   },
   methods: {
     setSize: function setSize(sizeIndex) {

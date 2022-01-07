@@ -34,8 +34,9 @@ import Grommet from '../components/customization/Grommet.vue'
 import Partition from '../components/customization/Partition.vue'
 import Accessories from '../components/customization/Accessories.vue'
 export default {
+    props: ['old'],
     mounted() {
-        store.commit('setRoute')
+        store.commit('setRoute', this.old)
     },
     components:{
         Corners,

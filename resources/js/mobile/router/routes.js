@@ -4,26 +4,31 @@ export default [
 	{
 		path: '/mobile/legstype',
 		component: () => import('../Views/LegsType.vue'),
-		name: 'legstype'
+		name: 'legstype',
+		props: true
 	},
 	{
 		path: '/mobile/designs',
 		component: () => import('../Views/Designs.vue'),
-		name: "designs"
+		name: "designs",
+		props: true
 	},
 	{
 		path: '/mobile/customization',
 		component: () => import('../Views/Customization.vue'),
-		name: "customization"
+		name: "customization",
+		props: true
 	},
 	{
 		path: '/mobile/size',
 		component: () => import('../Views/Size.vue'),
-		name: "size"
+		name: "size",
+		props: true
 	},
 	{
 		path: '/mobile/room',
 		component: () => import('../Views/Room.vue'),
-		name: "room"
+		name: "room",
+		props: true
 	}
 ];

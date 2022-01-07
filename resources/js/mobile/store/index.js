@@ -61,10 +61,16 @@ export default createStore({
                 state.params.tablesCount += pay
             }
         },
-        setRoute(){
+        setRoute(state,payload){
             const tags = document.querySelectorAll('.miniRoutes')
-            store.state.maxPage = tags.length
-            store.state.currentPage = 1
+            state.maxPage = tags.length
+            if(payload){
+                var page = tags.length
+            }
+            else{
+                var page = 1
+            }
+            state.currentPage = page
         },
         //Create Your own intererdagi menularni yashiradi
         setConfigurator(state, payload){
