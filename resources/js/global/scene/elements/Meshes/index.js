@@ -1,4 +1,4 @@
-class Meshes {
+export default class Meshes {
     constructor() {
         this.Import()
     }
@@ -6,7 +6,7 @@ class Meshes {
     Import() {
 
         BABYLON.SceneLoader.ShowLoadingScreen = false;
-        BABYLON.SceneLoader.AppendAsync('/models/room.glb', undefined, scene, function (event) {
+        BABYLON.SceneLoader.AppendAsync('/models/room2.glb', undefined, scene, function (event) {
 
             const percentage = event.lengthComputable ? (event.loaded / event.total * 100) : 0;
 
@@ -15,4 +15,3 @@ class Meshes {
 
     }
 }
-export default Meshes

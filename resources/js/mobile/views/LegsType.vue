@@ -67,7 +67,7 @@
 import Caruosel from '../components/Carusel.vue'
 import coords from '../../global/LegsCoordinates'
 export default {
-    props: ['old'],
+    props: ['old','closed'],
     data() {
         return {
             routeTag: null,
@@ -84,10 +84,13 @@ export default {
     },
     mounted() {
         store.commit('setRoute', this.old)
+        scene.onReadyObservable.add(()=>{
+            this.setLegColor(1)
+        })
     },
     methods: {
         setLegColor(colorIndex){
-            let colorArr = ['#C8C8C8','#6B6B6B','#222222']
+            let colorArr = ['#D6D6D6','#8B8B8B','#222222']
             let LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg','threeLegLeft', 'threeLegRight'] 
 
             LegsArr.forEach(legName => {

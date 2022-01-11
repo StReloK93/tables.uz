@@ -10,8 +10,8 @@ if (window.innerWidth > 992) {
     window.location.replace("/")
 }
 else {
-    createApp(App)
-        .use(router)
-        .use(store)
-        .mount("#app")
+createApp(App)
+.use(router)
+.use(store)
+.mount("#app")
 }

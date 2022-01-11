@@ -18,16 +18,16 @@
                <img src="/images/cancel.png" class="w-4">
             </button>
 
-            <router-link :to="{name: 'legstype'}" :class="{ 'border-blue-400 border-l-4 pl-4 text-blue-900 font-bold': isActive }" class="leading-3 text-md md:text-md capitalize text-gray-300 easy-transition block mb-3">
-                  {{$store.state.language.createYour}}
-            </router-link>
-            <router-link :to="{name: 'designs'}" :class="{ 'border-blue-400 border-l-4 pl-4 text-blue-900 font-bold': !isActive }" class="leading-3 text-md md:text-md capitalize text-gray-300 easy-transition block">
+            <button @click="$router.push({ name: 'legstype'})" :class="{ 'border-blue-400 border-l-4 pl-4 text-blue-900 font-bold': isActive == true }" class="leading-3 text-md md:text-md capitalize text-gray-300 easy-transition block mb-3">
+                {{$store.state.language.createYour}}
+            </button>
+            <router-link :to="{name: 'designs', params:{ closed: true}}" :class="{ 'border-blue-400 border-l-4 pl-4 text-blue-900 font-bold': isActive == false }" class="leading-3 text-md md:text-md capitalize text-gray-300 easy-transition block">
                {{$store.state.language.browseOur}}
             </router-link>
 
             <hr class="my-5">
             <transition name="higth">
-               <Configurator v-if="$store.state.configurator"/>
+               <Configurator @closed="toggleMenu(false)" v-if="$store.state.configurator"/>
             </transition>
 
             <button class="bg-green-800 font-bold w-full p-3 text-center text-white rounded-md">
@@ -104,6 +104,9 @@ export default {
             else{
                 this.isActive = true
                 store.commit('setConfigurator', true)
+            }
+            if(to.params.closed == 'true'){
+                this.toggleMenu(false)
             }
         }
     },

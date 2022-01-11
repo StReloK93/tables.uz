@@ -24,7 +24,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['old'],
+  props: ['old', 'closed'],
   data: function data() {
     return {
       routeTag: null,
@@ -60,11 +60,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   mounted: function mounted() {
+    var _this2 = this;
+
     store.commit('setRoute', this.old);
+    scene.onReadyObservable.add(function () {
+      _this2.setLegColor(1);
+    });
   },
   methods: {
     setLegColor: function setLegColor(colorIndex) {
-      var colorArr = ['#C8C8C8', '#6B6B6B', '#222222'];
+      var colorArr = ['#D6D6D6', '#8B8B8B', '#222222'];
       var LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg', 'threeLegLeft', 'threeLegRight'];
       LegsArr.forEach(function (legName) {
         var leg = scene.getMaterialByName(legName);
@@ -82,25 +87,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     //< ------------ main -- //
     setLegType: function setLegType(legIndex) {
-      var _this2 = this;
+      var _this3 = this;
 
       if (store.state.params.legType == legIndex) return;
       var activeDecors = this.getDecors();
       activeDecors.forEach(function (Decors) {
         if (store.state.decor[Decors]) {
-          _this2.DecorsPosition(Decors, _global_LegsCoordinates__WEBPACK_IMPORTED_MODULE_2__["default"][legIndex - 1][Decors]);
+          _this3.DecorsPosition(Decors, _global_LegsCoordinates__WEBPACK_IMPORTED_MODULE_2__["default"][legIndex - 1][Decors]);
         } else {
-          _this2.DecorsHide(Decors, _global_LegsCoordinates__WEBPACK_IMPORTED_MODULE_2__["default"][legIndex - 1][Decors]);
+          _this3.DecorsHide(Decors, _global_LegsCoordinates__WEBPACK_IMPORTED_MODULE_2__["default"][legIndex - 1][Decors]);
         }
       });
       store.commit('setLegType', legIndex);
     },
     deskFolder: function deskFolder(deskIndex) {
-      var _this3 = this;
+      var _this4 = this;
 
       this.imagearr = null;
       setTimeout(function () {
-        _this3.imagearr = _this3.folderImages[deskIndex];
+        _this4.imagearr = _this4.folderImages[deskIndex];
         store.state.params.deskMaterial = deskIndex;
       }, 100);
     },
@@ -117,7 +122,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     //hide to active decors
     DecorsHide: function DecorsHide(node, coords) {
-      var _this4 = this;
+      var _this5 = this;
 
       var hide = new BABYLON.Vector3(0, 0, 0); //soralgan meshni topamiz
 
@@ -130,8 +135,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         frame: 10,
         value: hide
       }], function () {
-        _this4.DecorsPosition(node, coords, function () {
-          _this4.DecorsShow(mesh);
+        _this5.DecorsPosition(node, coords, function () {
+          _this5.DecorsShow(mesh);
         });
       });
     },

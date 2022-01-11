@@ -4,23 +4,23 @@
             <img src="/images/left.png" class="relative" style="left: -1px">
         </button>
         <div v-if="lamp" @click="toggleNode('lamp')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.lamp}" 
-            class="flex items-center justify-center py-3 px-2 bg-white rounded-lg bg-opacity-50 mb-2 w-12 h-12 sm:w-16 sm:h-16 cursor-pointer hover:bg-opacity-75">
+            class="flex items-center justify-center py-3 px-2 bg-white rounded-lg bg-opacity-50 mb-2 w-12 h-12 sm:w-16 sm:h-16 hover:bg-opacity-75">
             <Icons icon="lamp" />
         </div>
         <div v-if="monitor" @click="toggleNode('monitor')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.monitor}"  
-            class="flex items-center justify-center py-3 px-3 bg-white rounded-lg bg-opacity-50 mb-2 w-12 h-12 sm:w-16 sm:h-16 cursor-pointer hover:bg-opacity-75">
+            class="flex items-center justify-center py-3 px-3 bg-white rounded-lg bg-opacity-50 mb-2 w-12 h-12 sm:w-16 sm:h-16 hover:bg-opacity-75">
             <Icons icon="monitor" />
         </div>
         <div v-if="image" @click="toggleNode('image')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.image}"  
-            class="flex items-center justify-center py-3 px-3 bg-white rounded-lg bg-opacity-50 mb-2 w-12 h-12 sm:w-16 sm:h-16 cursor-pointer hover:bg-opacity-75">
+            class="flex items-center justify-center py-3 px-3 bg-white rounded-lg bg-opacity-50 mb-2 w-12 h-12 sm:w-16 sm:h-16 hover:bg-opacity-75">
             <Icons icon="image" />
         </div>
         <div v-if="chair" @click="toggleNode('chair')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.chair}"  
-            class="flex items-center justify-center py-3 px-2 bg-white rounded-lg bg-opacity-50 mb-2 w-12 h-12 sm:w-16 sm:h-16 cursor-pointer hover:bg-opacity-75">
+            class="flex items-center justify-center py-3 px-2 bg-white rounded-lg bg-opacity-50 mb-2 w-12 h-12 sm:w-16 sm:h-16 hover:bg-opacity-75">
             <Icons icon="chair" />
         </div>
         <div v-if="plant" @click="toggleNode('plant')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.plant}"  
-            class="flex items-center justify-center py-3 px-2 bg-white rounded-lg bg-opacity-50 mb-2 w-12 h-12 sm:w-16 sm:h-16 cursor-pointer hover:bg-opacity-75">
+            class="flex items-center justify-center py-3 px-2 bg-white rounded-lg bg-opacity-50 mb-2 w-12 h-12 sm:w-16 sm:h-16 hover:bg-opacity-75">
             <Icons icon="plant" />
         </div>
     </aside>

@@ -21,7 +21,7 @@ export default createStore({
                 wallColor: '#ffffff',
                 mainWallColor: '#182249',
                 floor: null,
-                deskimage: 'desks/laminate/cw115.jpg',
+                deskimage: 'desks/laminate/acw115.jpg',
             },
             decor:{
                 lamp: false,
