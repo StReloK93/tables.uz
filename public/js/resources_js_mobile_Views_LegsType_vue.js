@@ -553,9 +553,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
   image: new BABYLON.Vector3(10, 19.117, -34.423),
-  plant: new BABYLON.Vector3(0, 1, -31),
-  monitor: new BABYLON.Vector3(10.368, 8.01698, -21.8846),
-  chair: new BABYLON.Vector3(15.5757, 1.38094, -11.7009),
+  plant: new BABYLON.Vector3(4.522, 1, -31),
+  monitor: new BABYLON.Vector3(17.212, 8.01698, -30.788),
+  chair: new BABYLON.Vector3(18.739, 1.38094, -20.963),
   lamp: new BABYLON.Vector3(22.511, 6.92616, -31.4137),
   tumbochka: new BABYLON.Vector3(22.503, 1.178, -29.831)
 }, {
@@ -584,7 +584,7 @@ __webpack_require__.r(__webpack_exports__);
   plant: new BABYLON.Vector3(-1.35887, 1, -31.333),
   monitor: new BABYLON.Vector3(13.7972, 8.52, -31.3336),
   chair: new BABYLON.Vector3(13.1428, 1.38094, -21.123),
-  lamp: new BABYLON.Vector3(21.2717, 8.3, -31.4137),
+  lamp: new BABYLON.Vector3(21.2717, 8.45, -31.4137),
   tumbochka: new BABYLON.Vector3(3, 1.178, -29.831)
 }]);
 

@@ -22,6 +22,7 @@ export default class Light{
       light.direction = new BABYLON.Vector3(0,-1,0)
    }
 
+   //in onload
    UseShadow(shadowGenerator,array){
       for (let i = 0; i < array.length; i++) {
          var node = scene.getNodeByName(array[i])
@@ -39,6 +40,7 @@ export default class Light{
       }
    }
 
+   //in onload
    AcceptShadows(meshes){
       for (let i = 0; i < meshes.length; i++) {
          var node = scene.getNodeByName(meshes[i])

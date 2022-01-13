@@ -10,6 +10,9 @@ class Scene {
 
          //Default Stolni urnatadi
          store.commit('setLegType', this.DefautLeg)
+
+         //stol ustidagi textura
+         store.commit('setDeskMaterial', store.state.params.deskimage)
       })
    }
 

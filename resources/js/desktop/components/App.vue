@@ -8,7 +8,9 @@
       </transition>
       <main class="h-full">
          <Decorations v-if="$store.state.onLoaded.toFixed() == 100" class="absolute top-0 left-0"/>
+         <!-- canvas -->
          <canvas class="w-full h-full outline-none" ref="canvas"></canvas>
+
          <button v-if="!$store.state.fullscreen" @click="requestFullScreen($refs.room)" class="zoom-button block  p-3 bg-white rounded-lg bg-opacity-50 mb-3 xl:w-24 md:w-20 xl:h-24 md:h-20  hover:bg-opacity-100">
             <Icons icon="zoom"/>
          </button>
@@ -62,7 +64,7 @@
 
       <!-- Footer -->
       <main class="text-right xl:px-10 md:px-5 xl:py-7 md:py-4 bg-white shadow-custom">
-         <button class="xl:h-16 md:h-14 xl:w-52 md:w-40 bg-gray-400 hover:bg-red-500  xl:text-xl md:text-md text-center text-white rounded-xl">
+         <button class="xl:h-16 md:h-14 xl:w-52 md:w-40 bg-gray-400 hover:bg-green-700  xl:text-xl md:text-md text-center text-white rounded-xl">
             {{$store.state.language.getQuote}}
          </button>
       </main>
@@ -111,7 +113,7 @@ export default {
       }
    },
    watch:{
-      $route (to, from){
+      $route (to){
          if(to.name == 'designs'){
             this.isActive = false
             store.commit('setConfigurator', false)

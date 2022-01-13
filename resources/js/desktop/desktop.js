@@ -2,16 +2,16 @@ import '../global/babylonset.js'
 
 import { createApp } from 'vue'
 import App from './components/App.vue'
-import router from './router'
-import store from './store'
+import store from '../global/store'
 window.store = store
+import router from './router'
 
 if (window.innerWidth < 992) {
     window.location.replace("/mobile")
 }
 else {
-    createApp(App)
-        .use(router)
-        .use(store)
-        .mount("#app")
+createApp(App)
+    .use(router)
+    .use(store)
+    .mount("#app")
 }

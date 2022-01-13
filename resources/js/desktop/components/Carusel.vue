@@ -5,7 +5,7 @@
 				<img src="/images/leftang.png" class="w-2/3 btns">
 			</button>
 		</transition>
-      <aside class="overflow-hidden flex-grow">
+      <aside class="overflow-hidden flex-grow py-3">
          <main ref="mainBlock" :style="transform" :class="{'-ml-2':prosent == 0}" class=" whitespace-nowrap easy-transition">
 				<slot></slot>
          </main>

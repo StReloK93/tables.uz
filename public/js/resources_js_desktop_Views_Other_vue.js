@@ -14,6 +14,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Icons_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Icons.vue */ "./resources/js/desktop/components/Icons.vue");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      forChair: false
+    };
+  },
   components: {
     Icons: _components_Icons_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
@@ -49,8 +54,63 @@ var _hoisted_3 = {
 var _hoisted_4 = {
   "class": "px-10 xl:text-xl md:text-md font-bold text-indigo-900"
 };
+var _hoisted_5 = {
+  "class": "xl:pb-8 md:pb-4"
+};
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<main class=\"xl:pb-8 md:pb-4\"><h3 class=\"font-bold xl:mb-6 md:mb-4 xl:text-xl md:text-md text-gray-600\"> Other Requests </h3><div class=\"flex items-center mb-4 xl:text-xl md:text-md\"><input type=\"checkbox\" class=\"transform scale-150 ml-1 xl:mr-6 md:mr-3\"> We are a corporation that needs space planning service as well. </div><div class=\"flex items-center mb-4 xl:text-xl md:text-md\"><input type=\"checkbox\" class=\"transform scale-150 ml-1 xl:mr-6 md:mr-3\"> I also need a chair, if you can tell us your height and physiqe we can recommend. </div><aside class=\"flex\"><main class=\"mr-4\"><p class=\"mb-2 text-gray-400 xl:text-md md:text-sm\">Your total height </p><div><input type=\"text\" class=\"rounded-lg border border-indigo-900 xl:p-3 md:p-2 outline-none focus:border-blue-600\"></div></main><main><p class=\"mb-2 text-gray-400 xl:text-md md:text-sm\">Your legs lenght </p><div><input type=\"text\" class=\"rounded-lg border border-indigo-900 xl:p-3 md:p-2 outline-none focus:border-blue-600\"></div></main></aside></main><main class=\"xl:pb-8 md:pb-4\"><h3 class=\"font-bold xl:mb-6 md:mb-4 xl:text-xl md:text-md text-gray-600\"> Leave a message </h3><div><textarea class=\"w-full border border-gray-400 rounded-lg xl:h-40 md:h-32 p-3 outline-none focus:border-blue-600\"></textarea></div></main>", 2);
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "font-bold xl:mb-6 md:mb-4 xl:text-xl md:text-md text-gray-600"
+}, " Other Requests ", -1
+/* HOISTED */
+);
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "flex items-center mb-4 xl:text-xl md:text-md"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  type: "checkbox",
+  "class": "transform scale-150 ml-1 xl:mr-6 md:mr-3"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" We are a corporation that needs space planning service as well. ")], -1
+/* HOISTED */
+);
+
+var _hoisted_8 = {
+  "class": "flex items-center mb-4 xl:text-xl md:text-md"
+};
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" I also need a chair, if you can tell us your height and physiqe we can recommend. ");
+
+var _hoisted_10 = {
+  "class": "flex"
+};
+var _hoisted_11 = {
+  "class": "mr-4"
+};
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "mb-2 text-gray-400 xl:text-md md:text-sm"
+}, "Your total height ", -1
+/* HOISTED */
+);
+
+var _hoisted_13 = ["disabled"];
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "mb-2 text-gray-400 xl:text-md md:text-sm"
+}, "Your legs lenght ", -1
+/* HOISTED */
+);
+
+var _hoisted_15 = ["disabled"];
+
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", {
+  "class": "xl:pb-8 md:pb-4"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "font-bold xl:mb-6 md:mb-4 xl:text-xl md:text-md text-gray-600"
+}, " Leave a message "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+  "class": "w-full border border-gray-400 rounded-lg xl:h-40 md:h-32 p-3 outline-none focus:border-blue-600"
+})])], -1
+/* HOISTED */
+);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Icons = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Icons");
@@ -71,7 +131,33 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Icons, {
     icon: "plus"
-  })])])]), _hoisted_5]);
+  })])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_5, [_hoisted_6, _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "checkbox",
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $data.forChair = $event;
+    }),
+    "class": "transform scale-150 ml-1 xl:mr-6 md:mr-3"
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.forChair]]), _hoisted_9]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    placeholder: "00mm",
+    disabled: !$data.forChair,
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
+      'border-indigo-900': $data.forChair
+    }, "w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-600"]),
+    type: "text"
+  }, null, 10
+  /* CLASS, PROPS */
+  , _hoisted_13)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", null, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    placeholder: "00mm",
+    disabled: !$data.forChair,
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
+      'border-indigo-900': $data.forChair
+    }, "w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-600"]),
+    type: "text"
+  }, null, 10
+  /* CLASS, PROPS */
+  , _hoisted_15)])])])]), _hoisted_16]);
 }
 
 /***/ }),

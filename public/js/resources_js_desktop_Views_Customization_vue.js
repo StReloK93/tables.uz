@@ -79,6 +79,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     setGrommet: function setGrommet(index) {
+      if (index == store.state.custom.grommet) {
+        return store.state.custom.grommet = 0;
+      }
+
       store.state.custom.grommet = index;
     }
   }
@@ -99,6 +103,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     setPart: function setPart(index) {
+      if (index == store.state.custom.partition) {
+        return store.state.custom.partition = 0;
+      }
+
       store.state.custom.partition = index;
     }
   }
@@ -388,24 +396,36 @@ var _hoisted_2 = {
 var _hoisted_3 = {
   "class": "pr-2 w-1/3"
 };
+var _hoisted_4 = {
+  key: 0,
+  src: "/images/true.jpg",
+  "class": "w-6 -m-3 absolute top-0 right-0 z-20"
+};
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<main class=\"mb-8\" data-v-70b7e62f><svg class=\"inline scaling\" width=\"111\" height=\"76\" viewBox=\"0 0 111 76\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" data-v-70b7e62f><rect x=\"1\" y=\"1\" width=\"109\" height=\"74\" rx=\"15\" stroke=\"#494949\" stroke-width=\"2\" data-v-70b7e62f></rect><rect x=\"39.5\" y=\"13.5\" width=\"32\" height=\"10\" stroke=\"#494949\" data-v-70b7e62f></rect></svg></main><main class=\"mb-8\" data-v-70b7e62f><svg class=\"inline scaling\" width=\"111\" height=\"75\" viewBox=\"0 0 111 75\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" data-v-70b7e62f><path d=\"M110 59C110 67.2843 103.284 74 95 74L16 74C7.71573 74 1.00001 67.2843 1.00001 59L1 1L110 0.999992L110 59Z\" stroke=\"#494949\" stroke-width=\"2\" data-v-70b7e62f></path><rect x=\"39.5\" y=\"12.5\" width=\"32\" height=\"11\" stroke=\"#494949\" data-v-70b7e62f></rect></svg></main><main class=\"mb-8\" data-v-70b7e62f><svg class=\"inline scaling\" width=\"111\" height=\"77\" viewBox=\"0 0 111 77\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" data-v-70b7e62f><rect x=\"1\" y=\"1\" width=\"109\" height=\"75\" stroke=\"#494949\" stroke-width=\"2\" data-v-70b7e62f></rect><rect x=\"39.5\" y=\"14.5\" width=\"32\" height=\"10\" stroke=\"#494949\" data-v-70b7e62f></rect></svg></main><p class=\"text-sm mt-5\" data-v-70b7e62f> Wooden Flippers </p>", 4);
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<main class=\"mb-8\" data-v-70b7e62f><svg class=\"inline scaling\" width=\"111\" height=\"76\" viewBox=\"0 0 111 76\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" data-v-70b7e62f><rect x=\"1\" y=\"1\" width=\"109\" height=\"74\" rx=\"15\" stroke=\"#494949\" stroke-width=\"2\" data-v-70b7e62f></rect><rect x=\"39.5\" y=\"13.5\" width=\"32\" height=\"10\" stroke=\"#494949\" data-v-70b7e62f></rect></svg></main><main class=\"mb-8\" data-v-70b7e62f><svg class=\"inline scaling\" width=\"111\" height=\"75\" viewBox=\"0 0 111 75\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" data-v-70b7e62f><path d=\"M110 59C110 67.2843 103.284 74 95 74L16 74C7.71573 74 1.00001 67.2843 1.00001 59L1 1L110 0.999992L110 59Z\" stroke=\"#494949\" stroke-width=\"2\" data-v-70b7e62f></path><rect x=\"39.5\" y=\"12.5\" width=\"32\" height=\"11\" stroke=\"#494949\" data-v-70b7e62f></rect></svg></main><main class=\"mb-8\" data-v-70b7e62f><svg class=\"inline scaling\" width=\"111\" height=\"77\" viewBox=\"0 0 111 77\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" data-v-70b7e62f><rect x=\"1\" y=\"1\" width=\"109\" height=\"75\" stroke=\"#494949\" stroke-width=\"2\" data-v-70b7e62f></rect><rect x=\"39.5\" y=\"14.5\" width=\"32\" height=\"10\" stroke=\"#494949\" data-v-70b7e62f></rect></svg></main><p class=\"text-sm mt-5\" data-v-70b7e62f> Wooden Flippers </p>", 4);
 
-var _hoisted_8 = [_hoisted_4];
 var _hoisted_9 = {
   "class": "pr-2 w-1/3"
 };
+var _hoisted_10 = {
+  key: 0,
+  src: "/images/true.jpg",
+  "class": "w-6 -m-3 absolute top-0 right-0 z-20"
+};
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<main class=\"mb-8\" data-v-70b7e62f><svg class=\"inline scaling\" width=\"111\" height=\"76\" viewBox=\"0 0 111 76\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" data-v-70b7e62f><rect x=\"1\" y=\"1\" width=\"109\" height=\"74\" rx=\"15\" stroke=\"#494949\" stroke-width=\"2\" data-v-70b7e62f></rect><rect x=\"45.5\" y=\"13.5\" width=\"20\" height=\"10\" stroke=\"#494949\" data-v-70b7e62f></rect></svg></main><main class=\"mb-8\" data-v-70b7e62f><svg class=\"inline scaling\" width=\"111\" height=\"75\" viewBox=\"0 0 111 75\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" data-v-70b7e62f><path d=\"M110 59C110 67.2843 103.284 74 95 74L16 74C7.71573 74 1.00001 67.2843 1.00001 59L1 1L110 0.999992L110 59Z\" stroke=\"#494949\" stroke-width=\"2\" data-v-70b7e62f></path><rect x=\"45.5\" y=\"13.5\" width=\"20\" height=\"10\" stroke=\"#494949\" data-v-70b7e62f></rect></svg></main><main class=\"mb-8\" data-v-70b7e62f><svg class=\"inline scaling\" width=\"111\" height=\"77\" viewBox=\"0 0 111 77\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" data-v-70b7e62f><rect x=\"1\" y=\"1\" width=\"109\" height=\"75\" stroke=\"#494949\" stroke-width=\"2\" data-v-70b7e62f></rect><rect x=\"45.5\" y=\"13.5\" width=\"20\" height=\"10\" stroke=\"#494949\" data-v-70b7e62f></rect></svg></main><p class=\"text-sm mt-5\" data-v-70b7e62f> Plastic Flippers </p>", 4);
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<main class=\"mb-8\" data-v-70b7e62f><svg class=\"inline scaling\" width=\"111\" height=\"76\" viewBox=\"0 0 111 76\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" data-v-70b7e62f><rect x=\"1\" y=\"1\" width=\"109\" height=\"74\" rx=\"15\" stroke=\"#494949\" stroke-width=\"2\" data-v-70b7e62f></rect><rect x=\"45.5\" y=\"13.5\" width=\"20\" height=\"10\" stroke=\"#494949\" data-v-70b7e62f></rect></svg></main><main class=\"mb-8\" data-v-70b7e62f><svg class=\"inline scaling\" width=\"111\" height=\"75\" viewBox=\"0 0 111 75\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" data-v-70b7e62f><path d=\"M110 59C110 67.2843 103.284 74 95 74L16 74C7.71573 74 1.00001 67.2843 1.00001 59L1 1L110 0.999992L110 59Z\" stroke=\"#494949\" stroke-width=\"2\" data-v-70b7e62f></path><rect x=\"45.5\" y=\"13.5\" width=\"20\" height=\"10\" stroke=\"#494949\" data-v-70b7e62f></rect></svg></main><main class=\"mb-8\" data-v-70b7e62f><svg class=\"inline scaling\" width=\"111\" height=\"77\" viewBox=\"0 0 111 77\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" data-v-70b7e62f><rect x=\"1\" y=\"1\" width=\"109\" height=\"75\" stroke=\"#494949\" stroke-width=\"2\" data-v-70b7e62f></rect><rect x=\"45.5\" y=\"13.5\" width=\"20\" height=\"10\" stroke=\"#494949\" data-v-70b7e62f></rect></svg></main><p class=\"text-sm mt-5\" data-v-70b7e62f> Plastic Flippers </p>", 4);
 
-var _hoisted_14 = [_hoisted_10];
 var _hoisted_15 = {
   "class": "pr-2 w-1/3"
 };
+var _hoisted_16 = {
+  key: 0,
+  src: "/images/true.jpg",
+  "class": "w-6 -m-3 absolute top-0 right-0 z-20"
+};
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<main class=\"mb-8\" data-v-70b7e62f><svg class=\"inline scaling\" width=\"111\" height=\"76\" viewBox=\"0 0 111 76\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" data-v-70b7e62f><rect x=\"1\" y=\"1\" width=\"109\" height=\"74\" rx=\"15\" stroke=\"#494949\" stroke-width=\"2\" data-v-70b7e62f></rect><rect x=\"38.5\" y=\"1.5\" width=\"34\" height=\"12\" stroke=\"#494949\" data-v-70b7e62f></rect></svg></main><main class=\"mb-8\" data-v-70b7e62f><svg class=\"inline scaling\" width=\"111\" height=\"75\" viewBox=\"0 0 111 75\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" data-v-70b7e62f><path d=\"M110 59C110 67.2843 103.284 74 95 74L16 74C7.71573 74 1.00001 67.2843 1.00001 59L1 1L110 0.999992L110 59Z\" stroke=\"#494949\" stroke-width=\"2\" data-v-70b7e62f></path><rect x=\"38.5\" y=\"1.5\" width=\"34\" height=\"12\" stroke=\"#494949\" data-v-70b7e62f></rect></svg></main><main class=\"mb-8\" data-v-70b7e62f><svg class=\"inline scaling\" width=\"111\" height=\"77\" viewBox=\"0 0 111 77\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" data-v-70b7e62f><rect x=\"1\" y=\"1\" width=\"109\" height=\"75\" stroke=\"#494949\" stroke-width=\"2\" data-v-70b7e62f></rect><rect x=\"38.5\" y=\"1.5\" width=\"34\" height=\"12\" stroke=\"#494949\" data-v-70b7e62f></rect></svg></main><p class=\"text-sm mt-5\" data-v-70b7e62f> Melamine Flippers </p>", 4);
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<main class=\"mb-8\" data-v-70b7e62f><svg class=\"inline scaling\" width=\"111\" height=\"76\" viewBox=\"0 0 111 76\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" data-v-70b7e62f><rect x=\"1\" y=\"1\" width=\"109\" height=\"74\" rx=\"15\" stroke=\"#494949\" stroke-width=\"2\" data-v-70b7e62f></rect><rect x=\"38.5\" y=\"1.5\" width=\"34\" height=\"12\" stroke=\"#494949\" data-v-70b7e62f></rect></svg></main><main class=\"mb-8\" data-v-70b7e62f><svg class=\"inline scaling\" width=\"111\" height=\"75\" viewBox=\"0 0 111 75\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" data-v-70b7e62f><path d=\"M110 59C110 67.2843 103.284 74 95 74L16 74C7.71573 74 1.00001 67.2843 1.00001 59L1 1L110 0.999992L110 59Z\" stroke=\"#494949\" stroke-width=\"2\" data-v-70b7e62f></path><rect x=\"38.5\" y=\"1.5\" width=\"34\" height=\"12\" stroke=\"#494949\" data-v-70b7e62f></rect></svg></main><main class=\"mb-8\" data-v-70b7e62f><svg class=\"inline scaling\" width=\"111\" height=\"77\" viewBox=\"0 0 111 77\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" data-v-70b7e62f><rect x=\"1\" y=\"1\" width=\"109\" height=\"75\" stroke=\"#494949\" stroke-width=\"2\" data-v-70b7e62f></rect><rect x=\"38.5\" y=\"1.5\" width=\"34\" height=\"12\" stroke=\"#494949\" data-v-70b7e62f></rect></svg></main><p class=\"text-sm mt-5\" data-v-70b7e62f> Melamine Flippers </p>", 4);
 
-var _hoisted_20 = [_hoisted_16];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
@@ -413,8 +433,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
       'border-myblue': _ctx.$store.state.custom.grommet == 1
-    }, "cursor-pointer xl:pt-8 md:pt-4 pb-2 text-center border border-transparent"])
-  }, _hoisted_8, 2
+    }, "cursor-pointer xl:pt-8 md:pt-4 pb-2 text-center relative border border-transparent"])
+  }, [_ctx.$store.state.custom.grommet == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_4)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_5], 2
   /* CLASS */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     onClick: _cache[1] || (_cache[1] = function ($event) {
@@ -422,8 +442,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
       'border-myblue': _ctx.$store.state.custom.grommet == 2
-    }, "cursor-pointer xl:pt-8 md:pt-4 pb-2 border border-transparent"])
-  }, _hoisted_14, 2
+    }, "cursor-pointer xl:pt-8 md:pt-4 pb-2 border border-transparent relative"])
+  }, [_ctx.$store.state.custom.grommet == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_10)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_11], 2
   /* CLASS */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     onClick: _cache[2] || (_cache[2] = function ($event) {
@@ -431,8 +451,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
       'border-myblue': _ctx.$store.state.custom.grommet == 3
-    }, "cursor-pointer xl:pt-8 md:pt-4 pb-2 border border-transparent"])
-  }, _hoisted_20, 2
+    }, "cursor-pointer xl:pt-8 md:pt-4 pb-2 border border-transparent relative"])
+  }, [_ctx.$store.state.custom.grommet == 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_16)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_17], 2
   /* CLASS */
   )])])]);
 }
@@ -464,39 +484,47 @@ var _hoisted_2 = {
 var _hoisted_3 = {
   "class": "px-2 w-1/3"
 };
+var _hoisted_4 = {
+  key: 0,
+  src: "/images/true.jpg",
+  "class": "w-6 -m-3 absolute top-0 right-0 z-20"
+};
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "/images/rect/part1.png",
   alt: ""
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "text-sm"
 }, " Sharp corners ", -1
 /* HOISTED */
 );
 
-var _hoisted_6 = [_hoisted_4, _hoisted_5];
 var _hoisted_7 = {
   "class": "px-2 w-1/3"
 };
+var _hoisted_8 = {
+  key: 0,
+  src: "/images/true.jpg",
+  "class": "w-6 -m-3 absolute top-0 right-0 z-20"
+};
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "/images/rect/part2.png",
   alt: ""
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "text-sm"
 }, " Combined corners ", -1
 /* HOISTED */
 );
 
-var _hoisted_10 = [_hoisted_8, _hoisted_9];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
@@ -504,8 +532,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
       'border-myblue': _ctx.$store.state.custom.partition == 1
-    }, "cursor-pointer py-4 border border-transparent rounded-md"])
-  }, _hoisted_6, 2
+    }, "cursor-pointer py-4 border border-transparent rounded-md relative"])
+  }, [_ctx.$store.state.custom.partition == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_4)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_5, _hoisted_6], 2
   /* CLASS */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     onClick: _cache[1] || (_cache[1] = function ($event) {
@@ -513,8 +541,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
       'border-myblue': _ctx.$store.state.custom.partition == 2
-    }, "cursor-pointer py-4 border border-transparent rounded-md"])
-  }, _hoisted_10, 2
+    }, "cursor-pointer py-4 border border-transparent rounded-md relative"])
+  }, [_ctx.$store.state.custom.partition == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_8)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_9, _hoisted_10], 2
   /* CLASS */
   )])])]);
 }

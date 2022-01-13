@@ -11,16 +11,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_Carusel_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Carusel.vue */ "./resources/js/desktop/components/Carusel.vue");
-/* harmony import */ var _global_LegsCoordinates__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../global/LegsCoordinates */ "./resources/js/global/LegsCoordinates.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var _components_Carusel_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Carusel.vue */ "./resources/js/desktop/components/Carusel.vue");
+/* harmony import */ var _global_LegsCoordinates__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../global/LegsCoordinates */ "./resources/js/global/LegsCoordinates.js");
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -32,39 +24,43 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   created: function created() {
-    var _this = this;
-
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var desks;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return Engine.textures.deskTextures();
-
-            case 2:
-              desks = _context.sent;
-              _this.deskMaterials = desks.folders;
-              _this.folderImages = desks.images;
-              _this.imagearr = _this.folderImages[store.state.params.deskMaterial];
-
-            case 6:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
+    var desks = Engine.textures.folders;
+    this.deskMaterials = desks.folders;
+    this.folderImages = desks.images;
+    this.imagearr = this.folderImages[store.state.params.deskMaterial];
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this = this;
 
     scene.onReadyObservable.add(function () {
-      _this2.setLegColor(1);
+      _this.setLegColor(1);
     });
   },
   methods: {
+    setDeskImage: function setDeskImage(img) {
+      store.commit('setDeskMaterial', img);
+      var images = Engine.textures.folders.images;
+
+      var _loop = function _loop(key) {
+        elem = images[key].find(function (element) {
+          if (element === store.state.params.deskimage) {
+            return store.state.params.activeFolder = key;
+          }
+        });
+
+        if (elem) {
+          return "break";
+        }
+      };
+
+      for (var key in images) {
+        var elem;
+
+        var _ret = _loop(key);
+
+        if (_ret === "break") break;
+      }
+    },
     setLegColor: function setLegColor(colorIndex) {
       var colorArr = ['#D6D6D6', '#8B8B8B', '#222222'];
       var LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg', 'threeLegLeft', 'threeLegRight'];
@@ -84,25 +80,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     //< ------------ main -- //
     setLegType: function setLegType(legIndex) {
-      var _this3 = this;
+      var _this2 = this;
 
       if (store.state.params.legType == legIndex) return;
       var activeDecors = this.getDecors();
       activeDecors.forEach(function (Decors) {
         if (store.state.decor[Decors]) {
-          _this3.DecorsPosition(Decors, _global_LegsCoordinates__WEBPACK_IMPORTED_MODULE_2__["default"][legIndex - 1][Decors]);
+          _this2.DecorsPosition(Decors, _global_LegsCoordinates__WEBPACK_IMPORTED_MODULE_1__["default"][legIndex - 1][Decors]);
         } else {
-          _this3.DecorsHide(Decors, _global_LegsCoordinates__WEBPACK_IMPORTED_MODULE_2__["default"][legIndex - 1][Decors]);
+          _this2.DecorsHide(Decors, _global_LegsCoordinates__WEBPACK_IMPORTED_MODULE_1__["default"][legIndex - 1][Decors]);
         }
       });
       store.commit('setLegType', legIndex);
     },
     deskFolder: function deskFolder(deskIndex) {
-      var _this4 = this;
+      var _this3 = this;
 
       this.imagearr = null;
       setTimeout(function () {
-        _this4.imagearr = _this4.folderImages[deskIndex];
+        _this3.imagearr = _this3.folderImages[deskIndex];
         store.state.params.deskMaterial = deskIndex;
       }, 100);
     },
@@ -119,7 +115,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     //hide to active decors
     DecorsHide: function DecorsHide(node, coords) {
-      var _this5 = this;
+      var _this4 = this;
 
       var hide = new BABYLON.Vector3(0, 0, 0); //soralgan meshni topamiz
 
@@ -132,8 +128,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         frame: 10,
         value: hide
       }], function () {
-        _this5.DecorsPosition(node, coords, function () {
-          _this5.DecorsShow(mesh);
+        _this4.DecorsPosition(node, coords, function () {
+          _this4.DecorsShow(mesh);
         });
       });
     },
@@ -157,18 +153,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         frame: 10,
         value: show
       }]);
-    },
-    setDeskMaterial: function setDeskMaterial(textureName) {
-      var materialNames = ['oneTable', 'twoTable', 'threeTable', 'fourTable', 'fiveTable'];
-      materialNames.forEach(function (element) {
-        var material = scene.getMaterialByName(element);
-        material.albedoTexture = scene.getTextureByName(textureName);
-      });
-      store.state.params.deskimage = textureName;
     }
   },
   components: {
-    Caruosel: _components_Carusel_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Caruosel: _components_Carusel_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 
@@ -250,32 +238,37 @@ var _hoisted_6 = {
 };
 
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "font-bold mb-4 xl:text-xl md:text-md xl:mt-6 md:mt-4 text-gray-600"
+  "class": "font-bold mb-1 xl:text-xl md:text-md xl:mt-6 md:mt-4 text-gray-600"
 }, " Standing desk material ", -1
 /* HOISTED */
 );
 
-var _hoisted_8 = ["onClick", "innerHTML"];
-var _hoisted_9 = {
+var _hoisted_8 = {
   key: 0,
-  "class": "flex flex-wrap -mr-2 xl:mt-6 md:mt-4"
+  src: "/images/true.png",
+  "class": "w-4 -m-1 -mt-2 absolute top-0 right-0 z-20"
 };
-var _hoisted_10 = ["onClick"];
-var _hoisted_11 = ["src", "title"];
-var _hoisted_12 = {
+var _hoisted_9 = ["onClick", "innerHTML"];
+var _hoisted_10 = {
+  key: 0,
+  "class": "flex flex-wrap -mr-2 md:mt-2"
+};
+var _hoisted_11 = ["title", "onClick"];
+var _hoisted_12 = ["src", "title"];
+var _hoisted_13 = {
   "class": "xl:pb-8 md:pb-4"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
   "class": "font-bold xl:mb-6 md:mb-4 xl:text-xl md:text-md text-gray-600"
 }, " Choose the leg color ", -1
 /* HOISTED */
 );
 
-var _hoisted_14 = {
+var _hoisted_15 = {
   "class": "flex flex-wrap -mr-2"
 };
-var _hoisted_15 = ["onClick"];
+var _hoisted_16 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Caruosel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Caruosel");
 
@@ -313,8 +306,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.deskMaterials, function (materials) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("main", {
           key: materials,
-          "class": "w-1/4 inline-block align-middle px-2"
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+          "class": "w-1/4 inline-block align-middle px-2 relative"
+        }, [_ctx.$store.state.params.activeFolder == materials.path ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_8)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
           onClick: function onClick($event) {
             return $options.deskFolder(materials.path);
           },
@@ -324,7 +317,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           innerHTML: materials.text
         }, null, 10
         /* CLASS, PROPS */
-        , _hoisted_8)]);
+        , _hoisted_9)]);
       }), 128
       /* KEYED_FRAGMENT */
       ))];
@@ -337,13 +330,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     mode: "in-out"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [$data.imagearr ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.imagearr, function (img) {
+      return [$data.imagearr ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.imagearr, function (img, index) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("aside", {
           "class": "w-1/5 pr-2",
-          key: img
+          key: index
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", {
+          title: index,
           onClick: function onClick($event) {
-            return $options.setDeskMaterial(img);
+            return $options.setDeskImage(img);
           },
           "class": "mb-6 xl:h-24 md:h-20 cursor-pointer"
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
@@ -354,9 +348,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           title: img
         }, null, 10
         /* CLASS, PROPS */
-        , _hoisted_11)], 8
+        , _hoisted_12)], 8
         /* PROPS */
-        , _hoisted_10)]);
+        , _hoisted_11)]);
       }), 128
       /* KEYED_FRAGMENT */
       ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
@@ -364,7 +358,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(3, function (n) {
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(3, function (n) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", {
       key: n,
       "class": "w-1/5 pr-2"
@@ -396,7 +390,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* CLASS */
     )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 8
     /* PROPS */
-    , _hoisted_15)]);
+    , _hoisted_16)]);
   }), 64
   /* STABLE_FRAGMENT */
   ))])])]);
@@ -429,7 +423,7 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 var _hoisted_3 = [_hoisted_2];
 var _hoisted_4 = {
-  "class": "overflow-hidden flex-grow"
+  "class": "overflow-hidden flex-grow py-3"
 };
 
 var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
@@ -498,9 +492,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
   image: new BABYLON.Vector3(10, 19.117, -34.423),
-  plant: new BABYLON.Vector3(0, 1, -31),
-  monitor: new BABYLON.Vector3(10.368, 8.01698, -21.8846),
-  chair: new BABYLON.Vector3(15.5757, 1.38094, -11.7009),
+  plant: new BABYLON.Vector3(4.522, 1, -31),
+  monitor: new BABYLON.Vector3(17.212, 8.01698, -30.788),
+  chair: new BABYLON.Vector3(18.739, 1.38094, -20.963),
   lamp: new BABYLON.Vector3(22.511, 6.92616, -31.4137),
   tumbochka: new BABYLON.Vector3(22.503, 1.178, -29.831)
 }, {
@@ -529,7 +523,7 @@ __webpack_require__.r(__webpack_exports__);
   plant: new BABYLON.Vector3(-1.35887, 1, -31.333),
   monitor: new BABYLON.Vector3(13.7972, 8.52, -31.3336),
   chair: new BABYLON.Vector3(13.1428, 1.38094, -21.123),
-  lamp: new BABYLON.Vector3(21.2717, 8.3, -31.4137),
+  lamp: new BABYLON.Vector3(21.2717, 8.45, -31.4137),
   tumbochka: new BABYLON.Vector3(3, 1.178, -29.831)
 }]);
 

@@ -17,18 +17,19 @@
                 </aside>
             </div>
             <!-- new -->
-            <h3 class="font-bold mb-4 xl:text-xl md:text-md xl:mt-6 md:mt-4 text-gray-600">
+            <h3 class="font-bold mb-1 xl:text-xl md:text-md xl:mt-6 md:mt-4 text-gray-600">
                 Standing desk material
             </h3>
             <Caruosel v-if="deskMaterials" :itemCount="4" class="text-md text-center text-gray-600">
-                <main v-for="materials in deskMaterials" :key="materials" class="w-1/4 inline-block align-middle px-2">
+                <main v-for="materials in deskMaterials" :key="materials" class="w-1/4 inline-block align-middle px-2 relative">
+                    <img v-if="$store.state.params.activeFolder == materials.path" src="/images/true.png" class="w-4 -m-1 -mt-2 absolute top-0 right-0 z-20">
                     <button @click="deskFolder(materials.path)" :class="{'bg-my text-white': $store.state.params.deskMaterial == materials.path}" v-html="materials.text" class="xl:h-16 md:h-14 xl:text-sm md:text-xs w-full rounded-xl border"></button>
                 </main>
             </Caruosel>
             <transition name="fade" mode="in-out">
-                <div v-if="imagearr" class="flex flex-wrap -mr-2 xl:mt-6 md:mt-4">
-                    <aside class="w-1/5 pr-2" v-for="img in imagearr" :key="img">
-                        <main @click="setDeskMaterial(img)" class="mb-6 xl:h-24 md:h-20 cursor-pointer">
+                <div v-if="imagearr" class="flex flex-wrap -mr-2 md:mt-2">
+                    <aside class="w-1/5 pr-2" v-for="(img,index) in imagearr" :key="index">
+                        <main :title="index" @click="setDeskImage(img)" class="mb-6 xl:h-24 md:h-20 cursor-pointer">
                             <img :class="{'shadow-blue': $store.state.params.deskimage == img}" :src="`/floors/${img}`" :title="img" class="border-2 border-white rounded-md object-cover w-full h-full">
                         </main>
                     </aside>
@@ -62,8 +63,8 @@ export default {
             deskMaterials: null,
         }
     },
-    async created(){
-        let desks = await Engine.textures.deskTextures()
+    created(){
+        let desks = Engine.textures.folders
         this.deskMaterials = desks.folders
         this.folderImages = desks.images
         this.imagearr = this.folderImages[store.state.params.deskMaterial]
@@ -74,6 +75,20 @@ export default {
         })
     },
     methods: {
+        setDeskImage(img){
+            store.commit('setDeskMaterial', img)
+            const {images} = Engine.textures.folders
+            for (const key in images) {
+                var elem = images[key].find(element => {
+                    if(element === store.state.params.deskimage){
+                        return store.state.params.activeFolder = key
+                    }
+                });
+                if(elem){
+                    break
+                }
+            }
+        },
         setLegColor(colorIndex){
             let colorArr = ['#D6D6D6','#8B8B8B','#222222']
             let LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg','threeLegLeft', 'threeLegRight'] 
@@ -87,7 +102,6 @@ export default {
             store.state.params.legColor = colorIndex
         },
         //< ------------ main -- //
-
 
         setLegType(legIndex){
             if(store.state.params.legType == legIndex) return
@@ -141,16 +155,6 @@ export default {
             var show = new BABYLON.Vector3(1,1,1)
             Animate(mesh,'scaling', VECTOR3, [{frame: 0,value: mesh.scaling},{frame: 10,value: show}])
         },
-
-        setDeskMaterial(textureName){
-            let materialNames = ['oneTable', 'twoTable', 'threeTable', 'fourTable', 'fiveTable']
-            materialNames.forEach(element => {
-                let material = scene.getMaterialByName(element)
-                material.albedoTexture = scene.getTextureByName(textureName)
-            });
-
-			store.state.params.deskimage = textureName
-        }
     },
     components:{
         Caruosel

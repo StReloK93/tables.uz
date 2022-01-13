@@ -1,46 +1,48 @@
 class Textures {
 
    floors = []
+   folders = []
    constructor() {
-      this.floorTextures()
+      this._floorTextures()
+      this._deskTextures()
       scene.onReadyObservable.add(() => {
-         let CountAllTextures = this._AmbientTextures.length + this._NormalTextures.length + this._AlbedoTextures.length
-         let addProsent = 80 / (CountAllTextures + 1);
+         let CountAllTextures = this._AmbientTextures.length + this._NormalTextures.length
+         let addProsent = 50 / (CountAllTextures + 1);
 
          this.AllAmbientWhite(addProsent) //Scenadagi Hamma Elementlarni Ambientni oq rang qiladi
          new ImportTextures({ textureType: 'ambientTexture', materials: this._AmbientTextures, prosent: addProsent })
          new ImportTextures({ textureType: 'bumpTexture', materials: this._NormalTextures, prosent: addProsent })
-         new ImportTextures({ textureType: 'albedoTexture', materials: this._AlbedoTextures, prosent: addProsent })
       })
    }
 
-   newTexture(name, path) {
+   _newTexture(name, path) {
       const texture = new BABYLON.Texture(path)
       texture.name = name
       return texture
    }
 
-   floorTextures() {
+   _floorTextures() {
       var datas = this._TextureData
       store.dispatch('textures').then(images => {
          images.forEach((imagepath, i) => {
-            var texture = this.newTexture(`floor${i + 1}`, `/floors/${imagepath}`)
+            var texture = this._newTexture(`floor${i + 1}`, `/floors/${imagepath}`)
             texture.uScale = datas[i].uScale
             texture.vScale = datas[i].vScale
-            texture.wAng   = datas[i].wAng
-            this.floors.push({name: `floor${i + 1}`, path: `/floors/${imagepath}`})
+            texture.wAng = datas[i].wAng
+            this.floors.push({ name: `floor${i + 1}`, path: `/floors/${imagepath}` })
          });
       })
    }
 
-   async deskTextures(){
-      let folders = await store.dispatch('deskTextures')
-      for (const key in folders.images) {
-         folders.images[key].forEach(image => {
-            this.newTexture(image, `/floors/${image}`)
+   async _deskTextures() {
+      this.folders = await store.dispatch('deskTextures')
+      for (const key in this.folders.images) {
+         this.folders.images[key].forEach(image => {
+            const texture = this._newTexture(image, `/floors/${image}`)
+            texture.uScale = 2
+            texture.vScale = 1
          })
       }
-      return folders
    }
 
    AllAmbientWhite(prosent) {
@@ -89,6 +91,7 @@ class Textures {
       new Texture({ uAng: Math.PI, materialName: 'fiveTable', texturePath: '/textures/fiveTable.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'fiveShkafEshik', texturePath: '/textures/fiveShkafEshik.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'fiveShkaf', texturePath: '/textures/fiveShkaf.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'fiveWhite', texturePath: '/textures/fiveWhite.jpg' }),
       //Stul
       new Texture({ uAng: Math.PI, materialName: 'stulback', texturePath: '/textures/stulback.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'stulbottom', texturePath: '/textures/stulbottom.jpg' }),
@@ -107,18 +110,10 @@ class Textures {
       new Texture({ materialName: 'stulback', texturePath: '/textures/chair.jpg', uScale: 8, vScale: 8 }),
       new Texture({ materialName: 'stulbottom', texturePath: '/textures/chair.jpg', uScale: 8, vScale: 8 }),
    ]
-
-   _AlbedoTextures = [
-      new Texture({ materialName: 'oneTable', texturePath: '/floors/desks/laminate/acw115.jpg' }),
-      new Texture({ materialName: 'twoTable', texturePath: '/floors/desks/laminate/acw115.jpg' }),
-      new Texture({ materialName: 'threeTable', texturePath: '/floors/desks/laminate/acw115.jpg', uScale: 2, vScale: 2 }),
-      new Texture({ materialName: 'fourTable', texturePath: '/floors/desks/laminate/acw115.jpg', uScale: 2, vScale: 2 }),
-      new Texture({ materialName: 'fiveTable', texturePath: '/floors/desks/laminate/acw115.jpg' }),
-   ]
 }
 
 class Texture {
-   constructor({ materialName = null, texturePath = null, uScale = 1, vScale = 1, level = 1, uAng = 0 , wAng = 0}) {
+   constructor({ materialName = null, texturePath = null, uScale = 1, vScale = 1, level = 1, uAng = 0, wAng = 0 }) {
       this.materialName = materialName
       this.texturePath = texturePath
       this.uScale = uScale
