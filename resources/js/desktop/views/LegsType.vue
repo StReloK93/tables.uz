@@ -64,12 +64,12 @@ export default {
         }
     },
     mounted() {
-        let desks = Engine.textures.folders
-        this.deskMaterials = desks.folders
-        this.folderImages = desks.images
-        this.imagearr = this.folderImages[store.state.params.deskMaterial]
         scene.onReadyObservable.add(()=>{
             this.setLegColor(1)
+            let desks = Engine.textures.folders
+            this.deskMaterials = desks.folders
+            this.folderImages = desks.images
+            this.imagearr = this.folderImages[store.state.params.deskMaterial]
         })
     },
     methods: {
