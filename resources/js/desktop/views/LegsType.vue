@@ -63,13 +63,11 @@ export default {
             deskMaterials: null,
         }
     },
-    created(){
+    mounted() {
         let desks = Engine.textures.folders
         this.deskMaterials = desks.folders
         this.folderImages = desks.images
         this.imagearr = this.folderImages[store.state.params.deskMaterial]
-    },
-    mounted() {
         scene.onReadyObservable.add(()=>{
             this.setLegColor(1)
         })
