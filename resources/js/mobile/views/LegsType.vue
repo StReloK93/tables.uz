@@ -76,22 +76,20 @@ export default {
             deskMaterials: null,
         }
     },
-    async created(){
-        let desks = await Engine.textures.deskTextures()
-        this.deskMaterials = desks.folders
-        this.folderImages = desks.images
-        this.imagearr = this.folderImages[store.state.params.deskMaterial]
-    },
     mounted() {
         store.commit('setRoute', this.old)
         scene.onReadyObservable.add(()=>{
             this.setLegColor(1)
+            let desks = Engine.textures.folders
+            this.deskMaterials = desks.folders
+            this.folderImages = desks.images
+            this.imagearr = this.folderImages[store.state.params.deskMaterial]
         })
     },
     methods: {
         setLegColor(colorIndex){
             let colorArr = ['#D6D6D6','#8B8B8B','#222222']
-            let LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg','threeLegLeft', 'threeLegRight'] 
+            let LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg','threeLegLeft', 'threeLegRight', 'tumbochka']  
 
             LegsArr.forEach(legName => {
                 const leg = scene.getMaterialByName(legName)

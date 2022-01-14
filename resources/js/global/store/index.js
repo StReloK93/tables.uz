@@ -14,6 +14,8 @@ export default createStore({
             inspector: true,
             configurator: true,
             customActiveLink: 1,
+            finished: false,
+            phoneOrEmail: false,
             params: {
                 tablesCount: 1,
                 legColor: 1,

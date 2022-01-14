@@ -33,7 +33,14 @@ export default class Light{
          else{
             if(Array.isArray(node._children)){
                node._children.forEach(element => {
-                  shadowGenerator.getShadowMap().renderList.push(element);
+                  if(element._isMesh){
+                     shadowGenerator.getShadowMap().renderList.push(element);
+                  }
+                  if(Array.isArray(element._children)){
+                     element._children.forEach(elem => {
+                        shadowGenerator.getShadowMap().renderList.push(elem);
+                     });
+                  }
                })
             }
          }
@@ -51,7 +58,15 @@ export default class Light{
          else{
             if(Array.isArray(node._children)){
                node._children.forEach(element => {
-                  element.receiveShadows = true;
+                  if(element._isMesh){
+                     element.receiveShadows = true;
+                  }
+
+                  if(Array.isArray(element._children)){
+                     element._children.forEach(elem => {
+                        elem.receiveShadows = true;
+                     });
+                  }
                })
             }
          }

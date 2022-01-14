@@ -89,7 +89,7 @@ export default {
         },
         setLegColor(colorIndex){
             let colorArr = ['#D6D6D6','#8B8B8B','#222222']
-            let LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg','threeLegLeft', 'threeLegRight'] 
+            let LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg','threeLegLeft', 'threeLegRight', 'tumbochka'] 
 
             LegsArr.forEach(legName => {
                 const leg = scene.getMaterialByName(legName)

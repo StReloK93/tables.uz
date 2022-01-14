@@ -64,18 +64,25 @@
 
       <!-- Footer -->
       <main class="text-right xl:px-10 md:px-5 xl:py-7 md:py-4 bg-white shadow-custom">
-         <button class="xl:h-16 md:h-14 xl:w-52 md:w-40 bg-gray-400 hover:bg-green-700  xl:text-xl md:text-md text-center text-white rounded-xl">
+         <button @click="$store.state.finished = true" class="xl:h-16 md:h-14 xl:w-52 md:w-40 bg-gray-400 hover:bg-green-700  xl:text-xl md:text-md text-center text-white rounded-xl">
             {{$store.state.language.getQuote}}
          </button>
       </main>
       <!-- Footer -->
    </section>
+
+   <transition name="fade">
+      <Finished v-if="$store.state.finished"/>
+   </transition>
+   
+
 </template>
 <script>
 import Hotkeys from '../../global/hotkeys.js'
 import initScene from '../../global/scene/initScene'
 import Decorations from './Decorations.vue'
 import Configurator from './Configurator.vue'
+import Finished from './Finished.vue'
 import Icons from './Icons.vue'
 export default {
    data() {
@@ -128,6 +135,7 @@ export default {
       Decorations,
       Configurator,
       Icons,
+      Finished
    }
 }
 </script>
@@ -184,7 +192,7 @@ html *::-webkit-scrollbar-thumb {
    box-shadow: 0 0 0px 2px #3db7f6;
 }
 .easy-transition{
-   transition: .5s;
+   transition: .4s;
 }
 *[unselectable=on] {
     -moz-user-select: none;
