@@ -1,6 +1,6 @@
 {
-    "/js/desktop.js": "/js/desktop.js?id=9a9154c354b5a84ab3b3",
-    "/js/mobile.js": "/js/mobile.js?id=3aff54b119d29c353c44",
-    "/css/mobile.css": "/css/mobile.css?id=6806912e59f5bbdd0310",
-    "/css/desktop.css": "/css/desktop.css?id=6806912e59f5bbdd0310"
+    "/js/desktop.js": "/js/desktop.js",
+    "/js/mobile.js": "/js/mobile.js",
+    "/css/mobile.css": "/css/mobile.css",
+    "/css/desktop.css": "/css/desktop.css"
 }

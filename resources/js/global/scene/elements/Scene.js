@@ -13,6 +13,7 @@ class Scene {
 
          //stol ustidagi textura
          store.commit('setDeskMaterial', store.state.params.deskimage)
+         
       })
    }
 

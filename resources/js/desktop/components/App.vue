@@ -56,7 +56,7 @@
       <!-- Pages  -->
       <router-view class="flex-grow overflow-hidden overflow-y-auto xl:px-10 md:px-5 xl:pt-8 md:pt-4" v-slot="{ Component }">
          <transition name="fade" mode="out-in">
-            <component :is="Component" />
+            <component ref="pages" :is="Component" />
          </transition>
       </router-view>
       <!-- Pages -->
@@ -98,6 +98,7 @@ export default {
       if(localStorage.getItem('lang')){
          this.setLang(localStorage.getItem('lang'))
       }
+
    },
    computed:{
       requestFullScreen(){

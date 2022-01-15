@@ -9,10 +9,10 @@ export default [
     },
     {
         image:     new BABYLON.Vector3(1.215,19.117,-34.423),
-        plant:     new BABYLON.Vector3(3.080,1,-31.333),
-        monitor:   new BABYLON.Vector3(14.214,7.689,-31.565),
+        plant:     new BABYLON.Vector3(-1,1,-31.333),
+        monitor:   new BABYLON.Vector3(10,7.689,-31.565),
         chair:     new BABYLON.Vector3(15.661,1.381,-17.889),
-        lamp:      new BABYLON.Vector3(19.627,7.668,-31.414),
+        lamp:      new BABYLON.Vector3(15,7.668,-31.414),
         tumbochka: new BABYLON.Vector3(22.503,1.178,-29.831),
     },
     {

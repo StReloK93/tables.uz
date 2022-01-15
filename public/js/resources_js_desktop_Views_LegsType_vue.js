@@ -12,8 +12,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _components_Carusel_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Carusel.vue */ "./resources/js/desktop/components/Carusel.vue");
-/* harmony import */ var _global_LegsCoordinates__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../global/LegsCoordinates */ "./resources/js/global/LegsCoordinates.js");
-
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -36,123 +34,35 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    setDeskImage: function setDeskImage(img) {
-      store.commit('setDeskMaterial', img);
-      var images = Engine.textures.folders.images;
-
-      var _loop = function _loop(key) {
-        elem = images[key].find(function (element) {
-          if (element === store.state.params.deskimage) {
-            return store.state.params.activeFolder = key;
-          }
-        });
-
-        if (elem) {
-          return "break";
-        }
-      };
-
-      for (var key in images) {
-        var elem;
-
-        var _ret = _loop(key);
-
-        if (_ret === "break") break;
-      }
-    },
     setLegColor: function setLegColor(colorIndex) {
+      if (store.state.params.legColor == colorIndex) return;
       var colorArr = ['#D6D6D6', '#8B8B8B', '#222222'];
-      var LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg', 'threeLegLeft', 'threeLegRight', 'tumbochka'];
+      var LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg', 'threeLegLeft', 'threeLegRight', 'tumb1'];
       LegsArr.forEach(function (legName) {
-        var leg = scene.getMaterialByName(legName);
-        var albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace(); //Animate(target,ParamterToEdit,Property, Keyframes, CallbackEndAnimation no required)
+        var mesh = scene.getNodeByName(legName); // materialni topamiz
 
-        Animate(leg, 'albedoColor', COLOR3, [{
+        var albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace(); // rangni aniqlaymiz
+
+        Animate(mesh, 'material.albedoColor', COLOR3, [{
           frame: 0,
-          value: leg.albedoColor
+          value: mesh.material.albedoColor
         }, {
           frame: 15,
           value: albedoColor
-        }]);
+        }]); // aniqlangan ranga
       });
       store.state.params.legColor = colorIndex;
     },
-    //< ------------ main -- //
-    setLegType: function setLegType(legIndex) {
-      var _this2 = this;
-
-      if (store.state.params.legType == legIndex) return;
-      var activeDecors = this.getDecors();
-      activeDecors.forEach(function (Decors) {
-        if (store.state.decor[Decors]) {
-          _this2.DecorsPosition(Decors, _global_LegsCoordinates__WEBPACK_IMPORTED_MODULE_1__["default"][legIndex - 1][Decors]);
-        } else {
-          _this2.DecorsHide(Decors, _global_LegsCoordinates__WEBPACK_IMPORTED_MODULE_1__["default"][legIndex - 1][Decors]);
-        }
-      });
-      store.commit('setLegType', legIndex);
-    },
     deskFolder: function deskFolder(deskIndex) {
-      var _this3 = this;
+      var _this2 = this;
 
       this.imagearr = null;
       setTimeout(function () {
-        _this3.imagearr = _this3.folderImages[deskIndex];
+        _this2.imagearr = _this2.folderImages[deskIndex];
         store.state.params.deskMaterial = deskIndex;
       }, 100);
-    },
-    //poisk active decors
-    getDecors: function getDecors() {
-      var decors = store.state.decor;
-      var arrayWithActiveDecors = [];
+    } //< ------------ main -- //
 
-      for (var key in decors) {
-        arrayWithActiveDecors.push(key);
-      }
-
-      return arrayWithActiveDecors;
-    },
-    //hide to active decors
-    DecorsHide: function DecorsHide(node, coords) {
-      var _this4 = this;
-
-      var hide = new BABYLON.Vector3(0, 0, 0); //soralgan meshni topamiz
-
-      var mesh = scene.getNodeByName(node); //Agar bu mesh bor bolsa agar bo'lmasa uni iconcasi ciqmaydi yani this['node'] = true ishlamaydi
-
-      Animate(mesh, 'scaling', VECTOR3, [{
-        frame: 0,
-        value: mesh.scaling
-      }, {
-        frame: 10,
-        value: hide
-      }], function () {
-        _this4.DecorsPosition(node, coords, function () {
-          _this4.DecorsShow(mesh);
-        });
-      });
-    },
-    DecorsPosition: function DecorsPosition(node, position) {
-      var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};
-      var mesh = scene.getNodeByName(node);
-      Animate(mesh, 'position', VECTOR3, [{
-        frame: 0,
-        value: mesh.position
-      }, {
-        frame: 1,
-        value: position
-      }], callback());
-    },
-    DecorsShow: function DecorsShow(mesh) {
-      var show = new BABYLON.Vector3(1, 1, 1);
-      Animate(mesh, 'scaling', VECTOR3, [{
-        frame: 0,
-        value: mesh.scaling
-      }, {
-        frame: 10,
-        value: show
-      }]);
-    }
   },
   components: {
     Caruosel: _components_Carusel_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -275,7 +185,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("aside", {
       key: index,
       onClick: function onClick($event) {
-        return $options.setLegType(index + 1);
+        return _ctx.$store.commit('setLegType', index + 1);
       },
       "class": "w-1/5 pr-2 cursor-pointer"
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", {
@@ -336,7 +246,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", {
           title: index,
           onClick: function onClick($event) {
-            return $options.setDeskImage(img);
+            return _ctx.$store.commit('setDeskMaterial', img);
           },
           "class": "mb-6 xl:h-24 md:h-20 cursor-pointer"
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
@@ -476,55 +386,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   })]);
 }
-
-/***/ }),
-
-/***/ "./resources/js/global/LegsCoordinates.js":
-/*!************************************************!*\
-  !*** ./resources/js/global/LegsCoordinates.js ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
-  image: new BABYLON.Vector3(10, 19.117, -34.423),
-  plant: new BABYLON.Vector3(4.522, 1, -31),
-  monitor: new BABYLON.Vector3(17.212, 8.01698, -30.788),
-  chair: new BABYLON.Vector3(18.739, 1.38094, -20.963),
-  lamp: new BABYLON.Vector3(22.511, 6.92616, -31.4137),
-  tumbochka: new BABYLON.Vector3(22.503, 1.178, -29.831)
-}, {
-  image: new BABYLON.Vector3(1.215, 19.117, -34.423),
-  plant: new BABYLON.Vector3(3.080, 1, -31.333),
-  monitor: new BABYLON.Vector3(14.214, 7.689, -31.565),
-  chair: new BABYLON.Vector3(15.661, 1.381, -17.889),
-  lamp: new BABYLON.Vector3(19.627, 7.668, -31.414),
-  tumbochka: new BABYLON.Vector3(22.503, 1.178, -29.831)
-}, {
-  image: new BABYLON.Vector3(1.215, 19.117, -34.423),
-  plant: new BABYLON.Vector3(-3.09833, 1, -31.333),
-  monitor: new BABYLON.Vector3(15.1378, 7.7, -30.3906),
-  chair: new BABYLON.Vector3(17.7362, 1.38094, -18.8789),
-  lamp: new BABYLON.Vector3(20.8322, 7.5, -31.414),
-  tumbochka: new BABYLON.Vector3(1, 1.178, -29.831)
-}, {
-  image: new BABYLON.Vector3(9.82315, 19.117, -34.423),
-  plant: new BABYLON.Vector3(-1.77979, 1, -31.333),
-  monitor: new BABYLON.Vector3(1.45031, 7.7, -7.10365),
-  chair: new BABYLON.Vector3(9.11413, 1.38094, -2.60271),
-  lamp: new BABYLON.Vector3(22.5794, 6.95014, -31.4137),
-  tumbochka: new BABYLON.Vector3(22.503, 1.178, -29.831)
-}, {
-  image: new BABYLON.Vector3(2.96359, 19.117, -34.423),
-  plant: new BABYLON.Vector3(-1.35887, 1, -31.333),
-  monitor: new BABYLON.Vector3(13.7972, 8.52, -31.3336),
-  chair: new BABYLON.Vector3(13.1428, 1.38094, -21.123),
-  lamp: new BABYLON.Vector3(21.2717, 8.45, -31.4137),
-  tumbochka: new BABYLON.Vector3(3, 1.178, -29.831)
-}]);
 
 /***/ }),
 

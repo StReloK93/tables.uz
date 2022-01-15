@@ -45,6 +45,27 @@
 export default {
    methods: {
       setSize(sizeIndex){
+         const from = 0
+         const to = 1
+         if(store.state.params.size == sizeIndex) return
+         let animNames = ['controllerTwoAction','twoLegLeftAction', 'twoLegRightAction', 'twoTableAction', 'twoTableCircleAction','twoTableRoundedAction']
+
+
+         if(sizeIndex){
+            animNames.forEach(element => {
+               let animation = scene.getAnimationGroupByName(element)
+               animation.stop()
+               animation.start(false, 1.0, from, to, true)
+            });
+         }
+         else{
+            animNames.forEach(element => {
+               let animation = scene.getAnimationGroupByName(element)
+               animation.stop()
+               animation.start(false, 1.0, to, from, true)
+            });
+         }
+
          store.state.params.size = sizeIndex
       }
    },

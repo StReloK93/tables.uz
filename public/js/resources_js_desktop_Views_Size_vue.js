@@ -14,6 +14,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     setSize: function setSize(sizeIndex) {
+      var from = 0;
+      var to = 1;
+      if (store.state.params.size == sizeIndex) return;
+      var animNames = ['controllerTwoAction', 'twoLegLeftAction', 'twoLegRightAction', 'twoTableAction', 'twoTableCircleAction', 'twoTableRoundedAction'];
+
+      if (sizeIndex) {
+        animNames.forEach(function (element) {
+          var animation = scene.getAnimationGroupByName(element);
+          animation.stop();
+          animation.start(false, 1.0, from, to, true);
+        });
+      } else {
+        animNames.forEach(function (element) {
+          var animation = scene.getAnimationGroupByName(element);
+          animation.stop();
+          animation.start(false, 1.0, to, from, true);
+        });
+      }
+
       store.state.params.size = sizeIndex;
     }
   }
