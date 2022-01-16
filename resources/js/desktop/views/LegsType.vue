@@ -29,7 +29,7 @@
             <transition name="fade" mode="in-out">
                 <div v-if="imagearr" class="flex flex-wrap -mr-2 md:mt-2">
                     <aside class="w-1/5 pr-2" v-for="(img,index) in imagearr" :key="index">
-                        <main :title="index" @click="events.setDeskMaterial(img)" class="mb-6 xl:h-24 md:h-20 cursor-pointer">
+                        <main :title="index" @click="events.setDeskMaterial(img)" class="mb-6 xl:h-32 md:h-20 cursor-pointer">
                             <img :class="{'shadow-blue': $store.state.params.deskimage == img}" :src="`/floors/${img}`" :title="img" class="border-2 border-white rounded-md object-cover w-full h-full">
                         </main>
                     </aside>
@@ -42,7 +42,7 @@
             </h3>
             <div class="flex flex-wrap -mr-2">
                 <aside v-for="n in 3" :key="n" class="w-1/5 pr-2">
-                    <main @click="events.setLegColor(n)" class="xl:h-24 md:h-20">
+                    <main @click="events.setLegColor(n)" class="xl:h-32 md:h-20">
                         <div v-if="n == 1" :class="{'shadow-blue border-2 border-white': $store.state.params.legColor == n}" class="w-full h-full bg-white border border-gray rounded-md"></div>
                         <div v-if="n == 2" :class="{'shadow-blue': $store.state.params.legColor == n}" class="w-full h-full bg-gray-400 border-2 border-white rounded-md"></div>
                         <div v-if="n == 3" :class="{'shadow-blue': $store.state.params.legColor == n}" class="w-full h-full bg-black border-2 border-white rounded-md"></div>

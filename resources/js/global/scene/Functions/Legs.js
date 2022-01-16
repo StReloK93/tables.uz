@@ -2,14 +2,7 @@ import coords from '../../LegsCoordinates'
 
 export default class Legs {
 	setDeskMaterial(textureName) {
-		let materialNames = ['oneTable', 'twoTable', 'threeTable', 'fourTable', 'fiveTable', 'fiveShkaf']
-		materialNames.forEach(element => {
-			let material = scene.getMaterialByName(element)
-			material.albedoTexture = scene.getTextureByName(textureName)
-		});
-
-		store.state.params.deskimage = textureName
-
+      store.state.params.deskimage = textureName
 		const { images } = Engine.textures.folders
 		for (const key in images) {
 			var elem = images[key].find(element => {
@@ -21,6 +14,18 @@ export default class Legs {
 				break
 			}
 		}
+
+		let materialNames = ['oneTable', 'twoTable', 'threeTable', 'fourTable', 'fiveTable', 'fiveShkaf', 'tablesBevel']
+		materialNames.forEach(element => {
+         let material = scene.getMaterialByName(element)
+
+         if(element == 'tablesBevel' && store.state.params.activeFolder == 'desks/pyledge'){
+            return material.albedoTexture = scene.getTextureByName('desks/laminate/adh317.jpg')
+         }
+
+         material.albedoTexture = scene.getTextureByName(textureName)
+		});
+
 	}
 
 	setLegType(legIndex) {
@@ -90,12 +95,28 @@ export default class Legs {
 		if (store.state.params.legColor == colorIndex) return
 
 		let colorArr = ['#D6D6D6', '#8B8B8B', '#222222']
-		let LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg', 'threeLegLeft', 'threeLegRight', 'tumb1']
+		let LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg', 'threeLegHelpLeft', 'threeLegHelpright', 'threeLegMainLeft', 'threeLegMainRight', 'tumb1']
+
+
 
 		LegsArr.forEach(legName => {
 			const mesh = scene.getNodeByName(legName) // materialni topamiz
-			let albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace() // rangni aniqlaymiz
-			Animate(mesh, 'material.albedoColor', COLOR3, [{ frame: 0, value: mesh.material.albedoColor }, { frame: 15, value: albedoColor }]) // aniqlangan ranga
+
+			if (mesh._isMesh) {
+				let albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace() // rangni aniqlaymiz
+				Animate(mesh, 'material.albedoColor', COLOR3, [{ frame: 0, value: mesh.material.albedoColor }, { frame: 15, value: albedoColor }]) // aniqlangan ranga
+			}
+			else {
+				if (Array.isArray(mesh._children)) {
+					mesh._children.forEach(element => {
+						if (element._isMesh) {
+							let albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace() // rangni aniqlaymiz
+							Animate(element, 'material.albedoColor', COLOR3, [{ frame: 0, value: element.material.albedoColor }, { frame: 15, value: albedoColor }]) // aniqlangan ranga
+						}
+					})
+				}
+			}
+
 		})
 
 		store.state.params.legColor = colorIndex

@@ -227,7 +227,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           onClick: function onClick($event) {
             return $data.events.setDeskMaterial(img);
           },
-          "class": "mb-6 xl:h-24 md:h-20 cursor-pointer"
+          "class": "mb-6 xl:h-32 md:h-20 cursor-pointer"
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
           "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
             'shadow-blue': _ctx.$store.state.params.deskimage == img
@@ -254,7 +254,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       onClick: function onClick($event) {
         return $data.events.setLegColor(n);
       },
-      "class": "xl:h-24 md:h-20"
+      "class": "xl:h-32 md:h-20"
     }, [n == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: 0,
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
