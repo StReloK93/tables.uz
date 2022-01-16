@@ -10,17 +10,17 @@
                <div v-if="!join" class="flex items-center">
                   <main class="relative pt-1 mr-3 w-1/2">
                      <label class="absolute mix-blend-difference uppercase text-xs w-full h-full top-0 left-0 flex items-center justify-center" for="colorOne"> <span> First Wall</span></label>
-                     <input id="colorOne" class="inputColor w-full h-12" type="color" @input="wallColorChanger('wall')" v-model="colorOne">
+                     <input id="colorOne" class="inputColor w-full h-12" type="color"  @input="events.wallColorChanger('wall')" v-model="$store.state.params.wallColor">
                   </main>
                   <main class="relative pt-1 w-1/2">
                      <label class="absolute mix-blend-difference uppercase text-xs w-full h-full top-0 left-0 flex items-center justify-center" for="colorTwo"> <span> Second Wall</span></label>
-                     <input id="colorTwo" class="inputColor w-full h-12" type="color" @input="wallColorChanger('mainWall')" v-model="colorTwo">
+                     <input id="colorTwo" class="inputColor w-full h-12" type="color" @input="events.wallColorChanger('mainWall')" v-model="$store.state.params.mainWallColor">
                   </main>
                </div>
                <div v-else class="flex items-center">
                   <main class="relative pt-1 w-1/2">
                      <label class="absolute mix-blend-difference uppercase text-xs w-full h-full top-0 left-0 flex items-center justify-center" for="colorThree"> <span> All Walls</span></label>
-                     <input id="colorThree" class="inputColor w-full h-12" type="color" @input="JoinColorChanger()" v-model="colorOne">
+                     <input id="colorThree" class="inputColor w-full h-12" type="color" @input="events.JoinColorChanger()" v-model="$store.state.params.wallColor">
                   </main>
                </div>
             </transition>
@@ -41,7 +41,7 @@
          </h3>
          <div class="whitespace-nowrap px-1 py-1 overflow-hidden overflow-x-scroll noscroll -mr-2">
             <aside class="w-custom mr-2 inline-block" v-for="img in images" :key="img">
-               <main @click="$store.commit('floorImage', {textureName: img.name})">
+               <main @click="events.floorImage(img.name)">
                   <img :class="{'shadow-blue': $store.state.params.floor == img.name}" :src="img.path" class="border-2 border-white rounded-md">
                </main>
             </aside>
@@ -56,36 +56,13 @@ export default {
    data() {
       return {
          images: null,
-         colorOne: store.state.params.wallColor,
-         colorTwo: store.state.params.mainWallColor,
-         join: false
+         join: false,
+         events: Engine.Room
       }
    },
    async mounted() {
       store.commit('setRoute', this.old)
       this.images = Engine.textures.floors
-   },
-   methods:{
-      wallColorChanger(wallName){
-         store.state.params.wallColor = this.colorOne
-         store.state.params.mainWallColor = this.colorTwo
-         var material = scene.getMaterialByName(wallName)
-         if(wallName == 'wall'){
-            material.albedoColor = BABYLON.Color3.FromHexString(this.colorOne).toLinearSpace()
-         }
-         else{
-            material.albedoColor = BABYLON.Color3.FromHexString(this.colorTwo).toLinearSpace()
-         }
-      },
-      JoinColorChanger(){
-         this.colorTwo = this.colorOne
-         store.state.params.wallColor = this.colorOne
-         store.state.params.mainWallColor = this.colorOne
-         let wall = scene.getMaterialByName('wall')
-         let mainWall = scene.getMaterialByName('mainWall')
-         wall.albedoColor = BABYLON.Color3.FromHexString(this.colorOne).toLinearSpace()
-         mainWall.albedoColor = BABYLON.Color3.FromHexString(this.colorOne).toLinearSpace()
-      },
    },
 }
 </script>

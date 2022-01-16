@@ -15,10 +15,10 @@ __webpack_require__.r(__webpack_exports__);
   props: ['old'],
   data: function data() {
     return {
-      routeTag: null,
       imagearr: null,
       folderImages: null,
-      deskMaterials: null
+      deskMaterials: null,
+      events: Engine.Legs
     };
   },
   mounted: function mounted() {
@@ -26,8 +26,6 @@ __webpack_require__.r(__webpack_exports__);
 
     store.commit('setRoute', this.old);
     scene.onReadyObservable.add(function () {
-      _this.setLegColor(1);
-
       var desks = Engine.textures.folders;
       _this.deskMaterials = desks.folders;
       _this.folderImages = desks.images;
@@ -35,25 +33,6 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    setLegColor: function setLegColor(colorIndex) {
-      if (store.state.params.legColor == colorIndex) return;
-      var colorArr = ['#D6D6D6', '#8B8B8B', '#222222'];
-      var LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg', 'threeLegLeft', 'threeLegRight', 'tumb1'];
-      LegsArr.forEach(function (legName) {
-        var mesh = scene.getNodeByName(legName); // materialni topamiz
-
-        var albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace(); // rangni aniqlaymiz
-
-        Animate(mesh, 'material.albedoColor', COLOR3, [{
-          frame: 0,
-          value: mesh.material.albedoColor
-        }, {
-          frame: 15,
-          value: albedoColor
-        }]); // aniqlangan ranga
-      });
-      store.state.params.legColor = colorIndex;
-    },
     deskFolder: function deskFolder(deskIndex) {
       var _this2 = this;
 
@@ -156,7 +135,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("aside", {
           key: index,
           onClick: function onClick($event) {
-            return _ctx.$store.commit('setLegType', index + 1);
+            return $data.events.setLegType(index + 1);
           },
           "class": "w-custom inline-block mr-2"
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", {
@@ -217,7 +196,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               key: img
             }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", {
               onClick: function onClick($event) {
-                return _ctx.$store.commit('setDeskMaterial', img);
+                return $data.events.setDeskMaterial(img);
               },
               "class": "w-full h-20"
             }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
@@ -256,7 +235,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "class": "w-1/4 mr-2"
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", {
           onClick: function onClick($event) {
-            return $options.setLegColor(n);
+            return $data.events.setLegColor(n);
           },
           "class": "h-20"
         }, [n == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {

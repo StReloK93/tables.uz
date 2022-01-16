@@ -5,10 +5,10 @@
             Size
          </h3>
          <div class="text-md flex flex-wrap text-gray-600">
-            <button @click="setSize(0)" :class="{'bg-my text-white': $store.state.params.size == 0 }" class="xl:h-16 md:h-14 xl:text-md font-bold md:text-xs w-1/5 text-center rounded-xl mr-3 mb-4 border">
+            <button @click="events.setSize(0)" :class="{'bg-my text-white': $store.state.params.size == 0 }" class="xl:h-16 md:h-14 xl:text-md font-bold md:text-xs w-1/5 text-center rounded-xl mr-3 mb-4 border">
                Small
             </button>
-            <button @click="setSize(1)" :class="{'bg-my text-white': $store.state.params.size == 1 }"  class="xl:h-16 md:h-14 xl:text-md font-bold md:text-xs w-1/5 text-center rounded-xl mr-3 mb-4 border">
+            <button @click="events.setSize(1)" :class="{'bg-my text-white': $store.state.params.size == 1 }"  class="xl:h-16 md:h-14 xl:text-md font-bold md:text-xs w-1/5 text-center rounded-xl mr-3 mb-4 border">
                Large
             </button>
          </div>
@@ -43,30 +43,9 @@
 </template>
 <script>
 export default {
-   methods: {
-      setSize(sizeIndex){
-         const from = 0
-         const to = 1
-         if(store.state.params.size == sizeIndex) return
-         let animNames = ['controllerTwoAction','twoLegLeftAction', 'twoLegRightAction', 'twoTableAction', 'twoTableCircleAction','twoTableRoundedAction']
-
-
-         if(sizeIndex){
-            animNames.forEach(element => {
-               let animation = scene.getAnimationGroupByName(element)
-               animation.stop()
-               animation.start(false, 1.0, from, to, true)
-            });
-         }
-         else{
-            animNames.forEach(element => {
-               let animation = scene.getAnimationGroupByName(element)
-               animation.stop()
-               animation.start(false, 1.0, to, from, true)
-            });
-         }
-
-         store.state.params.size = sizeIndex
+   data() {
+      return {
+         events: Engine.Size
       }
    },
 }

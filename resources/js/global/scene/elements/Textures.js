@@ -39,7 +39,7 @@ class Textures {
       for (const key in this.folders.images) {
          this.folders.images[key].forEach(image => {
             const texture = this._newTexture(image, `/floors/${image}`)
-            texture.uScale = 2
+            texture.uScale = 3
             texture.vScale = 1
          })
       }

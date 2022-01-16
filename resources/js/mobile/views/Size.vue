@@ -6,10 +6,10 @@
                Size
             </h3>
             <div class="text-md flex flex-wrap text-gray-600 w-full justify-center">
-               <button @click="setSize(0)" :class="{'bg-my text-white': $store.state.params.size == 0 }" class="w-1/3 h-28 text-center rounded-xl mr-3 border">
+               <button @click="events.setSize(0)" :class="{'bg-my text-white': $store.state.params.size == 0 }" class="w-1/3 h-28 text-center rounded-xl mr-3 border">
                   Small
                </button>
-               <button @click="setSize(1)" :class="{'bg-my text-white': $store.state.params.size == 1 }"  class="w-1/3 h-28 text-center rounded-xl border">
+               <button @click="events.setSize(1)" :class="{'bg-my text-white': $store.state.params.size == 1 }"  class="w-1/3 h-28 text-center rounded-xl border">
                   Large
                </button>
             </div>
@@ -48,34 +48,13 @@
 <script>
 export default {
    props: ['old'],
-   mounted() {
-      store.commit('setRoute', this.old)
-   },
-   methods: {
-      setSize(sizeIndex){
-         const from = 0
-         const to = 1
-         if(store.state.params.size == sizeIndex) return
-         let animNames = ['controllerTwoAction','twoLegLeftAction', 'twoLegRightAction', 'twoTableAction', 'twoTableCircleAction','twoTableRoundedAction']
-
-
-         if(sizeIndex){
-            animNames.forEach(element => {
-               let animation = scene.getAnimationGroupByName(element)
-               animation.stop()
-               animation.start(false, 1.0, from, to, true)
-            });
-         }
-         else{
-            animNames.forEach(element => {
-               let animation = scene.getAnimationGroupByName(element)
-               animation.stop()
-               animation.start(false, 1.0, to, from, true)
-            });
-         }
-
-         store.state.params.size = sizeIndex
+   data() {
+      return {
+         events: Engine.Size
       }
    },
+   mounted() {
+      store.commit('setRoute', this.old)
+   }
 }
 </script>

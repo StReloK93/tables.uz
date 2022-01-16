@@ -23,9 +23,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       images: null,
-      colorOne: store.state.params.wallColor,
-      colorTwo: store.state.params.mainWallColor,
-      join: false
+      join: false,
+      events: Engine.Room
     };
   },
   mounted: function mounted() {
@@ -45,28 +44,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }, _callee);
     }))();
-  },
-  methods: {
-    wallColorChanger: function wallColorChanger(wallName) {
-      store.state.params.wallColor = this.colorOne;
-      store.state.params.mainWallColor = this.colorTwo;
-      var material = scene.getMaterialByName(wallName);
-
-      if (wallName == 'wall') {
-        material.albedoColor = BABYLON.Color3.FromHexString(this.colorOne).toLinearSpace();
-      } else {
-        material.albedoColor = BABYLON.Color3.FromHexString(this.colorTwo).toLinearSpace();
-      }
-    },
-    JoinColorChanger: function JoinColorChanger() {
-      this.colorTwo = this.colorOne;
-      store.state.params.wallColor = this.colorOne;
-      store.state.params.mainWallColor = this.colorOne;
-      var wall = scene.getMaterialByName('wall');
-      var mainWall = scene.getMaterialByName('mainWall');
-      wall.albedoColor = BABYLON.Color3.FromHexString(this.colorOne).toLinearSpace();
-      mainWall.albedoColor = BABYLON.Color3.FromHexString(this.colorOne).toLinearSpace();
-    }
   }
 });
 
@@ -144,36 +121,36 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "xl:mx-5 md:mx-3 inputColor w-20",
         type: "color",
         onInput: _cache[0] || (_cache[0] = function ($event) {
-          return $options.wallColorChanger('wall');
+          return $data.events.wallColorChanger('wall');
         }),
         "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-          return $data.colorOne = $event;
+          return _ctx.$store.state.params.wallColor = $event;
         })
       }, null, 544
       /* HYDRATE_EVENTS, NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.colorOne]]), _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.$store.state.params.wallColor]]), _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         "class": "xl:ml-5 md:ml-3 inputColor w-20",
         type: "color",
         onInput: _cache[2] || (_cache[2] = function ($event) {
-          return $options.wallColorChanger('mainWall');
+          return $data.events.wallColorChanger('mainWall');
         }),
         "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-          return $data.colorTwo = $event;
+          return _ctx.$store.state.params.mainWallColor = $event;
         })
       }, null, 544
       /* HYDRATE_EVENTS, NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.colorTwo]])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.$store.state.params.mainWallColor]])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         "class": "xl:ml-5 md:ml-3 inputColor w-20",
         type: "color",
         onInput: _cache[4] || (_cache[4] = function ($event) {
-          return $options.JoinColorChanger();
+          return $data.events.JoinColorChanger();
         }),
         "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
-          return $data.colorOne = $event;
+          return _ctx.$store.state.params.wallColor = $event;
         })
       }, null, 544
       /* HYDRATE_EVENTS, NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.colorOne]])]))];
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.$store.state.params.wallColor]])]))];
     }),
     _: 1
     /* STABLE */
@@ -192,9 +169,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: img
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", {
       onClick: function onClick($event) {
-        return _ctx.$store.commit('floorImage', {
-          textureName: img.name
-        });
+        return $data.events.floorImage(img.name);
       },
       "class": "mb-6 cursor-pointer"
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {

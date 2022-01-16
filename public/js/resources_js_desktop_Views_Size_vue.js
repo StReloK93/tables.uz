@@ -12,29 +12,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  methods: {
-    setSize: function setSize(sizeIndex) {
-      var from = 0;
-      var to = 1;
-      if (store.state.params.size == sizeIndex) return;
-      var animNames = ['controllerTwoAction', 'twoLegLeftAction', 'twoLegRightAction', 'twoTableAction', 'twoTableCircleAction', 'twoTableRoundedAction'];
-
-      if (sizeIndex) {
-        animNames.forEach(function (element) {
-          var animation = scene.getAnimationGroupByName(element);
-          animation.stop();
-          animation.start(false, 1.0, from, to, true);
-        });
-      } else {
-        animNames.forEach(function (element) {
-          var animation = scene.getAnimationGroupByName(element);
-          animation.stop();
-          animation.start(false, 1.0, to, from, true);
-        });
-      }
-
-      store.state.params.size = sizeIndex;
-    }
+  data: function data() {
+    return {
+      events: Engine.Size
+    };
   }
 });
 
@@ -71,7 +52,7 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVN
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
-      return $options.setSize(0);
+      return $data.events.setSize(0);
     }),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
       'bg-my text-white': _ctx.$store.state.params.size == 0
@@ -80,7 +61,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* CLASS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[1] || (_cache[1] = function ($event) {
-      return $options.setSize(1);
+      return $data.events.setSize(1);
     }),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
       'bg-my text-white': _ctx.$store.state.params.size == 1

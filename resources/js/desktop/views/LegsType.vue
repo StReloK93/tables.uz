@@ -5,7 +5,7 @@
                 Available legs
             </h3>
             <div class="flex text-center justify-between -mr-2">
-                <aside v-for="(legs , index) in $store.state.legTypes" :key="index" @click="$store.commit('setLegType', index + 1)" class="w-1/5 pr-2 cursor-pointer">
+                <aside v-for="(legs , index) in $store.state.legTypes" :key="index" @click="events.setLegType(index + 1)" class="w-1/5 pr-2 cursor-pointer">
 					<section  :class="{'border-myblue': $store.state.params.legType == index + 1}" class="p-2 pt-1 overflow-hidden rounded-xl border bg-white">
 						<main class="xl:h-28 md:h-24 flex items-center justify-center">
 							<img :src="legs.img" class="w-10/12">
@@ -29,7 +29,7 @@
             <transition name="fade" mode="in-out">
                 <div v-if="imagearr" class="flex flex-wrap -mr-2 md:mt-2">
                     <aside class="w-1/5 pr-2" v-for="(img,index) in imagearr" :key="index">
-                        <main :title="index" @click="$store.commit('setDeskMaterial', img)" class="mb-6 xl:h-24 md:h-20 cursor-pointer">
+                        <main :title="index" @click="events.setDeskMaterial(img)" class="mb-6 xl:h-24 md:h-20 cursor-pointer">
                             <img :class="{'shadow-blue': $store.state.params.deskimage == img}" :src="`/floors/${img}`" :title="img" class="border-2 border-white rounded-md object-cover w-full h-full">
                         </main>
                     </aside>
@@ -42,7 +42,7 @@
             </h3>
             <div class="flex flex-wrap -mr-2">
                 <aside v-for="n in 3" :key="n" class="w-1/5 pr-2">
-                    <main @click="setLegColor(n)" class="xl:h-24 md:h-20">
+                    <main @click="events.setLegColor(n)" class="xl:h-24 md:h-20">
                         <div v-if="n == 1" :class="{'shadow-blue border-2 border-white': $store.state.params.legColor == n}" class="w-full h-full bg-white border border-gray rounded-md"></div>
                         <div v-if="n == 2" :class="{'shadow-blue': $store.state.params.legColor == n}" class="w-full h-full bg-gray-400 border-2 border-white rounded-md"></div>
                         <div v-if="n == 3" :class="{'shadow-blue': $store.state.params.legColor == n}" class="w-full h-full bg-black border-2 border-white rounded-md"></div>
@@ -60,11 +60,11 @@ export default {
             imagearr: null,
             folderImages: null,
             deskMaterials: null,
+            events: Engine.Legs
         }
     },
     mounted() {
         scene.onReadyObservable.add(()=>{
-            this.setLegColor(1)
             let desks = Engine.textures.folders
             this.deskMaterials = desks.folders
             this.folderImages = desks.images
@@ -72,21 +72,6 @@ export default {
         })
     },
     methods: {
-        setLegColor(colorIndex){
-            if(store.state.params.legColor == colorIndex) return
-            
-            let colorArr = ['#D6D6D6','#8B8B8B','#222222']
-            let LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg','threeLegLeft', 'threeLegRight', 'tumb1'] 
-
-            LegsArr.forEach(legName => {
-                const mesh = scene.getNodeByName(legName) // materialni topamiz
-                let albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace() // rangni aniqlaymiz
-                Animate(mesh, 'material.albedoColor', COLOR3, [{frame: 0,value: mesh.material.albedoColor},{frame: 15,value: albedoColor}]) // aniqlangan ranga
-            })
-
-            store.state.params.legColor = colorIndex
-        },
-
         deskFolder(deskIndex){
             this.imagearr = null
             setTimeout(()=>{
@@ -94,7 +79,6 @@ export default {
                 store.state.params.deskMaterial = deskIndex
             },100)
         },
-        //< ------------ main -- //
     },
     components:{
         Caruosel

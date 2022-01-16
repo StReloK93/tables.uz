@@ -13,13 +13,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['old'],
+  data: function data() {
+    return {
+      events: Engine.Size
+    };
+  },
   mounted: function mounted() {
     store.commit('setRoute', this.old);
-  },
-  methods: {
-    setSize: function setSize(sizeIndex) {
-      store.state.params.size = sizeIndex;
-    }
   }
 });
 
@@ -98,7 +98,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
         onClick: _cache[0] || (_cache[0] = function ($event) {
-          return $options.setSize(0);
+          return $data.events.setSize(0);
         }),
         "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
           'bg-my text-white': _ctx.$store.state.params.size == 0
@@ -107,7 +107,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* CLASS */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
         onClick: _cache[1] || (_cache[1] = function ($event) {
-          return $options.setSize(1);
+          return $data.events.setSize(1);
         }),
         "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
           'bg-my text-white': _ctx.$store.state.params.size == 1

@@ -62,9 +62,6 @@ export default {
 }
 </script>
 <style>
-.config{
-
-}
 .config.router-link-active{
     background-color: #3DB7F6;
     color: white;

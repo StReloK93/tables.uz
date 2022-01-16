@@ -1,18 +1,19 @@
 class Scene {
-   DefautLeg = 2
+   DefaultLeg = 2
+   DefaultFloor = 'floor1'
    constructor(canvas) {
       this.createScene(canvas)
       this.expansion()
 
       scene.onReadyObservable.add(()=>{
          //Default texturani urnatadi
-         store.commit('floorImage', {scene: scene,textureName: 'floor1'})
+         Engine.Room.floorImage(this.DefaultFloor)
 
          //Default Stolni urnatadi
-         store.commit('setLegType', this.DefautLeg)
+         Engine.Legs.setLegType(this.DefaultLeg)
 
          //stol ustidagi textura
-         store.commit('setDeskMaterial', store.state.params.deskimage)
+         Engine.Legs.setDeskMaterial(store.state.params.deskimage)
          
       })
    }
