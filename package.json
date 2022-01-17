@@ -10,8 +10,8 @@
         "production": "mix --production"
     },
     "dependencies": {
-        "@babylonjs/core": "^4.2.0",
-        "@babylonjs/loaders": "^4.2.0",
+        "@babylonjs/core": "^4.2.1",
+        "@babylonjs/loaders": "^4.2.1",
         "laravel-mix": "^6.0.39",
         "vue-router": "^4.0.12",
         "vuex": "^4.0.2"
