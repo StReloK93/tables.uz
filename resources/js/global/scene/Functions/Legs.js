@@ -7,7 +7,7 @@ export default class Legs {
 		const { images } = Engine.textures.folders
 		for (const key in images) {
 			var elem = images[key].find(element => {
-				if (element === store.state.params.deskimage) {
+				if (element.path === store.state.params.deskimage) {
 					return store.state.params.activeFolder = key
 				}
 			});
@@ -41,7 +41,7 @@ export default class Legs {
 
 		if (store.state.params.legType == 2 && store.state.params.activeFolder == 'desks/bamboo') {
 			deskFolder('desks/laminate')
-			setDeskMaterial('desks/laminate/acw115.jpg')
+			setDeskMaterial('desks/laminate/cw115.jpg')
 		}
 
 		decornames.forEach(Decors => {

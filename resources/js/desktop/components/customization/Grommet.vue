@@ -3,7 +3,7 @@
         <h3 class="font-bold mb-4 xl:text-xl md:text-md text-gray-600">Grommet Holes</h3>
         <main class="flex -mr-2 text-center pb-10">
             <aside class="pr-2 w-1/3">
-                <div @click="setGrommet(1)" :class="{'border-myblue': $store.state.custom.grommet == 1}" class="cursor-pointer xl:pt-8 md:pt-4 pb-2 text-center relative border border-transparent">
+                <div @click="events.setGrommet(1)" :class="{'border-myblue': $store.state.custom.grommet == 1}" class="cursor-pointer xl:pt-8 md:pt-4 pb-2 text-center relative border border-transparent">
                     <img v-if="$store.state.custom.grommet == 1" src="/images/true.jpg" class="w-6 -m-3 absolute top-0 right-0 z-20">
                     <main class="mb-8">
                         <svg class="inline scaling" width="111" height="76" viewBox="0 0 111 76" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -29,7 +29,7 @@
                 </div>
             </aside>
             <aside class="pr-2 w-1/3">
-                <div @click="setGrommet(2)" :class="{'border-myblue': $store.state.custom.grommet == 2}" class="cursor-pointer xl:pt-8 md:pt-4 pb-2 border border-transparent relative">
+                <div @click="events.setGrommet(2)" :class="{'border-myblue': $store.state.custom.grommet == 2}" class="cursor-pointer xl:pt-8 md:pt-4 pb-2 border border-transparent relative">
                     <img v-if="$store.state.custom.grommet == 2" src="/images/true.jpg" class="w-6 -m-3 absolute top-0 right-0 z-20">
                     <main class="mb-8">
                         <svg class="inline scaling" width="111" height="76" viewBox="0 0 111 76" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,7 +55,7 @@
                 </div>
             </aside>
             <aside class="pr-2 w-1/3">
-                <div @click="setGrommet(3)" :class="{'border-myblue': $store.state.custom.grommet == 3}" class="cursor-pointer xl:pt-8 md:pt-4 pb-2 border border-transparent relative">
+                <div @click="events.setGrommet(3)" :class="{'border-myblue': $store.state.custom.grommet == 3}" class="cursor-pointer xl:pt-8 md:pt-4 pb-2 border border-transparent relative">
                     <img v-if="$store.state.custom.grommet == 3" src="/images/true.jpg" class="w-6 -m-3 absolute top-0 right-0 z-20">
                     <main class="mb-8">
                         <svg class="inline scaling" width="111" height="76" viewBox="0 0 111 76" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,12 +85,9 @@
 </template>
 <script>
 export default {
-    methods:{
-        setGrommet(index){
-            if(index == store.state.custom.grommet){
-                return store.state.custom.grommet = 0
-            }
-            store.state.custom.grommet = index
+    data() {
+        return {
+            events: Engine.Customization
         }
     }
 }

@@ -38,7 +38,7 @@ class Textures {
       this.folders = await store.dispatch('deskTextures')
       for (const key in this.folders.images) {
          this.folders.images[key].forEach(image => {
-            const texture = this._newTexture(image, `/floors/${image}`)
+            const texture = this._newTexture(image.path, `/floors/${image.path}`)
             if(key == 'desks/melamineglass'){
                texture.uScale = 1
             }

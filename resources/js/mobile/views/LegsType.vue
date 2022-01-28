@@ -37,8 +37,8 @@
                 <transition name="fade" mode="in-out">
                     <div v-if="imagearr" class="text-xs whitespace-nowrap py-1 px-1  overflow-hidden overflow-x-scroll noscroll -mr-1">
                         <aside class="w-20 mr-1 inline-block" v-for="img in imagearr" :key="img">
-                            <main @click="events.setDeskMaterial(img)" class="w-full h-20">
-                                <img :class="{'shadow-blue': $store.state.params.deskimage == img}" :src="`/floors/${img}`" :title="img" class="border-2 border-white rounded-md object-cover w-full h-full">
+                            <main @click="events.setDeskMaterial(img.path)" class="w-full h-20">
+                                <img :class="{'shadow-blue': $store.state.params.deskimage == img.path}" :src="`/floors/${img.path}`" :title="img.path" class="border-2 border-white rounded-md object-cover w-full h-full">
                             </main>
                         </aside>
                     </div>
@@ -83,7 +83,7 @@ export default {
             let desks = Engine.textures.folders
             this.deskMaterials = desks.folders
 
-            if(this.deskMaterials.length == 9){
+            if(this.deskMaterials.length == 8){
                 const index = this.deskMaterials.find((texture,index) => {
                     if(texture.path == 'desks/bamboo'){
                         return index

@@ -18,8 +18,6 @@ class TextureController extends Controller
         $folders = [];
 
 
-
-
         foreach ($directories as $key => $value) {
             switch ($value) {
                 case "desks/bamboo":
@@ -61,9 +59,19 @@ class TextureController extends Controller
             }
         }
 
-        foreach ($directories as $key => $value) {
-            $images[$value] = Storage::disk('textures')->files($value);
+        
+        foreach ($directories as $value) {
+            $files = Storage::disk('textures')->allFiles($value);
+            $easy = [];
+            foreach ($files as $key => $image) {
+                $urlToFile = Storage::disk('textures')->url($image);
+
+                $easy[$key]['path'] = $image;
+                $easy[$key]['file'] = pathinfo($urlToFile)['filename'];
+            }
+            $images[$value] = $easy;
         }
+
 
         $data = [
             'images' => $images,

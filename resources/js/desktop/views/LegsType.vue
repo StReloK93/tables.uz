@@ -33,9 +33,10 @@
             <transition name="fade" mode="in-out">
                 <div v-if="imagearr" class="flex flex-wrap -mr-2 md:mt-2">
                     <aside class="w-1/5 pr-2" v-for="(img,index) in imagearr" :key="index">
-                        <main :title="index" @click="events.setDeskMaterial(img)" class="mb-6 xl:h-32 md:h-20 cursor-pointer">
-                            <img :class="{'shadow-blue': $store.state.params.deskimage == img}" :src="`/floors/${img}`" :title="img" class="border-2 border-white rounded-md object-cover w-full h-full">
+                        <main :title="index" @click="events.setDeskMaterial(img.path)" class="xl:h-32 md:h-20 cursor-pointer">
+                            <img :class="{'shadow-blue': $store.state.params.deskimage == img.path}" :src="`/floors/${img.path}`" :title="img.path" class="border-2 border-white rounded-md object-cover w-full h-full">
                         </main>
+                        <p class="text-center mb-1 uppercase">{{img.file}}</p>
                     </aside>
                 </div>
             </transition>
@@ -71,14 +72,12 @@ export default {
         scene.onReadyObservable.add(()=>{
             let desks = Engine.textures.folders
             this.deskMaterials = desks.folders
-
-            if(this.deskMaterials.length == 9){
+            if(this.deskMaterials.length == 8){
                 const index = this.deskMaterials.find((texture,index) => {
                     if(texture.path == 'desks/bamboo'){
                         return index
                     }
                 })
-    
                 this.deskMaterials.splice(index, 1);
             }
 
