@@ -6,7 +6,7 @@
                     Available legs
                 </h3>
                 <div class="text-center whitespace-nowrap py-1 overflow-hidden overflow-x-scroll noscroll -mr-2">
-                    <aside v-for="(legs , index) in $store.state.legTypes" :key="index" @click="events.setLegType(index + 1)" class="w-custom inline-block mr-2">
+                    <aside v-for="(legs , index) in $store.state.legTypes" :key="index" @click="events.setLegType(index + 1, deskFolder ,events.setDeskMaterial)" class="w-custom inline-block mr-2">
                         <section  :class="{'border-myblue': $store.state.params.legType == index + 1}" class="py-2 rounded-md border border-transparent">
                             <main class="h-20 flex items-center justify-center">
                                 <img :src="legs.img" class="w-9/12">
@@ -27,6 +27,9 @@
                     Standing desk material
                 </h3>
                 <aside class="text-center text-xs whitespace-nowrap py-1 overflow-hidden overflow-x-scroll noscroll -mr-2">
+                    <main v-if="$store.state.params.legType == 2"  class="w-28 inline-block align-middle mr-2">
+                        <button  @click="deskFolder('desks/bamboo')" :class="{'bg-my text-white': $store.state.params.deskMaterial == 'desks/bamboo'}" v-html="'Bamboo'" class="leading-none h-8 w-full rounded-md border"></button>
+                    </main>
                     <main v-for="materials in deskMaterials" :key="materials" class="w-28 inline-block align-middle mr-2">
                         <button @click="deskFolder(materials.path)" :class="{'bg-my text-white': $store.state.params.deskMaterial == materials.path}" v-html="materials.text" class="leading-none h-8 w-full rounded-md border"></button>
                     </main>
@@ -79,6 +82,17 @@ export default {
         scene.onReadyObservable.add(()=>{
             let desks = Engine.textures.folders
             this.deskMaterials = desks.folders
+
+            if(this.deskMaterials.length == 9){
+                const index = this.deskMaterials.find((texture,index) => {
+                    if(texture.path == 'desks/bamboo'){
+                        return index
+                    }
+                })
+    
+                this.deskMaterials.splice(index, 1);
+            }
+
             this.folderImages = desks.images
             this.imagearr = this.folderImages[store.state.params.deskMaterial]
         })

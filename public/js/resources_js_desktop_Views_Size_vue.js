@@ -34,6 +34,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
+  key: 0,
   "class": "xl:pb-4"
 };
 
@@ -50,7 +51,7 @@ var _hoisted_3 = {
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<main class=\"xl:pb-8\"><h3 class=\"font-bold xl:mb-6 md:mb-4 xl:text-xl md:text-md text-gray-600\"> Enter your requested size </h3><aside class=\"flex\"><main class=\"mr-4\"><p class=\"mb-2 text-gray-400 xl:text-md md:text-sm\">Lenght</p><div><input placeholder=\"00mm\" type=\"text\" class=\"rounded-lg w-32 border border-indigo-900 xl:p-3 md:p-2 outline-none focus:border-blue-600\"></div></main><main class=\"mr-4\"><p class=\"mb-2 text-gray-400 xl:text-md md:text-sm\"> Width </p><div><input placeholder=\"00mm\" type=\"text\" class=\"rounded-lg w-32 border border-indigo-900 xl:p-3 md:p-2 outline-none focus:border-blue-600\"></div></main><main><p class=\"mb-2 text-gray-400 xl:text-md md:text-sm\"> Thickness </p><div><input placeholder=\"00mm\" type=\"text\" class=\"rounded-lg w-32 border border-indigo-900 xl:p-3 md:p-2 outline-none focus:border-blue-600\"></div></main></aside></main>", 1);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", null, [_ctx.$store.state.params.legType == 2 || _ctx.$store.state.params.legType == 3 || _ctx.$store.state.params.legType == 4 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("main", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $data.events.setSize(0);
     }),
@@ -68,7 +69,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, "xl:h-16 md:h-14 xl:text-md font-bold md:text-xs w-1/5 text-center rounded-xl mr-3 mb-4 border"])
   }, " Large ", 2
   /* CLASS */
-  )])]), _hoisted_4]);
+  )])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_4]);
 }
 
 /***/ }),

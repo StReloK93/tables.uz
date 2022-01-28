@@ -24,7 +24,7 @@ export default createStore({
 				wallColor: '#ffffff',
 				mainWallColor: '#182249',
 				floor: null,
-				deskMaterial: 'desks/bamboo',
+				deskMaterial: 'desks/laminate',
 				deskimage: 'desks/laminate/acw115.jpg',
 				activeFolder: 'desks/laminate'
 			},
@@ -87,14 +87,28 @@ export default createStore({
 		setCorner(state, indexCorners) {
 			state.custom.corners = indexCorners
 
-			let ArraySharpes = [
-				//sharp
-				['oneTable', 'twoTable', 'threeTableRight', 'threeTableLeft', 'fourTable', 'fiveTable'],
-				//circle
-				['oneTableCircle', 'twoTableCircle', 'threeTableCircleRight', 'threeTableCirlceLeft', 'fourTableCircle', 'fiveTableCircle'],
-				//rounded
-				['oneTableRounded', 'twoTableRounded', 'threeTableRoundedRight', 'threeTableRoundedLeft', 'fourTableRounded', 'fiveTableRounded']
-			]
+			if(state.params.deskMaterial == 'desks/bamboo'){
+				var ArraySharpes = [
+					//sharp
+					['oneTable', 'twoTableBambuk', 'threeTableRight', 'threeTableLeft', 'fourTable', 'fiveTable'],
+					//circle
+					['oneTableCircle', 'twoTableBambukCircle', 'threeTableCircleRight', 'threeTableCirlceLeft', 'fourTableCircle', 'fiveTableCircle'],
+					//rounded
+					['oneTableRounded', 'twoTableBambukRounded', 'threeTableRoundedRight', 'threeTableRoundedLeft', 'fourTableRounded', 'fiveTableRounded'],
+					['twoTable','twoTableCircle','twoTableRounded']
+				]
+			}
+			else{
+				var ArraySharpes = [
+					//sharp
+					['oneTable', 'twoTable', 'threeTableRight', 'threeTableLeft', 'fourTable', 'fiveTable'],
+					//circle
+					['oneTableCircle', 'twoTableCircle', 'threeTableCircleRight', 'threeTableCirlceLeft', 'fourTableCircle', 'fiveTableCircle'],
+					//rounded
+					['oneTableRounded', 'twoTableRounded', 'threeTableRoundedRight', 'threeTableRoundedLeft', 'fourTableRounded', 'fiveTableRounded'],
+					['twoTableBambuk','twoTableBambukCircle','twoTableBambukRounded']
+				]
+			}
 
 			ArraySharpes.forEach((element, index) => {
 				element.forEach(tables => {

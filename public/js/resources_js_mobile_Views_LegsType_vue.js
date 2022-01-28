@@ -28,6 +28,17 @@ __webpack_require__.r(__webpack_exports__);
     scene.onReadyObservable.add(function () {
       var desks = Engine.textures.folders;
       _this.deskMaterials = desks.folders;
+
+      if (_this.deskMaterials.length == 9) {
+        var index = _this.deskMaterials.find(function (texture, index) {
+          if (texture.path == 'desks/bamboo') {
+            return index;
+          }
+        });
+
+        _this.deskMaterials.splice(index, 1);
+      }
+
       _this.folderImages = desks.images;
       _this.imagearr = _this.folderImages[store.state.params.deskMaterial];
     });
@@ -102,18 +113,22 @@ var _hoisted_9 = /*#__PURE__*/_withScopeId(function () {
 var _hoisted_10 = {
   "class": "text-center text-xs whitespace-nowrap py-1 overflow-hidden overflow-x-scroll noscroll -mr-2"
 };
-var _hoisted_11 = ["onClick", "innerHTML"];
-var _hoisted_12 = {
+var _hoisted_11 = {
+  key: 0,
+  "class": "w-28 inline-block align-middle mr-2"
+};
+var _hoisted_12 = ["onClick", "innerHTML"];
+var _hoisted_13 = {
   key: 0,
   "class": "text-xs whitespace-nowrap py-1 px-1 overflow-hidden overflow-x-scroll noscroll -mr-1"
 };
-var _hoisted_13 = ["onClick"];
-var _hoisted_14 = ["src", "title"];
-var _hoisted_15 = {
+var _hoisted_14 = ["onClick"];
+var _hoisted_15 = ["src", "title"];
+var _hoisted_16 = {
   "class": "miniRoutes"
 };
 
-var _hoisted_16 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_17 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
     "class": "color-title text-center font-medium text-xl mb-3 text-gray-600"
   }, " Choose the leg color ", -1
@@ -121,10 +136,10 @@ var _hoisted_16 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_17 = {
+var _hoisted_18 = {
   "class": "flex flex-wrap w-full justify-center -mr-2"
 };
-var _hoisted_18 = ["onClick"];
+var _hoisted_19 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
     name: "fade",
@@ -135,7 +150,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("aside", {
           key: index,
           onClick: function onClick($event) {
-            return $data.events.setLegType(index + 1);
+            return $data.events.setLegType(index + 1, $options.deskFolder, $data.events.setDeskMaterial);
           },
           "class": "w-custom inline-block mr-2"
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", {
@@ -168,7 +183,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     mode: "out-in"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.deskMaterials, function (materials) {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_10, [_ctx.$store.state.params.legType == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("main", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        onClick: _cache[0] || (_cache[0] = function ($event) {
+          return $options.deskFolder('desks/bamboo');
+        }),
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
+          'bg-my text-white': _ctx.$store.state.params.deskMaterial == 'desks/bamboo'
+        }, "leading-none h-8 w-full rounded-md border"]),
+        innerHTML: 'Bamboo'
+      }, null, 2
+      /* CLASS */
+      )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.deskMaterials, function (materials) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("main", {
           key: materials,
           "class": "w-28 inline-block align-middle mr-2"
@@ -182,7 +207,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           innerHTML: materials.text
         }, null, 10
         /* CLASS, PROPS */
-        , _hoisted_11)]);
+        , _hoisted_12)]);
       }), 128
       /* KEYED_FRAGMENT */
       ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
@@ -190,7 +215,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         mode: "in-out"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [$data.imagearr ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.imagearr, function (img) {
+          return [$data.imagearr ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.imagearr, function (img) {
             return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("aside", {
               "class": "w-20 mr-1 inline-block",
               key: img
@@ -207,9 +232,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               title: img
             }, null, 10
             /* CLASS, PROPS */
-            , _hoisted_14)], 8
+            , _hoisted_15)], 8
             /* PROPS */
-            , _hoisted_13)]);
+            , _hoisted_14)]);
           }), 128
           /* KEYED_FRAGMENT */
           ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
@@ -229,7 +254,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     mode: "out-in"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(3, function (n) {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(3, function (n) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", {
           key: n,
           "class": "w-1/4 mr-2"
@@ -261,7 +286,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* CLASS */
         )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 8
         /* PROPS */
-        , _hoisted_18)]);
+        , _hoisted_19)]);
       }), 64
       /* STABLE_FRAGMENT */
       ))])], 512

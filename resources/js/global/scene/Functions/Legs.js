@@ -1,8 +1,9 @@
 import coords from '../../LegsCoordinates'
+import store from '../../store';
 
 export default class Legs {
 	setDeskMaterial(textureName) {
-      store.state.params.deskimage = textureName
+		store.state.params.deskimage = textureName
 		const { images } = Engine.textures.folders
 		for (const key in images) {
 			var elem = images[key].find(element => {
@@ -17,23 +18,30 @@ export default class Legs {
 
 		let materialNames = ['oneTable', 'twoTable', 'threeTable', 'fourTable', 'fiveTable', 'fiveShkaf', 'tablesBevel']
 		materialNames.forEach(element => {
-         let material = scene.getMaterialByName(element)
+			let material = scene.getMaterialByName(element)
 
-         if(element == 'tablesBevel' && store.state.params.activeFolder == 'desks/pyledge'){
-            return material.albedoTexture = scene.getTextureByName('desks/laminate/adh317.jpg')
-         }
+			if (element == 'tablesBevel' && store.state.params.activeFolder == 'desks/pyledge') {
+				return material.albedoTexture = scene.getTextureByName('desks/laminate/adh317.jpg')
+			}
 
-         material.albedoTexture = scene.getTextureByName(textureName)
+			material.albedoTexture = scene.getTextureByName(textureName)
 		});
 
+		store.commit('setCorner', store.state.custom.corners)
 	}
 
-	setLegType(legIndex) {
+	setLegType(legIndex, deskFolder = () => { }, setDeskMaterial = () => { }) {
 		if (store.state.params.legType == legIndex) return;
 
 		let decornames = []
 		for (const key in store.state.decor) {
 			decornames.push(key)
+		}
+
+
+		if (store.state.params.legType == 2 && store.state.params.activeFolder == 'desks/bamboo') {
+			deskFolder('desks/laminate')
+			setDeskMaterial('desks/laminate/acw115.jpg')
 		}
 
 		decornames.forEach(Decors => {
@@ -48,6 +56,7 @@ export default class Legs {
 		});
 
 		this.setLeg(legIndex)
+
 	}
 
 	setLeg(defaultLeg) {
