@@ -21,7 +21,7 @@ export default class Legs {
 			let material = scene.getMaterialByName(element)
 
 			if (element == 'tablesBevel' && store.state.params.activeFolder == 'desks/pyledge') {
-				return material.albedoTexture = scene.getTextureByName('desks/laminate/adh317.jpg')
+				return material.albedoTexture = scene.getTextureByName('desks/laminate/dh317.jpg')
 			}
 
 			material.albedoTexture = scene.getTextureByName(textureName)
