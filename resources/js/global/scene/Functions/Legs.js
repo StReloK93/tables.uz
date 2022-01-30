@@ -16,7 +16,7 @@ export default class Legs {
 			}
 		}
 
-		let materialNames = ['oneTable', 'twoTable', 'threeTable', 'fourTable', 'fiveTable', 'fiveShkaf', 'tablesBevel']
+		let materialNames = ['oneTable', 'twoTable', 'threeTable', 'fourTable', 'fiveTable', 'fiveShkaf', 'tablesBevel','solidedge']
 		materialNames.forEach(element => {
 			let material = scene.getMaterialByName(element)
 
@@ -30,7 +30,8 @@ export default class Legs {
 		store.commit('setCorner', store.state.custom.corners)
 	}
 
-	setLegType(legIndex, deskFolder = () => { }, setDeskMaterial = () => { }) {
+	setLegType(legIndex, deskFolder = () => { }, setDeskMaterial = () => { }, assignTextures = () => { }) {
+		assignTextures(legIndex)
 		if (store.state.params.legType == legIndex) return;
 
 		let decornames = []
@@ -38,8 +39,10 @@ export default class Legs {
 			decornames.push(key)
 		}
 
-
-		if (store.state.params.legType == 2 && store.state.params.activeFolder == 'desks/bamboo') {
+		if (
+			   store.state.params.legType == 2 && store.state.params.activeFolder == 'desks/bamboo' 
+			|| store.state.params.legType == 2 && store.state.params.activeFolder == 'desks/solidedge'
+			|| legIndex == 3 && store.state.params.activeFolder == 'desks/pyledge') {
 			deskFolder('desks/laminate')
 			setDeskMaterial('desks/laminate/cw115.jpg')
 		}

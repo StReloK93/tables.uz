@@ -7,7 +7,7 @@
 		</transition>
       <aside class="overflow-hidden flex-grow py-3">
          <main ref="mainBlock" :style="transform" :class="{'-ml-2':prosent == 0}" class=" whitespace-nowrap easy-transition">
-				<slot></slot>
+			<slot></slot>
          </main>
       </aside>
 		<transition name="fades" mode="out-in">

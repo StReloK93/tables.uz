@@ -39,13 +39,14 @@ class Textures {
       for (const key in this.folders.images) {
          this.folders.images[key].forEach(image => {
             const texture = this._newTexture(image.path, `/floors/${image.path}`)
-            if(key == 'desks/melamineglass'){
+            if(key == 'desks/melamineglass' || key == 'desks/solidedge'){
                texture.uScale = 1
             }
             else{
                texture.uScale = 2
             }
             texture.vScale = 1
+            texture.uAng = Math.PI
          })
       }
    }
@@ -69,6 +70,9 @@ class Textures {
       { uScale: 2.5, vScale: 3, wAng: Math.PI / 2 },
       { uScale: 3, vScale: 4, wAng: 0 },
       { uScale: 3, vScale: 4, wAng: 0 },
+      { uScale: 3, vScale: 4, wAng: 0 },
+      { uScale: 3, vScale: 4, wAng: 0 },
+      { uScale: 3, vScale: 4, wAng: 0 },
    ]
 
    _AmbientTextures = [
@@ -90,6 +94,7 @@ class Textures {
       //Tables
       new Texture({ uAng: Math.PI, materialName: 'oneTable', texturePath: '/textures/oneTable.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'twoTable', texturePath: '/textures/twoTable.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'solidedge', texturePath: '/textures/solidedge.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'threeTable', texturePath: '/textures/threeTable.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'fourTable', texturePath: '/textures/fourTable.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'fiveTable', texturePath: '/textures/fiveTable.jpg' }),

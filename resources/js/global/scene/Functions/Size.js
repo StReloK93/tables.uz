@@ -5,7 +5,7 @@ export default class Size {
 		if (store.state.params.size == sizeIndex) return
 		let animNames = [
 			//two Table
-			'controllerTwoAction', 'twoLegLeftAction', 'twoLegRightAction', 'twoTableAction', 'twoTableCircleAction', 'twoTableRoundedAction',
+			'controllerTwoAction', 'twoLegLeftAction', 'twoLegRightAction', 'twoTableAction', 'twoTableCircleAction', 'twoTableRoundedAction', 'twoLiveEdge',
 			//Four Table Actions
 			'controllerFourAction', 'fourLegLeftAction', 'fourLegRightAction', 'fourTableAction', 'fourTableCircleAction', 'fourTableRoundedAction',
 

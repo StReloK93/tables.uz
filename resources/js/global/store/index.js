@@ -98,6 +98,17 @@ export default createStore({
 					['twoTable','twoTableCircle','twoTableRounded']
 				]
 			}
+			else if(state.params.deskMaterial == 'desks/solidedge'){
+				var ArraySharpes = [
+					//sharp
+					['oneTable', 'twoLiveEdge', 'threeTableRight', 'threeTableLeft', 'fourTable', 'fiveTable'],
+					//circle
+					['oneTableCircle', 'twoLiveEdgeCircle', 'threeTableCircleRight', 'threeTableCirlceLeft', 'fourTableCircle', 'fiveTableCircle'],
+					//rounded
+					['oneTableRounded', 'twoLiveEdgeRounded', 'threeTableRoundedRight', 'threeTableRoundedLeft', 'fourTableRounded', 'fiveTableRounded'],
+					['twoTableBambuk','twoTableBambukCircle','twoTableBambukRounded', 'twoTable']
+				]
+			}
 			else{
 				var ArraySharpes = [
 					//sharp
@@ -106,11 +117,12 @@ export default createStore({
 					['oneTableCircle', 'twoTableCircle', 'threeTableCircleRight', 'threeTableCirlceLeft', 'fourTableCircle', 'fiveTableCircle'],
 					//rounded
 					['oneTableRounded', 'twoTableRounded', 'threeTableRoundedRight', 'threeTableRoundedLeft', 'fourTableRounded', 'fiveTableRounded'],
-					['twoTableBambuk','twoTableBambukCircle','twoTableBambukRounded']
+					['twoTableBambuk','twoTableBambukCircle','twoTableBambukRounded', 'twoLiveEdge', 'twoLiveEdgeCircle', 'twoLiveEdgeRounded']
 				]
 			}
 
 			ArraySharpes.forEach((element, index) => {
+
 				element.forEach(tables => {
 					if (index == indexCorners - 1) {
 						const mesh = scene.getNodeByName(tables)
