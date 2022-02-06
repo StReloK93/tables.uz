@@ -20,11 +20,10 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['old'],
+  props: ["old"],
   data: function data() {
     return {
       images: null,
-      join: false,
       events: Engine.Room
     };
   },
@@ -36,8 +35,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              store.commit('setRoute', _this.old);
-              _this.images = Engine.textures.floors;
+              store.commit("setRoute", _this.old);
+              scene.onReadyObservable.add(function () {
+                _this.images = Engine.textures.floors;
+              });
 
             case 2:
             case "end":
@@ -74,141 +75,41 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_3 = {
-  "class": "text-gray-400 w-full px-2"
+  "class": "text-gray-400 w-full px-2 flex justify-center"
 };
 var _hoisted_4 = {
-  key: 0,
-  "class": "flex items-center"
-};
-var _hoisted_5 = {
-  "class": "relative pt-1 mr-3 w-1/2"
-};
-
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "absolute mix-blend-difference uppercase text-xs w-full h-full top-0 left-0 flex items-center justify-center",
-  "for": "colorOne"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, " First Wall")], -1
-/* HOISTED */
-);
-
-var _hoisted_7 = {
-  "class": "relative pt-1 w-1/2"
-};
-
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "absolute mix-blend-difference uppercase text-xs w-full h-full top-0 left-0 flex items-center justify-center",
-  "for": "colorTwo"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, " Second Wall")], -1
-/* HOISTED */
-);
-
-var _hoisted_9 = {
-  key: 1,
-  "class": "flex items-center"
-};
-var _hoisted_10 = {
-  "class": "relative pt-1 w-1/2"
-};
-
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "absolute mix-blend-difference uppercase text-xs w-full h-full top-0 left-0 flex items-center justify-center",
-  "for": "colorThree"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, " All Walls")], -1
-/* HOISTED */
-);
-
-var _hoisted_12 = {
-  "class": "text-gray-600 mt-4 flex items-center"
-};
-var _hoisted_13 = {
-  "for": "join",
-  "class": "join inline-block rounded-full w-8 border border-gray-500 mr-2"
-};
-
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Join ");
-
-var _hoisted_15 = {
   "class": "miniRoutes"
 };
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
   "class": "color-title text-center font-medium text-xl mb-3 text-gray-600"
 }, " Choose the flooring color ", -1
 /* HOISTED */
 );
 
-var _hoisted_17 = {
+var _hoisted_6 = {
   "class": "whitespace-nowrap px-1 py-1 overflow-hidden overflow-x-scroll noscroll -mr-2"
 };
-var _hoisted_18 = ["onClick"];
-var _hoisted_19 = ["src"];
+var _hoisted_7 = ["onClick"];
+var _hoisted_8 = ["src"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
     name: "fade"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
-        name: "fade",
-        mode: "out-in"
-      }, {
-        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [!$data.join ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-            id: "colorOne",
-            "class": "inputColor w-full h-12",
-            type: "color",
-            onInput: _cache[0] || (_cache[0] = function ($event) {
-              return $data.events.wallColorChanger('wall');
-            }),
-            "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-              return _ctx.$store.state.params.wallColor = $event;
-            })
-          }, null, 544
-          /* HYDRATE_EVENTS, NEED_PATCH */
-          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.$store.state.params.wallColor]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-            id: "colorTwo",
-            "class": "inputColor w-full h-12",
-            type: "color",
-            onInput: _cache[2] || (_cache[2] = function ($event) {
-              return $data.events.wallColorChanger('mainWall');
-            }),
-            "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-              return _ctx.$store.state.params.mainWallColor = $event;
-            })
-          }, null, 544
-          /* HYDRATE_EVENTS, NEED_PATCH */
-          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.$store.state.params.mainWallColor]])])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-            id: "colorThree",
-            "class": "inputColor w-full h-12",
-            type: "color",
-            onInput: _cache[4] || (_cache[4] = function ($event) {
-              return $data.events.JoinColorChanger();
-            }),
-            "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
-              return _ctx.$store.state.params.wallColor = $event;
-            })
-          }, null, 544
-          /* HYDRATE_EVENTS, NEED_PATCH */
-          ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.$store.state.params.wallColor]])])]))];
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        id: "colorThree",
+        "class": "inputColor w-2/3 h-8",
+        type: "color",
+        onInput: _cache[0] || (_cache[0] = function ($event) {
+          return $data.events.ColorChanger();
         }),
-        _: 1
-        /* STABLE */
-
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", {
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-          'joincheck': $data.join
-        }, "w-3 easy-transition h-3 rounded-full bg-my"])
-      }, null, 2
-      /* CLASS */
-      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        hidden: "",
-        id: "join",
-        type: "checkbox",
-        "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
-          return $data.join = $event;
+        "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+          return _ctx.$store.state.params.wallColor = $event;
         })
-      }, null, 512
-      /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.join]]), _hoisted_14])])], 512
+      }, null, 544
+      /* HYDRATE_EVENTS, NEED_PATCH */
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.$store.state.params.wallColor]])])], 512
       /* NEED_PATCH */
       ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, _ctx.$store.state.currentPage == 1]])];
     }),
@@ -219,7 +120,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "fade"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.images, function (img) {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.images, function (img) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("aside", {
           "class": "w-custom mr-2 inline-block",
           key: img
@@ -230,13 +131,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
           "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
             'shadow-blue': _ctx.$store.state.params.floor == img.name
-          }, "border-2 border-white rounded-md"]),
+          }, "border-2 w-full h-28 object-cover border-white rounded-md"]),
           src: img.path
         }, null, 10
         /* CLASS, PROPS */
-        , _hoisted_19)], 8
+        , _hoisted_8)], 8
         /* PROPS */
-        , _hoisted_18)]);
+        , _hoisted_7)]);
       }), 128
       /* KEYED_FRAGMENT */
       ))])], 512
@@ -267,7 +168,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.inputColor{\r\n   background: none;\n}\n.join{\r\n   padding: 2px;\n}\n.joincheck{\r\n   margin-left: 14px;\n}\n.w-custom{\r\n    width: 27%;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.inputColor {\r\n  background: none;\n}\n.join {\r\n  padding: 2px;\n}\n.joincheck {\r\n  margin-left: 14px;\n}\n.w-custom {\r\n  width: 27%;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -316,7 +217,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Room_vue_vue_type_template_id_6e34749b__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Room.vue?vue&type=template&id=6e34749b */ "./resources/js/mobile/Views/Room.vue?vue&type=template&id=6e34749b");
 /* harmony import */ var _Room_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Room.vue?vue&type=script&lang=js */ "./resources/js/mobile/Views/Room.vue?vue&type=script&lang=js");
 /* harmony import */ var _Room_vue_vue_type_style_index_0_id_6e34749b_scope_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Room.vue?vue&type=style&index=0&id=6e34749b&scope=true&lang=css */ "./resources/js/mobile/Views/Room.vue?vue&type=style&index=0&id=6e34749b&scope=true&lang=css");
-/* harmony import */ var C_AMD_OSPanel_domains_tables_uz_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var C_openserver_domains_tables_uz_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
@@ -324,7 +225,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,C_AMD_OSPanel_domains_tables_uz_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_Room_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Room_vue_vue_type_template_id_6e34749b__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/mobile/Views/Room.vue"]])
+const __exports__ = /*#__PURE__*/(0,C_openserver_domains_tables_uz_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_Room_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Room_vue_vue_type_template_id_6e34749b__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/mobile/Views/Room.vue"]])
 /* hot reload */
 if (false) {}
 

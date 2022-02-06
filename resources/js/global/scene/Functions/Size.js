@@ -2,12 +2,12 @@ export default class Size {
 	setSize(sizeIndex) {
 		const from = 0
 		const to = 1
-		if (store.state.params.size == sizeIndex) return
+		if (store.state.sizepage.size == sizeIndex) return
 		let animNames = [
 			//two Table
 			'controllerTwoAction', 'twoLegLeftAction', 'twoLegRightAction', 'twoTableAction', 'twoTableCircleAction', 'twoTableRoundedAction', 'twoLiveEdge',
 			//Four Table Actions
-			'controllerFourAction', 'fourLegLeftAction', 'fourLegRightAction', 'fourTableAction', 'fourTableCircleAction', 'fourTableRoundedAction',
+			'controllerFourAction', 'fourLegLeftAction', 'fourLegRightAction', 'fourTableAction', 'fourTableCircleAction', 'fourTableRoundedAction', 'fourLiveEdgeAction' ,
 
 			//threeTable Actions
 			'controllerThreeAction', 'threeLegHelpAction' , 'threeLegHelprightAction' , 'threeLegMainAction', 'threeLegMainLeftAction',
@@ -32,6 +32,6 @@ export default class Size {
 			});
 		}
 
-		store.state.params.size = sizeIndex
+		store.state.sizepage.size = sizeIndex
 	}
 }

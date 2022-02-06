@@ -18,15 +18,29 @@ export default createStore({
 			phoneOrEmail: false,
 			params: {
 				tablesCount: 1,
+				//legs
 				legColor: 1,
 				legType: 0,
-				size: 0,
-				wallColor: '#ffffff',
-				mainWallColor: '#182249',
-				floor: null,
-				deskMaterial: 'desks/laminate',
 				deskimage: 'desks/laminate/cw115.jpg',
+				//room
+				wallColor: '#CFCFCF',
+				floor: null,
+
+				deskMaterial: 'desks/laminate',
 				activeFolder: 'desks/laminate'
+			},
+			sizepage: {
+				size: 0,
+				length: null,
+				width: null,
+				thickness: null,
+			},
+			otherpage: {
+				service: false,
+				needchair: false,
+				height: null,
+				length: null,
+				message: null
 			},
 			decor: {
 				lamp: false,
@@ -87,7 +101,7 @@ export default createStore({
 		setCorner(state, indexCorners) {
 			state.custom.corners = indexCorners
 
-			if(state.params.deskMaterial == 'desks/bamboo'){
+			if (state.params.deskMaterial == 'desks/bamboo') {
 				var ArraySharpes = [
 					//sharp
 					['oneTable', 'twoTableBambuk', 'threeTableRight', 'threeTableLeft', 'fourTable', 'fiveTable'],
@@ -95,21 +109,21 @@ export default createStore({
 					['oneTableCircle', 'twoTableBambukCircle', 'threeTableCircleRight', 'threeTableCirlceLeft', 'fourTableCircle', 'fiveTableCircle'],
 					//rounded
 					['oneTableRounded', 'twoTableBambukRounded', 'threeTableRoundedRight', 'threeTableRoundedLeft', 'fourTableRounded', 'fiveTableRounded'],
-					['twoTable','twoTableCircle','twoTableRounded']
+					['twoTable', 'twoTableCircle', 'twoTableRounded']
 				]
 			}
-			else if(state.params.deskMaterial == 'desks/solidedge'){
+			else if (state.params.deskMaterial == 'desks/solidedge') {
 				var ArraySharpes = [
 					//sharp
-					['oneTable', 'twoLiveEdge', 'threeTableRight', 'threeTableLeft', 'fourTable', 'fiveTable'],
+					['oneTable', 'twoLiveEdge', 'threeTableRight', 'threeTableLeft', 'fourLiveEdge', 'fiveTable'],
 					//circle
 					['oneTableCircle', 'twoLiveEdgeCircle', 'threeTableCircleRight', 'threeTableCirlceLeft', 'fourTableCircle', 'fiveTableCircle'],
 					//rounded
 					['oneTableRounded', 'twoLiveEdgeRounded', 'threeTableRoundedRight', 'threeTableRoundedLeft', 'fourTableRounded', 'fiveTableRounded'],
-					['twoTableBambuk','twoTableBambukCircle','twoTableBambukRounded', 'twoTable']
+					['twoTableBambuk', 'twoTableBambukCircle', 'twoTableBambukRounded', 'twoTable' , 'fourTable']
 				]
 			}
-			else{
+			else {
 				var ArraySharpes = [
 					//sharp
 					['oneTable', 'twoTable', 'threeTableRight', 'threeTableLeft', 'fourTable', 'fiveTable'],
@@ -117,12 +131,11 @@ export default createStore({
 					['oneTableCircle', 'twoTableCircle', 'threeTableCircleRight', 'threeTableCirlceLeft', 'fourTableCircle', 'fiveTableCircle'],
 					//rounded
 					['oneTableRounded', 'twoTableRounded', 'threeTableRoundedRight', 'threeTableRoundedLeft', 'fourTableRounded', 'fiveTableRounded'],
-					['twoTableBambuk','twoTableBambukCircle','twoTableBambukRounded', 'twoLiveEdge', 'twoLiveEdgeCircle', 'twoLiveEdgeRounded']
+					['twoTableBambuk', 'twoTableBambukCircle', 'twoTableBambukRounded', 'twoLiveEdge', 'twoLiveEdgeCircle', 'twoLiveEdgeRounded', 'fourLiveEdge']
 				]
 			}
 
 			ArraySharpes.forEach((element, index) => {
-
 				element.forEach(tables => {
 					if (index == indexCorners - 1) {
 						const mesh = scene.getNodeByName(tables)

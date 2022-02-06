@@ -5,10 +5,10 @@
             Size
          </h3>
          <div class="text-md flex flex-wrap text-gray-600">
-            <button @click="events.setSize(0)" :class="{'bg-my text-white': $store.state.params.size == 0 }" class="xl:h-16 md:h-14 xl:text-md font-bold md:text-xs w-1/5 text-center rounded-xl mr-3 mb-4 border">
+            <button @click="events.setSize(0)" :class="{'bg-my text-white': $store.state.sizepage.size == 0 }" class="xl:h-16 md:h-14 xl:text-md font-bold md:text-xs w-1/5 text-center rounded-xl mr-3 mb-4 border">
                Small
             </button>
-            <button @click="events.setSize(1)" :class="{'bg-my text-white': $store.state.params.size == 1 }"  class="xl:h-16 md:h-14 xl:text-md font-bold md:text-xs w-1/5 text-center rounded-xl mr-3 mb-4 border">
+            <button @click="events.setSize(1)" :class="{'bg-my text-white': $store.state.sizepage.size == 1 }"  class="xl:h-16 md:h-14 xl:text-md font-bold md:text-xs w-1/5 text-center rounded-xl mr-3 mb-4 border">
                Large
             </button>
          </div>

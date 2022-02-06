@@ -26,10 +26,10 @@
                Other Requests
             </h3>
             <div class="flex items-center mb-3 text-sm text-gray-500">
-               <input type="checkbox" class="transform scale-150 ml-1 mr-3"> We are a corporation that needs space planning service as well.
+               <input type="checkbox" v-model="$store.state.otherpage.service" class="transform scale-150 ml-1 mr-3"> We are a corporation that needs space planning service as well.
             </div>
             <div class="flex items-center mb-3 text-sm text-gray-500">
-               <input type="checkbox" v-model="forChair" class="transform scale-150 ml-1 mr-3">  I also need a chair, if you can tell us your height and physiqe we can recommend.
+               <input type="checkbox" v-model="$store.state.otherpage.needchair" class="transform scale-150 ml-1 mr-3">  I also need a chair, if you can tell us your height and physiqe we can recommend.
             </div>
          <aside class="flex">
             <main class="mr-4 w-1/2">
@@ -38,16 +38,16 @@
                   <img class="ml-3" src="/images/undo.svg">
                </p>
                <div>
-                  <input :disabled="!forChair" :class="{'border-indigo-900': forChair}" type="text" class="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-600">
+                  <input v-model="$store.state.otherpage.height" :disabled="!$store.state.otherpage.needchair" :class="{'border-indigo-900': $store.state.otherpage.needchair}" type="text" class="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-600">
                </div>
             </main>
             <main class="w-1/2">
                <p class="mb-2 text-gray-400 flex items-center">
-                  Your legs lenght
+                  Your legs length
                   <img class="ml-3" src="/images/undo.svg">
                </p>
                <div>
-                  <input :disabled="!forChair" :class="{'border-indigo-900': forChair}" type="text" class="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-600">
+                  <input v-model="$store.state.otherpage.length" :disabled="!$store.state.otherpage.needchair" :class="{'border-indigo-900': $store.state.otherpage.needchair}" type="text" class="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-600">
                </div>
             </main>
          </aside>
@@ -57,7 +57,7 @@
                Leave a message
             </h3>
             <div>
-               <textarea class="w-full border border-gray-400 rounded-md h-24 p-2 outline-none focus:border-blue-600"></textarea>
+               <textarea v-model="$store.state.otherpage.message" class="w-full border border-gray-400 rounded-md h-24 p-2 outline-none focus:border-blue-600"></textarea>
             </div>
          </main>
       </aside>
@@ -71,11 +71,6 @@
 <script>
 import Icons from './Icons.vue'
 export default {
-   data() {
-      return {
-         forChair: false,
-      }
-   },
    components:{
       Icons
    }

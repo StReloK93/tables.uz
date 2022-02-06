@@ -67,7 +67,7 @@ class Textures {
    _TextureData = [
       { uScale: 3, vScale: 4, wAng: 0 },
       { uScale: 3, vScale: 4, wAng: 0 },
-      { uScale: 2.5, vScale: 3, wAng: Math.PI / 2 },
+      { uScale: 2.5, vScale: 3, wAng: 0 },
       { uScale: 3, vScale: 4, wAng: 0 },
       { uScale: 3, vScale: 4, wAng: 0 },
       { uScale: 3, vScale: 4, wAng: 0 },
@@ -78,7 +78,6 @@ class Textures {
    _AmbientTextures = [
 
       //room
-      new Texture({ uAng: Math.PI, materialName: 'mainWall', texturePath: '/textures/wall.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'wallTop', texturePath: '/textures/wall.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'wall', texturePath: '/textures/wall.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'plintus', texturePath: '/textures/plintus.jpg' }),
@@ -102,9 +101,9 @@ class Textures {
       new Texture({ uAng: Math.PI, materialName: 'fiveShkaf', texturePath: '/textures/fiveShkaf.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'fiveWhite', texturePath: '/textures/fiveWhite.jpg' }),
       //Stul
-      new Texture({ uAng: Math.PI, materialName: 'stulback', texturePath: '/textures/stulback.jpg' }),
-      new Texture({ uAng: Math.PI, materialName: 'stulbottom', texturePath: '/textures/stulbottom.jpg' }),
-      new Texture({ uAng: Math.PI, materialName: 'stulLeg', texturePath: '/textures/stulLeg.jpg' }),
+      // new Texture({ uAng: Math.PI, materialName: 'stulback', texturePath: '/textures/stulback.jpg' }),
+      // new Texture({ uAng: Math.PI, materialName: 'stulbottom', texturePath: '/textures/stulbottom.jpg' }),
+      // new Texture({ uAng: Math.PI, materialName: 'stulLeg', texturePath: '/textures/stulLeg.jpg' }),
       //Decorations
       new Texture({ uAng: Math.PI, materialName: 'monitormain', texturePath: '/textures/monitormain.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'lampwood', texturePath: '/textures/lampwood.jpg' }),
@@ -114,10 +113,9 @@ class Textures {
 
    _NormalTextures = [
       new Texture({ materialName: 'wall', texturePath: '/textures/normalwall.jpg', uScale: 15, vScale: 15, level: 0.75 }),
-      new Texture({ materialName: 'mainWall', texturePath: '/textures/normalwall.jpg', uScale: 20, vScale: 20, level: 0.75 }),
       new Texture({ materialName: 'wallTop', texturePath: '/textures/normalwall.jpg', uScale: 20, vScale: 20, level: 0.75 }),
-      new Texture({ materialName: 'stulback', texturePath: '/textures/chair.jpg', uScale: 8, vScale: 8 }),
-      new Texture({ materialName: 'stulbottom', texturePath: '/textures/chair.jpg', uScale: 8, vScale: 8 }),
+      // new Texture({ materialName: 'stulback', texturePath: '/textures/chair.jpg', uScale: 8, vScale: 8 }),
+      // new Texture({ materialName: 'stulbottom', texturePath: '/textures/chair.jpg', uScale: 8, vScale: 8 }),
    ]
 }
 

@@ -40,9 +40,10 @@ export default class Legs {
 		}
 
 		if (
-			   store.state.params.legType == 2 && store.state.params.activeFolder == 'desks/bamboo' 
-			|| store.state.params.legType == 2 && store.state.params.activeFolder == 'desks/solidedge'
-			|| legIndex == 3 && store.state.params.activeFolder == 'desks/pyledge') {
+			   store.state.params.legType == 2 && (store.state.params.activeFolder == 'desks/bamboo' ||  store.state.params.deskMaterial == 'desks/bamboo')
+			|| store.state.params.legType == 2 && (store.state.params.activeFolder == 'desks/solidedge' ||  store.state.params.deskMaterial == 'desks/solidedge')
+			|| store.state.params.legType == 4 && (store.state.params.activeFolder == 'desks/solidedge' ||  store.state.params.deskMaterial == 'desks/solidedge')
+			|| legIndex == 3 && (store.state.params.activeFolder == 'desks/pyledge' || store.state.params.deskMaterial == 'desks/pyledge')) {
 			deskFolder('desks/laminate')
 			setDeskMaterial('desks/laminate/cw115.jpg')
 		}

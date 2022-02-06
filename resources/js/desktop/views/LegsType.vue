@@ -92,7 +92,7 @@ export default {
                 ['desks/bamboo','desks/solidedge'],
                 [],
                 ['desks/bamboo','desks/solidedge','desks/pyledge'],
-                ['desks/bamboo','desks/solidedge'],
+                ['desks/bamboo'],
                 ['desks/bamboo','desks/solidedge'],
             ]
 
