@@ -13,6 +13,7 @@ class Textures {
          new ImportTextures({ textureType: 'ambientTexture', materials: this._AmbientTextures, prosent: addProsent })
          new ImportTextures({ textureType: 'bumpTexture', materials: this._NormalTextures, prosent: addProsent })
       })
+      new newTexture({ texturePath: '/textures/tores.jpg', uScale: 22, uAng: Math.PI, wAng: Math.PI / 2 })
    }
 
    _newTexture(name, path) {
@@ -39,10 +40,10 @@ class Textures {
       for (const key in this.folders.images) {
          this.folders.images[key].forEach(image => {
             const texture = this._newTexture(image.path, `/floors/${image.path}`)
-            if(key == 'desks/melamineglass' || key == 'desks/solidedge'){
+            if (key == 'desks/melamineglass' || key == 'desks/solidedge') {
                texture.uScale = 1
             }
-            else{
+            else {
                texture.uScale = 2
             }
             texture.vScale = 1
@@ -100,10 +101,6 @@ class Textures {
       new Texture({ uAng: Math.PI, materialName: 'fiveShkafEshik', texturePath: '/textures/fiveShkafEshik.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'fiveShkaf', texturePath: '/textures/fiveShkaf.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'fiveWhite', texturePath: '/textures/fiveWhite.jpg' }),
-      //Stul
-      // new Texture({ uAng: Math.PI, materialName: 'stulback', texturePath: '/textures/stulback.jpg' }),
-      // new Texture({ uAng: Math.PI, materialName: 'stulbottom', texturePath: '/textures/stulbottom.jpg' }),
-      // new Texture({ uAng: Math.PI, materialName: 'stulLeg', texturePath: '/textures/stulLeg.jpg' }),
       //Decorations
       new Texture({ uAng: Math.PI, materialName: 'monitormain', texturePath: '/textures/monitormain.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'lampwood', texturePath: '/textures/lampwood.jpg' }),
@@ -114,8 +111,6 @@ class Textures {
    _NormalTextures = [
       new Texture({ materialName: 'wall', texturePath: '/textures/normalwall.jpg', uScale: 15, vScale: 15, level: 0.75 }),
       new Texture({ materialName: 'wallTop', texturePath: '/textures/normalwall.jpg', uScale: 20, vScale: 20, level: 0.75 }),
-      // new Texture({ materialName: 'stulback', texturePath: '/textures/chair.jpg', uScale: 8, vScale: 8 }),
-      // new Texture({ materialName: 'stulbottom', texturePath: '/textures/chair.jpg', uScale: 8, vScale: 8 }),
    ]
 }
 
@@ -128,6 +123,17 @@ class Texture {
       this.level = level
       this.uAng = uAng
       this.wAng = wAng
+   }
+}
+
+class newTexture {
+   constructor({ texturePath = null, uScale = 1, vScale = 1, level = 1, uAng = 0, wAng = 0 }) {
+      const texture = new BABYLON.Texture(texturePath)
+      texture.uScale = uScale
+      texture.vScale = vScale
+      texture.level = level
+      texture.uAng = uAng
+      texture.wAng = wAng
    }
 }
 

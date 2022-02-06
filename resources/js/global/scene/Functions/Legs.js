@@ -21,12 +21,12 @@ export default class Legs {
 			let material = scene.getMaterialByName(element)
 
 			if (element == 'tablesBevel' && store.state.params.activeFolder == 'desks/pyledge') {
-				return material.albedoTexture = scene.getTextureByName('desks/laminate/dh317.jpg')
+				return material.albedoTexture = scene.getTextureByName('/textures/tores.jpg')
 			}
 
 			material.albedoTexture = scene.getTextureByName(textureName)
 		});
-		
+
 		console.log(store.state.params.legType,store.state.params.activeFolder , 'index');
 		store.commit('setCorner', store.state.custom.corners)
 	}

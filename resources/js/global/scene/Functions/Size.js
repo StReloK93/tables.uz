@@ -7,7 +7,7 @@ export default class Size {
 			//two Table
 			'controllerTwoAction', 'twoLegLeftAction', 'twoLegRightAction', 'twoTableAction', 'twoTableCircleAction', 'twoTableRoundedAction', 'twoLiveEdge',
 			//Four Table Actions
-			'controllerFourAction', 'fourLegLeftAction', 'fourLegRightAction', 'fourTableAction', 'fourTableCircleAction', 'fourTableRoundedAction', 'fourLiveEdgeAction' ,
+			'controllerFourAction', 'fourLegLeftAction', 'fourLegRightAction', 'fourTableAction', 'fourTableCircleAction', 'fourTableRoundedAction', 'fourLiveEdgeAction', 'fourLiveEdgeCircle' , 'fourLiveEdgeRounded',
 
 			//threeTable Actions
 			'controllerThreeAction', 'threeLegHelpAction' , 'threeLegHelprightAction' , 'threeLegMainAction', 'threeLegMainLeftAction',
