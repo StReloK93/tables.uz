@@ -26,11 +26,12 @@ export default class Legs {
 
 			material.albedoTexture = scene.getTextureByName(textureName)
 		});
-
+		
+		console.log(store.state.params.legType,store.state.params.activeFolder , 'index');
 		store.commit('setCorner', store.state.custom.corners)
 	}
 
-	setLegType(legIndex, deskFolder = () => { }, setDeskMaterial = () => { }, assignTextures = () => { }) {
+	setLegType(legIndex, deskFolder = () => { },  assignTextures = () => { }) {
 		assignTextures(legIndex)
 		if (store.state.params.legType == legIndex) return;
 
@@ -40,12 +41,13 @@ export default class Legs {
 		}
 
 		if (
-			   store.state.params.legType == 2 && (store.state.params.activeFolder == 'desks/bamboo' ||  store.state.params.deskMaterial == 'desks/bamboo')
+			store.state.params.legType == 2 && (store.state.params.activeFolder == 'desks/bamboo' ||  store.state.params.deskMaterial == 'desks/bamboo')
 			|| store.state.params.legType == 2 && (store.state.params.activeFolder == 'desks/solidedge' ||  store.state.params.deskMaterial == 'desks/solidedge')
 			|| store.state.params.legType == 4 && (store.state.params.activeFolder == 'desks/solidedge' ||  store.state.params.deskMaterial == 'desks/solidedge')
 			|| legIndex == 3 && (store.state.params.activeFolder == 'desks/pyledge' || store.state.params.deskMaterial == 'desks/pyledge')) {
+			console.log(store.state.params.legType,store.state.params.activeFolder);
 			deskFolder('desks/laminate')
-			setDeskMaterial('desks/laminate/cw115.jpg')
+			this.setDeskMaterial('desks/laminate/cw115.jpg')
 		}
 
 		decornames.forEach(Decors => {

@@ -99,9 +99,10 @@ export default createStore({
 
 
 		setCorner(state, indexCorners) {
+			console.log(state.params.activeFolder);
 			state.custom.corners = indexCorners
 
-			if (state.params.deskMaterial == 'desks/bamboo') {
+			if (state.params.activeFolder == 'desks/bamboo') {
 				var ArraySharpes = [
 					//sharp
 					['oneTable', 'twoTableBambuk', 'threeTableRight', 'threeTableLeft', 'fourTable', 'fiveTable'],
@@ -112,14 +113,14 @@ export default createStore({
 					['twoTable', 'twoTableCircle', 'twoTableRounded']
 				]
 			}
-			else if (state.params.deskMaterial == 'desks/solidedge') {
+			else if (state.params.activeFolder == 'desks/solidedge') {
 				var ArraySharpes = [
 					//sharp
 					['oneTable', 'twoLiveEdge', 'threeTableRight', 'threeTableLeft', 'fourLiveEdge', 'fiveTable'],
 					//circle
-					['oneTableCircle', 'twoLiveEdgeCircle', 'threeTableCircleRight', 'threeTableCirlceLeft', 'fourTableCircle', 'fiveTableCircle'],
+					['oneTableCircle', 'twoLiveEdgeCircle', 'threeTableCircleRight', 'threeTableCirlceLeft', 'fourLiveEdgeCircle', 'fiveTableCircle'],
 					//rounded
-					['oneTableRounded', 'twoLiveEdgeRounded', 'threeTableRoundedRight', 'threeTableRoundedLeft', 'fourTableRounded', 'fiveTableRounded'],
+					['oneTableRounded', 'twoLiveEdgeRounded', 'threeTableRoundedRight', 'threeTableRoundedLeft', 'fourLiveEdgeRounded', 'fiveTableRounded'],
 					['twoTableBambuk', 'twoTableBambukCircle', 'twoTableBambukRounded', 'twoTable' , 'fourTable']
 				]
 			}
@@ -131,7 +132,7 @@ export default createStore({
 					['oneTableCircle', 'twoTableCircle', 'threeTableCircleRight', 'threeTableCirlceLeft', 'fourTableCircle', 'fiveTableCircle'],
 					//rounded
 					['oneTableRounded', 'twoTableRounded', 'threeTableRoundedRight', 'threeTableRoundedLeft', 'fourTableRounded', 'fiveTableRounded'],
-					['twoTableBambuk', 'twoTableBambukCircle', 'twoTableBambukRounded', 'twoLiveEdge', 'twoLiveEdgeCircle', 'twoLiveEdgeRounded', 'fourLiveEdge']
+					['twoTableBambuk', 'twoTableBambukCircle', 'twoTableBambukRounded', 'twoLiveEdge', 'twoLiveEdgeCircle', 'twoLiveEdgeRounded', 'fourLiveEdge','fourLiveEdgeCircle','fourLiveEdgeRounded']
 				]
 			}
 
