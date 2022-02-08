@@ -1,6 +1,6 @@
 class Scene {
    DefaultLeg = 2
-   DefaultFloor = 'floor1'
+   DefaultFloor = '/floors/1.jpg'
    constructor(canvas) {
       this.createScene(canvas)
       this.expansion()

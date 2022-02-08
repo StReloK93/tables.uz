@@ -27,42 +27,32 @@ export default class Legs {
 			material.albedoTexture = scene.getTextureByName(textureName)
 		});
 
-		console.log(store.state.params.legType,store.state.params.activeFolder , 'index');
 		store.commit('setCorner', store.state.custom.corners)
 	}
 
-	setLegType(legIndex, deskFolder = () => { },  assignTextures = () => { }) {
-		assignTextures(legIndex)
-		if (store.state.params.legType == legIndex) return;
+	setLegType(legIndex, deskFolder = () => { },  FilterFolders = () => { }) {
+		if (store.state.params.legType == legIndex) return
+		FilterFolders(legIndex) //papkalar korinadi
 
-		let decornames = []
-		for (const key in store.state.decor) {
-			decornames.push(key)
-		}
+		let legType = store.state.params.legType
+		let activeFolder = store.state.params.activeFolder
+		let deskMaterial = store.state.params.deskMaterial
+		
 
 		if (
-			store.state.params.legType == 2 && (store.state.params.activeFolder == 'desks/bamboo' ||  store.state.params.deskMaterial == 'desks/bamboo')
-			|| store.state.params.legType == 2 && (store.state.params.activeFolder == 'desks/solidedge' ||  store.state.params.deskMaterial == 'desks/solidedge')
-			|| store.state.params.legType == 4 && (store.state.params.activeFolder == 'desks/solidedge' ||  store.state.params.deskMaterial == 'desks/solidedge')
-			|| legIndex == 3 && (store.state.params.activeFolder == 'desks/pyledge' || store.state.params.deskMaterial == 'desks/pyledge')) {
-			console.log(store.state.params.legType,store.state.params.activeFolder);
+				legType ==  2 && (activeFolder == 'desks/bamboo'     ||  deskMaterial == 'desks/bamboo')
+			||  legType ==  2 && (activeFolder == 'desks/solidedge'  ||  deskMaterial == 'desks/solidedge')
+			||  legType ==  4 && (activeFolder == 'desks/solidedge'  ||  deskMaterial == 'desks/solidedge')
+			||  legIndex == 3 && (activeFolder == 'desks/pyledge'    ||  deskMaterial == 'desks/pyledge')
+		) 
+		{
 			deskFolder('desks/laminate')
 			this.setDeskMaterial('desks/laminate/cw115.jpg')
 		}
 
-		decornames.forEach(Decors => {
-			const mesh = scene.getNodeByName(Decors)
-			const coordinate = coords[legIndex - 1][Decors]
-			if (store.state.decor[Decors]) {
-				this.DecorsPosition({ node: mesh, position: coordinate })
-			}
-			else {
-				this.DecorsHide({ node: mesh, position: coordinate })
-			}
-		});
 
+		this.hideOrShowDecors(legIndex)
 		this.setLeg(legIndex)
-
 	}
 
 	setLeg(defaultLeg) {
@@ -106,6 +96,9 @@ export default class Legs {
 	}
 
 
+
+
+
 	setLegColor(colorIndex) {
 		if (store.state.params.legColor == colorIndex) return
 
@@ -135,5 +128,24 @@ export default class Legs {
 		})
 
 		store.state.params.legColor = colorIndex
+	}
+
+
+	hideOrShowDecors(legIndex){
+		let decornames = []
+		for (const key in store.state.decor) {
+			decornames.push(key)
+		}
+
+		decornames.forEach(Decors => {
+			const mesh = scene.getNodeByName(Decors)
+			const coordinate = coords[legIndex - 1][Decors]
+			if (store.state.decor[Decors]) {
+				this.DecorsPosition({ node: mesh, position: coordinate })
+			}
+			else {
+				this.DecorsHide({ node: mesh, position: coordinate })
+			}
+		});
 	}
 }

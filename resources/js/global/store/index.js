@@ -99,7 +99,6 @@ export default createStore({
 
 
 		setCorner(state, indexCorners) {
-			console.log(state.params.activeFolder);
 			state.custom.corners = indexCorners
 
 			if (state.params.activeFolder == 'desks/bamboo') {

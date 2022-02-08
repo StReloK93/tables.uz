@@ -1,58 +1,40 @@
 class Textures {
-
    floors = []
    folders = []
    constructor() {
       this._floorTextures()
       this._deskTextures()
+      new newTexture({ texturePath: '/textures/tores.jpg', uScale: 22, uAng: Math.PI, wAng: Math.PI / 2 })
       scene.onReadyObservable.add(() => {
          let CountAllTextures = this._AmbientTextures.length + this._NormalTextures.length
          let addProsent = 50 / (CountAllTextures + 1);
 
-         this.AllAmbientWhite(addProsent) //Scenadagi Hamma Elementlarni Ambientni oq rang qiladi
+         this._AllAmbientWhite(addProsent) //Scenadagi Hamma Elementlarni Ambientni oq rang qiladi
          new ImportTextures({ textureType: 'ambientTexture', materials: this._AmbientTextures, prosent: addProsent })
          new ImportTextures({ textureType: 'bumpTexture', materials: this._NormalTextures, prosent: addProsent })
       })
-      new newTexture({ texturePath: '/textures/tores.jpg', uScale: 22, uAng: Math.PI, wAng: Math.PI / 2 })
+
    }
 
-   _newTexture(name, path) {
-      const texture = new BABYLON.Texture(path)
-      texture.name = name
-      return texture
-   }
-
-   _floorTextures() {
-      var datas = this._TextureData
-      store.dispatch('textures').then(images => {
-         images.forEach((imagepath, i) => {
-            var texture = this._newTexture(`floor${i + 1}`, `/floors/${imagepath}`)
-            texture.uScale = datas[i].uScale
-            texture.vScale = datas[i].vScale
-            texture.wAng = datas[i].wAng
-            this.floors.push({ name: `floor${i + 1}`, path: `/floors/${imagepath}` })
-         });
-      })
+   async _floorTextures() {
+      const images = await store.dispatch('textures')
+      images.forEach((imagepath) => {
+         new newTexture({ texturePath: `/floors/${imagepath}`, uScale: 3, vScale: 4 })
+         this.floors.push(`/floors/${imagepath}`)
+      });
    }
 
    async _deskTextures() {
       this.folders = await store.dispatch('deskTextures')
       for (const key in this.folders.images) {
          this.folders.images[key].forEach(image => {
-            const texture = this._newTexture(image.path, `/floors/${image.path}`)
-            if (key == 'desks/melamineglass' || key == 'desks/solidedge') {
-               texture.uScale = 1
-            }
-            else {
-               texture.uScale = 2
-            }
-            texture.vScale = 1
-            texture.uAng = Math.PI
+            const texture = new newTexture({ name: image.path, texturePath: `/floors/${image.path}`, uScale: 2, vScale: 1, uAng: Math.PI })
+            if (key == 'desks/melamineglass' || key == 'desks/solidedge') texture.uScale = 1
          })
       }
    }
 
-   AllAmbientWhite(prosent) {
+   _AllAmbientWhite(prosent) {
       let hdr = BABYLON.CubeTexture.CreateFromPrefilteredData("/textures/hdrmini.env", scene)
       scene.environmentTexture = hdr
       hdr.onLoadObservable.add(() => {
@@ -63,18 +45,6 @@ class Textures {
          element.ambientColor = new BABYLON.Color3(1, 1, 1)
       });
    }
-
-
-   _TextureData = [
-      { uScale: 3, vScale: 4, wAng: 0 },
-      { uScale: 3, vScale: 4, wAng: 0 },
-      { uScale: 2.5, vScale: 3, wAng: 0 },
-      { uScale: 3, vScale: 4, wAng: 0 },
-      { uScale: 3, vScale: 4, wAng: 0 },
-      { uScale: 3, vScale: 4, wAng: 0 },
-      { uScale: 3, vScale: 4, wAng: 0 },
-      { uScale: 3, vScale: 4, wAng: 0 },
-   ]
 
    _AmbientTextures = [
 
@@ -127,13 +97,15 @@ class Texture {
 }
 
 class newTexture {
-   constructor({ texturePath = null, uScale = 1, vScale = 1, level = 1, uAng = 0, wAng = 0 }) {
+   constructor({ name = null, texturePath = null, uScale = 1, vScale = 1, level = 1, uAng = 0, wAng = 0 }) {
       const texture = new BABYLON.Texture(texturePath)
       texture.uScale = uScale
       texture.vScale = vScale
       texture.level = level
       texture.uAng = uAng
       texture.wAng = wAng
+      if (name) texture.name = name
+      return texture;
    }
 }
 
