@@ -6,7 +6,7 @@
                Choose the wall color
             </h3>
             <div class="text-gray-400 w-full px-2 flex justify-center">
-               <input id="colorThree" class="inputColor w-2/3 h-8" type="color" @input="events.ColorChanger()" v-model="$store.state.params.wallColor"/>
+               <input id="colorThree" class="inputColor w-2/3 h-8" type="color" @input="events.ColorChanger()" v-model="$store.state.room.wallColor"/>
             </div>
          </main>
       </transition>
@@ -34,7 +34,7 @@
                   <main @click="events.floorImage(img)">
                      <img
                         :class="{
-                           'shadow-blue': $store.state.params.floor == img,
+                           'shadow-blue': $store.state.room.floor == img,
                         }"
                         :src="img"
                         class="

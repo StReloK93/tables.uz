@@ -14,15 +14,15 @@
 					<hr class="xl:my-6 md:my-4">
 					<aside class="px-6 py-3 border rounded-md xl:mb-6 md:mb-4">
 						<label for="inputname" class="uppercase small-text font-bold text-indigo-900 block">Your Name</label>
-						<input required type="text" class="w-full border-0 outline-none mt-3" placeholder="Type yuor name, please">
+						<input  required type="text" v-model="inpname" class="w-full border-0 outline-none mt-3" placeholder="Type yuor name, please">
 					</aside>
 					<aside class="px-6 py-3 border rounded-md xl:mb-6 md:mb-4">
 						<label for="inputname" class="uppercase small-text font-bold text-indigo-900 block">Your email: <span class="ml-2 text-gray-400 font-normal small-text">(Pis avoid using hotmail here as mails will very likely go to junk folder when we reply to you)</span></label>
-						<input required type="email" class="w-full border-0 outline-none mt-3" placeholder="Email address">
+						<input required type="email" v-model="inpemail" class="w-full border-0 outline-none mt-3" placeholder="Email address">
 					</aside>
 					<aside class="px-6 py-3 border rounded-md xl:mb-6 md:mb-4">
 						<label for="inputname" class="uppercase small-text font-bold text-indigo-900 block">Phone number</label>
-						<input required type="number" class="w-full border-0 outline-none mt-3" placeholder="Phone number">
+						<input required type="number" v-model="inpphone" class="w-full border-0 outline-none mt-3" placeholder="Phone number">
 					</aside>
 					<aside class="px-6 py-3 border rounded-md relative">
 						<label for="inputname" class="uppercase small-text font-bold text-indigo-900 block">How would you like to be contacted? </label>
@@ -76,6 +76,9 @@
 export default {
 	data() {
 		return {
+			inpname: null,
+			inpemail: null,
+			inpphone: null,
 			email: true,
 			phone: false,
 			menudrop: false,
@@ -83,7 +86,15 @@ export default {
 		}
 	},
 	methods: {
-		saveSetting(){
+		async saveSetting(){
+			let contacted = this.email? 'email' : 'phone'
+			const form = {
+				prefers : contacted,
+				name : this.inpname,
+				email : this.inpemail,
+				phone : this.inpphone,
+			}
+			const data = await store.dispatch('sendEmail', form)
 			this.finishim = false
 		}
 	},

@@ -13,7 +13,7 @@
                   <Icons icon="minus"/>
                </button>
                <span class="px-7 font-bold text-indigo-900">
-                  {{$store.state.params.tablesCount}}
+                  {{$store.state.otherpage.tablesCount}}
                </span>
                <button class="px-3 border-l border-gray-300 h-full" @click="$store.commit('setTablesCount', 1)">
                   <Icons icon="plus"/>

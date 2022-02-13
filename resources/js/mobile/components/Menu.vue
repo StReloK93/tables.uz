@@ -30,7 +30,7 @@
                <Configurator @closed="toggleMenu(false)" v-if="$store.state.configurator"/>
             </transition>
 
-            <button class="bg-green-800 font-bold w-full p-3 text-center text-white rounded-md">
+            <button @click="$store.state.finished = true" class="bg-green-800 font-bold w-full p-3 text-center text-white rounded-md">
                {{$store.state.language.getQuote}}
             </button>
          </main>

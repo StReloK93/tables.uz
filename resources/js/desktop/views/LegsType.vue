@@ -5,7 +5,7 @@
                 Available legs
             </h3>
             <div class="flex text-center justify-between -mr-2">
-                <aside v-for="(legs , index) in $store.state.legTypes" :key="index" @click="events.setLegType(index + 1, deskFolder ,assignTextures)" class="w-1/5 pr-2 cursor-pointer">
+                <aside v-for="(legs , index) in $store.state.legTypes" :key="index" @click="events.setLegType(index + 1)" class="w-1/5 pr-2 cursor-pointer">
 					<section  :class="{'border-myblue': $store.state.params.legType == index + 1}" class="p-2 pt-1 overflow-hidden rounded-xl border bg-white">
 						<main class="xl:h-28 md:h-24 flex items-center justify-center">
 							<img :src="legs.img" class="w-10/12">
@@ -24,7 +24,7 @@
                 <Caruosel v-if="deskMaterials.length > 0" :itemCount="4" class="text-md text-center text-gray-600">
                     <main v-for="materials in deskMaterials" :key="materials"  class="w-1/4 inline-block align-middle px-2 relative">
                         <img v-if="$store.state.params.activeFolder == materials.path" src="/images/true.png" class="w-4 -m-1 -mt-2 absolute top-0 right-0 z-20">
-                        <button  @click="deskFolder(materials.path)" :class="{'bg-my text-white': $store.state.params.deskMaterial == materials.path}" v-html="materials.text" class="xl:h-16 md:h-14 xl:text-sm md:text-xs w-full rounded-xl border"></button>
+                        <button  @click="events.deskFolder(materials.path)" :class="{'bg-my text-white': $store.state.params.deskMaterial == materials.path}" v-html="materials.text" class="xl:h-16 md:h-14 xl:text-sm md:text-xs w-full rounded-xl border"></button>
                     </main>
                 </Caruosel>
             </transition>
@@ -67,47 +67,13 @@ export default {
         }
     },
     mounted() {
+        Engine.Legs.data = this
         scene.onReadyObservable.add(()=>{
             let desks = Engine.textures.folders
             this.folderImages = desks.images
             this.imagearr = this.folderImages[store.state.params.deskMaterial]
-
-            this.assignTextures(store.state.params.legType)
+            Engine.Legs.FilterFolders(store.state.params.legType)
         })
-    },
-    methods: {
-        deskFolder(deskIndex){
-            this.imagearr = null
-            setTimeout(()=>{
-                this.imagearr = this.folderImages[deskIndex]
-                store.state.params.deskMaterial = deskIndex
-            },100)
-        },
-
-        async assignTextures(legtype){
-            this.deskMaterials = 0
-            const {folders} = await store.dispatch('deskTextures')
-            this.deskMaterials = folders
-            const Arrays = [
-                ['desks/bamboo','desks/solidedge'],
-                [],
-                ['desks/bamboo','desks/solidedge','desks/pyledge'],
-                ['desks/bamboo'],
-                ['desks/bamboo','desks/solidedge'],
-            ]
-
-            Arrays[legtype - 1].forEach(folder => {
-                var conut = null
-                this.deskMaterials.find((texture,index) => {
-                    if(texture.path == folder){
-                        conut = index
-                    }
-                }) 
-
-                this.deskMaterials.splice(conut, 1);
-            });
-
-        }
     },
     components:{
         Caruosel

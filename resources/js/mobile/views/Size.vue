@@ -25,19 +25,19 @@
                <main class="mr-2 w-1/3">
                   <p class="mb-2 text-gray-400 xl:text-md md:text-sm">Length </p>
                      <div>
-                        <input placeholder="00mm" type="text" class="p-2 rounded-lg w-full border border-indigo-900 outline-none focus:border-blue-600">
+                        <input v-model="$store.state.sizepage.lenght" placeholder="00mm" type="text" class="p-2 rounded-lg w-full border border-indigo-900 outline-none focus:border-blue-600">
                      </div>
                </main>
                <main  class="mr-2 w-1/3">
                   <p class="mb-2 text-gray-400 xl:text-md md:text-sm">Width </p>
                      <div>
-                        <input placeholder="00mm" type="text" class="p-2 rounded-lg w-full border border-indigo-900 outline-none focus:border-blue-600">
+                        <input v-model="$store.state.sizepage.width" placeholder="00mm" type="text" class="p-2 rounded-lg w-full border border-indigo-900 outline-none focus:border-blue-600">
                      </div>
                </main>
                <main  class="w-1/3">
                   <p class="mb-2 text-gray-400 xl:text-md md:text-sm">Thickness </p>
                      <div>
-                        <input placeholder="00mm" type="text" class="p-2 rounded-lg w-full border border-indigo-900 outline-none focus:border-blue-600">
+                        <input v-model="$store.state.sizepage.thickness" placeholder="00mm" type="text" class="p-2 rounded-lg w-full border border-indigo-900 outline-none focus:border-blue-600">
                      </div>
                </main>
             </aside>

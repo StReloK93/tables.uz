@@ -25,6 +25,7 @@
       
       <transition name="fade">
          <Other v-if="$store.state.other"/>
+         <Finished v-else-if="$store.state.finished"/>
       </transition>
    </section>
 </template>
@@ -36,8 +37,9 @@ import Decorations from './Decorations.vue'
 import Menu from './Menu.vue'
 import Icons from './Icons.vue'
 import Other from './Other.vue'
+import Finished from './Finished.vue'
 export default {
-   components:{Decorations,Preloader,Icons,Menu,Other},
+   components:{Decorations,Preloader,Icons,Menu,Other,Finished},
    mounted(){
       window.Engine = initScene(this.$refs.canvas)
    }

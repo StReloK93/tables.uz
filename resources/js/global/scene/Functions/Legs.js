@@ -2,9 +2,12 @@ import coords from '../../LegsCoordinates'
 import store from '../../store';
 
 export default class Legs {
+	data = null;
 	setDeskMaterial(textureName) {
 		store.state.params.deskimage = textureName
 		const { images } = Engine.textures.folders
+
+		//galochka uchun
 		for (const key in images) {
 			var elem = images[key].find(element => {
 				if (element.path === store.state.params.deskimage) {
@@ -26,13 +29,14 @@ export default class Legs {
 
 			material.albedoTexture = scene.getTextureByName(textureName)
 		});
-
+		
 		store.commit('setCorner', store.state.custom.corners)
 	}
 
-	setLegType(legIndex, deskFolder = () => { },  FilterFolders = () => { }) {
+	async setLegType(legIndex) {
+		
 		if (store.state.params.legType == legIndex) return
-		FilterFolders(legIndex) //papkalar korinadi
+		
 
 		let legType = store.state.params.legType
 		let activeFolder = store.state.params.activeFolder
@@ -46,13 +50,16 @@ export default class Legs {
 			||  legIndex == 3 && (activeFolder == 'desks/pyledge'    ||  deskMaterial == 'desks/pyledge')
 		) 
 		{
-			deskFolder('desks/laminate')
+			this.deskFolder('desks/laminate')
 			this.setDeskMaterial('desks/laminate/cw115.jpg')
 		}
 
-
 		this.hideOrShowDecors(legIndex)
 		this.setLeg(legIndex)
+
+		if(this.data){
+			await this.FilterFolders(legIndex) //papkalar korinadi
+		}
 	}
 
 	setLeg(defaultLeg) {
@@ -73,6 +80,113 @@ export default class Legs {
 
 		store.commit('setCorner', store.state.custom.corners)
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	deskFolder(deskIndex){
+		this.data.imagearr = null
+		setTimeout(()=>{
+			this.data.imagearr = this.data.folderImages[deskIndex]
+			store.state.params.deskMaterial = deskIndex
+		},100)
+	}
+
+	//Tugri ishlayabdi
+	async FilterFolders(legtype){
+		this.data.deskMaterials = []
+		const {folders} = await store.dispatch('deskTextures')
+		this.data.deskMaterials = folders
+		const Arrays = [
+			['desks/bamboo','desks/solidedge'],
+			[],
+			['desks/bamboo','desks/solidedge','desks/pyledge'],
+			['desks/bamboo'],
+			['desks/bamboo','desks/solidedge'],
+		]
+
+		Arrays[legtype - 1].forEach(folder => {
+			var conut = null
+			this.data.deskMaterials.find((texture,index) => {
+				if(texture.path == folder){
+					conut = index
+				}
+			}) 
+
+			this.data.deskMaterials.splice(conut, 1);
+		});
+	}
+
+
+
+
 
 	//hide to active decors
 	DecorsHide(params) {
@@ -129,7 +243,6 @@ export default class Legs {
 
 		store.state.params.legColor = colorIndex
 	}
-
 
 	hideOrShowDecors(legIndex){
 		let decornames = []

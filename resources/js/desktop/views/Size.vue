@@ -22,19 +22,19 @@
            <main class="mr-4">
               <p class="mb-2 text-gray-400 xl:text-md md:text-sm">Lenght</p>
                <div>
-                  <input placeholder="00mm" type="text" class="rounded-lg w-32 border border-indigo-900 xl:p-3 md:p-2 outline-none focus:border-blue-600">
+                  <input v-model="$store.state.sizepage.lenght" placeholder="00mm" type="text" class="rounded-lg w-32 border border-indigo-900 xl:p-3 md:p-2 outline-none focus:border-blue-600">
                </div>
            </main>
            <main class="mr-4">
               <p class="mb-2 text-gray-400 xl:text-md md:text-sm"> Width </p>
                <div>
-                  <input placeholder="00mm" type="text" class="rounded-lg w-32 border border-indigo-900 xl:p-3 md:p-2 outline-none focus:border-blue-600">
+                  <input v-model="$store.state.sizepage.width" placeholder="00mm" type="text" class="rounded-lg w-32 border border-indigo-900 xl:p-3 md:p-2 outline-none focus:border-blue-600">
                </div>
            </main>
            <main>
               <p class="mb-2 text-gray-400 xl:text-md md:text-sm"> Thickness </p>
                <div>
-                  <input placeholder="00mm" type="text" class="rounded-lg w-32 border border-indigo-900 xl:p-3 md:p-2 outline-none focus:border-blue-600">
+                  <input v-model="$store.state.sizepage.thickness" placeholder="00mm" type="text" class="rounded-lg w-32 border border-indigo-900 xl:p-3 md:p-2 outline-none focus:border-blue-600">
                </div>
            </main>
         </aside>

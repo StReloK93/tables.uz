@@ -5,4 +5,11 @@ export default class Customization{
         }
         store.state.custom.grommet = index
     }
+
+    setAccessories(index){
+        if(index == store.state.custom.accessories){
+            return store.state.custom.accessories = 0
+        }
+        store.state.custom.accessories = index
+    }
 }

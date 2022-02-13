@@ -15,33 +15,6 @@ export default createStore({
 			configurator: true,
 			customActiveLink: 1,
 			finished: false,
-			phoneOrEmail: false,
-			params: {
-				tablesCount: 1,
-				//legs
-				legColor: 1,
-				legType: 0,
-				deskimage: 'desks/laminate/cw115.jpg',
-				//room
-				wallColor: '#CFCFCF',
-				floor: null,
-
-				deskMaterial: 'desks/laminate',
-				activeFolder: 'desks/laminate'
-			},
-			sizepage: {
-				size: 0,
-				length: null,
-				width: null,
-				thickness: null,
-			},
-			otherpage: {
-				service: false,
-				needchair: false,
-				height: null,
-				length: null,
-				message: null
-			},
 			decor: {
 				lamp: false,
 				monitor: false,
@@ -50,10 +23,39 @@ export default createStore({
 				plant: true,
 				tumbochka: false,
 			},
+			params: {
+				//legs
+				legColor: 1,
+				legType: 0,
+				deskimage: 'desks/laminate/cw115.jpg',
+
+
+				deskMaterial: 'desks/laminate',
+				activeFolder: 'desks/laminate'
+			},
+			room:{
+				//room
+				wallColor: '#CFCFCF',
+				floor: null,
+			},
+			sizepage: {
+				size: 0,
+				lenght: null,
+				width: null,
+				thickness: null,
+			},
+			otherpage: {
+				tablesCount: 1,
+				service: false,
+				needchair: false,
+				height: null,
+				length: null,
+				message: null
+			},
 			custom: {
 				corners: 1,
-				grommet: 0,
-				partition: 0,
+				grommet: null,
+				partition: null,
 				accessories: null,
 				chair: null,
 			},
@@ -63,6 +65,24 @@ export default createStore({
 				{ img: '/images/3leg.png', name: '3 legs' },
 				{ img: '/images/4leg.png', name: '4 legs' },
 				{ img: '/images/5leg.png', name: 'Side cabinet' },
+			],
+			accessories: [
+				{image: '/images/access/Keyboard Tray 1.jpg' , name:'Keyboard tray'},
+				{image: '/images/access/magnetic tubes.jpg' , name:'Magnetic tubes'},
+				{image: '/images/access/Dual Monitor Arm.jpg' , name:'Dual Monitor Arm'},
+				{image: '/images/access/Single Monitor Arm.jpg' , name:'Single Monitor Arm'},
+				{image: '/images/access/Mobile Caddy.jpg' , name:'Mobile Caddy'},
+				{image: '/images/access/Regular Mobile Pedestal.jpg' , name:'Regular Mobile Pedestal'},
+				{image: '/images/access/Add-on drawers.jpg' , name:'Add-on drawers'},
+				{image: '/images/access/Anti Fatigue Mat.jpg' , name:'Anti Fatigue Mat'},
+				{image: '/images/access/Balance Board.jpg' , name:'Balance Board'},
+				{image: '/images/access/Casters.jpg' , name:'Casters'},
+				{image: '/images/access/Clamp on socket.jpg' , name:'Clamp on socket'},
+				{image: '/images/access/CPU Holder.jpg' , name:'CPU Holder'},
+				{image: '/images/access/Dual Level.jpg' , name:'Dual Level'},
+				{image: '/images/access/Mini Mobile Pedestal.jpg' , name:'Mini Mobile Pedestal'},
+				{image: '/images/access/Premium Cable Tray.jpg' , name:'Premium Cable Tray'},
+				{image: '/images/access/Regular cable tray.jpg' , name:'Regular cable tray'},
 			]
 		}
 	},
@@ -73,11 +93,11 @@ export default createStore({
 		},
 		//otherdagi counter
 		setTablesCount(state, pay) {
-			if (pay < 1 && (state.params.tablesCount > 1)) {
-				state.params.tablesCount += pay
+			if (pay < 1 && (state.otherpage.tablesCount > 1)) {
+				state.otherpage.tablesCount += pay
 			}
 			else if (pay > -1) {
-				state.params.tablesCount += pay
+				state.otherpage.tablesCount += pay
 			}
 		},
 		//for Mobile
@@ -123,6 +143,17 @@ export default createStore({
 					['twoTableBambuk', 'twoTableBambukCircle', 'twoTableBambukRounded', 'twoTable' , 'fourTable']
 				]
 			}
+			else if (state.params.activeFolder == 'desks/solidtraditional') {
+				var ArraySharpes = [
+					//sharp
+					['oneTableTrad', 'twoLiveEdge', 'threeTableRight', 'threeTableLeft', 'fourLiveEdge', 'fiveTable'],
+					//circle
+					['oneTabletradCircle', 'twoLiveEdgeCircle', 'threeTableCircleRight', 'threeTableCirlceLeft', 'fourLiveEdgeCircle', 'fiveTableCircle'],
+					//rounded
+					['oneTabletradRounded', 'twoLiveEdgeRounded', 'threeTableRoundedRight', 'threeTableRoundedLeft', 'fourLiveEdgeRounded', 'fiveTableRounded'],
+					['twoTableBambuk', 'twoTableBambukCircle', 'twoTableBambukRounded', 'twoTable' , 'fourTable']
+				]
+			}
 			else {
 				var ArraySharpes = [
 					//sharp
@@ -152,6 +183,20 @@ export default createStore({
 
 
 	actions: {
+		async sendEmail({commit,state},payload){
+			const formData = {
+				params: state.params,
+				sizepage: state.sizepage,
+				room: state.room,
+				otherpage: state.otherpage,
+				custom: state.custom,
+				params: state.params,
+				finished: payload
+			}
+			let { data } = await axios.post('/api/send-email', formData)
+			return data
+		},
+
 		async textures() {
 			let { data } = await axios.get('/api/textures')
 			return data
