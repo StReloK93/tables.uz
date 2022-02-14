@@ -21,7 +21,7 @@
             <img src="/images/leftang.png" class="w-2/3 btns" />
          </button>
       </transition>
-      <aside class="overflow-hidden py-3 flex-grow">
+      <aside class="overflow-hidden py-3 px-2 flex-grow">
          <main
             ref="mainBlock"
             :style="transform"
