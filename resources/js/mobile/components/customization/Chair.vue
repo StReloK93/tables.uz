@@ -6,9 +6,10 @@
 </template>
 <script>
 export default {
-    
+    data() {
+        return {
+            events: Engine.Customization
+        }
+    }
 }
 </script>
-<style lang="">
-    
-</style>

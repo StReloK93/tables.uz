@@ -25,8 +25,3 @@ export default {
     }
 }
 </script>
-<style scoped>
-    .scaling{
-        transform: scale(1.2);
-    }
-</style>

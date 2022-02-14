@@ -3,7 +3,7 @@
         <h3 class="color-title font-medium text-xl  mb-2 text-gray-600">Grommet Holes</h3>
         <main class="whitespace-nowrap px-1 py-1 overflow-hidden overflow-x-scroll noscroll">
             <aside class="pr-2 inline-block">
-                <div @click="setGrommet(1)" :class="{'border-myblue': $store.state.custom.grommet == 1}" class="flex flex-col px-2 pb-2 rounded-md border border-transparent relative">
+                <div @click="events.setGrommet(1)" :class="{'border-myblue': $store.state.custom.grommet == 1}" class="flex flex-col px-2 pb-2 rounded-md border border-transparent relative">
                      <img v-if="$store.state.custom.grommet == 1" src="/images/true.jpg" class="w-6 -m-3 absolute top-0 right-0 z-20">
                     <aside class="w-full">
                         <main class="inline-block mr-2">
@@ -31,7 +31,7 @@
                 </div>
             </aside>
             <aside class="pr-2 inline-block">
-                <div @click="setGrommet(2)" :class="{'border-myblue': $store.state.custom.grommet == 2}" class="flex flex-col p-2 rounded-md border border-transparent relative">
+                <div @click="events.setGrommet(2)" :class="{'border-myblue': $store.state.custom.grommet == 2}" class="flex flex-col p-2 rounded-md border border-transparent relative">
                      <img v-if="$store.state.custom.grommet == 2" src="/images/true.jpg" class="w-6 -m-3 absolute top-0 right-0 z-20">
                     <aside>
                         <main class="inline-block mr-2">
@@ -59,7 +59,7 @@
                 </div>
             </aside>
             <aside class="inline-block">
-                <div @click="setGrommet(3)" :class="{'border-myblue': $store.state.custom.grommet == 3}" class="flex flex-col p-2 border border-transparent relative">
+                <div @click="events.setGrommet(3)" :class="{'border-myblue': $store.state.custom.grommet == 3}" class="flex flex-col p-2 border border-transparent relative">
                      <img v-if="$store.state.custom.grommet == 3" src="/images/true.jpg" class="w-6 -m-3 absolute top-0 right-0 z-20">
                     <aside>
                         <main class="inline-block mr-2">
@@ -91,18 +91,10 @@
 </template>
 <script>
 export default {
-    methods:{
-        setGrommet(index){
-            if(index == store.state.custom.grommet){
-                return store.state.custom.grommet = 0
-            }
-            store.state.custom.grommet = index
+    data(){
+        return{
+            events: Engine.Customization
         }
     }
 }
 </script>
-<style scoped>
-    .scaling{
-        transform: scale(1.2);
-    }
-</style>

@@ -54,7 +54,7 @@
 
 
       <!-- Pages  -->
-      <router-view class="flex-grow overflow-hidden overflow-y-auto xl:px-10 md:px-5 xl:pt-8 md:pt-4" v-slot="{ Component }">
+      <router-view class="flex-grow overflow-hidden overflow-y-auto xl:px-10 md:px-5 xl:pt-6 md:pt-4" v-slot="{ Component }">
          <transition name="fade" mode="out-in">
             <component ref="pages" :is="Component" />
          </transition>
