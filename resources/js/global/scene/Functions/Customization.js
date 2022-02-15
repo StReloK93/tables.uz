@@ -1,29 +1,69 @@
-export default class Customization{
-    setGrommet(index){
-        if(index == store.state.custom.grommet){
-            return store.state.custom.grommet = null
+export default class Customization {
+    setter(index,type){
+        if (index == store.state.custom[type]) {
+            return store.state.custom[type] = null
         }
-        store.state.custom.grommet = index
-    }
-    
-    setAccessories(index){
-        if(index == store.state.custom.accessories){
-            return store.state.custom.accessories = null
-        }
-        store.state.custom.accessories = index
+        store.state.custom[type] = index
     }
 
-    setChair(path){
-        if(path == store.state.custom.chair){
-            return store.state.custom.chair = null
-        }
-        store.state.custom.chair = path
-    }
+    setCorner(indexCorners) {
+        store.state.custom.corners = indexCorners
 
-    setPart(index){
-        if(index == store.state.custom.partition){
-            return store.state.custom.partition = null
+        if (store.state.params.activeFolder == 'desks/bamboo') {
+            var ArraySharpes = [
+                //sharp
+                ['oneTable', 'twoTableBambuk', 'threeTableRight', 'threeTableLeft', 'fourTable', 'fiveTable'],
+                //circle
+                ['oneTableCircle', 'twoTableBambukCircle', 'threeTableCircleRight', 'threeTableCirlceLeft', 'fourTableCircle', 'fiveTableCircle'],
+                //rounded
+                ['oneTableRounded', 'twoTableBambukRounded', 'threeTableRoundedRight', 'threeTableRoundedLeft', 'fourTableRounded', 'fiveTableRounded'],
+                ['twoTable', 'twoTableCircle', 'twoTableRounded', 'oneTableTrad', 'oneTabletradCircle', 'oneTableRounded']
+            ]
         }
-        store.state.custom.partition = index
+        else if (store.state.params.activeFolder == 'desks/solidedge') {
+            var ArraySharpes = [
+                //sharp
+                ['oneTable', 'twoLiveEdge', 'threeTableRight', 'threeTableLeft', 'fourLiveEdge', 'fiveTable'],
+                //circle
+                ['oneTableCircle', 'twoLiveEdgeCircle', 'threeTableCircleRight', 'threeTableCirlceLeft', 'fourLiveEdgeCircle', 'fiveTableCircle'],
+                //rounded
+                ['oneTableRounded', 'twoLiveEdgeRounded', 'threeTableRoundedRight', 'threeTableRoundedLeft', 'fourLiveEdgeRounded', 'fiveTableRounded'],
+                ['twoTableBambuk', 'twoTableBambukCircle', 'twoTableBambukRounded', 'twoTable', 'fourTable', 'oneTableTrad', 'oneTabletradCircle', 'oneTableRounded']
+            ]
+        }
+        else if (store.state.params.activeFolder == 'desks/solidtraditional') {
+            var ArraySharpes = [
+                //sharp
+                ['oneTableTrad', 'twoLiveEdge', 'threeTableRight', 'threeTableLeft', 'fourLiveEdge', 'fiveTable'],
+                //circle
+                ['oneTabletradCircle', 'twoLiveEdgeCircle', 'threeTableCircleRight', 'threeTableCirlceLeft', 'fourLiveEdgeCircle', 'fiveTableCircle'],
+                //rounded
+                ['oneTabletradRounded', 'twoLiveEdgeRounded', 'threeTableRoundedRight', 'threeTableRoundedLeft', 'fourLiveEdgeRounded', 'fiveTableRounded'],
+                ['twoTableBambuk', 'twoTableBambukCircle', 'twoTableBambukRounded', 'twoTable', 'fourTable', 'oneTable', 'oneTableCircle', 'oneTableRounded']
+            ]
+        }
+        else {
+            var ArraySharpes = [
+                //sharp
+                ['oneTable', 'twoTable', 'threeTableRight', 'threeTableLeft', 'fourTable', 'fiveTable'],
+                //circle
+                ['oneTableCircle', 'twoTableCircle', 'threeTableCircleRight', 'threeTableCirlceLeft', 'fourTableCircle', 'fiveTableCircle'],
+                //rounded
+                ['oneTableRounded', 'twoTableRounded', 'threeTableRoundedRight', 'threeTableRoundedLeft', 'fourTableRounded', 'fiveTableRounded'],
+            ]
+        }
+
+        ArraySharpes.forEach((element, index) => {
+            element.forEach(tables => {
+                if (index == indexCorners - 1) {
+                    const mesh = scene.getNodeByName(tables)
+                    mesh.setEnabled(true)
+                }
+                else {
+                    const mesh = scene.getNodeByName(tables)
+                    mesh.setEnabled(false)
+                }
+            });
+        })
     }
 }

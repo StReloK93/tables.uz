@@ -9,7 +9,7 @@
         <transition name="fade" mode="out-in">
             <div v-if="active == 0" class="text-xs whitespace-nowrap pt-2 px-1 overflow-hidden overflow-x-scroll noscroll -mr-1">
                 <aside v-for="img in easy" :key="img" class="px-1 w-32 inline-block">
-                    <div @click="events.setChair(img.name)" :class="{'border-myblue': $store.state.custom.chair == img.name}" class="cursor-pointer p-1 text-center rounded relative border border-transparent">
+                    <div @click="events.setter(img.name, 'chair')" :class="{'border-myblue': $store.state.custom.chair == img.name}" class="cursor-pointer p-1 text-center rounded relative border border-transparent">
                         <img v-if="$store.state.custom.chair == img.name" src="/images/true.jpg" class="w-6 -m-3 absolute top-0 right-0 z-20">
                         <main class="mb-2 text-center">
                             <img :src="img.path" class="w-20 h-24 object-cover inline">
@@ -22,7 +22,7 @@
             </div>
             <div v-else-if="active == 1" class="text-xs whitespace-nowrap pt-2 px-1 overflow-hidden overflow-x-scroll noscroll -mr-1">
                 <aside v-for="img in normal" :key="img" class="px-1 w-32 inline-block">
-                    <div @click="events.setChair(img.name)" :class="{'border-myblue': $store.state.custom.chair == img.name}" class="cursor-pointer p-1 text-center rounded relative border border-transparent">
+                    <div @click="events.setter(img.name, 'chair')" :class="{'border-myblue': $store.state.custom.chair == img.name}" class="cursor-pointer p-1 text-center rounded relative border border-transparent">
                         <img v-if="$store.state.custom.chair == img.name" src="/images/true.jpg" class="w-6 -m-3 absolute top-0 right-0 z-20">
                         <main class="mb-2 text-center">
                             <img :src="img.path" class="w-20 h-24 object-cover inline">
@@ -35,7 +35,7 @@
             </div>
             <div v-else-if="active == 2" class="text-xs whitespace-nowrap pt-2 px-1 overflow-hidden overflow-x-scroll noscroll -mr-1">
                 <aside v-for="img in hard" :key="img" class="px-1 w-32 inline-block">
-                    <div @click="events.setChair(img.name)" :class="{'border-myblue': $store.state.custom.chair == img.name}" class="cursor-pointer p-1 text-center rounded relative border border-transparent">
+                    <div @click="events.setter(img.name, 'chair')" :class="{'border-myblue': $store.state.custom.chair == img.name}" class="cursor-pointer p-1 text-center rounded relative border border-transparent">
                         <img v-if="$store.state.custom.chair == img.name" src="/images/true.jpg" class="w-6 -m-3 absolute top-0 right-0 z-20">
                         <main class="mb-2 text-center">
                             <img :src="img.path" class="w-20 h-24 object-cover inline">
@@ -48,7 +48,7 @@
             </div>
             <div v-else-if="active == 3" class="text-xs whitespace-nowrap pt-2 px-1 overflow-hidden overflow-x-scroll noscroll -mr-1">
                 <aside v-for="img in hardest" :key="img" class="px-1 w-32 inline-block">
-                    <div @click="events.setChair(img.name)" :class="{'border-myblue': $store.state.custom.chair == img.name}" class="cursor-pointer p-1 text-center rounded relative border border-transparent">
+                    <div @click="events.setter(img.name, 'chair')" :class="{'border-myblue': $store.state.custom.chair == img.name}" class="cursor-pointer p-1 text-center rounded relative border border-transparent">
                         <img v-if="$store.state.custom.chair == img.name" src="/images/true.jpg" class="w-6 -m-3 absolute top-0 right-0 z-20">
                         <main class="mb-2 text-center">
                             <img :src="img.path" class="w-20 h-24 object-cover inline">

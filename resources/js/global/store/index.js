@@ -116,74 +116,9 @@ export default createStore({
 		setConfigurator(state, payload) {
 			state.configurator = payload
 		},
-
-
-		setCorner(state, indexCorners) {
-			state.custom.corners = indexCorners
-
-			if (state.params.activeFolder == 'desks/bamboo') {
-				var ArraySharpes = [
-					//sharp
-					['oneTable', 'twoTableBambuk', 'threeTableRight', 'threeTableLeft', 'fourTable', 'fiveTable'],
-					//circle
-					['oneTableCircle', 'twoTableBambukCircle', 'threeTableCircleRight', 'threeTableCirlceLeft', 'fourTableCircle', 'fiveTableCircle'],
-					//rounded
-					['oneTableRounded', 'twoTableBambukRounded', 'threeTableRoundedRight', 'threeTableRoundedLeft', 'fourTableRounded', 'fiveTableRounded'],
-					['twoTable', 'twoTableCircle', 'twoTableRounded']
-				]
-			}
-			else if (state.params.activeFolder == 'desks/solidedge') {
-				var ArraySharpes = [
-					//sharp
-					['oneTable', 'twoLiveEdge', 'threeTableRight', 'threeTableLeft', 'fourLiveEdge', 'fiveTable'],
-					//circle
-					['oneTableCircle', 'twoLiveEdgeCircle', 'threeTableCircleRight', 'threeTableCirlceLeft', 'fourLiveEdgeCircle', 'fiveTableCircle'],
-					//rounded
-					['oneTableRounded', 'twoLiveEdgeRounded', 'threeTableRoundedRight', 'threeTableRoundedLeft', 'fourLiveEdgeRounded', 'fiveTableRounded'],
-					['twoTableBambuk', 'twoTableBambukCircle', 'twoTableBambukRounded', 'twoTable' , 'fourTable']
-				]
-			}
-			else if (state.params.activeFolder == 'desks/solidtraditional') {
-				var ArraySharpes = [
-					//sharp
-					['oneTableTrad', 'twoLiveEdge', 'threeTableRight', 'threeTableLeft', 'fourLiveEdge', 'fiveTable'],
-					//circle
-					['oneTabletradCircle', 'twoLiveEdgeCircle', 'threeTableCircleRight', 'threeTableCirlceLeft', 'fourLiveEdgeCircle', 'fiveTableCircle'],
-					//rounded
-					['oneTabletradRounded', 'twoLiveEdgeRounded', 'threeTableRoundedRight', 'threeTableRoundedLeft', 'fourLiveEdgeRounded', 'fiveTableRounded'],
-					['twoTableBambuk', 'twoTableBambukCircle', 'twoTableBambukRounded', 'twoTable' , 'fourTable']
-				]
-			}
-			else {
-				var ArraySharpes = [
-					//sharp
-					['oneTable', 'twoTable', 'threeTableRight', 'threeTableLeft', 'fourTable', 'fiveTable'],
-					//circle
-					['oneTableCircle', 'twoTableCircle', 'threeTableCircleRight', 'threeTableCirlceLeft', 'fourTableCircle', 'fiveTableCircle'],
-					//rounded
-					['oneTableRounded', 'twoTableRounded', 'threeTableRoundedRight', 'threeTableRoundedLeft', 'fourTableRounded', 'fiveTableRounded'],
-					['twoTableBambuk', 'twoTableBambukCircle', 'twoTableBambukRounded', 'twoLiveEdge', 'twoLiveEdgeCircle', 'twoLiveEdgeRounded', 'fourLiveEdge','fourLiveEdgeCircle','fourLiveEdgeRounded']
-				]
-			}
-
-			ArraySharpes.forEach((element, index) => {
-				element.forEach(tables => {
-					if (index == indexCorners - 1) {
-						const mesh = scene.getNodeByName(tables)
-						mesh.setEnabled(true)
-					}
-					else {
-						const mesh = scene.getNodeByName(tables)
-						mesh.setEnabled(false)
-					}
-				});
-			})
-		},
 	},
-
-
 	actions: {
-		async sendEmail({commit,state},payload){
+		async sendEmail({state},payload){
 			const formData = {
 				params: state.params,
 				sizepage: state.sizepage,

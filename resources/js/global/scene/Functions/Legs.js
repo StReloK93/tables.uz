@@ -30,7 +30,7 @@ export default class Legs {
 			material.albedoTexture = scene.getTextureByName(textureName)
 		});
 		
-		store.commit('setCorner', store.state.custom.corners)
+		// store.commit('setCorner', store.state.custom.corners)
 	}
 
 	async setLegType(legIndex) {
@@ -78,7 +78,7 @@ export default class Legs {
 		}
 		//Style qo'shish uchun activeligini bildiradi
 
-		store.commit('setCorner', store.state.custom.corners)
+		// store.commit('setCorner', store.state.custom.corners)
 	}
 
 
