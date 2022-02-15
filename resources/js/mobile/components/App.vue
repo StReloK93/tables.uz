@@ -25,7 +25,9 @@
       
       <transition name="fade">
          <Other v-if="$store.state.other"/>
-         <Finished v-else-if="$store.state.finished"/>
+      </transition>
+      <transition name="fade">
+         <Finished v-if="$store.state.finished"/>
       </transition>
    </section>
 </template>

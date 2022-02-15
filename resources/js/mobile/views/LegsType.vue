@@ -28,7 +28,7 @@
                 </h3>
                 <aside v-if="deskMaterials.length > 0" class="text-center text-xs whitespace-nowrap py-1 overflow-hidden overflow-x-scroll noscroll -mr-2">
                     <main v-for="materials in deskMaterials" :key="materials" class="w-28 inline-block align-middle mr-2">
-                        <button @click="events.deskFolder(materials.path)" :class="{'bg-my text-white': $store.state.params.deskMaterial == materials.path}" v-html="materials.text" class="leading-none h-8 w-full rounded-md border"></button>
+                        <button @click="events.deskFolder(materials.path)" :class="{'bg-my text-white': $store.state.params.deskMaterial == materials.path}" v-html="materials.text" class="leading-none h-8 w-full rounded-md shadow-sm border border-gray-50"></button>
                     </main>
                 </aside>
                 <transition name="fade" mode="in-out">
