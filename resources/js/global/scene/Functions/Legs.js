@@ -1,8 +1,17 @@
 import coords from '../../LegsCoordinates'
-import store from '../../store';
+
+
+
 
 export default class Legs {
 	data = null;
+	leg = [
+		new LegClass({ filter: ['desks/bamboo', 'desks/solidedge'] }),
+		new LegClass({}),
+		new LegClass({ filter: ['desks/bamboo', 'desks/solidedge', 'desks/pyledge'] }),
+		new LegClass({ filter: ['desks/bamboo'] }),
+		new LegClass({ filter: ['desks/bamboo', 'desks/solidedge'] }),
+	]
 	setDeskMaterial(textureName) {
 		store.state.params.deskimage = textureName
 		const { images } = Engine.textures.folders
@@ -14,12 +23,14 @@ export default class Legs {
 					return store.state.params.activeFolder = key
 				}
 			});
-			if (elem) {
-				break
-			}
+			if (elem) break
 		}
 
-		let materialNames = ['oneTable', 'twoTable', 'threeTable', 'fourTable', 'fiveTable', 'fiveShkaf', 'tablesBevel','solidedge']
+		this.setTextureType()
+
+		let materialNames = ['oneTable', 'twoTable', 'threeTable', 'fourTable', 'fiveTable', 'fiveShkaf', 'tablesBevel', 'solidedge']
+
+
 		materialNames.forEach(element => {
 			let material = scene.getMaterialByName(element)
 
@@ -29,27 +40,25 @@ export default class Legs {
 
 			material.albedoTexture = scene.getTextureByName(textureName)
 		});
-		
-		// store.commit('setCorner', store.state.custom.corners)
+
 	}
 
 	async setLegType(legIndex) {
-		
+
 		if (store.state.params.legType == legIndex) return
-		
+
 
 		let legType = store.state.params.legType
 		let activeFolder = store.state.params.activeFolder
 		let deskMaterial = store.state.params.deskMaterial
-		
+
 
 		if (
-				legType ==  2 && (activeFolder == 'desks/bamboo'     ||  deskMaterial == 'desks/bamboo')
-			||  legType ==  2 && (activeFolder == 'desks/solidedge'  ||  deskMaterial == 'desks/solidedge')
-			||  legType ==  4 && (activeFolder == 'desks/solidedge'  ||  deskMaterial == 'desks/solidedge')
-			||  legIndex == 3 && (activeFolder == 'desks/pyledge'    ||  deskMaterial == 'desks/pyledge')
-		) 
-		{
+			legType == 2 && (activeFolder == 'desks/bamboo' || deskMaterial == 'desks/bamboo')
+			|| legType == 2 && (activeFolder == 'desks/solidedge' || deskMaterial == 'desks/solidedge')
+			|| legType == 4 && (activeFolder == 'desks/solidedge' || deskMaterial == 'desks/solidedge')
+			|| legIndex == 3 && (activeFolder == 'desks/pyledge' || deskMaterial == 'desks/pyledge')
+		) {
 			this.deskFolder('desks/laminate')
 			this.setDeskMaterial('desks/laminate/cw115.jpg')
 		}
@@ -57,7 +66,7 @@ export default class Legs {
 		this.hideOrShowDecors(legIndex)
 		this.setLeg(legIndex)
 
-		if(this.data){
+		if (this.data) {
 			await this.FilterFolders(legIndex) //papkalar korinadi
 		}
 	}
@@ -77,139 +86,43 @@ export default class Legs {
 				Animate(MeshParent, 'scaling', VECTOR3, [{ frame: 0, value: MeshParent.scaling }, { frame: 15, value: hide }])
 		}
 		//Style qo'shish uchun activeligini bildiradi
-
-		// store.commit('setCorner', store.state.custom.corners)
 	}
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	deskFolder(deskIndex){
+	deskFolder(deskIndex) {
 		this.data.imagearr = null
-		setTimeout(()=>{
+		setTimeout(() => {
 			this.data.imagearr = this.data.folderImages[deskIndex]
 			store.state.params.deskMaterial = deskIndex
-		},100)
+		}, 100)
 	}
 
 	//Tugri ishlayabdi
-	async FilterFolders(legtype){
+	async FilterFolders(legtype) {
 		this.data.deskMaterials = []
-		const {folders} = await store.dispatch('deskTextures')
+		const { folders } = await store.dispatch('deskTextures')
 		this.data.deskMaterials = folders
 		const Arrays = [
-			['desks/bamboo','desks/solidedge'],
+			['desks/bamboo', 'desks/solidedge'],
 			[],
-			['desks/bamboo','desks/solidedge','desks/pyledge'],
+			['desks/bamboo', 'desks/solidedge', 'desks/pyledge'],
 			['desks/bamboo'],
-			['desks/bamboo','desks/solidedge'],
+			['desks/bamboo', 'desks/solidedge'],
 		]
 
 		Arrays[legtype - 1].forEach(folder => {
 			var conut = null
-			this.data.deskMaterials.find((texture,index) => {
-				if(texture.path == folder){
+			this.data.deskMaterials.find((texture, index) => {
+				if (texture.path == folder) {
 					conut = index
 				}
-			}) 
+			})
 
 			this.data.deskMaterials.splice(conut, 1);
 		});
 	}
-
-
-
-
-
-	//hide to active decors
-	DecorsHide(params) {
-		var hide = new BABYLON.Vector3(0, 0, 0)
-
-		//Agar bu mesh bor bolsa agar bo'lmasa uni iconcasi ciqmaydi yani this['node'] = true ishlamaydi
-		Animate(params.node, 'scaling', VECTOR3, [{ frame: 0, value: params.node.scaling }, { frame: 10, value: hide }], () => {
-			this.DecorsPosition({ node: params.node, position: params.position })
-			this.DecorsShow(params.node)
-		})
-
-	}
-
-	DecorsPosition(params) {
-		params.node.position = params.position
-	}
-
-	DecorsShow(mesh) {
-		var show = new BABYLON.Vector3(1, 1, 1)
-		Animate(mesh, 'scaling', VECTOR3, [{ frame: 0, value: mesh.scaling }, { frame: 10, value: show }])
-	}
-
-
 
 
 
@@ -244,7 +157,7 @@ export default class Legs {
 		store.state.params.legColor = colorIndex
 	}
 
-	hideOrShowDecors(legIndex){
+	hideOrShowDecors(legIndex) {
 		let decornames = []
 		for (const key in store.state.decor) {
 			decornames.push(key)
@@ -254,11 +167,108 @@ export default class Legs {
 			const mesh = scene.getNodeByName(Decors)
 			const coordinate = coords[legIndex - 1][Decors]
 			if (store.state.decor[Decors]) {
-				this.DecorsPosition({ node: mesh, position: coordinate })
+				mesh.position = coordinate
 			}
 			else {
-				this.DecorsHide({ node: mesh, position: coordinate })
+				editPosition({ node: mesh, position: coordinate })
 			}
 		});
 	}
+
+	setTextureType() {
+		switch (store.state.params.activeFolder) {
+			case 'desks/laminate':
+			case 'desks/melamine':
+			case 'desks/pyledge':
+			case 'desks/veneer':
+				store.state.textureType = 1
+				break
+			case 'desks/solidtraditional':
+				store.state.textureType = 2
+				break
+			case 'desks/bamboo':
+				store.state.textureType = 3
+				break
+			case 'desks/melamineglass':
+				store.state.textureType = 4
+				break
+			case 'desks/solidedge':
+				store.state.textureType = 5
+				break
+			default: console.log('xatolik')
+		}
+	}
 }
+
+class LegClass {
+	constructor({ filter = [], tables = {} }) {
+		this.filter = filter
+		this.tables = tables
+	}
+
+}
+
+class Table{
+	constructor({name = null,textureType = null, corner = null}){
+		this.name = name
+		this.textureType = textureType
+		this.corner = corner
+	}
+}
+const oneTables = [
+	new Table({name: 'oneTable', textureType: 1, corner: 1}),
+	new Table({name: 'oneTableCircle', textureType: 1, corner: 1}),
+	new Table({name: 'oneTableRounded', textureType: 1, corner: 1}),
+	new Table({name: 'oneTableTrad', textureType: 2, corner: 1}),
+	new Table({name: 'oneTableTrad', textureType: 2, corner: 2}),
+	new Table({name: 'oneTableTrad', textureType: 2, corner: 3}),
+]
+
+console.log(oneTables);
+
+'one table'
+// 'oneTable' 1
+// 'oneTableCircle' 1
+// 'oneTableRounded' 1
+// 'oneTableTrad' 2
+
+'two table'
+// 'twoTable' 1
+// 'twoTableCircle' 1
+// 'twoTableRounded' 1
+// 'twoTableTrad' 2
+
+// 'twoTableBambuk' 3
+// 'twoTableBambukCircle' 3
+// 'twoTableBambukRounded' 3
+
+// 'twoTableGlass' 4
+// 'twoTableCircleGlass' 4
+// 'twoTableRoundedGlass' 4
+
+// 'twoLiveEdge' 5
+
+'three table'
+// 'threeTableLeft' 1
+// 'threeTableCircleeLeft' 1
+// 'threeTableRoundedLeft' 1
+
+// 'threeTableRight' 1
+// 'threeTableCircleRight' 1
+// 'threeTableRoundedRight' 1
+
+
+'Four table'
+// 'fourTable' 1
+// 'fourTableCircle' 1
+// 'fourTableRounded' 1
+// 'fourTableTrad' 2
+// 'fourLiveEdge' 5
+
+
+
+'Five Table'
+// 'fiveTable' 1
+// 'fiveTableCircle' 1
+// 'fiveTableRounded' 1
+// 'fiveTableTrad' 2

@@ -15,6 +15,7 @@ export default createStore({
 			configurator: true,
 			customActiveLink: 1,
 			finished: false,
+			textureType: 1,
 			decor: {
 				lamp: false,
 				monitor: false,
