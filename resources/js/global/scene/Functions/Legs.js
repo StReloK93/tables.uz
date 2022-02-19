@@ -3,13 +3,14 @@ import LegSet from '../../LegsSettings'
 
 export default class Legs {
 	data = null;
+	textures = store.dispatch('deskTextures')
 
 	setDeskMaterial(texture) {
 		store.state.params.deskimage = texture
 		this.setActiveFolder() // Galochka qoyadi active papka storega yozadi
 		this.setCorner(store.state.custom.corners) //Materialga mos table
 
-		
+
 		//import qilamiz
 		LegSet.materials.forEach(element => {
 			let material = scene.getMaterialByName(element)
@@ -23,10 +24,10 @@ export default class Legs {
 
 	}
 
-	setCorner(cornerIndex){
+	setCorner(cornerIndex) {
 		store.state.custom.corners = cornerIndex
 		const legType = store.state.params.legType
-		
+
 		const textureType = this.setTextureType() // textura qaysi tipligini belgilayte storega yozadi
 
 		const tablesList = LegSet.corners[legType] // Shu legga tegishli tablitsalar
@@ -34,16 +35,16 @@ export default class Legs {
 		tablesList.forEach(table => {
 			var activeTable = null
 			const mesh = scene.getNodeByName(table.name)
-			if(table.textureType == textureType && (table.corner == cornerIndex || table.corner == 'all')){
+			if (table.textureType == textureType && (table.corner == cornerIndex || table.corner == 'all')) {
 				mesh.setEnabled(true)
 			}
-			else{
-				if(activeTable != table.name) mesh.setEnabled(false)
+			else {
+				if (activeTable != table.name) mesh.setEnabled(false)
 			}
 		});
 	}
 
-	setActiveFolder(){
+	setActiveFolder() {
 		const { images } = Engine.textures.folders
 
 		//galochka uchun
@@ -64,16 +65,16 @@ export default class Legs {
 
 		const conFolder = LegSet.filter[legIndex].includes(store.state.params.activeFolder)
 		const conMaterial = LegSet.filter[legIndex].includes(store.state.params.deskMaterial)
-		if(conMaterial) this.deskFolder('desks/laminate')
+		if (conMaterial) this.deskFolder('desks/laminate')
 
-		if(conFolder) this.setDeskMaterial('desks/laminate/cw115.jpg')
+		if (conFolder) this.setDeskMaterial('desks/laminate/cw115.jpg')
 		else this.setDeskMaterial(store.state.params.deskimage)
-	
+
 
 		this.hideOrShowDecors(legIndex)
 
 		//Tanlangan Stolni paydo qiladi qolganlarini yashiradi
-		LegSet.parents.forEach((leg,index) => {
+		LegSet.parents.forEach((leg, index) => {
 			const parent = scene.getNodeByName(leg)
 
 			if (legIndex == index) Animate(parent, 'scaling', VECTOR3, [{ frame: 0, value: new BABYLON.Vector3(0, 0, 0) }, { frame: 15, value: new BABYLON.Vector3(1, 1, 1) }])
@@ -94,23 +95,22 @@ export default class Legs {
 	}
 
 	//Tugri ishlayabdi
-	async FilterFolders(legtype) {
+	FilterFolders(legtype) {
 		this.data.deskMaterials = []
-		const { folders } = await store.dispatch('deskTextures')
-		this.data.deskMaterials = folders
+		const { folders } = Engine.textures.folders
 
-		const Arrays = LegSet.filter //import == --
+		setTimeout(() => {
+			this.data.deskMaterials = [...folders]
 
-		Arrays[legtype].forEach(folder => {
-			var conut = null
-			this.data.deskMaterials.find((texture, index) => {
-				if (texture.path == folder) {
-					conut = index
-				}
-			})
+			LegSet.filter[legtype].forEach(folder => {
+				var conut = null
+				this.data.deskMaterials.find((texture, index) => {
+					if (texture.path == folder) conut = index
+				})
 
-			this.data.deskMaterials.splice(conut, 1);
-		});
+				this.data.deskMaterials.splice(conut, 1);
+			});
+		}, 50);
 	}
 
 
@@ -120,7 +120,6 @@ export default class Legs {
 
 		let colorArr = ['#D6D6D6', '#8B8B8B', '#222222']
 		let LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg', 'threeLegHelpLeft', 'threeLegHelpright', 'threeLegMainLeft', 'threeLegMainRight', 'tumb1']
-
 
 
 		LegsArr.forEach(legName => {

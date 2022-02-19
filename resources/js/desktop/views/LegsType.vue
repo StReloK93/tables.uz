@@ -72,7 +72,6 @@ export default {
             let desks = Engine.textures.folders
             this.folderImages = desks.images
             this.imagearr = this.folderImages[store.state.params.deskMaterial]
-            Engine.Legs.FilterFolders(store.state.params.legType)
         })
     },
     components:{
