@@ -24,8 +24,8 @@ export default class Legs {
 	}
 
 	setCorner(cornerIndex){
+		store.state.custom.corners = cornerIndex
 		const legType = store.state.params.legType
-		const corner = cornerIndex
 		
 		const textureType = this.setTextureType() // textura qaysi tipligini belgilayte storega yozadi
 
@@ -34,7 +34,7 @@ export default class Legs {
 		tablesList.forEach(table => {
 			var activeTable = null
 			const mesh = scene.getNodeByName(table.name)
-			if(table.textureType == textureType && (table.corner == corner || table.corner == 'all')){
+			if(table.textureType == textureType && (table.corner == cornerIndex || table.corner == 'all')){
 				mesh.setEnabled(true)
 			}
 			else{
