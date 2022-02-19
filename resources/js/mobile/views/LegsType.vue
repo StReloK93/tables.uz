@@ -6,8 +6,8 @@
                     Available legs
                 </h3>
                 <div class="text-center whitespace-nowrap py-1 overflow-hidden overflow-x-scroll noscroll -mr-2">
-                    <aside v-for="(legs , index) in $store.state.legTypes" :key="index" @click="events.setLegType(index + 1)" class="w-custom inline-block mr-2">
-                        <section  :class="{'border-myblue': $store.state.params.legType == index + 1}" class="py-2 overflow-hidden rounded-md border border-transparent">
+                    <aside v-for="(legs , index) in $store.state.legTypes" :key="index" @click="events.setLegType(index)" class="w-custom inline-block mr-2">
+                        <section  :class="{'border-myblue': $store.state.params.legType == index}" class="py-2 overflow-hidden rounded-md border border-transparent">
                             <main class="h-20 flex items-center justify-center">
                                 <img :src="legs.img" class="w-9/12">
                             </main>

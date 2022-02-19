@@ -1,19 +1,49 @@
 import coords from '../../LegsCoordinates'
-
-
-
+import LegSet from '../../LegsSettings'
 
 export default class Legs {
 	data = null;
-	leg = [
-		new LegClass({ filter: ['desks/bamboo', 'desks/solidedge'] }),
-		new LegClass({}),
-		new LegClass({ filter: ['desks/bamboo', 'desks/solidedge', 'desks/pyledge'] }),
-		new LegClass({ filter: ['desks/bamboo'] }),
-		new LegClass({ filter: ['desks/bamboo', 'desks/solidedge'] }),
-	]
-	setDeskMaterial(textureName) {
-		store.state.params.deskimage = textureName
+
+	setDeskMaterial(texture) {
+		store.state.params.deskimage = texture
+		this.setActiveFolder() // Galochka qoyadi active papka storega yozadi
+		this.setCorner(store.state.custom.corners) //Materialga mos table
+
+		
+		//import qilamiz
+		LegSet.materials.forEach(element => {
+			let material = scene.getMaterialByName(element)
+
+			if (element == 'tablesBevel' && store.state.params.activeFolder == 'desks/pyledge') {
+				return material.albedoTexture = scene.getTextureByName('/textures/tores.jpg')
+			}
+
+			material.albedoTexture = scene.getTextureByName(texture)
+		});
+
+	}
+
+	setCorner(cornerIndex){
+		const legType = store.state.params.legType
+		const corner = cornerIndex
+		
+		const textureType = this.setTextureType() // textura qaysi tipligini belgilayte storega yozadi
+
+		const tablesList = LegSet.corners[legType] // Shu legga tegishli tablitsalar
+
+		tablesList.forEach(table => {
+			var activeTable = null
+			const mesh = scene.getNodeByName(table.name)
+			if(table.textureType == textureType && (table.corner == corner || table.corner == 'all')){
+				mesh.setEnabled(true)
+			}
+			else{
+				if(activeTable != table.name) mesh.setEnabled(false)
+			}
+		});
+	}
+
+	setActiveFolder(){
 		const { images } = Engine.textures.folders
 
 		//galochka uchun
@@ -25,71 +55,35 @@ export default class Legs {
 			});
 			if (elem) break
 		}
-
-		this.setTextureType()
-
-		let materialNames = ['oneTable', 'twoTable', 'threeTable', 'fourTable', 'fiveTable', 'fiveShkaf', 'tablesBevel', 'solidedge']
-
-
-		materialNames.forEach(element => {
-			let material = scene.getMaterialByName(element)
-
-			if (element == 'tablesBevel' && store.state.params.activeFolder == 'desks/pyledge') {
-				return material.albedoTexture = scene.getTextureByName('/textures/tores.jpg')
-			}
-
-			material.albedoTexture = scene.getTextureByName(textureName)
-		});
-
+		return store.state.params.activeFolder
 	}
 
-	async setLegType(legIndex) {
-
+	setLegType(legIndex) {
 		if (store.state.params.legType == legIndex) return
+		store.state.params.legType = legIndex
 
+		const conFolder = LegSet.filter[legIndex].includes(store.state.params.activeFolder)
+		const conMaterial = LegSet.filter[legIndex].includes(store.state.params.deskMaterial)
+		if(conMaterial) this.deskFolder('desks/laminate')
 
-		let legType = store.state.params.legType
-		let activeFolder = store.state.params.activeFolder
-		let deskMaterial = store.state.params.deskMaterial
-
-
-		if (
-			legType == 2 && (activeFolder == 'desks/bamboo' || deskMaterial == 'desks/bamboo')
-			|| legType == 2 && (activeFolder == 'desks/solidedge' || deskMaterial == 'desks/solidedge')
-			|| legType == 4 && (activeFolder == 'desks/solidedge' || deskMaterial == 'desks/solidedge')
-			|| legIndex == 3 && (activeFolder == 'desks/pyledge' || deskMaterial == 'desks/pyledge')
-		) {
-			this.deskFolder('desks/laminate')
-			this.setDeskMaterial('desks/laminate/cw115.jpg')
-		}
+		if(conFolder) this.setDeskMaterial('desks/laminate/cw115.jpg')
+		else this.setDeskMaterial(store.state.params.deskimage)
+	
 
 		this.hideOrShowDecors(legIndex)
-		this.setLeg(legIndex)
+
+		//Tanlangan Stolni paydo qiladi qolganlarini yashiradi
+		LegSet.parents.forEach((leg,index) => {
+			const parent = scene.getNodeByName(leg)
+
+			if (legIndex == index) Animate(parent, 'scaling', VECTOR3, [{ frame: 0, value: new BABYLON.Vector3(0, 0, 0) }, { frame: 15, value: new BABYLON.Vector3(1, 1, 1) }])
+			else Animate(parent, 'scaling', VECTOR3, [{ frame: 0, value: parent.scaling }, { frame: 15, value: new BABYLON.Vector3(0, 0, 0) }])
+		});
 
 		if (this.data) {
-			await this.FilterFolders(legIndex) //papkalar korinadi
+			this.FilterFolders(legIndex) //papkalar korinadi
 		}
 	}
-
-	setLeg(defaultLeg) {
-		store.state.params.legType = defaultLeg
-		let show = new BABYLON.Vector3(1, 1, 1), hide = new BABYLON.Vector3(0, 0, 0)
-		//Stol turlari
-		let Legs = ['onelegParent', 'twolegParent', 'threelegParent', 'fourlegParent', 'fivelegParent']
-
-		//Tanlangan meshni paydo qiladi qolganlarini yashiradi
-		for (let i = 0; i < Legs.length; i++) {
-			const MeshParent = scene.getNodeByName(Legs[i])
-			if (defaultLeg == i + 1)
-				Animate(MeshParent, 'scaling', VECTOR3, [{ frame: 0, value: hide }, { frame: 15, value: show }])
-			else
-				Animate(MeshParent, 'scaling', VECTOR3, [{ frame: 0, value: MeshParent.scaling }, { frame: 15, value: hide }])
-		}
-		//Style qo'shish uchun activeligini bildiradi
-	}
-
-
-
 
 	deskFolder(deskIndex) {
 		this.data.imagearr = null
@@ -104,15 +98,10 @@ export default class Legs {
 		this.data.deskMaterials = []
 		const { folders } = await store.dispatch('deskTextures')
 		this.data.deskMaterials = folders
-		const Arrays = [
-			['desks/bamboo', 'desks/solidedge'],
-			[],
-			['desks/bamboo', 'desks/solidedge', 'desks/pyledge'],
-			['desks/bamboo'],
-			['desks/bamboo', 'desks/solidedge'],
-		]
 
-		Arrays[legtype - 1].forEach(folder => {
+		const Arrays = LegSet.filter //import == --
+
+		Arrays[legtype].forEach(folder => {
 			var conut = null
 			this.data.deskMaterials.find((texture, index) => {
 				if (texture.path == folder) {
@@ -165,7 +154,7 @@ export default class Legs {
 
 		decornames.forEach(Decors => {
 			const mesh = scene.getNodeByName(Decors)
-			const coordinate = coords[legIndex - 1][Decors]
+			const coordinate = coords[legIndex][Decors]
 			if (store.state.decor[Decors]) {
 				mesh.position = coordinate
 			}
@@ -197,78 +186,7 @@ export default class Legs {
 				break
 			default: console.log('xatolik')
 		}
+
+		return store.state.textureType
 	}
 }
-
-class LegClass {
-	constructor({ filter = [], tables = {} }) {
-		this.filter = filter
-		this.tables = tables
-	}
-
-}
-
-class Table{
-	constructor({name = null,textureType = null, corner = null}){
-		this.name = name
-		this.textureType = textureType
-		this.corner = corner
-	}
-}
-const oneTables = [
-	new Table({name: 'oneTable', textureType: 1, corner: 1}),
-	new Table({name: 'oneTableCircle', textureType: 1, corner: 1}),
-	new Table({name: 'oneTableRounded', textureType: 1, corner: 1}),
-	new Table({name: 'oneTableTrad', textureType: 2, corner: 1}),
-	new Table({name: 'oneTableTrad', textureType: 2, corner: 2}),
-	new Table({name: 'oneTableTrad', textureType: 2, corner: 3}),
-]
-
-console.log(oneTables);
-
-'one table'
-// 'oneTable' 1
-// 'oneTableCircle' 1
-// 'oneTableRounded' 1
-// 'oneTableTrad' 2
-
-'two table'
-// 'twoTable' 1
-// 'twoTableCircle' 1
-// 'twoTableRounded' 1
-// 'twoTableTrad' 2
-
-// 'twoTableBambuk' 3
-// 'twoTableBambukCircle' 3
-// 'twoTableBambukRounded' 3
-
-// 'twoTableGlass' 4
-// 'twoTableCircleGlass' 4
-// 'twoTableRoundedGlass' 4
-
-// 'twoLiveEdge' 5
-
-'three table'
-// 'threeTableLeft' 1
-// 'threeTableCircleeLeft' 1
-// 'threeTableRoundedLeft' 1
-
-// 'threeTableRight' 1
-// 'threeTableCircleRight' 1
-// 'threeTableRoundedRight' 1
-
-
-'Four table'
-// 'fourTable' 1
-// 'fourTableCircle' 1
-// 'fourTableRounded' 1
-// 'fourTableTrad' 2
-// 'fourLiveEdge' 5
-
-
-
-'Five Table'
-// 'fiveTable' 1
-// 'fiveTableCircle' 1
-// 'fiveTableRounded' 1
-// 'fiveTableTrad' 2

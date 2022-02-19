@@ -9,6 +9,9 @@ class Textures {
          let CountAllTextures = this._AmbientTextures.length + this._NormalTextures.length
          let addProsent = 50 / (CountAllTextures + 1);
 
+         const material = scene.getMaterialByName('CtwoTable')
+         material.albedoTexture = scene.getTextureByName('desks/laminate/dh111.jpg')
+         
          this._AllAmbientWhite(addProsent) //Scenadagi Hamma Elementlarni Ambientni oq rang qiladi
          new ImportTextures({ textureType: 'ambientTexture', materials: this._AmbientTextures, prosent: addProsent })
          new ImportTextures({ textureType: 'bumpTexture', materials: this._NormalTextures, prosent: addProsent })
@@ -57,6 +60,8 @@ class Textures {
       //Legs
       new Texture({ uAng: Math.PI, materialName: 'oneLeg', texturePath: '/textures/oneLeg.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'twoLeg', texturePath: '/textures/twoLeg.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'forGlass', texturePath: '/textures/forGlass.jpg' }),
+
       new Texture({ uAng: Math.PI, materialName: 'threeLegLeft', texturePath: '/textures/threeLegLeft.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'threeLegRight', texturePath: '/textures/threeLegRight.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'fourLeg', texturePath: '/textures/fourLeg.jpg' }),
@@ -64,6 +69,7 @@ class Textures {
       //Tables
       new Texture({ uAng: Math.PI, materialName: 'oneTable', texturePath: '/textures/oneTable.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'twoTable', texturePath: '/textures/twoTable.jpg' }),
+      new Texture({ uAng: Math.PI, materialName: 'CtwoTable', texturePath: '/textures/twoTable.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'solidedge', texturePath: '/textures/solidedge.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'threeTable', texturePath: '/textures/threeTable.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'fourTable', texturePath: '/textures/fourTable.jpg' }),

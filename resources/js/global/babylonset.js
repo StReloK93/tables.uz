@@ -33,34 +33,3 @@ window.editPosition = function (params) {
 		Animate(mesh, 'scaling', VECTOR3, [{ frame: 0, value: mesh.scaling }, { frame: 10, value: show }])
 	})
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// const animis = scene.getAnimationGroupByName(animName)
-	// if (animis) {
-	// 	animis.play()
-	// 	animis.onAnimationEndObservable.add(function () {
-	// 		callback()
-	// 	})
-	// }
-	// else {
-
-		// const animationGroup = new BABYLON.AnimationGroup(animName);
-		// animationGroup.addTargetedAnimation(anim, mesh);
-		// animationGroup.play()
-		// animationGroup.onAnimationEndObservable.add(() => {callback()})
-
-
-	// }

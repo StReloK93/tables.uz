@@ -27,9 +27,8 @@ export default createStore({
 			params: {
 				//legs
 				legColor: 1,
-				legType: 0,
+				legType: null,
 				deskimage: 'desks/laminate/cw115.jpg',
-
 
 				deskMaterial: 'desks/laminate',
 				activeFolder: 'desks/laminate'

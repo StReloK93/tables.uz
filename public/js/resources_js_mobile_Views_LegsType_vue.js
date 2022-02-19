@@ -126,12 +126,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("aside", {
           key: index,
           onClick: function onClick($event) {
-            return $data.events.setLegType(index + 1);
+            return $data.events.setLegType(index);
           },
           "class": "w-custom inline-block mr-2"
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", {
           "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-            'border-myblue': _ctx.$store.state.params.legType == index + 1
+            'border-myblue': _ctx.$store.state.params.legType == index
           }, "py-2 overflow-hidden rounded-md border border-transparent"])
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
           src: legs.img,

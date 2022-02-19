@@ -1,5 +1,5 @@
 class Scene {
-   DefaultLeg = 2
+   DefaultLeg = 1
    DefaultFloor = '/floors/1.jpg'
    constructor(canvas) {
       this.createScene(canvas)

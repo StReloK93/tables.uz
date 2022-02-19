@@ -33,7 +33,7 @@
 export default {
     data(){
         return {
-            events: Engine.Customization,
+            events: Engine.Legs,
         }
     }
 }

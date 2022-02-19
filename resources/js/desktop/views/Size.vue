@@ -1,6 +1,6 @@
 <template>
    <section>
-      <main v-if="$store.state.params.legType == 2 || $store.state.params.legType == 3 || $store.state.params.legType == 4" class="xl:pb-4">
+      <main v-if="$store.state.params.legType == 1 || $store.state.params.legType == 2 || $store.state.params.legType == 3" class="xl:pb-4">
          <h3 class="font-bold mb-4 xl:text-xl md:text-md text-gray-600">
             Size
          </h3>
