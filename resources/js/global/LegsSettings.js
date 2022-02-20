@@ -25,12 +25,8 @@ export default {
             { name: 'twoTableBambukCircle', textureType: 3, corner: 2 },
             { name: 'twoTableBambukRounded', textureType: 3, corner: 3 },
 
-            { name: 'twoTableGlass', textureType: 4, corner: 1 },
-            { name: 'twoTableCircleGlass', textureType: 4, corner: 2 },
-            { name: 'twoTableRoundedGlass', textureType: 4, corner: 3 },
-            { name: 'CtwoTable', textureType: 4, corner: 1 },
-            { name: 'CtwoTableCircle', textureType: 4, corner: 2 },
-            { name: 'CtwoTableRounded', textureType: 4, corner: 3 },
+            { name: 'twoTableRoundedGlass', textureType: 4, corner: 'all' },
+            { name: 'CtwoTableRounded', textureType: 4, corner: 'all' },
 
             { name: 'twoTableTrad', textureType: 2, corner: 'all' },
             { name: 'twoLiveEdge', textureType: 5, corner: 'all' },

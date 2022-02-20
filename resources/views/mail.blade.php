@@ -96,6 +96,14 @@
                 @endforeach
             </tr>
         </table>
+        <h3 style="margin: 5px 15px;">
+            Accessories
+        </h3>
+        <div style="margin: 15px">
+            @foreach ($details['accessories'] as $key => $item)
+                <span style="text-align: center;padding: 10px;">{{$item['name']}} </span> ,
+            @endforeach
+        </div>
     </div>
 </body>
 </html>

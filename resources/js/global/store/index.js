@@ -33,7 +33,7 @@ export default createStore({
 				deskMaterial: 'desks/laminate',
 				activeFolder: 'desks/laminate'
 			},
-			room:{
+			room: {
 				//room
 				wallColor: '#CFCFCF',
 				floor: null,
@@ -56,7 +56,6 @@ export default createStore({
 				corners: 1,
 				grommet: null,
 				partition: null,
-				accessories: null,
 				chair: null,
 			},
 			legTypes: [
@@ -67,22 +66,22 @@ export default createStore({
 				{ img: '/images/5leg.png', name: 'Side cabinet' },
 			],
 			accessories: [
-				{image: '/images/access/Keyboard Tray 1.jpg' , name:'Keyboard tray'},
-				{image: '/images/access/magnetic tubes.jpg' , name:'Magnetic tubes'},
-				{image: '/images/access/Dual Monitor Arm.jpg' , name:'Dual Monitor Arm'},
-				{image: '/images/access/Single Monitor Arm.jpg' , name:'Single Monitor Arm'},
-				{image: '/images/access/Mobile Caddy.jpg' , name:'Mobile Caddy'},
-				{image: '/images/access/Regular Mobile Pedestal.jpg' , name:'Regular Mobile Pedestal'},
-				{image: '/images/access/Add-on drawers.jpg' , name:'Add-on drawers'},
-				{image: '/images/access/Anti Fatigue Mat.jpg' , name:'Anti Fatigue Mat'},
-				{image: '/images/access/Balance Board.jpg' , name:'Balance Board'},
-				{image: '/images/access/Casters.jpg' , name:'Casters'},
-				{image: '/images/access/Clamp on socket.jpg' , name:'Clamp on socket'},
-				{image: '/images/access/CPU Holder.jpg' , name:'CPU Holder'},
-				{image: '/images/access/Dual Level.jpg' , name:'Dual Level'},
-				{image: '/images/access/Mini Mobile Pedestal.jpg' , name:'Mini Mobile Pedestal'},
-				{image: '/images/access/Premium Cable Tray.jpg' , name:'Premium Cable Tray'},
-				{image: '/images/access/Regular cable tray.jpg' , name:'Regular cable tray'},
+			{ image: '/images/access/Keyboard Tray 1.jpg',         name: 'Keyboard tray',     	    active: false },
+			{ image: '/images/access/magnetic tubes.jpg',          name: 'Magnetic tubes',      	active: false },
+			{ image: '/images/access/Dual Monitor Arm.jpg',        name: 'Dual Monitor Arm',        active: false },
+			{ image: '/images/access/Single Monitor Arm.jpg',      name: 'Single Monitor Arm',      active: false },
+			{ image: '/images/access/Mobile Caddy.jpg',            name: 'Mobile Caddy',            active: false },
+			{ image: '/images/access/Regular Mobile Pedestal.jpg', name: 'Regular Mobile Pedestal', active: false },
+			{ image: '/images/access/Add-on drawers.jpg',          name: 'Add-on drawers', 			active: false },
+			{ image: '/images/access/Anti Fatigue Mat.jpg',        name: 'Anti Fatigue Mat', 		active: false },
+			{ image: '/images/access/Balance Board.jpg', 		   name: 'Balance Board', 			active: false },
+			{ image: '/images/access/Casters.jpg', 				   name: 'Casters', 				active: false },
+			{ image: '/images/access/Clamp on socket.jpg', 		   name: 'Clamp on socket', 		active: false },
+			{ image: '/images/access/CPU Holder.jpg', 			   name: 'CPU Holder', 				active: false },
+			{ image: '/images/access/Dual Level.jpg', 			   name: 'Dual Level', 				active: false },
+			{ image: '/images/access/Mini Mobile Pedestal.jpg',	   name: 'Mini Mobile Pedestal', 	active: false },
+			{ image: '/images/access/Premium Cable Tray.jpg', 	   name: 'Premium Cable Tray', 		active: false },
+			{ image: '/images/access/Regular cable tray.jpg', 	   name: 'Regular cable tray', 		active: false },
 			]
 		}
 	},
@@ -118,13 +117,16 @@ export default createStore({
 		},
 	},
 	actions: {
-		async sendEmail({state},payload){
+		async sendEmail({ state }, payload) {
+			const actives = state.accessories.filter(item => item.active == true)
+
 			const formData = {
 				params: state.params,
 				sizepage: state.sizepage,
 				room: state.room,
 				otherpage: state.otherpage,
 				custom: state.custom,
+				accessories: actives,
 				params: state.params,
 				finished: payload
 			}

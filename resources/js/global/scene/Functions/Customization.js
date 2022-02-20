@@ -5,4 +5,8 @@ export default class Customization {
         }
         store.state.custom[type] = index
     }
+
+    accessories(element){
+        element.active = !element.active
+    }
 }
