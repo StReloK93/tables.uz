@@ -118,7 +118,7 @@ export default class Legs {
 	setLegColor(colorIndex) {
 		if (store.state.params.legColor == colorIndex) return
 
-		let colorArr = ['#D6D6D6', '#8B8B8B', '#222222']
+		let colorArr = ['#EEEEEE', '#8B8B8B', '#222222']
 		let LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg', 'threeLegHelpLeft', 'threeLegHelpright', 'threeLegMainLeft', 'threeLegMainRight', 'tumb1']
 
 

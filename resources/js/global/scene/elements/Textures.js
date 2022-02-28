@@ -31,7 +31,10 @@ class Textures {
       this.folders = await store.dispatch('deskTextures')
       for (const key in this.folders.images) {
          this.folders.images[key].forEach(image => {
-            const texture = new newTexture({ name: image.path, texturePath: `/floors/${image.path}`, uScale: 2, vScale: 1, uAng: Math.PI })
+            var uScale = 2
+            if(image.file == 'M79' || image.file == 'M24') uScale = 1
+
+            const texture = new newTexture({ name: image.path, texturePath: `/floors/${image.path}`, uScale: uScale, vScale: 1, uAng: Math.PI })
             if (key == 'desks/melamineglass' || key == 'desks/solidedge') texture.uScale = 1
          })
       }
@@ -43,9 +46,13 @@ class Textures {
       hdr.onLoadObservable.add(() => {
          store.state.onLoaded += prosent
       });
+
+      const materials = ['oneTable', 'twoTable', 'threeTable', 'fourTable', 'fiveTable', 'fiveShkaf', 'tablesBevel', 'solidedge']
+
       scene.ambientColor = BABYLON.Color3.FromHexString('#CAC1C1')
       scene.materials.forEach(element => {
-         element.ambientColor = new BABYLON.Color3(1, 1, 1)
+         if(materials.includes(element.name) == false) element.ambientColor = new BABYLON.Color3(1, 1, 1)
+         else element.ambientColor = new BABYLON.Color3(0.3, 0.3, 0.3)
       });
    }
 
@@ -67,19 +74,18 @@ class Textures {
       new Texture({ uAng: Math.PI, materialName: 'fourLeg', texturePath: '/textures/fourLeg.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'fiveLeg', texturePath: '/textures/fiveLeg.jpg' }),
       //Tables
-      new Texture({ uAng: Math.PI, materialName: 'oneTable', texturePath: '/textures/oneTable.jpg' }),
-      new Texture({ uAng: Math.PI, materialName: 'twoTable', texturePath: '/textures/twoTable.jpg' }),
-      new Texture({ uAng: Math.PI, materialName: 'CtwoTable', texturePath: '/textures/twoTable.jpg' }),
-      new Texture({ uAng: Math.PI, materialName: 'solidedge', texturePath: '/textures/solidedge.jpg' }),
-      new Texture({ uAng: Math.PI, materialName: 'threeTable', texturePath: '/textures/threeTable.jpg' }),
-      new Texture({ uAng: Math.PI, materialName: 'fourTable', texturePath: '/textures/fourTable.jpg' }),
-      new Texture({ uAng: Math.PI, materialName: 'fiveTable', texturePath: '/textures/fiveTable.jpg' }),
+      // new Texture({ uAng: Math.PI, materialName: 'oneTable', texturePath: '/textures/oneTable.jpg' }),
+      // new Texture({ uAng: Math.PI, materialName: 'twoTable', texturePath: '/textures/twoTable.jpg' }),
+      // new Texture({ uAng: Math.PI, materialName: 'CtwoTable', texturePath: '/textures/twoTable.jpg' }),
+      // new Texture({ uAng: Math.PI, materialName: 'solidedge', texturePath: '/textures/solidedge.jpg' }),
+      // new Texture({ uAng: Math.PI, materialName: 'threeTable', texturePath: '/textures/threeTable.jpg' }),
+      // new Texture({ uAng: Math.PI, materialName: 'fourTable', texturePath: '/textures/fourTable.jpg' }),
+      // new Texture({ uAng: Math.PI, materialName: 'fiveTable', texturePath: '/textures/fiveTable.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'fiveShkafEshik', texturePath: '/textures/fiveShkafEshik.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'fiveShkaf', texturePath: '/textures/fiveShkaf.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'fiveWhite', texturePath: '/textures/fiveWhite.jpg' }),
       //Decorations
       new Texture({ uAng: Math.PI, materialName: 'monitormain', texturePath: '/textures/monitormain.jpg' }),
-      new Texture({ uAng: Math.PI, materialName: 'lampwood', texturePath: '/textures/lampwood.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'plantMain', texturePath: '/textures/plantMain.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'tumbochka', texturePath: '/textures/tumbochka.jpg' })
    ]

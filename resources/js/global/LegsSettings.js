@@ -6,7 +6,7 @@ export default {
         [],
         ['desks/bamboo', 'desks/solidedge', 'desks/pyledge', 'desks/melamineglass'],
         ['desks/bamboo', 'desks/melamineglass'],
-        ['desks/bamboo', 'desks/solidedge', 'desks/melamineglass'],
+        ['desks/bamboo', 'desks/solidedge', 'desks/melamineglass', 'desks/solidtraditional'],
     ],
     corners: [
         [
@@ -57,7 +57,6 @@ export default {
             { name: 'fiveTable', textureType: 1, corner: 1 },
             { name: 'fiveTableCircle', textureType: 1, corner: 2 },
             { name: 'fiveTableRounded', textureType: 1, corner: 3 },
-            { name: 'fiveTableTrad', textureType: 2, corner: 'all' },
         ]
     ]
 }

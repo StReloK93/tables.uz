@@ -43,11 +43,11 @@
             class="xl:text-2xl md:text-md capitalize text-gray-300 transition-all duration-300 ease-in-out block mb-2">
                {{$store.state.language.createYour}}
          </router-link>
-         <router-link :to="{name: 'designs'}" 
+         <!-- <router-link :to="{name: 'designs'}" 
             :class="{ 'border-blue-400 border-l-4 pl-4 text-blue-900 font-bold': !isActive }" 
             class="xl:text-2xl md:text-md capitalize text-gray-300 transition-all duration-300 ease-in-out block">
             {{$store.state.language.browseOur}}
-         </router-link>
+         </router-link> -->
          <Configurator v-if="$store.state.configurator"/>
       </main>
       <!-- Header -->

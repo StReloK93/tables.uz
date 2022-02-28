@@ -1,0 +1,17 @@
+Daraxtlar ranglari haqida Malumot
+Preloaderni o'zgartirish
+
+
+
+Tashkilotlar 3D Modellari
+
+
+1 - logotip qoyish
+2 - Size page da ortiqcha narsa
+3 - tanlaganlarni korsatib turish
+4 - Stol va  aksesuarlaga ssilka qoyish
+5 - Polga ishlov berish
+6 - Other page da  yangi input va Yozuv qoshish Other pageda
+7 - Knopka informatsiya 
+
+3 - table teshiklari

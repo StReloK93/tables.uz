@@ -7,7 +7,7 @@
                     <img v-if="$store.state.custom.partition == 1" src="/images/true.jpg" class="w-6 -m-3 absolute top-0 right-0 z-20">
                     <img src="/images/rect/part1.png" class="w-10/12 inline">
                     <p class="leading-none">
-                        Sharp <br> corners
+                        Partition
                     </p>
                 </div>
             </aside>
@@ -16,7 +16,7 @@
                     <img v-if="$store.state.custom.partition == 2" src="/images/true.jpg" class="w-6 -m-3 absolute top-0 right-0 z-20">
                     <img src="/images/rect/part2.png" class="w-10/12 inline">
                     <p class="leading-none">
-                        Combined <br> corners
+                        Modesty Panel
                     </p>
                 </div>
             </aside>
