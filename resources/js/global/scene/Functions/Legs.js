@@ -153,12 +153,15 @@ export default class Legs {
 
 		decornames.forEach(Decors => {
 			const mesh = scene.getNodeByName(Decors)
-			const coordinate = coords[legIndex][Decors]
+			const coordinate = coords[legIndex][Decors].position
+			const rotation = coords[legIndex][Decors].rotation
 			if (store.state.decor[Decors]) {
 				mesh.position = coordinate
+				console.log(rotation);
+				mesh.rotation = new BABYLON.Vector3(0,rotation,0);
 			}
 			else {
-				editPosition({ node: mesh, position: coordinate })
+				editPosition({ node: mesh, position: coordinate , rotation: rotation })
 			}
 		});
 	}

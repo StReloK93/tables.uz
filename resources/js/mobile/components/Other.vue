@@ -26,7 +26,7 @@
                Other Requests
             </h3>
             <div class="flex items-center mb-3 text-sm text-gray-500">
-               <input type="checkbox" v-model="$store.state.otherpage.service" class="transform scale-150 ml-1 mr-3"> We are a corporation that needs space planning service as well.
+               <input type="checkbox" v-model="$store.state.otherpage.service" :disabled="$store.state.otherpage.tablesCount < 10? true : false" class="transform scale-150 ml-1 mr-3"> We are a corporation that needs space planning service as well. Note that this service is for 10 desks and above
             </div>
             <div class="flex items-center mb-3 text-sm text-gray-500">
                <input type="checkbox" v-model="$store.state.otherpage.needchair" class="transform scale-150 ml-1 mr-3">  I also need a chair, if you can tell us your height and physiqe we can recommend.
@@ -34,7 +34,7 @@
          <aside class="flex">
             <main class="mr-4 w-1/2">
                <p class="mb-2 text-gray-400 flex items-center">
-                  Your total height 
+                  Your overall height
                   <img class="ml-3" src="/images/undo.svg">
                </p>
                <div>
@@ -43,11 +43,20 @@
             </main>
             <main class="w-1/2">
                <p class="mb-2 text-gray-400 flex items-center">
-                  Your legs length
+                  Your upper legs length
                   <img class="ml-3" src="/images/undo.svg">
                </p>
                <div>
-                  <input v-model="$store.state.otherpage.length" :disabled="!$store.state.otherpage.needchair" :class="{'border-indigo-900': $store.state.otherpage.needchair}" type="text" class="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-600">
+                  <input v-model="$store.state.otherpage.upperlength" :disabled="!$store.state.otherpage.needchair" :class="{'border-indigo-900': $store.state.otherpage.needchair}" type="text" class="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-600">
+               </div>
+            </main>
+            <main class="w-1/2">
+               <p class="mb-2 text-gray-400 flex items-center">
+                  Your lower legs length
+                  <img class="ml-3" src="/images/undo.svg">
+               </p>
+               <div>
+                  <input v-model="$store.state.otherpage.lowerlength" :disabled="!$store.state.otherpage.needchair" :class="{'border-indigo-900': $store.state.otherpage.needchair}" type="text" class="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-600">
                </div>
             </main>
          </aside>

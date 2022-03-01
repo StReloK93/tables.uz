@@ -42,14 +42,14 @@ export default createStore({
 				size: 0,
 				lenght: null,
 				width: null,
-				thickness: null,
 			},
 			otherpage: {
 				tablesCount: 1,
 				service: false,
 				needchair: false,
 				height: null,
-				length: null,
+				upperlength: null,
+				lowerlength: null,
 				message: null
 			},
 			custom: {
@@ -92,11 +92,17 @@ export default createStore({
 		},
 		//otherdagi counter
 		setTablesCount(state, pay) {
+			
+			
+			
 			if (pay < 1 && (state.otherpage.tablesCount > 1)) {
 				state.otherpage.tablesCount += pay
 			}
 			else if (pay > -1) {
 				state.otherpage.tablesCount += pay
+			}
+			if(state.otherpage.tablesCount < 10){
+				state.otherpage.service = false
 			}
 		},
 		//for Mobile

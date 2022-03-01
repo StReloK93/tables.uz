@@ -24,12 +24,14 @@ window.VECTOR3 = BABYLON.Animation.ANIMATIONTYPE_VECTOR3
 window.editPosition = function (params) {
 	const mesh = params.node
 	const position = params.position
+	const rotation = params.rotation
 	const hide = new BABYLON.Vector3(0, 0, 0)
 	const show = new BABYLON.Vector3(1, 1, 1)
 
 	//Agar bu mesh bor bolsa agar bo'lmasa uni iconcasi ciqmaydi yani this['node'] = true ishlamaydi
 	Animate(mesh, 'scaling', VECTOR3, [{ frame: 0, value: mesh.scaling }, { frame: 10, value: hide }], () => {
 		mesh.position = position
+		mesh.rotation = new BABYLON.Vector3(0,rotation,0);
 		Animate(mesh, 'scaling', VECTOR3, [{ frame: 0, value: mesh.scaling }, { frame: 10, value: show }])
 	})
 }

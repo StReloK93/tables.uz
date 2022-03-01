@@ -21,6 +21,9 @@
             <img src="/images/left.png" class="relative" style="left: -1px">
          </button>
       </main>
+      <main class="absolute bottom-0 right-0 m-6">
+         <img src="/logo.png" class="w-32">
+      </main>
    </section>
    <!-- Left part -->
 
