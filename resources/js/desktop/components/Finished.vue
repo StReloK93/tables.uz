@@ -17,7 +17,7 @@
 						<input  required type="text" v-model="inpname" class="w-full border-0 outline-none mt-3" placeholder="Type yuor name, please">
 					</aside>
 					<aside class="px-6 py-3 border rounded-md xl:mb-6 md:mb-4">
-						<label for="inputname" class="uppercase small-text font-bold text-indigo-900 block">Your email: <span class="ml-2 text-gray-400 font-normal small-text">(Pis avoid using hotmail here as mails will very likely go to junk folder when we reply to you)</span></label>
+						<label for="inputname" class="uppercase small-text font-bold text-indigo-900 block">Your email: <span class="ml-2 text-gray-400 font-normal small-text">(Pis avoid using hotmail and Yahoo here as mails will very likely go to junk folder when we reply to you)</span></label>
 						<input required type="email" v-model="inpemail" class="w-full border-0 outline-none mt-3" placeholder="Email address">
 					</aside>
 					<aside class="px-6 py-3 border rounded-md xl:mb-6 md:mb-4">
@@ -34,6 +34,9 @@
 								<span v-if="phone">
 									By phone
 								</span>
+								<span v-if="whatsapp">
+									By whatsapp
+								</span>
 							</aside>
 
 							<aside>
@@ -46,11 +49,17 @@
 								<h3 class="text-gray-800 font-bold">
 									How would you like to be contacted? 
 								</h3>
-								<div class="ml-1 mt-2">
+								<div class="ml-1 mt-2 relative">
+									<main v-if="email" class="absolute top-0 -left-1 w-36 h-6 bg-red-400 bg-opacity-0 z-10 rounded"></main>
 									<input type="checkbox"  id="emails" v-model="email" class="transform scale-150 mr-3"> <label  class="cursor-pointer" for="emails">By Email</label> 
 								</div>
-								<div class="ml-1 mt-2">
+								<div class="ml-1 mt-2 relative">
+									<main v-if="phone" class="absolute top-0 -left-1 w-36 h-6 bg-red-400 bg-opacity-0 z-10 rounded"></main>
 									<input type="checkbox" id="phones" v-model="phone" class="transform scale-150 mr-3"> <label  class="cursor-pointer" for="phones">By Phone</label> 
+								</div>
+								<div class="ml-1 mt-2 relative">
+									<main v-if="whatsapp" class="absolute top-0 -left-1 w-36 h-6 bg-red-400 bg-opacity-0 z-10 rounded"></main>
+									<input type="checkbox" id="whatsapp" v-model="whatsapp" class="transform scale-150 mr-3"> <label  class="cursor-pointer" for="whatsapp">By Whatsapp</label> 
 								</div>
 							</main>
 						</transition>
@@ -79,8 +88,11 @@ export default {
 			inpname: null,
 			inpemail: null,
 			inpphone: null,
+
 			email: true,
 			phone: false,
+			whatsapp: false,
+
 			menudrop: false,
 			finishim: true
 		}
@@ -101,12 +113,26 @@ export default {
 	watch: {
 		"email": {
 			handler(val) {
-				val? this.phone = false : this.phone = true
+				if(val){
+					this.phone = false
+					this.whatsapp = false
+				}
 			},
 		},
 		"phone": {
 			handler(val) {
-				val? this.email = false : this.email = true
+				if(val){
+					this.email = false
+					this.whatsapp = false
+				}
+			},
+		},
+		"whatsapp": {
+			handler(val) {
+				if(val){
+					this.email = false
+					this.phone = false
+				}
 			},
 		},
 	},
@@ -115,5 +141,9 @@ export default {
 <style scoped>
 .small-text{
 	font-size: 11px;
+}
+input[type="checkbox"]:disabled{
+  background: gray;
+  border: 1px solid #d4d4d5;
 }
 </style>

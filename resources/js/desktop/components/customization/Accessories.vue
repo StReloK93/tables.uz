@@ -8,9 +8,7 @@
                     <main class="mb-8 text-center">
                         <img :src="element.image" class="w-20 h-20 object-cover inline">
                     </main>
-                    <p class="text-sm mt-5">
-                        {{element.name}}
-                    </p>
+                    <p class="text-sm mt-5" v-html="element.name"></p>
                 </div>
             </aside>
         </main>

@@ -23,13 +23,15 @@
         <div @click="information = !information" class="text-center pt-2 px-1 xl:w-24 md:w-20 relative">
             <img src="/images/information.png" class="gray w-14 inline cursor-pointer">
             <transition name="fade">
-            <main v-if="information" class="after absolute bottom-0 left-full p-4 mx-4 bg-white text-gray-600 w-96 border-l-2 border-blue-500">
+            <main v-if="information" class="text-left after absolute bottom-0 left-full p-4 mx-4 bg-white text-gray-600 w-96 border-l-2 border-blue-500">
                 <span class="font-bold text-gray-700">Disclaimer:</span> The colors and graphics used in the Customizer are computer 
                 generated and hence we hold no responsibility of the accuracy of the color 
                 and material difference that may occur when compared to the real items.
                 If you have any concerns regarding the accuracy of colors or materials
                 used here please feel free to contact us directly for more details.
-                Terms and conditions: All content shown is a digital property of 
+                <br>
+                <span class="font-bold text-gray-700">Terms and conditions:</span>
+                All content shown is a digital property of 
                 Blueocean International (HK) Ltd., any unauthorized use or copy of our 
                 content will be considered infringement of our intellectual property.
             </main>

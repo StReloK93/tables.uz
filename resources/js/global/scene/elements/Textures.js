@@ -23,6 +23,8 @@ class Textures {
       const images = await store.dispatch('textures')
       images.forEach((imagepath) => {
          if(imagepath == '3.jpg') new newTexture({ texturePath: `/floors/${imagepath}`, uScale: 1.5, vScale: 1.5 })
+         else if(imagepath == '1.jpg') new newTexture({ texturePath: `/floors/${imagepath}`, uScale: 2.5, vScale: 2.5 })
+         else if(imagepath == '2.jpg') new newTexture({ texturePath: `/floors/${imagepath}`, uScale: 3, vScale: 3 })
          else  new newTexture({ texturePath: `/floors/${imagepath}`, uScale: 3, vScale: 4 })
          this.floors.push(`/floors/${imagepath}`)
       });

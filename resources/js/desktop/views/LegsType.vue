@@ -18,7 +18,7 @@
             </div>
             <!-- new -->
             <h3 class="font-bold mb-1 xl:text-xl md:text-md xl:mt-6 md:mt-4 text-gray-600">
-                Standing desk material
+                Table Top Materials
             </h3>
             <transition name="fade" mode="in-out">
                 <Caruosel v-if="deskMaterials.length > 0" :itemCount="4" class="text-md text-center text-gray-600">
@@ -41,7 +41,7 @@
         </main>
         <main class="xl:pb-8 md:pb-4">
             <h3 class="font-bold xl:mb-6 md:mb-4 xl:text-xl md:text-md text-gray-600">
-                Choose the leg color
+                Legs Colors
             </h3>
             <div class="flex flex-wrap -mr-2">
                 <aside v-for="n in 3" :key="n" class="w-1/5 pr-2">

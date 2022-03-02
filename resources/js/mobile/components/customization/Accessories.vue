@@ -8,9 +8,7 @@
                     <aside class="w-full text-center">
                         <img :src="element.image" class="w-16 h-16 object-cover inline">
                     </aside>
-                    <p class="text-xs">
-                        {{element.name}}
-                    </p>
+                    <p class="text-xs" v-html="element.name"></p>
                 </div>
             </aside>
         </main>

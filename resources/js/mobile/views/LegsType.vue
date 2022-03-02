@@ -24,7 +24,7 @@
         <transition name="fade" mode="out-in">
             <main v-show="$store.state.currentPage == 2" class="miniRoutes">
                 <h3 class="color-title text-center font-medium mb-2 text-gray-600">
-                    Standing desk material
+                    Table Top Materials
                 </h3>
                 <aside v-if="deskMaterials.length > 0" class="text-center text-xs whitespace-nowrap py-1 overflow-hidden overflow-x-scroll noscroll -mr-2">
                     <main v-for="materials in deskMaterials" :key="materials" class="w-28 inline-block align-middle mr-2">
@@ -47,7 +47,7 @@
         <transition name="fade" mode="out-in">
             <main v-show="$store.state.currentPage == 3" class="miniRoutes">
                 <h3 class="color-title text-center font-medium text-xl  mb-3 text-gray-600">
-                    Choose the leg color
+                    Legs Colors
                 </h3>
                 <div class="flex flex-wrap w-full justify-center -mr-2">
                     <aside v-for="n in 3" :key="n" class="w-1/4 mr-2">
