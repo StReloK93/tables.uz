@@ -3,8 +3,7 @@
         <h3 class="color-title font-medium text-xl  mb-2 text-gray-600">Grommet Holes</h3>
         <main class="whitespace-nowrap px-1 py-1 overflow-hidden overflow-x-scroll noscroll">
             <aside class="pr-2 inline-block">
-                <div @click="events.setter(1, 'grommet')" :class="{'border-myblue': $store.state.custom.grommet == 1}" class="flex flex-col px-2 pb-2 rounded-md border border-transparent relative">
-                     <img v-if="$store.state.custom.grommet == 1" src="/images/true.jpg" class="w-6 -m-3 absolute top-0 right-0 z-20">
+                <div @click="events.setter(null, 'grommet')" :class="{'border-myblue': $store.state.custom.grommet == null}" class="flex flex-col px-2 pb-2 rounded-md border border-transparent relative">
                     <aside class="w-full">
                         <main class="inline-block mr-2">
                             <svg class="inline" width="80" height="76" viewBox="0 0 111 76" fill="none">
@@ -31,8 +30,7 @@
                 </div>
             </aside>
             <aside class="pr-2 inline-block">
-                <div @click="events.setter(2, 'grommet')" :class="{'border-myblue': $store.state.custom.grommet == 2}" class="flex flex-col p-2 rounded-md border border-transparent relative">
-                     <img v-if="$store.state.custom.grommet == 2" src="/images/true.jpg" class="w-6 -m-3 absolute top-0 right-0 z-20">
+                <div @click="events.setter('circular', 'grommet')" :class="{'border-myblue': $store.state.custom.grommet == 'circular'}" class="flex flex-col p-2 rounded-md border border-transparent relative">
                     <aside>
                         <main class="inline-block mr-2">
                             <svg class="inline" width="80" height="76" viewBox="0 0 111 76" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,8 +57,8 @@
                 </div>
             </aside>
             <aside class="inline-block">
-                <div @click="events.setter(3, 'grommet')" :class="{'border-myblue': $store.state.custom.grommet == 3}" class="flex flex-col p-2 border border-transparent relative">
-                     <img v-if="$store.state.custom.grommet == 3" src="/images/true.jpg" class="w-6 -m-3 absolute top-0 right-0 z-20">
+                <div @click="events.setter('rectangular', 'grommet')" :class="{'border-myblue': $store.state.custom.grommet == 'rectangular'}" class="flex flex-col p-2 border border-transparent relative">
+                     <!-- <img v-if="$store.state.custom.grommet == 'rectangular'" src="/images/true.jpg" class="w-6 -m-3 absolute top-0 right-0 z-20"> -->
                     <aside>
                         <main class="inline-block mr-2">
                             <svg class="inline" width="80" height="76" viewBox="0 0 111 76" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -93,7 +91,7 @@
 export default {
     data(){
         return{
-            events: Engine.Customization
+            events: Engine.Legs,
         }
     }
 }

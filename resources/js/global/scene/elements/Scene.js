@@ -12,9 +12,7 @@ class Scene {
          //Default Stolni urnatadi
          Engine.Legs.setLegType(this.DefaultLeg)
 
-         //stol ustidagi textura
-         Engine.Legs.setDeskMaterial(store.state.params.deskimage)
-         
+         // Engine.Legs.setDeskMaterial(store.state.params.deskimage)
       })
    }
 

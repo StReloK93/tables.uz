@@ -1,5 +1,6 @@
 import coords from '../../LegsCoordinates'
 import LegSet from '../../LegsSettings'
+import store from '../../store';
 
 export default class Legs {
 	data = null;
@@ -10,7 +11,7 @@ export default class Legs {
 		this.setActiveFolder() // Galochka qoyadi active papka storega yozadi
 		this.setCorner(store.state.custom.corners) //Materialga mos table
 
-
+		this.setHole(store.state.custom.grommet)
 		//import qilamiz
 		LegSet.materials.forEach(element => {
 			let material = scene.getMaterialByName(element)
@@ -22,6 +23,40 @@ export default class Legs {
 			material.albedoTexture = scene.getTextureByName(texture)
 		});
 
+	}
+
+
+	setHole(corner /* =1 , =2 , 3 */, success = true){
+		const HolesList = {
+			circular: ['circular1','circular2','circular3','circular4','circular5'],
+			rectangular: ['rectangular1','rectangular2','rectangular3','rectangular4','rectangular5']
+		}
+	
+		store.state.custom.grommet = corner
+
+		if(corner){
+			for (const key in HolesList) {
+				if(key == corner){
+					HolesList[key].forEach(holeNames => {
+						const hole = scene.getNodeByName(holeNames)
+						hole.setEnabled(true)
+					});
+				}else{
+					HolesList[key].forEach(holeNames => {
+						const hole = scene.getNodeByName(holeNames)
+						hole.setEnabled(false)
+					});
+				}
+			}
+		}
+		else{
+			for (const key in HolesList) {
+				HolesList[key].forEach(holeNames => {
+					const hole = scene.getNodeByName(holeNames)
+					hole.setEnabled(false)
+				});
+			}
+		}
 	}
 
 	setCorner(cornerIndex) {
@@ -157,7 +192,6 @@ export default class Legs {
 			const rotation = coords[legIndex][Decors].rotation
 			if (store.state.decor[Decors]) {
 				mesh.position = coordinate
-				console.log(rotation);
 				mesh.rotation = new BABYLON.Vector3(0,rotation,0);
 			}
 			else {
@@ -186,7 +220,7 @@ export default class Legs {
 			case 'desks/solidedge':
 				store.state.textureType = 5
 				break
-			default: console.log('xatolik')
+			default: alert('error')
 		}
 
 		return store.state.textureType

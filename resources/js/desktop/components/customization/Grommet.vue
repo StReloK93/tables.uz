@@ -3,8 +3,7 @@
         <h3 class="font-bold mb-4 xl:text-xl md:text-md text-gray-600">Grommet Holes</h3>
         <main class="flex -mr-2 text-center pb-10">
             <aside class="pr-2 w-1/3">
-                <div @click="events.setter(1, 'grommet')" :class="{'border-myblue': $store.state.custom.grommet == 1}" class="cursor-pointer xl:pt-8 md:pt-4 pb-2 text-center relative border border-transparent">
-                    <img v-if="$store.state.custom.grommet == 1" src="/images/true.jpg" class="w-6 -m-3 absolute top-0 right-0 z-20">
+                <div @click="events.setHole(null, 'grommet')" :class="{'border-myblue': $store.state.custom.grommet == null}" class="cursor-pointer xl:pt-8 md:pt-4 pb-2 text-center relative border border-transparent">
                     <main class="mb-8">
                         <svg class="inline scaling" width="111" height="76" viewBox="0 0 111 76" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="1" y="1" width="109" height="74" rx="15" stroke="#494949" stroke-width="2"/>
@@ -29,8 +28,7 @@
                 </div>
             </aside>
             <aside class="pr-2 w-1/3">
-                <div @click="events.setter(2, 'grommet')" :class="{'border-myblue': $store.state.custom.grommet == 2}" class="cursor-pointer xl:pt-8 md:pt-4 pb-2 border border-transparent relative">
-                    <img v-if="$store.state.custom.grommet == 2" src="/images/true.jpg" class="w-6 -m-3 absolute top-0 right-0 z-20">
+                <div @click="events.setHole('circular', 'grommet')" :class="{'border-myblue': $store.state.custom.grommet == 'circular'}" class="cursor-pointer xl:pt-8 md:pt-4 pb-2 border border-transparent relative">
                     <main class="mb-8">
                         <svg class="inline scaling" width="111" height="76" viewBox="0 0 111 76" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="1" y="1" width="109" height="74" rx="15" stroke="#494949" stroke-width="2"/>
@@ -55,8 +53,8 @@
                 </div>
             </aside>
             <aside class="pr-2 w-1/3">
-                <div @click="events.setter(3, 'grommet')" :class="{'border-myblue': $store.state.custom.grommet == 3}" class="cursor-pointer xl:pt-8 md:pt-4 pb-2 border border-transparent relative">
-                    <img v-if="$store.state.custom.grommet == 3" src="/images/true.jpg" class="w-6 -m-3 absolute top-0 right-0 z-20">
+                <div @click="events.setHole('rectangular', 'grommet')" :class="{'border-myblue': $store.state.custom.grommet == 'rectangular'}" class="cursor-pointer xl:pt-8 md:pt-4 pb-2 border border-transparent relative">
+                    <!-- <img v-if="$store.state.custom.grommet == 'rectangular'" src="/images/true.jpg" class="w-6 -m-3 absolute top-0 right-0 z-20"> -->
                     <main class="mb-8">
                         <svg class="inline scaling" width="111" height="76" viewBox="0 0 111 76" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="1" y="1" width="109" height="74" rx="15" stroke="#494949" stroke-width="2"/>
@@ -87,7 +85,7 @@
 export default {
     data() {
         return {
-            events: Engine.Customization
+            events: Engine.Legs,
         }
     }
 }
