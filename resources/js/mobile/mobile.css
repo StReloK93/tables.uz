@@ -1,7 +1,9 @@
 .color-title {
 	color: #3F4D74;
 }
-
+.text-custom{
+   color: #3DB7F6;
+}
 .miniRoutes {
 	display: flex;
 	flex-direction: column;

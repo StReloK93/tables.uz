@@ -144,6 +144,10 @@ export default {
 }
 </script>
 <style>
+
+.text-custom{
+   color: #3DB7F6;
+}
 .zoom-button{
    position: absolute;
    left: 50%;

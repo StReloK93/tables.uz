@@ -26,7 +26,7 @@ export default createStore({
 			},
 			params: {
 				//legs
-				legColor: 1,
+				legColor: null,
 				legType: null,
 				deskimage: 'desks/laminate/cw115.jpg',
 
@@ -101,8 +101,8 @@ export default createStore({
 					{name: 'Okamura Slyphy' , 		price: '$9050', path: '/images/hard/Okamura Slyphy.jpg', link: "https://ergoseatings.com.hk/product/okamura-sylphy-ergonomic-chair/"},
 				],
 				[
-					{name: 'Okamura.C Foam Seat' , price: '$12650', path: '/images/hardest/Okamura Contessa Foam Seat.jpg', link: "https://ergoseatings.com.hk/product/okamura-contessa-ii-mesh-back-with-foam-seat/"},
-					{name: 'Okamura.C Mesh' , 		 price: '$12650',	path: '/images/hardest/Okamura Contessa Mesh.jpg', link: "https://ergoseatings.com.hk/product/okamura-contessa-ii-ergonomic-chair-full-mesh-version/"},
+					{name: 'Contessa Foam Seat' , price: '$12650', path: '/images/hardest/Okamura Contessa Foam Seat.jpg', link: "https://ergoseatings.com.hk/product/okamura-contessa-ii-mesh-back-with-foam-seat/"},
+					{name: 'Contessa Mesh' , 		 price: '$12650',	path: '/images/hardest/Okamura Contessa Mesh.jpg', link: "https://ergoseatings.com.hk/product/okamura-contessa-ii-ergonomic-chair-full-mesh-version/"},
 					{name: 'Wagner Alumedic' , 	 price: '$10700',	path: '/images/hardest/Wagner Alumedic.jpg', link: "https://ergoseatings.com.hk/product/wagner-alumedic-10/"},
 				],
 			]
@@ -115,8 +115,6 @@ export default createStore({
 		},
 		//otherdagi counter
 		setTablesCount(state, pay) {
-			
-			
 			
 			if (pay < 1 && (state.otherpage.tablesCount > 1)) {
 				state.otherpage.tablesCount += pay

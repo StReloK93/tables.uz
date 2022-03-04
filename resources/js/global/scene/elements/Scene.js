@@ -13,6 +13,7 @@ class Scene {
          Engine.Legs.setLegType(this.DefaultLeg)
 
          // Engine.Legs.setDeskMaterial(store.state.params.deskimage)
+         Engine.Legs.setLegColor(1)
       })
    }
 
