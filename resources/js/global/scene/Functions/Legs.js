@@ -11,6 +11,8 @@ export default class Legs {
 		this.setActiveFolder() // Galochka qoyadi active papka storega yozadi
 		this.setCorner(store.state.custom.corners) //Materialga mos table
 
+
+
 		this.setHole(store.state.custom.grommet)
 		//import qilamiz
 		LegSet.materials.forEach(element => {
@@ -26,7 +28,11 @@ export default class Legs {
 	}
 
 
-	setHole(corner /* =1 , =2 , 3 */, success = true){
+	setHole(corner /* =1 , =2 , 3 */){
+
+		const notHole = ['desks/solidedge', 'desks/melamineglass']
+		var contain = notHole.includes(store.state.params.activeFolder)
+
 		const HolesList = {
 			circular: ['circular1','circular2','circular3','circular4','circular5'],
 			rectangular: ['rectangular1','rectangular2','rectangular3','rectangular4','rectangular5']
@@ -34,7 +40,7 @@ export default class Legs {
 	
 		store.state.custom.grommet = corner
 
-		if(corner){
+		if(corner && contain == false){
 			for (const key in HolesList) {
 				if(key == corner){
 					HolesList[key].forEach(holeNames => {
@@ -154,7 +160,7 @@ export default class Legs {
 		if (store.state.params.legColor == colorIndex) return
 
 		let colorArr = ['#EEEEEE', '#8B8B8B', '#222222']
-		let LegsArr = ['oneLeg', 'twoLeg', 'fourLeg', 'fiveLeg', 'threeLegHelpLeft', 'threeLegHelpright', 'threeLegMainLeft', 'threeLegMainRight', 'tumb1']
+		let LegsArr = ['oneLeg', 'twoLegLeft', 'fourLeg', 'fiveLeg', 'threeLegHelpLeft', 'threeLegHelpright', 'threeLegMainLeft', 'threeLegMainRight', 'tumb1']
 
 
 		LegsArr.forEach(legName => {

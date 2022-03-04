@@ -3,5 +3,4 @@ Preloaderni o'zgartirish
 
 Tashkilotlar 3D Modellari
 
-1 - table teshiklari
 2 - tanlaganlarni korsatib turish
