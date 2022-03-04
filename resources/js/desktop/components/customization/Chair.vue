@@ -12,7 +12,7 @@
                     {{img.name}}
                 </p>
                 <a @click.stop="" :href="img.link" class="mt-2 w-full py-1 inline-block uppercase config router-link-active rounded-b text-white" target="blank">
-                    more detailed
+                    More details
                 </a>
             </div>
         </main>
@@ -28,12 +28,12 @@
                     {{img.name}}
                 </p>
                 <a @click.stop="" :href="img.link" class="mt-2 w-full py-1 inline-block uppercase config router-link-active rounded-b text-white" target="blank">
-                    more detailed
+                    More details
                 </a>
             </div>
         </main>
     </Carusel>
-    <h3 class="mx-8 font-bold my-4 text-md text-blue-900">$5501-$8500</h3>
+    <h3 class="mx-8 font-bold my-4 text-md text-blue-900">$5501-$9500</h3>
     <Carusel  :itemCount="3" class="text-md text-center text-gray-600 mx-8">
         <main v-for="img in $store.state.chairs[2]" :key="img" @click="events.setter(img.name, 'chair')"  class="w-1/3 px-1 inline-block">
             <div :class="{'border-myblue': $store.state.custom.chair == img.name}" class="pt-4 relative text-center shadow rounded-md border border-b-0 border-gray-200">
@@ -44,12 +44,12 @@
                     {{img.name}}
                 </p>
                 <a @click.stop="" :href="img.link" class="mt-2 w-full py-1 inline-block uppercase config router-link-active rounded-b text-white" target="blank">
-                    more detailed
+                    More details
                 </a>
             </div>
         </main>
     </Carusel>
-    <h3 class="mx-8 font-bold my-4 text-md text-blue-900">$8500+</h3>
+    <h3 class="mx-8 font-bold my-4 text-md text-blue-900">$9500+</h3>
     <Carusel  :itemCount="3" class="text-md text-center text-gray-600 mx-8">
         <main v-for="img in $store.state.chairs[3]" :key="img" @click="events.setter(img.name, 'chair')"  class="w-1/3 px-1 inline-block">
             <div :class="{'border-myblue': $store.state.custom.chair == img.name}" class="pt-4 relative text-center shadow rounded-md border border-b-0 border-transparent">
@@ -60,7 +60,7 @@
                     {{img.name}}
                 </p>
                 <a @click.stop="" :href="img.link" class="mt-2 w-full py-1 inline-block uppercase config router-link-active rounded-b text-white" target="blank">
-                    more detailed
+                    More details
                 </a>
             </div>
         </main>

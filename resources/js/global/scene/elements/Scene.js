@@ -4,7 +4,6 @@ class Scene {
    constructor(canvas) {
       this.createScene(canvas)
       this.expansion()
-
       scene.onReadyObservable.add(()=>{
          //Default texturani urnatadi
          Engine.Room.floorImage(this.DefaultFloor)

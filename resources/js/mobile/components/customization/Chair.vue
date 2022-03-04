@@ -80,8 +80,8 @@ export default {
             buttons: [
                 'Below $3000',
                 '$3500-$5500',
-                '$5501-$8500',
-                '$8500+',
+                '$5501-$9500',
+                '$9500+',
             ],
             events: Engine.Customization,
             active: 0,
