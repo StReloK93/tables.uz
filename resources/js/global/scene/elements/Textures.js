@@ -40,6 +40,10 @@ class Textures {
 
             const texture = new newTexture({ name: image.path, texturePath: `/floors/${image.path}`, uScale: uScale, vScale: 1, uAng: Math.PI })
             if (key == 'desks/melamineglass' || key == 'desks/solidedge') texture.uScale = 1
+            if(image.file == 'M17') {
+               texture.vScale = 2
+               texture.uScale = 4
+            }
          })
       }
    }
@@ -93,7 +97,7 @@ class Textures {
       //Decorations
       new Texture({ uAng: Math.PI, materialName: 'monitormain', texturePath: '/textures/monitormain.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'plantMain', texturePath: '/textures/plantMain.jpg' }),
-      new Texture({ uAng: Math.PI, materialName: 'tumbochka', texturePath: '/textures/tumbochka.jpg' })
+      // new Texture({ uAng: Math.PI, materialName: 'tumbochka', texturePath: '/textures/tumbochka.jpg' })
    ]
 
    _NormalTextures = [
