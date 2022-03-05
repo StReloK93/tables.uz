@@ -40,7 +40,7 @@
                         </svg>
                     </main>
                     <p class="text-sm mt-5">
-                        Circular holes
+                        Two Circular holes
                     </p>
                 </div>
             </aside>

@@ -52,11 +52,13 @@ export default class Legs {
 				if(key == corner){
 					HolesList[key].forEach(holeNames => {
 						const hole = scene.getNodeByName(holeNames)
+						console.log(hole,holeNames);
 						hole.setEnabled(true)
 					});
 				}else{
 					HolesList[key].forEach(holeNames => {
 						const hole = scene.getNodeByName(holeNames)
+						console.log(hole,holeNames);
 						hole.setEnabled(false)
 					});
 				}

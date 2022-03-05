@@ -31,17 +31,21 @@
             <div class="flex items-center mb-3 text-sm text-gray-500">
                <input type="checkbox" v-model="$store.state.otherpage.needchair" class="transform scale-150 ml-1 mr-3">  I also need a chair, if you can tell us your height and physiqe we can recommend.
             </div>
-         <aside class="flex">
-            <main class="mr-4 w-1/2">
+         <aside class="flex text-sm">
+            <main class="mr-2 w-1/2">
                <p class="mb-2 text-gray-400 flex items-center">
                   Your overall height
                   <img class="ml-3" src="/images/undo.svg">
                </p>
                <div>
-                  <input v-model="$store.state.otherpage.height" :disabled="!$store.state.otherpage.needchair" :class="{'border-indigo-900': $store.state.otherpage.needchair}" type="text" class="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-600">
+                  <input v-model="$store.state.otherpage.height" 
+                        :disabled="!$store.state.otherpage.needchair" 
+                        :class="{'border-indigo-900': $store.state.otherpage.needchair}" 
+                        type="text" 
+                        class="w-full rounded-md border border-gray-300 p-2 outline-none focus:border-blue-600">
                </div>
             </main>
-            <main class="w-1/2">
+            <main class="mr-2 w-1/2">
                <p class="mb-2 text-gray-400 flex items-center">
                   Your upper legs length
                   <img class="ml-3" src="/images/undo.svg">
