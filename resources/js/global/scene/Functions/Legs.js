@@ -35,6 +35,13 @@ export default class Legs {
 
 		const HolesList = {
 			circular: ['circular1','circular2','circular3','circular4','circular5'],
+			circularedges: [
+				'circular1first','circular1second',
+				'circular2first','circular2second',
+				'circular3first','circular3second',
+				'circular4first','circular4second',
+				'circular5first','circular5second'
+			],
 			rectangular: ['rectangular1','rectangular2','rectangular3','rectangular4','rectangular5']
 		}
 	
@@ -45,11 +52,13 @@ export default class Legs {
 				if(key == corner){
 					HolesList[key].forEach(holeNames => {
 						const hole = scene.getNodeByName(holeNames)
+						console.log(holeNames);
 						hole.setEnabled(true)
 					});
 				}else{
 					HolesList[key].forEach(holeNames => {
 						const hole = scene.getNodeByName(holeNames)
+						console.log(holeNames);
 						hole.setEnabled(false)
 					});
 				}

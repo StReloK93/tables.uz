@@ -10,7 +10,7 @@ export default [
     {
         image: { position: new BABYLON.Vector3(1.215, 19.117, -34.423), rotation: 0 },
         plant: { position: new BABYLON.Vector3(-1, 1, -31.333), rotation: 0 },
-        monitor: { position: new BABYLON.Vector3(10, 7.65, -31.565), rotation: 0 },
+        monitor: { position: new BABYLON.Vector3(10, 7.65, -29.5), rotation: 0 },
         chair: { position: new BABYLON.Vector3(15.9, 1.75, -21), rotation: -Math.PI/3 },
         lamp: { position: new BABYLON.Vector3(15, 7.668, -31.414), rotation: Math.PI/0.6 },
         tumbochka: { position: new BABYLON.Vector3(22.503, 1.178, -29.831), rotation: 0 },

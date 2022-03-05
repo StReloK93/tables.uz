@@ -7,7 +7,7 @@ class Textures {
       new newTexture({ texturePath: '/textures/tores.jpg', uScale: 22, uAng: Math.PI, wAng: Math.PI / 2 })
       scene.onReadyObservable.add(() => {
          let CountAllTextures = this._AmbientTextures.length + this._NormalTextures.length
-         let addProsent = 50 / (CountAllTextures);
+         let addProsent = 50 / (CountAllTextures + 1);
 
          const material = scene.getMaterialByName('CtwoTable')
          material.albedoTexture = scene.getTextureByName('desks/laminate/dh111.jpg')
@@ -45,11 +45,12 @@ class Textures {
    }
 
    _AllAmbientWhite(prosent) {
-      // let hdr = BABYLON.CubeTexture.CreateFromPrefilteredData("/textures/hdrmini.env", scene)
-      // scene.environmentTexture = hdr
-      // hdr.onLoadObservable.add(() => {
-      //    store.state.onLoaded += prosent
-      // });
+      let hdr = BABYLON.CubeTexture.CreateFromPrefilteredData("/textures/hdrmini.env", scene)
+      scene.environmentTexture = hdr
+      scene._environmentIntensity = 0.25
+      hdr.onLoadObservable.add(() => {
+         store.state.onLoaded += prosent
+      });
 
 
       const materials = ['oneTable', 'twoTable', 'threeTable', 'fourTable', 'fiveTable', 'fiveShkaf', 'tablesBevel', 'solidedge']
@@ -57,7 +58,7 @@ class Textures {
       scene.ambientColor = BABYLON.Color3.FromHexString('#CAC1C1')
       scene.materials.forEach(element => {
          if(materials.includes(element.name) == false) element.ambientColor = new BABYLON.Color3(1, 1, 1)
-         else element.ambientColor = new BABYLON.Color3(0.3, 0.3, 0.3)
+         else element.ambientColor = new BABYLON.Color3(0.7, 0.7, 0.7)
       });
    }
 

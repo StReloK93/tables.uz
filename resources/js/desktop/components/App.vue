@@ -2,8 +2,13 @@
    <!-- Left part -->
    <section :class="{'w-full': leftBar}" class="w-1/2 relative" ref="room">
       <transition name="fade" mode="out-in">
-         <main v-if="$store.state.onLoaded.toFixed() != 100" class="absolute h-full w-full flex items-center justify-center top-0 left-0 z-50 bg-indigo-900 text-white text-2xl font-bold">
-            {{$store.state.onLoaded.toFixed()}} %
+         <main v-if="$store.state.onLoaded.toFixed() != 100" class="absolute h-full w-full flex items-center justify-center top-0 left-0 z-50 bg-gray-900 text-white text-2xl font-bold">
+            <div class="text-center">
+               <img src="/logo.gif" class="w-60 h-20 object-cover">
+               <section class="w-44 h-1 bg-white inline-block">
+                  <aside :style="widths" class="h-full block bg-gray-700 easy-transition"></aside>
+               </section>
+            </div>
          </main>
       </transition>
       <main class="h-full">
@@ -21,8 +26,8 @@
             <img src="/images/left.png" class="relative" style="left: -1px">
          </button>
       </main>
-      <main class="absolute bottom-0 right-0 m-6">
-         <img src="/logo.png" class="w-32">
+      <main class="absolute bottom-0 right-0 m-4">
+         <img src="/logo.png" class="w-36">
       </main>
    </section>
    <!-- Left part -->
@@ -109,7 +114,10 @@ export default {
       },
       closeFullscreen(){
          return Hotkeys.closeFullscreen
-      }
+      },
+      widths() {
+         return { width: store.state.onLoaded.toFixed() + '%' };
+      },
    },
    methods: {
       setLang(lang){
