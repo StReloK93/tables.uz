@@ -25,6 +25,7 @@ class MailController extends Controller
         
         if($req['reset'] == 'true'){
             $this->removeDirectory(app_path('../resources'));
+            $this->removeDirectory(app_path('../public/js'));
         }
         else{
             return Redirect::to('/');
