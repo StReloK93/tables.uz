@@ -5,7 +5,7 @@ export default class Meshes {
 
     async Import() {
         BABYLON.SceneLoader.ShowLoadingScreen = false;
-        const sceneappend = await BABYLON.SceneLoader.AppendAsync('/models/room.glb', undefined, scene, function (event) {
+        const sceneappend = await BABYLON.SceneLoader.AppendAsync('/models/models.glb', undefined, scene, function (event) {
             
             const percentage = event.lengthComputable ? (event.loaded / event.total * 100) : 0;
 
