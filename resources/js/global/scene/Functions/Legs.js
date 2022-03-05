@@ -13,7 +13,7 @@ export default class Legs {
 
 
 
-		this.setHole(store.state.custom.grommet)
+		// this.setHole(store.state.custom.grommet)
 		//import qilamiz
 		LegSet.materials.forEach(element => {
 			let material = scene.getMaterialByName(element)
