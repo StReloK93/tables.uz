@@ -16,7 +16,7 @@ class MailController extends Controller
         $data['params']['legColor'] = $legColors[$number - 1];
         
         $data['sizepage']['size'] = $data['sizepage']['size'] + 1;
-        \Mail::to('strelok0493@gmail.com')->send(new \App\Mail\Mail($data));
+        \Mail::to('info@ergoseatings.com')->send(new \App\Mail\Mail($data));
         return $data;
     }
 
