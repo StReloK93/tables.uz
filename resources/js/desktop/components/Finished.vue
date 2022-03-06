@@ -6,15 +6,14 @@
 				<section>
 					<h3 class="font-bold mb-4 xl:text-xl md:text-md text-gray-600">Contact info</h3>
 					<p class="text-gray-700 xl:text-sm md:text-xs">
-						The specifications you selected here will be emailed to you and Ergoseatings.com 
-						after you click the submrrorder quoted' button below We will contact you shodly 
-						with an Meal quotation based on your specifications Thank you for tying out Emoseatinqs 
-						Desk Custommer 
+						The specifications you selected will be emailed to Ergoseatings 
+						after you click the continue button below. We will contact you 
+						with a quotation shortly. Thank you for tying out our Desk Customizer 2.0!
 					</p>
 					<hr class="xl:my-6 md:my-4">
 					<aside class="px-6 py-3 border rounded-md xl:mb-6 md:mb-4">
 						<label for="inputname" class="uppercase small-text font-bold text-indigo-900 block">Your Name</label>
-						<input  required type="text" v-model="inpname" class="w-full border-0 outline-none mt-3" placeholder="Type yuor name, please">
+						<input  required type="text" v-model="inpname" class="w-full border-0 outline-none mt-3" placeholder="Input Your Name here please">
 					</aside>
 					<aside class="px-6 py-3 border rounded-md xl:mb-6 md:mb-4">
 						<label for="inputname" class="uppercase small-text font-bold text-indigo-900 block">Your email: <span class="ml-2 text-gray-400 font-normal small-text">(Pis avoid using hotmail and Yahoo here as mails will very likely go to junk folder when we reply to you)</span></label>

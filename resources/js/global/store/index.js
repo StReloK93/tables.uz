@@ -22,7 +22,7 @@ export default createStore({
 				image: true,
 				chair: false,
 				plant: true,
-				tumbochka: false,
+				tumbochka: true,
 			},
 			params: {
 				//legs

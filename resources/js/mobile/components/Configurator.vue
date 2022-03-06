@@ -6,7 +6,7 @@
                     <Icons icon="Legs"/>
                 </div>
                 <h3>
-                    Legs Type 
+                     The Desk
                 </h3>
             </router-link>
         </main>

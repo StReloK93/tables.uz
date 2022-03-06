@@ -20,6 +20,10 @@
             class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 xl:w-24 md:w-20 xl:h-24 md:h-20 cursor-pointer hover:bg-opacity-75">
             <Icons icon="plant" />
         </div>
+        <div v-if="plant" @click="toggleNode('tumbochka')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.tumbochka}"  
+            class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 xl:w-24 md:w-20 xl:h-24 md:h-20 cursor-pointer hover:bg-opacity-75">
+            <img src="/images/tumb.png" class="w-10">
+        </div>
         <div @click="information = !information" class="text-center pt-2 px-1 xl:w-24 md:w-20 relative">
             <img src="/images/information.png" class="gray w-14 inline cursor-pointer">
             <transition name="fade">
@@ -61,6 +65,7 @@ export default {
         this.toggleNode('image')
         this.toggleNode('chair')
         this.toggleNode('plant')
+        this.toggleNode('tumbochka')
     },
     methods: {
         toggleNode(node){

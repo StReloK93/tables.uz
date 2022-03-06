@@ -26,6 +26,8 @@ class Textures {
          else if(imagepath == '132.jpg') new newTexture({ texturePath: `/floors/${imagepath}`, uScale: 2.5, vScale: 2.5 })
          else if(imagepath == '2.jpg') new newTexture({ texturePath: `/floors/${imagepath}`, uScale: 3, vScale: 3 })
          else if(imagepath == '13.jpg') new newTexture({ texturePath: `/floors/${imagepath}`, uScale: 5, vScale: 5 })
+         else if(imagepath == '14.jpg') new newTexture({ texturePath: `/floors/${imagepath}`, uScale: 2, vScale: 2 })
+
          else  new newTexture({ texturePath: `/floors/${imagepath}`, uScale: 3, vScale: 4 })
          this.floors.push(`/floors/${imagepath}`)
       });

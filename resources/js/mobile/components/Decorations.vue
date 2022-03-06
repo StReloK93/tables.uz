@@ -1,8 +1,8 @@
 <template>
     <aside class="absolute top-0 left-0 p-4 text-center text-gray-500">
-        <button  class="bg-gray-100 mb-3 px-3 py-2 inline-block rounded-full shadow">
+        <!-- <button  class="bg-gray-100 mb-3 px-3 py-2 inline-block rounded-full shadow">
             <img src="/images/left.png" class="relative" style="left: -1px">
-        </button>
+        </button> -->
         <div v-if="lamp" @click="toggleNode('lamp')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.lamp}" 
             class="flex items-center justify-center py-3 px-2 bg-white rounded-lg bg-opacity-50 mb-2 w-12 h-12 sm:w-16 sm:h-16 hover:bg-opacity-75">
             <Icons icon="lamp" />
@@ -22,6 +22,10 @@
         <div v-if="plant" @click="toggleNode('plant')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.plant}"  
             class="flex items-center justify-center py-3 px-2 bg-white rounded-lg bg-opacity-50 mb-2 w-12 h-12 sm:w-16 sm:h-16 hover:bg-opacity-75">
             <Icons icon="plant" />
+        </div>
+        <div v-if="plant" @click="toggleNode('tumbochka')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.tumbochka}"  
+            class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 xl:w-24 md:w-20 xl:h-24 md:h-20 cursor-pointer hover:bg-opacity-75">
+            <img src="/images/tumb.png" class="w-5">
         </div>
     </aside>
 </template>
@@ -46,6 +50,7 @@ export default {
         this.toggleNode('image')
         this.toggleNode('chair')
         this.toggleNode('plant')
+        this.toggleNode('tumbochka')
     },
     methods: {
         toggleNode(node){
