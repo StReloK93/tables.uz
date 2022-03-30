@@ -59,7 +59,7 @@ export default createStore({
 				chair: null,
 			},
 			legTypes: [
-				{ img: '/images/1leg.png', name: '1 legs' },
+				{ img: '/images/1leg.png', name: '1 leg' },
 				{ img: '/images/2leg.png', name: '2 legs' },
 				{ img: '/images/3leg.png', name: '3 legs' },
 				{ img: '/images/4leg.png', name: '4 legs' },

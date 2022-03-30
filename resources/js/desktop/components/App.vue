@@ -27,7 +27,7 @@
          </button>
       </main>
       <main class="absolute bottom-0 right-0 m-4">
-         <img src="/logo.png" class="w-36">
+        <a href="https://www.ergoseatings.com" target="_blank"><img src="/logo.png" class="w-36"></a> 
       </main>
    </section>
    <!-- Left part -->

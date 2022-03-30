@@ -2,9 +2,9 @@ export default [
     {
         image: { position: new BABYLON.Vector3(10, 19.117, -34.423), rotation: 0 },
         plant: { position: new BABYLON.Vector3(4.522, 1, -31), rotation: 0 },
-        monitor: { position: new BABYLON.Vector3(17.212, 8.01698, -30.788), rotation: 0 },
+        monitor: { position: new BABYLON.Vector3(15.8, 8.01698, -30.788), rotation: 0 },
         chair: { position: new BABYLON.Vector3(18.739, 1.75, -20.963), rotation: -Math.PI/3 },
-        lamp: { position: new BABYLON.Vector3(22.511, 7, -31.4137), rotation: Math.PI/0.6 },
+        lamp: { position: new BABYLON.Vector3(19.8, 8.1, -32), rotation: Math.PI/0.6 },
         tumbochka: { position: new BABYLON.Vector3(22.503, 1.178, -29.831), rotation: 0 },
     },
     {
