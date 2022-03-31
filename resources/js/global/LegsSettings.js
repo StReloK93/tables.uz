@@ -2,7 +2,7 @@ export default {
     materials: ['oneTable', 'twoTable', 'threeTable', 'fourTable', 'fiveTable', 'fiveShkaf', 'tablesBevel', 'solidedge','forGlass'],
     parents: ['onelegParent', 'twolegParent', 'threelegParent', 'fourlegParent', 'fivelegParent'],
     filter: [
-        ['desks/bamboo', 'desks/solidedge', 'desks/melamineglass'],
+        ['desks/bamboo', 'desks/solidedge', 'desks/melamineglass' ,'desks/veneer'],
         [],
         ['desks/bamboo', 'desks/solidedge', 'desks/pyledge', 'desks/melamineglass'],
         ['desks/bamboo', 'desks/melamineglass'],

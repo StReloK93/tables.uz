@@ -75,7 +75,7 @@ class Textures {
       new Texture({ uAng: Math.PI, materialName: 'wall', texturePath: '/textures/wall.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'plintus', texturePath: '/textures/plintus.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'floor', texturePath: '/textures/floor.jpg' }),
-      new Texture({ uAng: Math.PI, materialName: 'podokolnik', texturePath: '/textures/podokolnik.jpg' }),
+      // new Texture({ uAng: Math.PI, materialName: 'podokolnik', texturePath: '/textures/podokolnik.jpg' }),
       //Legs
       new Texture({ uAng: Math.PI, materialName: 'oneLeg', texturePath: '/textures/oneLeg.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'twoLeg', texturePath: '/textures/twoLeg.jpg' }),
@@ -86,20 +86,11 @@ class Textures {
       new Texture({ uAng: Math.PI, materialName: 'fourLeg', texturePath: '/textures/fourLeg.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'fiveLeg', texturePath: '/textures/fiveLeg.jpg' }),
       //Tables
-      // new Texture({ uAng: Math.PI, materialName: 'oneTable', texturePath: '/textures/oneTable.jpg' }),
-      // new Texture({ uAng: Math.PI, materialName: 'twoTable', texturePath: '/textures/twoTable.jpg' }),
-      // new Texture({ uAng: Math.PI, materialName: 'CtwoTable', texturePath: '/textures/twoTable.jpg' }),
-      // new Texture({ uAng: Math.PI, materialName: 'solidedge', texturePath: '/textures/solidedge.jpg' }),
-      // new Texture({ uAng: Math.PI, materialName: 'threeTable', texturePath: '/textures/threeTable.jpg' }),
-      // new Texture({ uAng: Math.PI, materialName: 'fourTable', texturePath: '/textures/fourTable.jpg' }),
-      // new Texture({ uAng: Math.PI, materialName: 'fiveTable', texturePath: '/textures/fiveTable.jpg' }),
-      // new Texture({ uAng: Math.PI, materialName: 'fiveShkaf', texturePath: '/textures/fiveShkaf.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'fiveShkafEshik', texturePath: '/textures/fiveShkafEshik.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'fiveWhite', texturePath: '/textures/fiveWhite.jpg' }),
       //Decorations
       new Texture({ uAng: Math.PI, materialName: 'monitormain', texturePath: '/textures/monitormain.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'plantMain', texturePath: '/textures/plantMain.jpg' }),
-      // new Texture({ uAng: Math.PI, materialName: 'tumbochka', texturePath: '/textures/tumbochka.jpg' })
    ]
 
    _NormalTextures = [
