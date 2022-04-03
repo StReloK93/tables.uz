@@ -38,14 +38,6 @@ function loaderFile(file) {
    document.addEventListener("mozfullscreenchange", onFullScreenChange, false);
 
    window.onkeyup = (event) => {
-      if (event.keyCode == 32) {
-         if(store.state.fullscreen){
-            closeFullscreen()
-         }
-         else{
-            requestFullScreen(file)
-         }
-      }
       if (event.keyCode == 107) {
          if (store.state.inspector) {
             scene.debugLayer.show({

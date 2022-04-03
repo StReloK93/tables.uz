@@ -41,7 +41,7 @@ class Textures {
             if(image.file == 'M79' || image.file == 'M24') uScale = 1
 
             const texture = new newTexture({ name: image.path, texturePath: `/floors/${image.path}`, uScale: uScale, vScale: 1, uAng: Math.PI })
-            if (key == 'desks/melamineglass' || key == 'desks/solidedge') texture.uScale = 1
+            if (key == 'desks/melamineglass' || key == 'desks/solidedge' || key == 'desks/solidtraditional') texture.uScale = 1
             if(image.file == 'M17') {
                texture.vScale = 2
                texture.uScale = 4
