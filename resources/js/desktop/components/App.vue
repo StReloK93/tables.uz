@@ -16,10 +16,10 @@
          <!-- canvas -->
          <canvas class="w-full h-full outline-none" ref="canvas"></canvas>
 
-         <button v-if="!$store.state.fullscreen" @click="requestFullScreen($refs.room)" class="zoom-button block  p-3 bg-white rounded-lg bg-opacity-50 mb-3 xl:w-24 md:w-20 xl:h-24 md:h-20  hover:bg-opacity-100">
+         <button v-if="$store.state.fullscreen == false" @click="requestFullScreen($refs.room)" class="zoom-button block  p-3 bg-white rounded-lg bg-opacity-50 mb-3 xl:w-24 md:w-20 xl:h-24 md:h-20  hover:bg-opacity-100">
             <Icons icon="zoom"/>
          </button>
-         <button v-if="$store.state.fullscreen"  @click="closeFullscreen()" class="zoom-button block p-3 bg-white rounded-lg bg-opacity-50 mb-3 xl:w-24 md:w-20 xl:h-24 md:h-20  hover:bg-opacity-100">
+         <button v-else  @click="closeFullscreen()" class="zoom-button block p-3 bg-white rounded-lg bg-opacity-50 mb-3 xl:w-24 md:w-20 xl:h-24 md:h-20  hover:bg-opacity-100">
             Exit
          </button>
          <button v-if="leftBar" @click="setLeftBar(false)" class="absolute bg-gray-100 my-3 mx-5 px-3 py-2 inline-block rounded-full top-0 right-0 shadow">

@@ -30,6 +30,6 @@ class Mail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Mail from strelogi.beget.tech')->view('mail');
+        return $this->subject('Ergoseatings.com')->view('mail');
     }
 }

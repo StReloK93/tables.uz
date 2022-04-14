@@ -9,8 +9,6 @@ class MailController extends Controller
     public function sendMail(Request $req){
         $data = $req->all();
 
-        
-
         $legTypes = ['1 leg', '2 legs' , '3 legs' , '4 legs' , 'Side cabinet'];
         $legColors = ['white', 'gray' , 'black'];
         
@@ -23,7 +21,9 @@ class MailController extends Controller
         $data['params']['legType'] = $legTypes[$data['params']['legType']];
 
 
-        $data['custom']['partition'] = $partition[$data['custom']['partition'] - 1];
+        if($data['custom']['partition'] != null){
+            $data['custom']['partition'] = $partition[$data['custom']['partition'] - 1];
+        }
         $data['custom']['corners'] = $corners[$data['custom']['corners'] - 1];
 
         $data['otherpage']['service'] = ($data['otherpage']['service']) ? 'need' : 'no need';
