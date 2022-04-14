@@ -35,16 +35,12 @@
         <table border="1" bgcolor="#fff" width="500" style="border-collapse: collapse; margin: 15px; border-color: #eee">
             <tr style="text-transform: capitalize">
                 @foreach ($details['params'] as $key => $item)
-                    @if($key != 'deskMaterial' && $key != 'activeFolder')
-                        <th style="text-align: center;padding: 10px;">{{$key}} </th>
-                    @endif
+                    <th style="text-align: center;padding: 10px;">{{$key}} </th>
                 @endforeach
             </tr>
             <tr>
                 @foreach ($details['params'] as $key => $item)
-                @if($key != 'deskMaterial' && $key != 'activeFolder')
                     <td style="text-align: center;padding: 10px;">{{$item}} </td>
-                @endif
                 @endforeach
             </tr>
         </table>
@@ -71,12 +67,12 @@
         <table border="1" bgcolor="#fff" width="500" style="border-collapse: collapse; margin: 15px; border-color: #eee">
             <tr style="text-transform: capitalize">
                 @foreach ($details['sizepage'] as $key => $item)
-                    <th style="text-align: center;padding: 10px;">{{$key}} </th>
+                <th style="text-align: center;padding: 10px;">{{$key}} (mm)</th>
                 @endforeach
             </tr>
             <tr>
                 @foreach ($details['sizepage'] as $key => $item)
-                    <td style="text-align: center;padding: 10px;">{{$item}} </td>
+                <td style="text-align: center;padding: 10px;">{{$item}} </td>
                 @endforeach
             </tr>
         </table>
@@ -92,7 +88,7 @@
             </tr>
             <tr>
                 @foreach ($details['otherpage'] as $key => $item)
-                    <td style="text-align: center;padding: 10px;">{{$item}} </td>
+                    <td style="text-align: center;padding: 10px;">{{$item}} @if($key == 'upperlength' || $key == 'lowerlength') cm @endif </td>
                 @endforeach
             </tr>
         </table>

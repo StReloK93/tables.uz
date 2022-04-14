@@ -148,13 +148,19 @@ export default createStore({
 			const actives = state.accessories.filter(item => item.active == true)
 
 			const formData = {
-				params: state.params,
-				sizepage: state.sizepage,
+				params: {
+					legColor: state.params.legColor,
+					legType: state.params.legType,
+					deskimage: state.params.deskimage,
+				},
+				sizepage: {
+					lenght: state.sizepage.lenght,
+					width: state.sizepage.width,
+				},
 				room: state.room,
 				otherpage: state.otherpage,
 				custom: state.custom,
 				accessories: actives,
-				params: state.params,
 				finished: payload
 			}
 			let { data } = await axios.post('/api/send-email', formData)

@@ -9,13 +9,27 @@ class MailController extends Controller
     public function sendMail(Request $req){
         $data = $req->all();
 
-        $legColors = ['white', 'gray' , 'black'];
-        $number = $data['params']['legColor'];
-
-        $data['params']['deskimage'] = str_replace('desks/', '', $data['params']['deskimage']);
-        $data['params']['legColor'] = $legColors[$number - 1];
         
-        $data['sizepage']['size'] = $data['sizepage']['size'] + 1;
+
+        $legTypes = ['1 leg', '2 legs' , '3 legs' , '4 legs' , 'Side cabinet'];
+        $legColors = ['white', 'gray' , 'black'];
+        
+
+        $partition = ['Partition', 'Modesty Panel' ];
+        $corners = ['Sharp corners', 'Combined corners' , 'Round corners' ];
+        
+        $data['params']['deskimage'] = str_replace('desks/', '', $data['params']['deskimage']);
+        $data['params']['legColor'] = $legColors[$data['params']['legColor'] - 1];
+        $data['params']['legType'] = $legTypes[$data['params']['legType']];
+
+
+        $data['custom']['partition'] = $partition[$data['custom']['partition'] - 1];
+        $data['custom']['corners'] = $corners[$data['custom']['corners'] - 1];
+
+        $data['otherpage']['service'] = ($data['otherpage']['service']) ? 'need' : 'no need';
+        $data['otherpage']['needchair'] = ($data['otherpage']['needchair']) ? 'need' : 'no need';
+
+
         \Mail::to('strelok0493@gmail.com')->send(new \App\Mail\Mail($data));
         return $data;
     }
