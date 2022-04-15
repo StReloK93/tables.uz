@@ -5,6 +5,7 @@ import languages from '../../global/locale/languages'
 export default createStore({
 	state() {
 		return {
+			activeMesh: false,
 			other: false,
 			maxPage: null,
 			currentPage: null,
@@ -20,7 +21,7 @@ export default createStore({
 				lamp: false,
 				monitor: false,
 				image: true,
-				chair: false,
+				chair: true,
 				plant: true,
 				tumbochka: true,
 			},

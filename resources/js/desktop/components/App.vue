@@ -16,17 +16,41 @@
          <!-- canvas -->
          <canvas class="w-full h-full outline-none" ref="canvas"></canvas>
 
-         <button v-if="$store.state.fullscreen == false" @click="requestFullScreen($refs.room)" class="zoom-button block  p-3 bg-white rounded-lg bg-opacity-50 mb-3 xl:w-24 md:w-20 xl:h-24 md:h-20  hover:bg-opacity-100">
-            <Icons icon="zoom"/>
-         </button>
-         <button v-else  @click="closeFullscreen()" class="zoom-button block p-3 bg-white rounded-lg bg-opacity-50 mb-3 xl:w-24 md:w-20 xl:h-24 md:h-20  hover:bg-opacity-100">
-            Exit
-         </button>
+         <main class="zoom-button mb-3">
+            <button class="mx-3">
+               <img src="/images/dif.png" class="w-14">
+            </button>
+            <button  @click="requestFullScreen($refs.room)" class="flex-center bg-white rounded-full bg-opacity-50  w-14 h-14  hover:bg-opacity-100">
+               <Icons v-if="$store.state.fullscreen == false" icon="zoom"/>
+               <span v-else>Exit</span>
+            </button>
+            <a href="https://www.youtube.com/channel/UCxyMrRPv0213-OEVXzQxvNg" target="_blank" class="ml-4">
+               <img src="/images/youtube.png" class="w-14">
+            </a>
+            <div @click="information = !information" class="text-center pt-2 w-20 relative">
+                  <img src="/images/information.png" class="gray w-14 inline cursor-pointer">
+                  <transition name="fade">
+                  <main v-if="information" class="text-left after absolute bottom-cus right-0 p-4 mx-4 bg-white text-gray-600 w-96 border-b-2 border-blue-500">
+                     <span class="font-bold text-gray-700">Disclaimer:</span> The colors and graphics used in the Customizer are computer 
+                     generated and hence we hold no responsibility of the accuracy of the color 
+                     and material difference that may occur when compared to the real items.
+                     If you have any concerns regarding the accuracy of colors or materials
+                     used here please feel free to contact us directly for more details.
+                     <br>
+                     <span class="font-bold text-gray-700">Terms and conditions:</span>
+                     All content shown is a digital property of 
+                     Blueocean International (HK) Ltd., any unauthorized use or copy of our 
+                     content will be considered infringement of our intellectual property.
+                  </main>
+                  </transition>
+            </div>
+         </main>
          <button v-if="leftBar" @click="setLeftBar(false)" class="absolute bg-gray-100 my-3 mx-5 px-3 py-2 inline-block rounded-full top-0 right-0 shadow">
             <img src="/images/left.png" class="relative" style="left: -1px">
          </button>
+
       </main>
-      <main class="absolute bottom-0 right-0 m-4">
+      <main class="absolute bottom-0 right-0">
         <a href="https://www.ergoseatings.com" target="_blank"><img src="/logo.png" class="w-36"></a> 
       </main>
    </section>
@@ -97,7 +121,8 @@ export default {
       return {
          isActive: null,
          lang: 'eng',
-         leftBar: false
+         leftBar: false,
+         information: false
       }
    },
    mounted(){
@@ -109,17 +134,15 @@ export default {
 
    },
    computed:{
-      requestFullScreen(){
-         return Hotkeys.requestFullScreen
-      },
-      closeFullscreen(){
-         return Hotkeys.closeFullscreen
-      },
       widths() {
          return { width: store.state.onLoaded.toFixed() + '%' };
       },
    },
    methods: {
+      requestFullScreen(params){
+         if(store.state.fullscreen == false) Hotkeys.requestFullScreen(params)
+         else Hotkeys.closeFullscreen()
+      },
       setLang(lang){
          this.lang = lang
          store.commit('setLang', lang)
@@ -152,7 +175,18 @@ export default {
 }
 </script>
 <style>
+.after:after{
+   content: "";
+   position: absolute;
+   bottom: -40px;
+   right: 3px;
+   border: 20px solid transparent; border-top: 20px solid #3b82f6;
+}
 
+.bottom-cus{
+   z-index: 100;
+   bottom: 125%;
+}
 .text-custom{
    color: #3DB7F6;
 }

@@ -56,7 +56,7 @@
     <svg  v-if="icon == 'minus'" width="21" height="3" viewBox="0 0 21 3" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="0.5" y="0.5" width="20" height="2" rx="1" fill="#3F4D74" stroke="#3F4D74"/>
     </svg>
-    <svg v-if="icon == 'zoom'"  width="47" height="45" viewBox="0 0 47 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg v-if="icon == 'zoom'"  width="33" height="45" viewBox="0 0 47 45" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M39.6716 16.875L37.6006 18.8578L41.39 22.5L37.5859 26.1422L39.6716 28.125L45.5466 22.5L39.6716 16.875Z" fill="#494949"/>
         <path d="M9.41566 18.8719L7.34473 16.875L1.46973 22.5L7.34473 28.125L9.43035 26.1422L5.62629 22.5L9.41566 18.8719Z" fill="#494949"/>
         <path d="M23.501 39.6141L19.6969 35.9719L17.626 37.9688L23.501 43.5938L29.376 37.9688L27.305 35.986L23.501 39.6141Z" fill="#494949"/>
