@@ -12,12 +12,12 @@ export default class Meshes {
 
         scene.onPointerPick = (event,target)=>{
 
-            if(event.button == 0 && target.pickedMesh.actionManager){
+            if(target.pickedMesh.actionManager){
                 scene.activeMesh = target.pickedMesh
                 store.state.activeMesh = true
                 this.hl.addMesh(target.pickedMesh, BABYLON.Color3.FromHexString('#38dab2'))
             }
-            if(event.button == 2){
+            else{
                 if(scene.activeMesh){
                     this.hl.removeMesh(scene.activeMesh)
                 }

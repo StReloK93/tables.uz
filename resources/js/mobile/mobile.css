@@ -77,3 +77,52 @@
 .easy-transition {
 	transition: .5s;
 }
+
+
+.elit-enter-active,
+.elit-leave-active {
+  transition: 0.3s ease;
+}
+
+.elit-enter-from{
+   transform: translateY(20px);
+   opacity: 0;
+}
+.elit-leave-to {
+   transform: translateY(20px);
+   opacity: 0;
+}
+
+.after:after{
+	content: "";
+	position: absolute;
+	bottom: -40px;
+	right: 3px;
+	border: 20px solid transparent; border-top: 20px solid #3b82f6;
+ }
+ 
+ .bottom-cus{
+	z-index: 100;
+	bottom: 140%;
+ }
+
+ .zoom-button{
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	transform: translateX(-50%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+ }
+ .fade-enter-active,
+ .fade-leave-active {
+   transition: opacity 0.3s ease;
+ }
+ 
+ .fade-enter-from,
+ .fade-leave-to {
+   opacity: 0;
+ }
+ 

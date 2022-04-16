@@ -1,7 +1,7 @@
 export default class Size {
 	setSize(sizeIndex) {
 		const from = 0
-		const to = 1
+		const to = 60
 		if (store.state.sizepage.size == sizeIndex) return
 		
 		if (sizeIndex) {

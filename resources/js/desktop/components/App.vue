@@ -22,7 +22,7 @@
                   <div @click="engine.setChairColor('#A9926D')" class="w-14 h-14">
                      <img src="/images/1.jpg" class="w-full rounded-full shadow">
                   </div>
-                  <div @click="engine.setChairColor('#8a8a87')" class="w-14 h-14 ml-4">
+                  <div @click="engine.setChairColor('#868582')" class="w-14 h-14 ml-4">
                      <img src="/images/2.jpg" class="w-full rounded-full shadow">
                   </div>
                </aside>
@@ -198,7 +198,7 @@ export default {
 
 .bottom-cus{
    z-index: 100;
-   bottom: 125%;
+   bottom: 140%;
 }
 .text-custom{
    color: #3DB7F6;
