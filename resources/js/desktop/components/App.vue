@@ -17,33 +17,45 @@
          <canvas class="w-full h-full outline-none" ref="canvas"></canvas>
 
          <main class="zoom-button mb-3">
-            <button class="mx-3">
-               <img src="/images/dif.png" class="w-14">
-            </button>
-            <button  @click="requestFullScreen($refs.room)" class="flex-center bg-white rounded-full bg-opacity-50  w-14 h-14  hover:bg-opacity-100">
-               <Icons v-if="$store.state.fullscreen == false" icon="zoom"/>
-               <span v-else>Exit</span>
-            </button>
-            <a href="https://www.youtube.com/channel/UCxyMrRPv0213-OEVXzQxvNg" target="_blank" class="ml-4">
-               <img src="/images/youtube.png" class="w-14">
-            </a>
-            <div @click="information = !information" class="text-center pt-2 w-20 relative">
-                  <img src="/images/information.png" class="gray w-14 inline cursor-pointer">
-                  <transition name="fade">
-                  <main v-if="information" class="text-left after absolute bottom-cus right-0 p-4 mx-4 bg-white text-gray-600 w-96 border-b-2 border-blue-500">
-                     <span class="font-bold text-gray-700">Disclaimer:</span> The colors and graphics used in the Customizer are computer 
-                     generated and hence we hold no responsibility of the accuracy of the color 
-                     and material difference that may occur when compared to the real items.
-                     If you have any concerns regarding the accuracy of colors or materials
-                     used here please feel free to contact us directly for more details.
-                     <br>
-                     <span class="font-bold text-gray-700">Terms and conditions:</span>
-                     All content shown is a digital property of 
-                     Blueocean International (HK) Ltd., any unauthorized use or copy of our 
-                     content will be considered infringement of our intellectual property.
-                  </main>
-                  </transition>
-            </div>
+            <transition name="elit" mode="out-in">
+               <aside v-if="$store.state.activeMesh" class="flex items-center">
+                  <div @click="engine.setChairColor('#A9926D')" class="w-14 h-14">
+                     <img src="/images/1.jpg" class="w-full rounded-full shadow">
+                  </div>
+                  <div @click="engine.setChairColor('#8a8a87')" class="w-14 h-14 ml-4">
+                     <img src="/images/2.jpg" class="w-full rounded-full shadow">
+                  </div>
+               </aside>
+               <aside v-else class="flex items-center">
+                  <button class="mx-3">
+                     <img src="/images/dif.png" class="w-14">
+                  </button>
+                  <button  @click="requestFullScreen($refs.room)" class="flex-center bg-white rounded-full bg-opacity-50  w-14 h-14  hover:bg-opacity-100">
+                     <Icons v-if="$store.state.fullscreen == false" icon="zoom"/>
+                     <span v-else>Exit</span>
+                  </button>
+                  <a href="https://www.youtube.com/channel/UCxyMrRPv0213-OEVXzQxvNg" target="_blank" class="ml-4">
+                     <img src="/images/youtube.png" class="w-14">
+                  </a>
+                  <div @click="information = !information" class="text-center w-20 relative">
+                        <img src="/images/information.png" class="gray w-14 inline cursor-pointer">
+                        <transition name="fade">
+                        <main v-if="information" class="text-left after absolute bottom-cus right-0 p-4 mx-4 bg-white text-gray-600 w-96 border-b-2 border-blue-500">
+                           <span class="font-bold text-gray-700">Disclaimer:</span> The colors and graphics used in the Customizer are computer 
+                           generated and hence we hold no responsibility of the accuracy of the color 
+                           and material difference that may occur when compared to the real items.
+                           If you have any concerns regarding the accuracy of colors or materials
+                           used here please feel free to contact us directly for more details.
+                           <br>
+                           <span class="font-bold text-gray-700">Terms and conditions:</span>
+                           All content shown is a digital property of 
+                           Blueocean International (HK) Ltd., any unauthorized use or copy of our 
+                           content will be considered infringement of our intellectual property.
+                        </main>
+                        </transition>
+                  </div>
+               </aside>
+            </transition>
          </main>
          <button v-if="leftBar" @click="setLeftBar(false)" class="absolute bg-gray-100 my-3 mx-5 px-3 py-2 inline-block rounded-full top-0 right-0 shadow">
             <img src="/images/left.png" class="relative" style="left: -1px">
@@ -122,11 +134,12 @@ export default {
          isActive: null,
          lang: 'eng',
          leftBar: false,
-         information: false
+         information: false,
       }
    },
    mounted(){
-      window.Engine = initScene(this.$refs.canvas) 
+      window.Engine = initScene(this.$refs.canvas)
+      this.engine = Engine.Meshes
       Hotkeys.loaderFile(this.$refs.room)
       if(localStorage.getItem('lang')){
          this.setLang(localStorage.getItem('lang'))
@@ -215,6 +228,22 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
+
+
+.elit-enter-active,
+.elit-leave-active {
+  transition: 0.3s ease;
+}
+
+.elit-enter-from{
+   transform: translateY(20px);
+   opacity: 0;
+}
+.elit-leave-to {
+   transform: translateY(20px);
+   opacity: 0;
+}
+
 
 *::-webkit-scrollbar,
 html *::-webkit-scrollbar {
