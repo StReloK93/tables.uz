@@ -30,7 +30,7 @@ class MailController extends Controller
         $data['otherpage']['needchair'] = ($data['otherpage']['needchair']) ? 'need' : 'no need';
 
 
-        \Mail::to('strelok0493@gmail.com')->send(new \App\Mail\Mail($data));
+        \Mail::to('info@ergoseatings.com')->send(new \App\Mail\Mail($data));
         return $data;
     }
 

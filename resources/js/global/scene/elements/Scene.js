@@ -13,6 +13,12 @@ class Scene {
 
          // Engine.Legs.setDeskMaterial(store.state.params.deskimage)
          Engine.Legs.setLegColor(1)
+
+         const glass = scene.getMaterialByName('glass')
+         glass.alphaMode = 3
+         glass._transparencyMode = 3
+         glass.alpha = 0.4
+         console.log(glass);
       })
    }
 
