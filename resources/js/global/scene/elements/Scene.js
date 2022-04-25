@@ -18,7 +18,6 @@ class Scene {
          glass.alphaMode = 3
          glass._transparencyMode = 3
          glass.alpha = 0.4
-         console.log(glass);
       })
    }
 
