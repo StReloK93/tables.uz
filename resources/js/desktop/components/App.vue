@@ -27,18 +27,18 @@
                   </div>
                </aside>
                <aside v-else class="flex items-center">
-                  <button class="mx-3">
-                     <img src="/images/dif.png" class="w-14">
+                  <button class="mx-3 hidden">
+                     <img src="/images/dif.png" class="filter grayscale w-14">
                   </button>
                   <button  @click="requestFullScreen($refs.room)" class="flex-center bg-white rounded-full bg-opacity-50  w-14 h-14  hover:bg-opacity-100">
                      <Icons v-if="$store.state.fullscreen == false" icon="zoom"/>
                      <span v-else>Exit</span>
                   </button>
                   <a href="https://www.youtube.com/channel/UCxyMrRPv0213-OEVXzQxvNg" target="_blank" class="ml-4">
-                     <img src="/images/youtube.png" class="w-14">
+                     <img src="/images/youtube.png" class="filter grayscale w-14">
                   </a>
                   <div @click="information = !information" class="text-center w-20 relative">
-                        <img src="/images/information.png" class="gray w-14 inline cursor-pointer">
+                        <img src="/images/information.png" class="gray w-14 inline cursor-pointer  filter grayscale">
                         <transition name="fade">
                         <main v-if="information" class="text-left after absolute bottom-cus right-0 p-4 mx-4 bg-white text-gray-600 w-96 border-b-2 border-blue-500">
                            <span class="font-bold text-gray-700">Disclaimer:</span> The colors and graphics used in the Customizer are computer 
@@ -58,7 +58,7 @@
             </transition>
          </main>
          <button v-if="leftBar" @click="setLeftBar(false)" class="absolute bg-gray-100 my-3 mx-5 px-3 py-2 inline-block rounded-full top-0 right-0 shadow">
-            <img src="/images/left.png" class="relative" style="left: -1px">
+            <img src="/images/left.png" class="relative filter grayscale" style="left: -1px">
          </button>
 
       </main>
