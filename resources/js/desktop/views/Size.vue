@@ -15,23 +15,24 @@
       </main>
 
       <main class="xl:pb-8">
-         <h3 class="font-bold  xl:mb-6 md:mb-4  xl:text-xl md:text-md text-gray-600">
+         <h3 class="font-bold  xl:mb-3 md:mb-3  xl:text-xl md:text-md text-gray-600">
             Enter your requested size
          </h3>
-        <aside class="flex">
-           <main class="mr-4">
-              <p class="mb-2 text-gray-400 xl:text-md md:text-sm">Length</p>
-               <div>
-                  <input v-model="$store.state.sizepage.lenght" placeholder="00mm" type="text" class="rounded-lg w-32 border border-indigo-900 xl:p-3 md:p-2 outline-none focus:border-blue-600">
-               </div>
-           </main>
-           <main class="mr-4">
-              <p class="mb-2 text-gray-400 xl:text-md md:text-sm"> Width </p>
-               <div>
-                  <input v-model="$store.state.sizepage.width" placeholder="00mm" type="text" class="rounded-lg w-32 border border-indigo-900 xl:p-3 md:p-2 outline-none focus:border-blue-600">
-               </div>
-           </main>
-        </aside>
+        <main>
+            <article class="flex items-center">
+               <section class="flex-grow mr-3">
+                  <aside class="flex items-end justify-center">
+                     <input v-model="$store.state.sizepage.lenght" class="w-16 text-center border-b px-1 py-0.5 border-gray-700 outline-none focus:border-blue-600">
+                     in mm (length)
+                  </aside>
+                  <div class="border border-black w-full h-64 mt-3"></div>
+               </section>
+               <aside class="w-56">
+                  <input v-model="$store.state.sizepage.width" class="w-16 text-center border-b px-1 py-0.5 border-gray-700 outline-none focus:border-blue-600">
+                  in mm (widht)
+               </aside>
+            </article>
+        </main>
       </main>
    </section>
 </template>
@@ -44,3 +45,8 @@ export default {
    },
 }
 </script>
+<style>
+   .width-800{
+      width: 800px;
+   }
+</style>
