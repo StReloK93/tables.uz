@@ -53,32 +53,31 @@ class Textures {
    _AllAmbientWhite(prosent) {
       let hdr = BABYLON.CubeTexture.CreateFromPrefilteredData("/textures/hdrmini.env", scene)
       scene.environmentTexture = hdr
-      scene.environmentIntensity = 0.5
+      scene.environmentIntensity = 1
       hdr.onLoadObservable.add(() => {
          store.state.onLoaded += prosent
       });
 
 
-      const materials = ['oneTable', 'twoTable', 'threeTable', 'fourTable', 'fiveTable', 'fiveShkaf', 'tablesBevel', 'solidedge']
+      const materials = ['wall', 'plantMain', 'image black' , 'tumbochka' , 'Wood stand' ,'twoLegLeft' , 'twoLegRight']
 
       scene.ambientColor = BABYLON.Color3.FromHexString('#CAC1C1')
       scene.materials.forEach(element => {
-         if(materials.includes(element.name) == false) element.ambientColor = new BABYLON.Color3(0.8, 0.8, 0.8)
-         else element.ambientColor = new BABYLON.Color3(0.5, 0.5, 0.5)
+         if(materials.includes(element.name) == true) element.ambientColor = new BABYLON.Color3(1, 1, 1)
+         else element.ambientColor = new BABYLON.Color3(0, 0, 0)
       });
    }
 
    _AmbientTextures = [
 
       //room
-      new Texture({ uAng: Math.PI, materialName: 'wallTop', texturePath: '/textures/wall.jpg' }),
-      new Texture({ uAng: Math.PI, materialName: 'wall', texturePath: '/textures/wall.jpg' }),
-      new Texture({ uAng: Math.PI, materialName: 'plintus', texturePath: '/textures/plintus.jpg' }),
+      // new Texture({ uAng: Math.PI, materialName: 'wallTop', texturePath: '/textures/wall.jpg' }),
+      // new Texture({ uAng: Math.PI, materialName: 'wall', texturePath: '/textures/wall.jpg' }),
+      // new Texture({ uAng: Math.PI, materialName: 'plintus', texturePath: '/textures/plintus.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'floor', texturePath: '/textures/floor.jpg' }),
-      // new Texture({ uAng: Math.PI, materialName: 'podokolnik', texturePath: '/textures/podokolnik.jpg' }),
       //Legs
       new Texture({ uAng: Math.PI, materialName: 'oneLeg', texturePath: '/textures/oneLeg.jpg' }),
-      new Texture({ uAng: Math.PI, materialName: 'twoLeg', texturePath: '/textures/twoLeg.jpg' }),
+      // new Texture({ uAng: Math.PI, materialName: 'twoLeg', texturePath: '/textures/twoLeg.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'forGlass', texturePath: '/textures/forGlass.jpg' }),
 
       new Texture({ uAng: Math.PI, materialName: 'threeLegLeft', texturePath: '/textures/threeLegLeft.jpg' }),
@@ -90,12 +89,12 @@ class Textures {
       new Texture({ uAng: Math.PI, materialName: 'fiveWhite', texturePath: '/textures/fiveWhite.jpg' }),
       //Decorations
       new Texture({ uAng: Math.PI, materialName: 'monitormain', texturePath: '/textures/monitormain.jpg' }),
-      new Texture({ uAng: Math.PI, materialName: 'plantMain', texturePath: '/textures/plantMain.jpg' }),
+      // new Texture({ uAng: Math.PI, materialName: 'plantMain', texturePath: '/textures/plantMain.jpg' }),
    ]
 
    _NormalTextures = [
-      new Texture({ materialName: 'wall', texturePath: '/textures/normalwall.jpg', uScale: 15, vScale: 15, level: 0.75 }),
-      new Texture({ materialName: 'wallTop', texturePath: '/textures/normalwall.jpg', uScale: 20, vScale: 20, level: 0.75 }),
+      new Texture({ materialName: 'wall', texturePath: '/textures/normalwall.jpg', uScale: 15, vScale: 15, level: 1 }),
+      new Texture({ materialName: 'wallTop', texturePath: '/textures/normalwall.jpg', uScale: 20, vScale: 20, level: 1 }),
    ]
 }
 

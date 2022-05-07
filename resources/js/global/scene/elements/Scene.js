@@ -15,12 +15,23 @@ class Scene {
          Engine.Legs.setLegColor(1)
 
          
+         const plintus = scene.getMaterialByName('plintus')
+         plintus.albedoColor = new BABYLON.Color3(0.6, 0.6, 0.6)
+
          const glass = scene.getMaterialByName('glass')
          glass.alphaMode = 3
          glass._transparencyMode = 3
          glass.alpha = 0.4
          const imageWood = scene.getMaterialByName('image black')
          imageWood.albedoTexture.level = 0.5
+
+
+         const twoLegLeft = scene.getMaterialByName('twoLegLeft')
+         twoLegLeft.albedoTexture.level = 1.4
+
+         const twoLegRight = scene.getMaterialByName('twoLegRight')
+         twoLegRight.albedoTexture.level = 1.4
+         
       })
    }
 
