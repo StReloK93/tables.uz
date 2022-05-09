@@ -18,7 +18,7 @@ export default class Light{
    creataLighttwo() {
       var light = this.light = new BABYLON.DirectionalLight("light2", new BABYLON.Vector3(0, -1, 0))
       light.position = new BABYLON.Vector3(1,31,1)
-      light.intensity = 2
+      light.intensity = 1.5
       light.direction = new BABYLON.Vector3(0,-1,0)
    }
 

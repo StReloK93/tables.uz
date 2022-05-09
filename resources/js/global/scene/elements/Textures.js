@@ -59,7 +59,7 @@ class Textures {
       });
 
 
-      const materials = ['wall', 'plantMain', 'image black' , 'tumbochka' , 'Wood stand' ,'twoLegLeft' , 'twoLegRight']
+      const materials = ['wall', 'plantMain', 'image black' , 'tumbochka' , 'Wood stand' , 'oneLeg','twoLegLeft' , 'twoLegRight']
 
       scene.ambientColor = BABYLON.Color3.FromHexString('#CAC1C1')
       scene.materials.forEach(element => {
@@ -76,7 +76,7 @@ class Textures {
       // new Texture({ uAng: Math.PI, materialName: 'plintus', texturePath: '/textures/plintus.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'floor', texturePath: '/textures/floor.jpg' }),
       //Legs
-      new Texture({ uAng: Math.PI, materialName: 'oneLeg', texturePath: '/textures/oneLeg.jpg' }),
+      // new Texture({ uAng: Math.PI, materialName: 'oneLeg', texturePath: '/textures/oneLeg.jpg' }),
       // new Texture({ uAng: Math.PI, materialName: 'twoLeg', texturePath: '/textures/twoLeg.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'forGlass', texturePath: '/textures/forGlass.jpg' }),
 

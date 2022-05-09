@@ -8,10 +8,10 @@
             class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 xl:w-24 md:w-20 xl:h-24 md:h-20 cursor-pointer hover:bg-opacity-75">
             <Icons icon="monitor" />
         </div>
-        <div v-if="image" @click="toggleNode('image')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.image}"  
+        <!-- <div v-if="image" @click="toggleNode('image')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.image}"  
             class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 xl:w-24 md:w-20 xl:h-24 md:h-20 cursor-pointer hover:bg-opacity-75">
             <Icons icon="image" />
-        </div>
+        </div> -->
         <div v-if="chair" @click="toggleNode('chair')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.chair}"  
             class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 xl:w-24 md:w-20 xl:h-24 md:h-20 cursor-pointer hover:bg-opacity-75">
             <Icons icon="chair" />
@@ -44,7 +44,7 @@ export default {
     mounted() {
         this.toggleNode('lamp')
         this.toggleNode('monitor')
-        this.toggleNode('image')
+        // this.toggleNode('image')
         this.toggleNode('chair')
         this.toggleNode('plant')
         this.toggleNode('tumbochka')

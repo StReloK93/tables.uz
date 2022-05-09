@@ -20,7 +20,7 @@ export default createStore({
 			decor: {
 				lamp: false,
 				monitor: false,
-				image: true,
+				// image: true,
 				chair: true,
 				plant: true,
 				tumbochka: true,
