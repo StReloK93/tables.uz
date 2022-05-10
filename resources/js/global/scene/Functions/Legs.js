@@ -118,7 +118,6 @@ export default class Legs {
 		if (conFolder) this.setDeskMaterial('desks/laminate/cw115.jpg')
 		else this.setDeskMaterial(store.state.params.deskimage)
 
-
 		this.hideOrShowDecors(legIndex)
 
 		//Tanlangan Stolni paydo qiladi qolganlarini yashiradi
@@ -194,15 +193,14 @@ export default class Legs {
 	}
 
 	hideOrShowDecors(legIndex) {
-		let decornames = []
-		for (const key in store.state.decor) {
-			decornames.push(key)
-		}
+		const decornames = Object.keys(store.state.decor)
 
 		decornames.forEach(Decors => {
 			const mesh = scene.getNodeByName(Decors)
 			const coordinate = coords[legIndex][Decors].position
 			const rotation = coords[legIndex][Decors].rotation
+
+			
 			if (store.state.decor[Decors]) {
 				mesh.position = coordinate
 				mesh.rotation = new BABYLON.Vector3(0,rotation,0);

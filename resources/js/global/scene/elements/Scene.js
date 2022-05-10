@@ -5,6 +5,12 @@ class Scene {
       this.createScene(canvas)
       this.expansion()
       scene.onReadyObservable.add(()=>{
+         this.toggleNode('lamp')
+         this.toggleNode('monitor')
+         // this.toggleNode('image')
+         this.toggleNode('chair')
+         this.toggleNode('plant')
+         this.toggleNode('tumbochka')
          //Default texturani urnatadi
          Engine.Room.floorImage(this.DefaultFloor)
 
@@ -14,33 +20,24 @@ class Scene {
          // Engine.Legs.setDeskMaterial(store.state.params.deskimage)
          Engine.Legs.setLegColor(1)
 
-         
-         const plintus = scene.getMaterialByName('plintus')
-         plintus.albedoColor = new BABYLON.Color3(0.6, 0.6, 0.6)
-
-         const glass = scene.getMaterialByName('windowglass')
-         glass.alphaMode = 3
-         glass._transparencyMode = 3
-         glass.alpha = 0.4
-         const imageWood = scene.getMaterialByName('image black')
-         imageWood.albedoTexture.level = 0.5
-
-         const plantMain = scene.getMaterialByName('plantMain')
-         plantMain.albedoTexture.level = 1.2
-
-         const tumbochka = scene.getMaterialByName('tumbochka')
-         tumbochka.albedoTexture.level = 1.4
-
-         const twoLegLeft = scene.getMaterialByName('twoLegLeft')
-         twoLegLeft.albedoTexture.level = 1.4
-
-         const twoLegRight = scene.getMaterialByName('twoLegRight')
-         twoLegRight.albedoTexture.level = 1.4
-         
-
-         const oneLeg = scene.getMaterialByName('oneLeg')
-         oneLeg.albedoTexture.level = 1.4
       })
+   }
+
+   toggleNode(node){
+      var show = new BABYLON.Vector3(1,1,1)
+      var hide = new BABYLON.Vector3(0,0,0)
+      //soralgan meshni topamiz
+      const mesh = scene.getNodeByName(node)
+      if(mesh){
+         //storedan tekshiradi
+         if(store.state.decor[node]) Animate(mesh,'scaling', VECTOR3, [{frame: 0,value: hide},{frame: 5,value: show}])
+         else {
+            Animate(mesh,'scaling', VECTOR3, [{frame: 0,value: show},{frame: 5,value: hide}])
+         }
+         
+         //Style ni uzgartiramiz Bor :: Yoq
+         store.state.decor[node] = !store.state.decor[node]
+      }
    }
 
    createScene(canvas) {

@@ -1,26 +1,26 @@
 <template>
     <aside class="p-6 text-gray-500">
-        <div v-if="lamp" @click="toggleNode('lamp')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.lamp}" 
+        <div @click="events.toggleNode('lamp')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.lamp}" 
             class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 xl:w-24 md:w-20 xl:h-24 md:h-20 cursor-pointer hover:bg-opacity-75">
             <Icons icon="lamp" />
         </div>
-        <div v-if="monitor" @click="toggleNode('monitor')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.monitor}"  
+        <div @click="events.toggleNode('monitor')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.monitor}"  
             class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 xl:w-24 md:w-20 xl:h-24 md:h-20 cursor-pointer hover:bg-opacity-75">
             <Icons icon="monitor" />
         </div>
-        <!-- <div v-if="image" @click="toggleNode('image')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.image}"  
+        <!-- <div v-if="image" @click="events.toggleNode('image')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.image}"  
             class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 xl:w-24 md:w-20 xl:h-24 md:h-20 cursor-pointer hover:bg-opacity-75">
             <Icons icon="image" />
         </div> -->
-        <div v-if="chair" @click="toggleNode('chair')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.chair}"  
+        <div @click="events.toggleNode('chair')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.chair}"  
             class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 xl:w-24 md:w-20 xl:h-24 md:h-20 cursor-pointer hover:bg-opacity-75">
             <Icons icon="chair" />
         </div>
-        <div v-if="plant" @click="toggleNode('plant')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.plant}"  
+        <div @click="events.toggleNode('plant')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.plant}"  
             class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 xl:w-24 md:w-20 xl:h-24 md:h-20 cursor-pointer hover:bg-opacity-75">
             <Icons icon="plant" />
         </div>
-        <div v-if="plant" @click="toggleNode('tumbochka')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.tumbochka}"  
+        <div @click="events.toggleNode('tumbochka')" :class="{'bg-opacity-100 border border-myblue': !$store.state.decor.tumbochka}"  
             class="flex items-center justify-center py-3 px-1 bg-white rounded-lg bg-opacity-50 mb-3 xl:w-24 md:w-20 xl:h-24 md:h-20 cursor-pointer hover:bg-opacity-75">
             <img src="/images/tumb.png" class="w-10">
         </div>
@@ -31,53 +31,16 @@ import Icons from './Icons.vue'
 export default {
     data(){
         return {
-            lamp: false,
-            monitor: false,
-            image: false,
-            chair: false,
-            plant: false,
+            events: Engine.scene,
         }
     },
     components:{
         Icons
-    },
-    mounted() {
-        this.toggleNode('lamp')
-        this.toggleNode('monitor')
-        // this.toggleNode('image')
-        this.toggleNode('chair')
-        this.toggleNode('plant')
-        this.toggleNode('tumbochka')
-    },
-    methods: {
-        toggleNode(node){
-            var show = new BABYLON.Vector3(1,1,1)
-            var hide = new BABYLON.Vector3(0,0,0)
-            //soralgan meshni topamiz
-            const mesh = scene.getNodeByName(node)
-
-            //Agar bu mesh bor bolsa agar bo'lmasa uni iconcasi ciqmaydi yani this['node'] = true ishlamaydi
-            if(mesh){
-                //this[node] Agar mesh mavjud bo'lmasa iconkasi ciqmasligi ucun :: bu yerda true berganimizda uni iconcasi chiqadi ekranga
-                this[node] = true
-
-                //storedan tekshiradi
-                if(store.state.decor[node]) 
-                    //Store da true bo'lsa ko'rinadi                
-                    Animate(mesh,'scaling', VECTOR3, [{frame: 0,value: hide},{frame: 5,value: show}])
-                else
-                    //Store da false bo'lsa yawiradi
-                    Animate(mesh,'scaling', VECTOR3, [{frame: 0,value: show},{frame: 5,value: hide}])
-                //Style ni uzgartiramiz Bor :: Yoq
-                store.state.decor[node] = !store.state.decor[node]
-            }
-        },
-    },
+    }
 }
 </script>
 <style>
 .gray:hover{
     filter: grayscale(0.8);
 }
-
 </style>

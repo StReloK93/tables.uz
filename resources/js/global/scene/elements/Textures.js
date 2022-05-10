@@ -15,6 +15,48 @@ class Textures {
          this._AllAmbientWhite(addProsent) //Scenadagi Hamma Elementlarni Ambientni oq rang qiladi
          new ImportTextures({ textureType: 'ambientTexture', materials: this._AmbientTextures, prosent: addProsent })
          new ImportTextures({ textureType: 'bumpTexture', materials: this._NormalTextures, prosent: addProsent })
+
+         
+         var skyMaterial = new BABYLON.SkyMaterial("skyMaterial", scene);
+         skyMaterial.backFaceCulling = false;
+
+         var skybox = BABYLON.Mesh.CreateBox("skyBox", 1000.0, scene);
+         skybox.material = skyMaterial;
+         skybox.material.inclination = 0;
+
+         
+         const plintus = scene.getMaterialByName('plintus')
+         plintus.albedoColor = new BABYLON.Color3(0.6, 0.6, 0.6)
+
+         const glass = scene.getMaterialByName('windowglass')
+         glass.metallic = 1
+         glass.roughness = 1
+         glass.alphaMode = 3
+         glass._transparencyMode = 3
+         glass.alpha = 0.2
+
+
+         const levelsArray = [
+            { material: 'image black', level: 0.5 },
+            { material: 'plantMain', level: 1.2 },
+            { material: 'tumbochka', level: 1.4 },
+            { material: 'twoLegLeft', level: 1.4 },
+            { material: 'twoLegRight', level: 1.4 },
+            { material: 'threeLegLeft', level: 1.3 },
+            { material: 'threeLegLeft2', level: 1.6 },
+            { material: 'threeLegRight', level: 1.5 },
+            { material: 'oneLeg', level: 1.5 },
+            { material: 'fourLegLeft', level: 2 },
+            { material: 'fourLegRight', level: 2 },
+            { material: 'fiveLeg', level: 1.5 },
+         ]
+         
+         
+
+         levelsArray.forEach(item => {
+            scene.getMaterialByName(item.material).albedoTexture.level = item.level
+         });
+
       })
 
    }
@@ -69,27 +111,10 @@ class Textures {
    }
 
    _AmbientTextures = [
-
       //room
-      // new Texture({ uAng: Math.PI, materialName: 'wallTop', texturePath: '/textures/wall.jpg' }),
-      // new Texture({ uAng: Math.PI, materialName: 'wall', texturePath: '/textures/wall.jpg' }),
-      // new Texture({ uAng: Math.PI, materialName: 'plintus', texturePath: '/textures/plintus.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'floor', texturePath: '/textures/floor.jpg' }),
-      //Legs
-      // new Texture({ uAng: Math.PI, materialName: 'oneLeg', texturePath: '/textures/oneLeg.jpg' }),
-      // new Texture({ uAng: Math.PI, materialName: 'twoLeg', texturePath: '/textures/twoLeg.jpg' }),
       new Texture({ uAng: Math.PI, materialName: 'forGlass', texturePath: '/textures/forGlass.jpg' }),
-
-      new Texture({ uAng: Math.PI, materialName: 'threeLegLeft', texturePath: '/textures/threeLegLeft.jpg' }),
-      new Texture({ uAng: Math.PI, materialName: 'threeLegRight', texturePath: '/textures/threeLegRight.jpg' }),
-      new Texture({ uAng: Math.PI, materialName: 'fourLeg', texturePath: '/textures/fourLeg.jpg' }),
-      new Texture({ uAng: Math.PI, materialName: 'fiveLeg', texturePath: '/textures/fiveLeg.jpg' }),
-      //Tables
-      new Texture({ uAng: Math.PI, materialName: 'fiveShkafEshik', texturePath: '/textures/fiveShkafEshik.jpg' }),
-      new Texture({ uAng: Math.PI, materialName: 'fiveWhite', texturePath: '/textures/fiveWhite.jpg' }),
-      //Decorations
       new Texture({ uAng: Math.PI, materialName: 'monitormain', texturePath: '/textures/monitormain.jpg' }),
-      // new Texture({ uAng: Math.PI, materialName: 'plantMain', texturePath: '/textures/plantMain.jpg' }),
    ]
 
    _NormalTextures = [

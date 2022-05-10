@@ -13,6 +13,7 @@
         "@babylonjs/core": "^5.2",
         "@babylonjs/gui": "^5.2",
         "@babylonjs/loaders": "^5.2",
+        "@babylonjs/materials": "^5.2.0",
         "laravel-mix": "^6.0.39",
         "vue-router": "^4.0.12",
         "vuex": "^4.0.2"
