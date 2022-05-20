@@ -74,21 +74,13 @@ export default class Legs {
 
 	setCorner(cornerIndex) {
 		store.state.custom.corners = cornerIndex
-		const legType = store.state.params.legType
-
-		const textureType = this.setTextureType() // textura qaysi tipligini belgilayte storega yozadi
-
-		const tablesList = LegSet.corners[legType] // Shu legga tegishli tablitsalar
+		const tablesList = LegSet.corners[store.state.params.legType] // Shu legga tegishli tablitsalar
 
 		tablesList.forEach(table => {
-			var activeTable = null
 			const mesh = scene.getNodeByName(table.name)
-			if (table.textureType == textureType && (table.corner == cornerIndex || table.corner == 'all')) {
-				mesh.setEnabled(true)
-			}
-			else {
-				if (activeTable != table.name) mesh.setEnabled(false)
-			}
+
+			if ( table.textureType == this.setTextureType() && (table.corner == cornerIndex || table.corner == 'all')) mesh.setEnabled(true)
+			else if(table.name != null) mesh.setEnabled(false)
 		});
 	}
 
@@ -166,27 +158,27 @@ export default class Legs {
 		if (store.state.params.legColor == colorIndex) return
 
 		let colorArr = ['#FFFFFF', '#9D9D9D', '#222222']
-		let LegsArr = ['oneLeg', 'twoLegLeft',  'twoLegRight', 'fourLeg', 'fiveLeg', 'threeLegHelpLeft', 'threeLegHelpright', 'threeLegMainLeft', 'threeLegMainRight', 'tumb1']
+		let LegsArr = [
+			'oneLeg',
+			'twoLegLeft',  'twoLegRight',
+			'threeLegHelpLeft', 'threeLegHelpright', 'threeLegMainLeft', 'threeLegMainRight',
+			'fourLegLeft', 'fourLegRight', 
+			'fiveLeg', 'tumb1'
+		]
 
 
 		LegsArr.forEach(legName => {
 			const mesh = scene.getNodeByName(legName) // materialni topamiz
+			let albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace() // rangni aniqlaymiz
 
-			if (mesh._isMesh) {
-				let albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace() // rangni aniqlaymiz
-				Animate(mesh, 'material.albedoColor', COLOR3, [{ frame: 0, value: mesh.material.albedoColor }, { frame: 15, value: albedoColor }]) // aniqlangan ranga
-			}
+			if (mesh._isMesh) Animate(mesh, 'material.albedoColor', COLOR3, [{ frame: 0, value: mesh.material.albedoColor }, { frame: 15, value: albedoColor }]) // aniqlangan ranga
 			else {
 				if (Array.isArray(mesh._children)) {
 					mesh._children.forEach(element => {
-						if (element._isMesh) {
-							let albedoColor = BABYLON.Color3.FromHexString(colorArr[colorIndex - 1]).toLinearSpace() // rangni aniqlaymiz
-							Animate(element, 'material.albedoColor', COLOR3, [{ frame: 0, value: element.material.albedoColor }, { frame: 15, value: albedoColor }]) // aniqlangan ranga
-						}
+						if (element._isMesh) Animate(element, 'material.albedoColor', COLOR3, [{ frame: 0, value: element.material.albedoColor }, { frame: 15, value: albedoColor }]) // aniqlangan ranga
 					})
 				}
 			}
-
 		})
 
 		store.state.params.legColor = colorIndex
@@ -212,26 +204,30 @@ export default class Legs {
 	}
 
 	setTextureType() {
-		switch (store.state.params.activeFolder) {
-			case 'desks/laminate':
-			case 'desks/melamine':
-			case 'desks/pyledge':
-			case 'desks/veneer':
-				store.state.textureType = 1
-				break
-			case 'desks/solidtraditional':
-				store.state.textureType = 2
-				break
-			case 'desks/bamboo':
-				store.state.textureType = 3
-				break
-			case 'desks/melamineglass':
-				store.state.textureType = 4
-				break
-			case 'desks/solidedge':
-				store.state.textureType = 5
-				break
-			default: alert('error')
+		if(store.state.params.deskimage == 'desks/solidedge/Rectangular.jpg') store.state.textureType = 6
+
+		else{
+			switch (store.state.params.activeFolder) {
+				case 'desks/laminate':
+				case 'desks/melamine':
+				case 'desks/pyledge':
+				case 'desks/veneer':
+					store.state.textureType = 1
+					break
+				case 'desks/solidtraditional':
+					store.state.textureType = 2
+					break
+				case 'desks/bamboo':
+					store.state.textureType = 3
+					break
+				case 'desks/melamineglass':
+					store.state.textureType = 4
+					break
+				case 'desks/solidedge':
+					store.state.textureType = 5
+					break
+				default: alert('error')
+			}
 		}
 
 		return store.state.textureType

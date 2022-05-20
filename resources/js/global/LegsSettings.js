@@ -30,6 +30,7 @@ export default {
 
             { name: 'twoTableTrad', textureType: 2, corner: 'all' },
             { name: 'twoLiveEdge', textureType: 5, corner: 'all' },
+            { name: 'twoLiveSilver', textureType: 6, corner: 'all' },
         ],
         //threeLeg
         [
@@ -51,6 +52,7 @@ export default {
 
             { name: 'fourTableTrad', textureType: 2, corner: 'all' },
             { name: 'fourLiveEdge', textureType: 5, corner: 'all' },
+            { name: 'fourLiveSilver', textureType: 6, corner: 'all' },
         ],
         //fiveLeg
         [

@@ -34,7 +34,10 @@
                         <main :title="index" @click="events.setDeskMaterial(img.path)" class="xl:h-32 md:h-20 cursor-pointer">
                             <img :class="{'shadow-blue': $store.state.params.deskimage == img.path}" :src="`/floors/${img.path}`" :title="img.path" class="border-2 border-white rounded-md object-cover w-full h-full">
                         </main>
-                        <p class="text-center mb-1 uppercase">{{img.file}}</p>
+                        <p class="text-center mb-1 text-xs uppercase">
+                            {{img.file}}
+                            {{$store.state.language[img.file]}}
+                        </p>
                     </aside>
                 </div>
             </transition>
@@ -68,6 +71,7 @@ export default {
     },
     mounted() {
         Engine.Legs.data = this
+        console.log(this.deskMaterials);
         scene.onReadyObservable.add(()=>{
             let desks = Engine.textures.folders
             this.folderImages = desks.images

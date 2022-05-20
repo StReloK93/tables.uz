@@ -26,6 +26,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     Engine.Legs.data = this;
+    console.log(this.deskMaterials);
     scene.onReadyObservable.add(function () {
       var desks = Engine.textures.folders;
       _this.folderImages = desks.images;
@@ -141,7 +142,7 @@ var _hoisted_10 = {
 var _hoisted_11 = ["title", "onClick"];
 var _hoisted_12 = ["src", "title"];
 var _hoisted_13 = {
-  "class": "text-center mb-1 uppercase"
+  "class": "text-center mb-1 text-xs uppercase"
 };
 var _hoisted_14 = {
   "class": "xl:pb-8 md:pb-4"
@@ -248,7 +249,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* CLASS, PROPS */
         , _hoisted_12)], 8
         /* PROPS */
-        , _hoisted_11), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(img.file), 1
+        , _hoisted_11), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(img.file) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$store.state.language[img.file]), 1
         /* TEXT */
         )]);
       }), 128

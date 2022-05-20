@@ -41,7 +41,7 @@ class TextureController extends Controller
                     $folders[$key]['path'] = $value;
                     break;
                 case "desks/solidedge":
-                    $folders[$key]['text'] = 'Solid wood <br> Live Edge';
+                    $folders[$key]['text'] = 'Thicker solid wood';
                     $folders[$key]['path'] = $value;
                     break;
                 case "desks/solidepoxy":
@@ -49,7 +49,7 @@ class TextureController extends Controller
                     $folders[$key]['path'] = $value;
                     break;
                 case "desks/solidtraditional":
-                    $folders[$key]['text'] = 'Solid wood <br> Traditional';
+                    $folders[$key]['text'] = 'Thicker solid wood';
                     $folders[$key]['path'] = $value;
                     break;
                 case "desks/veneer":
