@@ -41,8 +41,10 @@ export default createStore({
 			},
 			sizepage: {
 				size: 0,
-				lenght: null,
-				width: null,
+				a: null,
+				b: null,
+				c: null,
+				d: null,
 			},
 			otherpage: {
 				tablesCount: 1,
@@ -155,8 +157,10 @@ export default createStore({
 					deskimage: state.params.deskimage,
 				},
 				sizepage: {
-					lenght: state.sizepage.lenght,
-					width: state.sizepage.width,
+					a: state.sizepage.a,
+					b: state.sizepage.b,
+					c: state.sizepage.c,
+					d: state.sizepage.d,
 				},
 				room: state.room,
 				otherpage: state.otherpage,

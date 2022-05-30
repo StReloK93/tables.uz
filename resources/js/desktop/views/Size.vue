@@ -19,19 +19,22 @@
             Enter your requested size
          </h3>
         <main>
-            <article class="flex items-center">
-               <section class="flex-grow mr-3">
-                  <aside class="flex items-end justify-center">
-                     <input v-model="$store.state.sizepage.lenght" class="w-16 text-center border-b px-1 py-0.5 border-gray-700 outline-none focus:border-blue-600">
-                     in mm (length)
-                  </aside>
-                  <div class="border border-black w-full h-64 mt-3"></div>
-               </section>
-               <aside class="w-56">
-                  <input v-model="$store.state.sizepage.width" class="w-16 text-center border-b px-1 py-0.5 border-gray-700 outline-none focus:border-blue-600">
-                  in mm (widht)
-               </aside>
-            </article>
+           <table class="w-full tables">
+              <tr>
+                 <td class="text-center w-4/5 ">
+                    <input v-model="$store.state.sizepage.a" class="sizeInput mb-2"> in mm
+                 </td>
+                 <td></td>
+              </tr>
+              <tr>
+                 <td>
+                    <div class="border border-black adaptive mr-2"></div>
+                 </td>
+                 <td>
+                    <input v-model="$store.state.sizepage.b" class="sizeInput"> in mm
+                 </td>
+              </tr>
+           </table>
         </main>
       </main>
    </section>

@@ -188,6 +188,17 @@ export default {
 }
 </script>
 <style>
+
+.adaptive {
+  overflow: hidden; /* clearfix */
+}
+
+.adaptive:before {
+  content: "";
+  padding-top: 40%;
+  float: left;
+}
+
 .after:after{
    content: "";
    position: absolute;

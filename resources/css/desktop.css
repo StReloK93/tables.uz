@@ -6,3 +6,7 @@
 .flex-center{
    @apply flex items-center justify-center;
 }
+
+.sizeInput{
+   @apply w-16 text-center border-b px-1 py-0.5 border-gray-700 outline-none focus:border-blue-600
+}
