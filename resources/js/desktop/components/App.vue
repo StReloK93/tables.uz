@@ -71,8 +71,8 @@
    <!-- Configurator -->
    <section v-if="!leftBar" class="w-1/2 bg-white relative flex flex-col justify-between overflow-hidden">
       <!-- Header -->
-      <main class="xl:px-10 md:px-5 pt-3 xl:pb-5 md:pb-3 shadow-custom bg-gray-50 xl:text-xl md:text-md">
-         <aside class="flex justify-between xl:mb-5 md:mb-3">
+      <main class="xl:px-10 md:px-5 pt-3 xl:pb-3 md:pb-3 shadow-custom bg-gray-50 xl:text-xl md:text-md">
+         <aside class="flex justify-between mb-3">
             <button @click="setLeftBar(true)" class="bg-gray-100 px-3 py-2 inline-block rounded-full">
                <img src="/images/left.png" class="relative transform rotate-180" style="left: 2px">
             </button>
@@ -82,11 +82,11 @@
                <span @click="setLang('gk')" :class="{'text-blue-900':lang == 'gk'}" class="text-gray-300 cursor-pointer">繁</span>
             </div>
          </aside>
-         <router-link :to="{name: 'legstype'}" 
+         <!-- <router-link :to="{name: 'legstype'}" 
             :class="{ 'border-blue-400 border-l-4 pl-4 text-blue-900 font-bold': isActive }" 
             class="xl:text-2xl md:text-md capitalize text-gray-300 transition-all duration-300 ease-in-out block mb-2">
                {{$store.state.language.createYour}}
-         </router-link>
+         </router-link> -->
          <!-- <router-link :to="{name: 'designs'}" 
             :class="{ 'border-blue-400 border-l-4 pl-4 text-blue-900 font-bold': !isActive }" 
             class="xl:text-2xl md:text-md capitalize text-gray-300 transition-all duration-300 ease-in-out block">
