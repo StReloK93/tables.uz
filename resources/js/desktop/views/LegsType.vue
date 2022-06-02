@@ -35,8 +35,8 @@
                             <img :class="{'shadow-blue': $store.state.params.deskimage == img.path}" :src="`/floors/${img.path}`" :title="img.path" class="border-2 border-white rounded-md object-cover w-full h-full">
                         </main>
                         <p class="text-center mb-1 text-xs uppercase">
-                            <!-- {{img.file}} -->
-                            {{$store.state.language[img.file]}}
+                            <span v-if="$store.state.params.deskMaterial == 'desks/laminate'">{{$store.state.language[img.file]}}</span>
+                            <span v-else>{{img.file}}</span>
                         </p>
                     </aside>
                 </div>
