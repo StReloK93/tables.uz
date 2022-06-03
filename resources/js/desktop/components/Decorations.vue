@@ -26,18 +26,9 @@
         </div>
     </aside>
 </template>
-<script>
+<script setup>
 import Icons from './Icons.vue'
-export default {
-    data(){
-        return {
-            events: Engine.scene,
-        }
-    },
-    components:{
-        Icons
-    }
-}
+const events = Engine.scene
 </script>
 <style>
 .gray:hover{
