@@ -2,6 +2,30 @@
    <!-- Canvas -->
    <section class="h-3/5 relative" ref="room">
       <Preloader />
+      <transition name="fade">
+         <main v-if="information" class="fixed text-justify right-0 top-0 p-3 bg-white text-gray-600 w-full h-full z-50">
+            <div class="text-right">
+               <button @click="information = false">
+                  <img src="/images/cancel.png" class="filter grayscale w-4">
+               </button>
+            </div>
+            <h3 class="font-bold text-gray-700 text-xl mb-1.5">
+               Disclaimer
+            </h3>
+               The colors and graphics used in the Customizer are computer 
+               generated and hence we hold no responsibility of the accuracy of the color 
+               and material difference that may occur when compared to the real items.
+               If you have any concerns regarding the accuracy of colors or materials
+               used here please feel free to contact us directly for more details.
+
+            <h3 class="font-bold text-gray-700 text-xl my-1.5">
+              Terms and conditions
+            </h3>
+               All content shown is a digital property of 
+               Blueocean International (HK) Ltd., any unauthorized use or copy of our 
+               content will be considered infringement of our intellectual property.
+         </main>
+      </transition>
       <main class="zoom-button pb-4">
          <transition name="elit" mode="out-in">
             <aside v-if="$store.state.activeMesh" class="flex items-center">
@@ -13,29 +37,12 @@
                </div>
             </aside>
             <aside v-else class="flex items-center">
-               <button>
-                  <img src="/images/dif.png" class="w-10">
-               </button>
                <a href="https://www.youtube.com/channel/UCxyMrRPv0213-OEVXzQxvNg" class="mx-2" target="_blank">
-                  <img src="/images/youtube.png" class="w-10">
+                  <img src="/images/youtube.png" class="w-10 filter grayscale">
                </a>
-               <!-- <div @click="information = !information" class="text-center relative">
-                     <img src="/images/information.png" class="gray w-10 inline cursor-pointer">
-                     <transition name="fade">
-                     <main v-if="information" class="text-left after absolute bottom-cus right-0 p-3 bg-white text-gray-600 w-96 border-b-2 border-blue-500">
-                        <span class="font-bold text-gray-700">Disclaimer:</span> The colors and graphics used in the Customizer are computer 
-                        generated and hence we hold no responsibility of the accuracy of the color 
-                        and material difference that may occur when compared to the real items.
-                        If you have any concerns regarding the accuracy of colors or materials
-                        used here please feel free to contact us directly for more details.
-                        <br>
-                        <span class="font-bold text-gray-700">Terms and conditions:</span>
-                        All content shown is a digital property of 
-                        Blueocean International (HK) Ltd., any unauthorized use or copy of our 
-                        content will be considered infringement of our intellectual property.
-                     </main>
-                     </transition>
-               </div> -->
+               <div class="text-center relative">
+                  <img @click="information = true" src="/images/information.png" class="filter grayscale w-10 inline cursor-pointer">
+               </div>
             </aside>
          </transition>
       </main>
@@ -43,9 +50,7 @@
          <Decorations v-if="$store.state.onLoaded.toFixed() == 100"/>
          <canvas class="w-full h-full outline-none" ref="canvas"></canvas>
       </main>
-
    </section>
-
     <!-- Configurator -->
    <section class="h-2/5 bg-white relative flex flex-col justify-between">
 
@@ -59,7 +64,7 @@
          <!-- router -->
          <router-view class="w-full h-full relative"></router-view>
       </main>
-      <Menu/>
+      <Menu />
       
       <transition name="fade">
          <Other v-if="$store.state.other"/>
