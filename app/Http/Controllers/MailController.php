@@ -31,8 +31,8 @@ class MailController extends Controller
         $data['sizepage']['direction'] = ($data['sizepage']['direction']) ? 'Right' : 'Left';
 
         
-        // \Mail::to('info@ergoseatings.com')->send(new \App\Mail\Mail($data));
-        \Mail::to('strelok0493@gmail.com')->send(new \App\Mail\Mail($data));
+        \Mail::to('info@ergoseatings.com')->send(new \App\Mail\Mail($data));
+        // \Mail::to('strelok0493@gmail.com')->send(new \App\Mail\Mail($data));
         return $data;
     }
 
