@@ -41,6 +41,7 @@ export default createStore({
 			},
 			sizepage: {
 				size: 0,
+				direction: true,
 				a: null,
 				b: null,
 				c: null,
@@ -157,6 +158,7 @@ export default createStore({
 					deskimage: state.params.deskimage,
 				},
 				sizepage: {
+					direction: state.sizepage.direction,
 					a: state.sizepage.a,
 					b: state.sizepage.b,
 					c: state.sizepage.c,

@@ -28,10 +28,11 @@ class MailController extends Controller
 
         $data['otherpage']['service'] = ($data['otherpage']['service']) ? 'need' : 'no need';
         $data['otherpage']['needchair'] = ($data['otherpage']['needchair']) ? 'need' : 'no need';
+        $data['sizepage']['direction'] = ($data['sizepage']['direction']) ? 'Right' : 'Left';
 
         
-        \Mail::to('info@ergoseatings.com')->send(new \App\Mail\Mail($data));
-        // \Mail::to('strelok0493@gmail.com')->send(new \App\Mail\Mail($data));
+        // \Mail::to('info@ergoseatings.com')->send(new \App\Mail\Mail($data));
+        \Mail::to('strelok0493@gmail.com')->send(new \App\Mail\Mail($data));
         return $data;
     }
 

@@ -15,12 +15,25 @@
       </main>
 
       <main class="xl:pb-2">
-         <h3 class="font-bold mb-2  xl:text-xl md:text-md text-gray-600">
-            Enter your requested size
+         <h3 class=" mb-2 flex justify-between items-center">
+            <span class="xl:text-xl md:text-md font-bold text-gray-600">
+               Enter your requested size
+            </span>
+            <span v-if="type" class="flex flex-col">
+               <div class="text-gray-500 text-right mb-2">
+                  Direction
+               </div>
+               <div class="flex items-center text-center text-gray-600">
+                  <label for="truecheck" :class="{'bg-blue-500 text-white': $store.state.sizepage.direction == false}" class="py-1 w-16 bg-gray-100 rounded-sm shadow-sm mr-0.5">Left</label>
+                  <label for="falsecheck" :class="{'bg-blue-500 text-white': $store.state.sizepage.direction}" class="py-1 w-16 bg-gray-100 rounded-sm shadow-sm ml-0.5">Right</label>
+                  <input id="truecheck" type="radio" name="Direction" v-model="$store.state.sizepage.direction" :value="false" hidden>
+                  <input id="falsecheck" type="radio" name="Direction" v-model="$store.state.sizepage.direction" :value="true" hidden>
+               </div>
+            </span>
          </h3>
          <main>
-            <div class="w-full flex justify-center" v-if="type">
-               <table class="threetable relative w-4/6">
+            <div class="w-full flex justify-center" v-if="type && $store.state.sizepage.direction">
+               <table class="threetable relative w-4/6 text-sm">
                   <tr>
                      <td></td>
                      <td colspan="3" class="text-center">
@@ -38,10 +51,10 @@
                   <tr>
                      <td class="w-1/12"></td>
                      <td class="w-3/12"></td>
-                     <td class="text-right  align-baseline relative w-3/12">
+                     <td class="relative w-3/12">
                         <div class="pt-full"></div>
                         <div v-if="$store.state.params.legType == 2" class="h-1/2 w-1/2 bg-white inline-block cubes"></div>
-                        <div v-if="$store.state.params.legType == 2" class="h-full w-full bg-white inline-block borders absolute top-0 left-0 rounded-tr-full"></div>
+                        <div v-if="$store.state.params.legType == 2" class="h-full w-full bg-white inline-block borders absolute"></div>
                      </td>
                      <td class="t-four w-3/12"></td>
                   </tr>
@@ -54,6 +67,51 @@
                   </tr>
                </table>
             </div>
+
+            <!--  -->
+            <div class="w-full flex justify-center" v-else-if="type && $store.state.sizepage.direction == false">
+               <table class="threetable relative w-4/6 text-sm">
+
+                  <tr>
+                     <td></td>
+                     <td colspan="3" class="text-center">
+                        <input v-model="$store.state.sizepage.b" class="sizeInput mb-2"> in mm (B)
+                     </td>
+                     <td></td>
+                  </tr>
+
+
+                  <tr>
+                     <td class="w-1/12" rowspan="2" ><input v-model="$store.state.sizepage.a" class="sizeInput mr-2"> in mm (A)</td>
+                     <td :class="{'border-r border-b border-dashed': $store.state.params.legType == 4}" class="t-first-2 w-3/12"></td>
+                     <td class="t-second w-3/12"><div class="pt-full"></div></td>
+                     <td class="t-three-2 w-3/12"></td>
+                     <td class="w-1/12 text-right"><input v-model="$store.state.sizepage.c" class="sizeInput ml-2"> in mm (C)</td>
+                  </tr>
+
+                  <tr>
+                     <td class="t-four w-3/12"></td>
+                     <td class="relative w-3/12">
+                        <div class="pt-full"></div>
+                        <div v-if="$store.state.params.legType == 2" class="h-1/2 w-1/2 bg-white inline-block cubes-2"></div>
+                        <div v-if="$store.state.params.legType == 2" class="h-full w-full bg-white inline-block borders-2 absolute"></div>
+                     </td>
+                     <td class="w-3/12"></td>
+                     <td class="w-1/12"></td>
+                  </tr>
+
+
+                  <tr>
+                     <td></td>
+                     <td class="text-center"><input v-model="$store.state.sizepage.d" class="sizeInput mb-2"> in mm (D)</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </table>
+            </div>
+
+            <!--  -->
             <table v-else class="w-full tables">
                <tr>
                   <td></td>
@@ -104,6 +162,8 @@ const type = computed(() => {
    border-right:1px solid #333;
 }
 
+
+
 .t-four{
    border: 1px solid #333;
    border-top: 0;
@@ -123,6 +183,34 @@ const type = computed(() => {
    border-bottom: 1px solid transparent;
    border-top: 1px solid #333;
    border-right: 1px solid #333;
+}
+
+
+.t-first-2{
+   border-top: 1px solid #333;
+   border-left: 1px solid #333;
+}
+
+.cubes-2{
+   position: absolute;
+   top: -2px;
+   left: -2px;
+}
+
+.borders-2{
+   border-top-left-radius: 50%;
+   top: -1px;
+   right: 1px;
+   border-right: 1px solid transparent;
+   border-bottom: 1px solid transparent;
+   border-top: 1px solid #333;
+   border-left: 1px solid #333;
+}
+
+.t-three-2{
+   border-top: 1px solid #333;
+   border-right: 1px solid #333;
+   border-bottom: 1px solid #333;
 }
 
 .pt-full{
