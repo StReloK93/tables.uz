@@ -37,16 +37,16 @@
                   <tr>
                      <td></td>
                      <td colspan="3" class="text-center">
-                        <input v-model="$store.state.sizepage.b" class="sizeInput mb-2"> in mm (B)
+                        <input v-model="$store.state.sizepage.w" class="sizeInput mb-2"> in mm (W)
                      </td>
                      <td></td>
                   </tr>
                   <tr>
-                     <td class="w-1/12"><input v-model="$store.state.sizepage.a" class="sizeInput mr-2"> in mm (A)</td>
+                     <td class="w-1/12"><input v-model="$store.state.sizepage.l" class="sizeInput mr-2"> in mm (L)</td>
                      <td class="t-first w-3/12"><div class="pt-full"></div></td>
                      <td class="t-second w-3/12"></td>
                      <td :class="{'border-l border-b border-dashed': $store.state.params.legType == 4}" class="t-three w-3/12"></td>
-                     <td rowspan="2" class="w-1/12 text-right"><input v-model="$store.state.sizepage.c" class="sizeInput ml-2"> in mm (C)</td>
+                     <td rowspan="2" class="w-1/12 text-right"><input v-model="$store.state.sizepage.d1" class="sizeInput ml-2"> in mm (D1)</td>
                   </tr>
                   <tr>
                      <td class="w-1/12"></td>
@@ -62,7 +62,7 @@
                      <td></td>
                      <td></td>
                      <td></td>
-                     <td class="text-center"><input v-model="$store.state.sizepage.d" class="sizeInput mb-2"> in mm (D)</td>
+                     <td class="text-center"><input v-model="$store.state.sizepage.d2" class="sizeInput mb-2"> in mm (D2)</td>
                      <td></td>
                   </tr>
                </table>
@@ -75,18 +75,18 @@
                   <tr>
                      <td></td>
                      <td colspan="3" class="text-center">
-                        <input v-model="$store.state.sizepage.b" class="sizeInput mb-2"> in mm (B)
+                        <input v-model="$store.state.sizepage.w" class="sizeInput mb-2"> in mm (W)
                      </td>
                      <td></td>
                   </tr>
 
 
                   <tr>
-                     <td class="w-1/12" rowspan="2" ><input v-model="$store.state.sizepage.a" class="sizeInput mr-2"> in mm (A)</td>
+                     <td class="w-1/12" rowspan="2" ><input v-model="$store.state.sizepage.l" class="sizeInput mr-2"> in mm (L)</td>
                      <td :class="{'border-r border-b border-dashed': $store.state.params.legType == 4}" class="t-first-2 w-3/12"></td>
                      <td class="t-second w-3/12"><div class="pt-full"></div></td>
                      <td class="t-three-2 w-3/12"></td>
-                     <td class="w-1/12 text-right"><input v-model="$store.state.sizepage.c" class="sizeInput ml-2"> in mm (C)</td>
+                     <td class="w-1/12 text-right"><input v-model="$store.state.sizepage.d1" class="sizeInput ml-2"> in mm (D1)</td>
                   </tr>
 
                   <tr>
@@ -103,7 +103,7 @@
 
                   <tr>
                      <td></td>
-                     <td class="text-center"><input v-model="$store.state.sizepage.d" class="sizeInput mb-2"> in mm (D)</td>
+                     <td class="text-center"><input v-model="$store.state.sizepage.d2" class="sizeInput mb-2"> in mm (D2)</td>
                      <td></td>
                      <td></td>
                      <td></td>
@@ -116,12 +116,12 @@
                <tr>
                   <td></td>
                   <td class="text-center w-4/5">
-                     <input v-model="$store.state.sizepage.b" class="sizeInput mb-2"> in mm (B)
+                     <input v-model="$store.state.sizepage.w" class="sizeInput mb-2"> in mm (W)
                   </td>
                </tr>
                <tr>
                   <td class="text-right">
-                     <input v-model="$store.state.sizepage.a" class="sizeInput"> in mm (A)
+                     <input v-model="$store.state.sizepage.l" class="sizeInput"> in mm (L)
                   </td>
                   <td>
                      <div class="border border-black adaptive ml-2"></div>
