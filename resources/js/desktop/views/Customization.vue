@@ -1,22 +1,22 @@
 <template>
     <section>
 		<main>
-			<h3 class="font-bold xl:mb-2 xl:text-xl md:text-md text-gray-600">Customization</h3>
+			<h3 class="font-bold xl:mb-2 xl:text-xl md:text-md text-gray-600">{{$store.state.language.customization}}</h3>
             <aside class="flex justify-between md:text-xs xl:text-sm">
                 <button @click="customPages(1)" :class="{'border-blue-900': $store.state.customActiveLink == 1}" class="border-b-2 border-white px-1 py-4 hover:border-blue-900">
-                    Corners Finish
+                    {{$store.state.language.corners}}
                 </button>
                 <button @click="customPages(2)" :class="{'border-blue-900': $store.state.customActiveLink == 2}" class="border-b-2 border-white px-1 py-4 hover:border-blue-900">
-                    Grommet Holes
+                    {{$store.state.language.grommet}}
                 </button>
                 <button @click="customPages(3)" :class="{'border-blue-900': $store.state.customActiveLink == 3}" class="border-b-2 border-white px-1 py-4 hover:border-blue-900">
-                    Partition or Modesty Panel
+                    {{$store.state.language.partition}}
                 </button>
                 <button @click="customPages(4)" :class="{'border-blue-900': $store.state.customActiveLink == 4}" class="border-b-2 border-white px-1 py-4 hover:border-blue-900">
-                    Accessories
+                    {{$store.state.language.accessories}}
                 </button>
                 <button @click="customPages(5)" :class="{'border-blue-900': $store.state.customActiveLink == 5}" class="border-b-2 border-white px-1 py-4 hover:border-blue-900">
-                    Chair
+                    {{$store.state.language.chairs}}
                 </button>
             </aside>
 		</main>

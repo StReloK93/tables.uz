@@ -1,7 +1,6 @@
-
 export default class Meshes {
     constructor() {
-        this.hl = new BABYLON.HighlightLayer("hl1", scene , {blurTextureSizeRatio: 1.5});
+        scene.hl = new BABYLON.HighlightLayer("hl1", scene , {blurTextureSizeRatio: 1.5});
         this.Import()
         this.camera = scene.activeCamera
 
@@ -15,14 +14,10 @@ export default class Meshes {
             if(target.pickedMesh.actionManager){
                 scene.activeMesh = target.pickedMesh
                 store.state.activeMesh = true
-                this.hl.addMesh(target.pickedMesh, BABYLON.Color3.FromHexString('#38dab2'))
+                scene.hl.addMesh(target.pickedMesh, BABYLON.Color3.FromHexString('#38dab2'))
             }
             else{
-                if(scene.activeMesh){
-                    this.hl.removeMesh(scene.activeMesh)
-                }
-                store.state.activeMesh = false
-                scene.activeMesh = null
+                this.clearActive()
             }
         }
     }
@@ -50,7 +45,7 @@ export default class Meshes {
 				{trigger: BABYLON.ActionManager.OnPointerOverTrigger},
 				() => {
                     if(mesh != scene.activeMesh){
-                        this.hl.addMesh(mesh, BABYLON.Color3.FromHexString('#3DB7F6'))
+                        scene.hl.addMesh(mesh, BABYLON.Color3.FromHexString('#3DB7F6'))
                     }
                 }
 			)
@@ -60,7 +55,7 @@ export default class Meshes {
 				{trigger: BABYLON.ActionManager.OnPointerOutTrigger},
 				() => {
                     if(mesh != scene.activeMesh){
-                        this.hl.removeMesh(mesh)
+                        scene.hl.removeMesh(mesh)
                     }
                 }
 			)
@@ -75,7 +70,12 @@ export default class Meshes {
     }
 
 
-
+    clearActive(){
+        if(scene.activeMesh) scene.hl.removeMesh(scene.activeMesh)
+                
+        store.state.activeMesh = false
+        scene.activeMesh = null
+    }
 }
 
 

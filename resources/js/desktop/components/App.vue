@@ -27,9 +27,6 @@
                   </div>
                </aside>
                <aside v-else class="flex items-center">
-                  <button class="mx-3 hidden">
-                     <img src="/images/dif.png" class="filter grayscale w-14">
-                  </button>
                   <button  @click="requestFullScreen($refs.room)" class="flex-center bg-white rounded-full bg-opacity-50  w-14 h-14  hover:bg-opacity-100">
                      <Icons v-if="$store.state.fullscreen == false" icon="zoom"/>
                      <span v-else>Exit</span>

@@ -2,14 +2,14 @@
    <section>
       <main v-if="$store.state.params.legType == 1 || $store.state.params.legType == 2 || $store.state.params.legType == 3" class="xl:pb-2">
          <h3 class="font-bold mb-3 xl:text-xl md:text-md text-gray-600">
-            Size
+            {{$store.state.language.size}}
          </h3>
          <div class="text-md flex flex-wrap text-gray-600">
             <button @click="events.setSize(0)" :class="{'bg-my text-white': $store.state.sizepage.size == 0 }" class="xl:h-16 md:h-14 xl:text-md font-bold md:text-xs w-1/5 text-center rounded-xl mr-3 mb-2 border">
-               Small
+               {{$store.state.language.small}}
             </button>
             <button @click="events.setSize(1)" :class="{'bg-my text-white': $store.state.sizepage.size == 1 }"  class="xl:h-16 md:h-14 xl:text-md font-bold md:text-xs w-1/5 text-center rounded-xl mr-3 mb-2 border">
-               Large
+               {{$store.state.language.large}}
             </button>
          </div>
       </main>
@@ -17,15 +17,15 @@
       <main class="xl:pb-2">
          <h3 class=" mb-2 flex justify-between items-center">
             <span class="xl:text-xl md:text-md font-bold text-gray-600">
-               Enter your requested size
+               {{$store.state.language.enteryour}}
             </span>
             <span v-if="type" class="flex flex-col">
                <div class="text-gray-500 text-right mb-2">
-                  Direction
+                  {{$store.state.language.sizedirection}}
                </div>
                <div class="flex items-center text-center text-gray-600">
-                  <label for="truecheck" :class="{'bg-blue-500 text-white': $store.state.sizepage.direction == false}" class="py-1 w-16 bg-gray-100 rounded-sm shadow-sm mr-0.5">Left</label>
-                  <label for="falsecheck" :class="{'bg-blue-500 text-white': $store.state.sizepage.direction}" class="py-1 w-16 bg-gray-100 rounded-sm shadow-sm ml-0.5">Right</label>
+                  <label for="truecheck" :class="{'bg-blue-500 text-white': $store.state.sizepage.direction == false}" class="py-1 w-16 bg-gray-100 rounded-sm shadow-sm mr-0.5">{{$store.state.language.left}}</label>
+                  <label for="falsecheck" :class="{'bg-blue-500 text-white': $store.state.sizepage.direction}" class="py-1 w-16 bg-gray-100 rounded-sm shadow-sm ml-0.5">{{$store.state.language.right}}</label>
                   <input id="truecheck" type="radio" name="Direction" v-model="$store.state.sizepage.direction" :value="false" hidden>
                   <input id="falsecheck" type="radio" name="Direction" v-model="$store.state.sizepage.direction" :value="true" hidden>
                </div>

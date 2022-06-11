@@ -1,6 +1,6 @@
 <template>
     <section>
-        <h3 class="font-bold mb-4 xl:text-xl md:text-md text-gray-600">Grommet Holes</h3>
+        <h3 class="font-bold mb-4 xl:text-xl md:text-md text-gray-600">{{$store.state.language.grommet}}</h3>
         <main class="flex -mr-2 text-center pb-10">
             <aside class="pr-2 w-1/3">
                 <div @click="events.setHole(null)" :class="{'border-myblue': $store.state.custom.grommet == null}" class="cursor-pointer xl:pt-8 md:pt-4 pb-2 text-center relative border border-transparent">
@@ -11,7 +11,7 @@
                     </main>
 
                     <p class="text-sm mt-5">
-                        Without holes
+                        {{$store.state.language.without}}
                     </p>
                 </div>
             </aside>
@@ -23,7 +23,7 @@
                         </svg>
                     </main>
                     <p class="text-sm mt-5">
-                        Circular holes
+                        {{$store.state.language.circular}}
                     </p>
                 </div>
             </aside>
@@ -40,7 +40,7 @@
                         </svg>
                     </main>
                     <p class="text-sm mt-5">
-                        Two Circular holes
+                        {{$store.state.language.twocircular}}
                     </p>
                 </div>
             </aside>
@@ -53,7 +53,7 @@
                         </svg>
                     </main>
                     <p class="text-sm mt-5">
-                        Rectangular holes
+                        {{$store.state.language.rectangular}}
                     </p>
                 </div>
             </aside>

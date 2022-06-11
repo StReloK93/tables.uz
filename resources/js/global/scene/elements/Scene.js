@@ -1,3 +1,4 @@
+
 class Scene {
    DefaultLeg = 1
    DefaultFloor = '/floors/1.jpg'
@@ -37,6 +38,12 @@ class Scene {
          
          //Style ni uzgartiramiz Bor :: Yoq
          store.state.decor[node] = !store.state.decor[node]
+
+
+         //Kreslo ucganda tanlangan elementni yuqotish uchun
+         if(node == 'chair' && store.state.decor[node]) Engine.Meshes.clearActive()
+
+         
       }
    }
 

@@ -7,7 +7,7 @@
                     <Icons icon="Legs"/>
                 </div>
                 <h3 class="xl:text-sm md:text-xs font-medium">
-                    The Desk
+                    {{$store.state.language.thedesk}}
                 </h3>
             </router-link>
         </main>
@@ -17,7 +17,7 @@
                     <Icons icon="Customization"/>
                 </div>
                 <h3 class="xl:text-sm md:text-xs font-medium">
-                    Customization
+                    {{$store.state.language.customization}}
                 </h3>
             </router-link>
         </main>
@@ -27,7 +27,7 @@
                     <Icons icon="Size"/>
                 </div>
                 <h3 class="xl:text-sm md:text-xs font-medium">
-                    Size
+                    {{$store.state.language.size}}
                 </h3>
             </router-link>
         </main>
@@ -37,7 +37,7 @@
                     <Icons icon="Room"/>
                 </div>
                 <h3 class="xl:text-sm md:text-xs font-medium">
-                    Room Color 
+                    {{$store.state.language.roomColor}}
                 </h3>
             </router-link>
         </main>
@@ -47,7 +47,7 @@
                     <Icons icon="Other"/>
                 </div>
                 <h3 class="xl:text-sm md:text-xs font-medium">
-                    Other requests
+                    {{$store.state.language.other}}
                 </h3>
             </router-link>
         </main>

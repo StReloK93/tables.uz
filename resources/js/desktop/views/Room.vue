@@ -2,7 +2,7 @@
    <section>
       <main class="xl:pb-8 md:pb-4">
          <h3 class=" font-bold xl:mb-6 md:mb-4 xl:text-xl md:text-md text-gray-600">
-            Choose the wall color
+            {{$store.state.language.wallcolor}}
          </h3>
          <div class="xl:text-md md:text-sm text-gray-500">
             <div class="flex items-center w-52 overflow-hidden shadow-md border">
@@ -13,7 +13,7 @@
       <main class="pb-8">
          <h3
             class=" font-bold xl:mb-6 md:mb-4 xl:text-xl md:text-md text-gray-600">
-            Choose the flooring color
+            {{$store.state.language.floorcolor}}
          </h3>
          <div class="flex flex-wrap -mr-3">
             <aside class="w-1/5 pr-2" v-for="img in images" :key="img">

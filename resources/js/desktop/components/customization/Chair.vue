@@ -1,6 +1,6 @@
 <template>
 <section class="-mx-8 -mt-6">
-    <h3 class="mx-8 font-bold my-4 xl:text-xl md:text-md text-gray-600">Chairs</h3>
+    <h3 class="mx-8 font-bold my-4 xl:text-xl md:text-md text-gray-600">{{$store.state.language.chairs}}</h3>
     <h3 class="mx-8 font-bold my-4 text-md text-blue-900">Below $3000</h3>
     <Carusel  :itemCount="3" class="text-md text-center text-gray-600 mx-8">
         <main v-for="img in $store.state.chairs[0]" :key="img" @click="events.setter(img.name, 'chair')"  class="w-1/3 px-1 inline-block">

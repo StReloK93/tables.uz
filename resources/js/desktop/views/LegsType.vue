@@ -2,7 +2,7 @@
     <section>
         <main>
             <h3 class="font-bold mb-4 xl:text-xl md:text-md text-gray-600">
-                Available legs
+                {{$store.state.language.pageaviable}}
             </h3>
             <div class="flex text-center justify-between -mr-2">
                 <aside v-for="(legs , index) in $store.state.legTypes" :key="index" @click="events.setLegType(index)" class="w-1/5 pr-2 cursor-pointer">
@@ -10,21 +10,21 @@
 						<main class="xl:h-28 md:h-24 flex items-center justify-center">
 							<img :src="legs.img" class="w-10/12">
 						</main>
-						<div class="xl:text-sm md:text-xs">
-							{{legs.name}}
+						<div class="xl:text-sm md:text-xs mt-1">
+                            {{$store.state.language[legs.name]}}
 						</div>
 					</section>
                 </aside>
             </div>
             <!-- new -->
             <h3 class="font-bold mb-1 xl:text-xl md:text-md xl:mt-6 md:mt-4 text-gray-600">
-                Table Top Materials
+                {{$store.state.language.pagematerials}}
             </h3>
             <transition name="fade" mode="in-out">
                 <Caruosel v-if="deskMaterials.length > 0" :itemCount="4" class="text-md text-center text-gray-600">
                     <main v-for="materials in deskMaterials" :key="materials"  class="w-1/4 inline-block align-middle px-2 relative">
                         <img v-if="$store.state.params.activeFolder == materials.path" src="/images/true.png" class="w-4 -m-1 -mt-2 absolute top-0 right-0 z-20">
-                        <button  @click="events.deskFolder(materials.path)" :class="{'bg-my text-white': $store.state.params.deskMaterial == materials.path}" v-html="materials.text" class="xl:h-16 md:h-14 xl:text-sm md:text-xs w-full rounded-xl border"></button>
+                        <button  @click="events.deskFolder(materials.path)" :class="{'bg-my text-white': $store.state.params.deskMaterial == materials.path}" v-html="$store.state.language[materials.path]" class="xl:h-16 md:h-14 xl:text-sm md:text-xs w-full rounded-xl border"></button>
                     </main>
                 </Caruosel>
             </transition>
@@ -44,7 +44,7 @@
         </main>
         <main class="xl:pb-8 md:pb-4">
             <h3 class="font-bold xl:mb-6 md:mb-4 xl:text-xl md:text-md text-gray-600">
-                Legs Colors
+                {{$store.state.language.pagecolors}}
             </h3>
             <div class="flex flex-wrap -mr-2">
                 <aside v-for="n in 3" :key="n" class="w-1/5 pr-2">

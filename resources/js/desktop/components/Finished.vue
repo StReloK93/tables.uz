@@ -4,27 +4,30 @@
 			<form v-if="finishim" @click.stop="menudrop = false" @submit.prevent="saveSetting" class="w-3/5 h-full border bg-white rounded-xl shadow-xl px-24 py-4 flex flex-col justify-between relative">
 				<img @click="$store.state.finished = false" src="/images/cancel.png" class="w-6 absolute top-0 right-0 m-3 mx-5 cursor-pointer hover:bg-gray-200 p-1">
 				<section>
-					<h3 class="font-bold mb-4 xl:text-xl md:text-md text-gray-600">Contact info</h3>
+					<h3 class="font-bold mb-4 xl:text-xl md:text-md text-gray-600">{{$store.state.language.contactinfo}}</h3>
 					<p class="text-gray-700 xl:text-sm md:text-xs">
-						The specifications you selected will be emailed to Ergoseatings 
-						after you click the continue button below. We will contact you 
-						with a quotation shortly. Thank you for tying out our Desk Customizer 2.0!
+						{{$store.state.language.contactinformation}}
 					</p>
 					<hr class="xl:my-6 md:my-4">
 					<aside class="px-6 py-3 border rounded-md xl:mb-6 md:mb-4">
-						<label for="inputname" class="uppercase small-text font-bold text-indigo-900 block">Your Name</label>
-						<input  required type="text" v-model="inpname" class="w-full border-0 outline-none mt-3" placeholder="Input Your Name here please">
+						<label for="inputname" class="uppercase small-text font-bold text-indigo-900 block">{{$store.state.language.yourname}}</label>
+						<input  required type="text" v-model="inpname" class="w-full border-0 outline-none mt-3" :placeholder="$store.state.language.inputyourname">
 					</aside>
 					<aside class="px-6 py-3 border rounded-md xl:mb-6 md:mb-4">
-						<label for="inputname" class="uppercase small-text font-bold text-indigo-900 block">Your email: <span class="ml-2 text-gray-400 font-normal small-text">(Pis avoid using hotmail and Yahoo here as mails will very likely go to junk folder when we reply to you)</span></label>
-						<input required type="email" v-model="inpemail" class="w-full border-0 outline-none mt-3" placeholder="Email address">
+						<label for="inputname" class="uppercase small-text font-bold text-indigo-900 block">
+							{{$store.state.language.youremail}}: 
+							<span class="ml-2 text-gray-400 font-normal small-text">
+								{{$store.state.language.pleaseusing}}
+							</span>
+						</label>
+						<input required type="email" v-model="inpemail" class="w-full border-0 outline-none mt-3" :placeholder="$store.state.language.youremail">
 					</aside>
 					<aside class="px-6 py-3 border rounded-md xl:mb-6 md:mb-4">
-						<label for="inputname" class="uppercase small-text font-bold text-indigo-900 block">Phone number</label>
-						<input required type="number" v-model="inpphone" class="w-full border-0 outline-none mt-3" placeholder="Phone number">
+						<label for="inputname" class="uppercase small-text font-bold text-indigo-900 block">{{$store.state.language.phonenumber}}</label>
+						<input required type="number" v-model="inpphone" class="w-full border-0 outline-none mt-3" :placeholder="$store.state.language.phonenumber">
 					</aside>
 					<aside class="px-6 py-3 border rounded-md relative">
-						<label for="inputname" class="uppercase small-text font-bold text-indigo-900 block">How would you like to be contacted? </label>
+						<label for="inputname" class="uppercase small-text font-bold text-indigo-900 block">{{$store.state.language.likecontacted}} </label>
 						<div class="flex justify-between cursor-pointer" @click.stop="menudrop = !menudrop">
 							<aside>
 								<span v-if="email">
@@ -46,7 +49,7 @@
 						<transition name="fade">
 							<main v-if="menudrop" @click.stop="" class="p-6 absolute top-full left-0 border border-gray-100 bg-white w-full shadow-md z-50">
 								<h3 class="text-gray-800 font-bold">
-									How would you like to be contacted? 
+									{{$store.state.language.likecontacted}}
 								</h3>
 								<div class="ml-1 mt-2 relative">
 									<main v-if="email" class="absolute top-0 -left-1 w-36 h-6 bg-red-400 bg-opacity-0 z-10 rounded"></main>
@@ -67,14 +70,14 @@
 				</section>
 				<section class="text-right">
 					<button type="submit" class="xl:h-16 md:h-14 xl:w-52 md:w-40 hover:bg-gray-400 bg-green-700  xl:text-xl md:text-md text-center text-white rounded-xl">
-						Continue
+						{{$store.state.language.continue}}
 					</button>
 				</section>
 			</form>
 			<main v-else class="w-1/3 h-96 border bg-white rounded-xl flex items-center justify-center shadow-md">
 				<div class="text-center">
 					<img src="/images/group.png" class="w-16 inline-block mb-6">
-					<p>Thank you for selecting us! We will contact you soon</p>
+					<p>{{$store.state.language.thankyou}}</p>
 				</div>
 			</main>
 		</transition>
