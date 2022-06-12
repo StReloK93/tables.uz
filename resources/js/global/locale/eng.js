@@ -116,4 +116,25 @@ export default {
     dh502: "White Travertine",
     dh507: "Sareen",
     fa22: "Classy Oak",
+
+    // live Edge
+    'Live edge 1': 'Live edge 1',
+    'Live edge 2': 'Live edge 2',
+    'Rectangular': 'Rectangular',
+
+    // tradition
+    'Dark Walnut': 'Dark Walnut',
+    'Maple': 'Maple',
+    'Red Oak': 'Red Oak',
+
+    //bAMBOO
+    'bamboo': 'bamboo',
+
+
+    disclaimer: 'Disclaymer:',
+    disclaydesc: "The colors and graphics used in the Customizer are computer generated and hence we hold no responsibility of the accuracy of the color and material difference that may occur when compared to the real items.If you have any concerns regarding the accuracy of colors or materials used here please feel free to contact us directly for more details.",
+
+    terms: "Terms and conditions:",
+    termsdesc: "All content shown is a digital property of Blueocean International (HK) Ltd., any unauthorized use or copy of our content will be considered infringement of our intellectual property.",
+
 }

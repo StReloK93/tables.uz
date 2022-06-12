@@ -1,5 +1,12 @@
 <template>
    <section>
+      <transition name="fade">
+         <main v-if="$store.state.otherinfo" @click="$store.state.otherinfo = false"  class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex-center z-20">
+            <ul class="w-96 px-5 py-3 bg-white shadow  text-gray-700 border-t-2 border-blue-400">
+               <img src="/images/screen.png">
+            </ul>
+         </main>
+      </transition>
       <main class="xl:pb-8 md:pb-4">
          <h3 class="font-bold xl:mb-6 md:mb-4 xl:text-xl md:text-md text-gray-600">
             {{$store.state.language.tablesquantity}}
@@ -31,10 +38,13 @@
          <div class="flex items-center mb-4 xl:text-xl md:text-md">
             <input type="checkbox" v-model="$store.state.otherpage.needchair" class="transform scale-150 ml-1 xl:mr-6 md:mr-3">
             {{$store.state.language.ialsoneed}}
+            <button @click="$store.state.otherinfo = true" class="ml-3">
+               <img src="/images/undo.png" class="w-6">
+            </button>
          </div>
         <aside class="flex">
            <main class="mr-4">
-              <p class="mb-2 text-gray-400 xl:text-md md:text-sm">{{$store.state.language.overallheight}}</p>
+              <p class="mb-2 text-gray-400 xl:text-md md:text-sm">{{$store.state.language.overallheight}} (STH)</p>
                <div>
                   <input v-model="$store.state.otherpage.height" placeholder="00mm" 
                   :disabled="!$store.state.otherpage.needchair" 
@@ -43,7 +53,7 @@
                </div>
            </main>
            <main class="mr-4">
-              <p class="mb-2 text-gray-400 xl:text-md md:text-sm">{{$store.state.language.upperlength}}</p>
+              <p class="mb-2 text-gray-400 xl:text-md md:text-sm">{{$store.state.language.upperlength}} (ULL)</p>
                <div>
                   <input v-model="$store.state.otherpage.upperlength" placeholder="00mm" 
                   :disabled="!$store.state.otherpage.needchair" 
@@ -52,7 +62,7 @@
                </div>
            </main>
            <main>
-              <p class="mb-2 text-gray-400 xl:text-md md:text-sm">{{$store.state.language.lowerlength}}</p>
+              <p class="mb-2 text-gray-400 xl:text-md md:text-sm">{{$store.state.language.lowerlength}} (LLL)</p>
                <div>
                   <input v-model="$store.state.otherpage.lowerlength" placeholder="00mm" 
                   :disabled="!$store.state.otherpage.needchair" 

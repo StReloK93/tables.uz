@@ -1,5 +1,5 @@
 export default {
-    createYour: '訂製閣下的升降桌',
+    createYour: '升降桌設計定制',
     browseOur: 'Browse Our your lang',
     getQuote: '報價單',
 
@@ -12,8 +12,8 @@ export default {
 
     //page the desk
     pageaviable: '可提供的腳',
-    pagematerials: '桌架物料',
-    pagecolors: ' 報價單',
+    pagematerials: '桌面物料',
+    pagecolors: '桌架顏色',
     '1 leg': '單腳',
     '2 legs': '雙腳',
     '3 legs': '三腳',
@@ -98,7 +98,7 @@ export default {
     likecontacted: '聯絡方法',
     inputyourname: '請輸入閣下的姓名',
     pleaseusing: '(由於回復時有機會被移至垃圾郵件，請䀆量避免使用hotmail和yahoo作電郵地址)',
-    continue: 'yourlang',
+    continue: '繼續',
     thankyou: 'yourlang',
 
     //lamitea
@@ -114,4 +114,26 @@ export default {
     dh502: "白洞雲石",
     dh507: "灰洞石",
     fa22: "古典橡木",
+
+
+    // live Edge
+    'Live edge 1': '自然邊 1',
+    'Live edge 2': '自然邊 2',
+    'Rectangular': '全方',
+
+    // tradition
+    'Dark Walnut': '黑胡桃',
+    'Maple': '楓木',
+    'Red Oak': '紅橡木',
+
+    //bAMBOO
+    'bamboo': '竹',
+
+    // 
+    disclaimer: '免責聲明',
+    disclaydesc: "升降桌設計定制系統中使用的顏色和圖形是電腦圖形，因此我與實物相比可能出現的顏色和材料差異，我們公司不承擔任何準確性責任。 如果您對此處使用的顏色或材料的準確性有任何疑問，請隨時直接與我們聯繫以獲取更多詳細信息.",
+
+    terms: "條款和條件:",
+    termsdesc: "所有顯示的內容都是 Blueocean International (HK) Ltd. 的知識產權，任何未經授權使用或複制我們的內容將被視為侵犯我們的知識產權，對於任何違反此使用條款的行為，我們將保留法律追究的權利.",
+
 }

@@ -1,8 +1,32 @@
 <template>
    <section>
+      <transition name="fade">
+         <main v-if="$store.state.sizeinfo" @click="$store.state.sizeinfo = false"  class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex-center z-20">
+            <ul class="w-96 px-5 py-3 bg-white shadow  text-gray-700 border-t-2 border-blue-400">
+               <li class="mb-2">
+                  Min Length for Single Leg Standing Desk is 500mm and Max Length is 1000mm.
+               </li>
+               <hr class="mb-1.5">
+               <li class="mb-2">
+                  Min Length for 2 legs Standing Desk is 750mm and Max Length is 2000mm. 
+               </li>
+               <hr class="mb-1.5">
+               <li class="mb-2">
+                  Min Length for 3 legs Standing Desk is 1200mm and Max Length is 2000mm.  Return Length must be at least 1200mm.
+               </li>
+               <hr class="mb-1.5">
+               <li class="mb-2">
+                  Min Length for 4 legs Standing Desk is 1100mm and Max Length is 2400mm.
+               </li>
+            </ul>
+         </main>
+      </transition>
       <main v-if="$store.state.params.legType == 1 || $store.state.params.legType == 2 || $store.state.params.legType == 3" class="xl:pb-2">
-         <h3 class="font-bold mb-3 xl:text-xl md:text-md text-gray-600">
+         <h3 class="font-bold mb-3 xl:text-xl md:text-md text-gray-600 flex items-center">
             {{$store.state.language.size}}
+            <button @click="$store.state.sizeinfo = true" class="ml-3">
+               <img src="/images/undo.png" class="w-6">
+            </button>
          </h3>
          <div class="text-md flex flex-wrap text-gray-600">
             <button @click="events.setSize(0)" :class="{'bg-my text-white': $store.state.sizepage.size == 0 }" class="xl:h-16 md:h-14 xl:text-md font-bold md:text-xs w-1/5 text-center rounded-xl mr-3 mb-2 border">
