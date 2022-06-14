@@ -3,7 +3,7 @@
       <transition name="fade">
          <main v-show="$store.state.currentPage == 1" class="miniRoutes">
             <h3 class=" color-title text-center font-medium text-xl mb-3 text-gray-600">
-               Choose the wall color
+               {{$store.state.language.wallcolor}}
             </h3>
             <div class="text-gray-400 w-full px-2 flex justify-center">
                <input id="colorThree" class="inputColor w-2/3 h-8" type="color" @input="events.ColorChanger()" v-model="$store.state.room.wallColor"/>
@@ -14,7 +14,7 @@
       <transition name="fade">
          <main v-show="$store.state.currentPage == 2" class="miniRoutes">
             <h3 class=" color-title text-center font-medium text-xl mb-3 text-gray-600">
-               Choose the flooring color
+               {{$store.state.language.floorcolor}}
             </h3>
             <div
                class="

@@ -6,7 +6,7 @@
       <aside>
          <main>
             <h3 class="font-bold text-xl mb-4 text-gray-600">
-               Table’s quantity
+               {{$store.state.language.tablesquantity}}
             </h3>
             <div class="border border-gray-300 inline-flex items-center h-9 rounded-md mb-5">
                <button class="px-3 border-r border-gray-300 h-full" @click="$store.commit('setTablesCount', -1)">
@@ -23,18 +23,20 @@
 
          <main>
             <h3 class="font-bold text-xl mb-3 text-gray-600">
-               Other Requests
+               {{$store.state.language.other}}
             </h3>
             <div class="flex items-center mb-3 text-sm text-gray-500">
-               <input type="checkbox" v-model="$store.state.otherpage.service" :disabled="$store.state.otherpage.tablesCount < 10? true : false" class="transform scale-150 ml-1 mr-3"> We are a corporation that needs space planning service as well. Note that this service is for 10 desks and above
+               <input type="checkbox" v-model="$store.state.otherpage.service" :disabled="$store.state.otherpage.tablesCount < 10? true : false" class="transform scale-150 ml-1 mr-3"> 
+               {{$store.state.language.wearecor}}
             </div>
             <div class="flex items-center mb-3 text-sm text-gray-500">
-               <input type="checkbox" v-model="$store.state.otherpage.needchair" class="transform scale-150 ml-1 mr-3">  I also need a chair, if you can tell us your height and physiqe we can recommend.
+               <input type="checkbox" v-model="$store.state.otherpage.needchair" class="transform scale-150 ml-1 mr-3">
+                  {{$store.state.language.ialsoneed}}
             </div>
          <aside class="flex text-sm">
             <main class="mr-2 w-1/2">
                <p class="mb-2 text-gray-400 flex items-center">
-                  Your overall height
+                  {{$store.state.language.overallheight}} (STH)
                   <img class="ml-3" src="/images/undo.svg">
                </p>
                <div>
@@ -47,7 +49,7 @@
             </main>
             <main class="mr-2 w-1/2">
                <p class="mb-2 text-gray-400 flex items-center">
-                  Your upper legs length
+                  {{$store.state.language.upperlength}} (ULL)
                   <img class="ml-3" src="/images/undo.svg">
                </p>
                <div>
@@ -56,7 +58,7 @@
             </main>
             <main class="w-1/2">
                <p class="mb-2 text-gray-400 flex items-center">
-                  Your lower legs length
+                  {{$store.state.language.lowerlength}}  (LLL)
                   <img class="ml-3" src="/images/undo.svg">
                </p>
                <div>
@@ -67,7 +69,7 @@
          </main>
          <main>
             <h3 class="font-bold text-xl my-3 text-gray-600">
-               Leave a message
+               {{$store.state.language.leaveamess}} 
             </h3>
             <div>
                <textarea v-model="$store.state.otherpage.message" class="w-full border border-gray-400 rounded-md h-24 p-2 outline-none focus:border-blue-600"></textarea>
@@ -76,7 +78,7 @@
       </aside>
       <aside>
          <button @click="$store.state.finished = true" class="bg-green-800 font-bold w-full p-3 text-center text-white rounded-md">
-            Continue 
+            {{$store.state.language.continue}} 
          </button>
       </aside>
    </section>

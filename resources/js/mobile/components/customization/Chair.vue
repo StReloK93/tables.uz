@@ -1,6 +1,6 @@
 <template>
     <main>
-        <h3 class="color-title text-center font-medium text-xl  mb-2 text-gray-600">Chairs</h3>
+        <h3 class="color-title text-center font-medium text-xl  mb-2 text-gray-600">{{$store.state.language.chairs}}</h3>
         <aside class="text-center text-xs whitespace-nowrap pt-1 overflow-hidden overflow-x-scroll noscroll -mr-2">
             <main v-for="(button,index) in buttons" :key="index" class="w-24 inline-block align-middle mr-2">
                 <button @click="active = index" :class="{'bg-my text-white': active == index}" class="leading-none h-8 w-full rounded-md shadow-sm border border-gray-50">{{button}}</button>

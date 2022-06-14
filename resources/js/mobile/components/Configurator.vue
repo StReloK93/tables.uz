@@ -6,7 +6,7 @@
                     <Icons icon="Legs"/>
                 </div>
                 <h3>
-                     The Desk
+                    {{$store.state.language.thedesk}}
                 </h3>
             </router-link>
         </main>
@@ -16,7 +16,7 @@
                     <Icons icon="Customization"/>
                 </div>
                 <h3>
-                    Customization
+                    {{$store.state.language.customization}}
                 </h3>
             </router-link>
         </main>
@@ -26,7 +26,7 @@
                     <Icons icon="Size"/>
                 </div>
                 <h3>
-                    Size
+                    {{$store.state.language.size}}
                 </h3>
             </router-link>
         </main>
@@ -36,7 +36,7 @@
                     <Icons icon="Room"/>
                 </div>
                 <h3>
-                    Room Color 
+                    {{$store.state.language.roomColor}}
                 </h3>
             </router-link>
         </main>
@@ -46,7 +46,7 @@
                     <Icons icon="Other"/>
                 </div>
                 <h3>
-                    Other requests
+                    {{$store.state.language.other}}
                 </h3>
             </aside>
         </main>

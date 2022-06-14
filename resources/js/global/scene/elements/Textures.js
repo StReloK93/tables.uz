@@ -94,7 +94,6 @@ class Textures {
 
    _AllAmbientWhite(prosent) {
       let hdr = BABYLON.CubeTexture.CreateFromPrefilteredData("/textures/hdrmini.env", scene)
-      console.log(hdr);
       scene.environmentTexture = hdr
       scene.environmentIntensity = 1
       hdr.onLoadObservable.add(() => {

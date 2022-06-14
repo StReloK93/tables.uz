@@ -77,7 +77,6 @@ export default {
     },
     mounted() {
         Engine.Legs.data = this
-        console.log(this.deskMaterials);
         scene.onReadyObservable.add(()=>{
             let desks = Engine.textures.folders
             this.folderImages = desks.images

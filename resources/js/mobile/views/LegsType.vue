@@ -3,7 +3,7 @@
         <transition name="fade" mode="out-in">
             <main v-show="$store.state.currentPage == 1" class="miniRoutes">
                 <h3 class="color-title text-center font-medium mb-1 text-gray-600">
-                    Available legs
+                    {{$store.state.language.pageaviable}}
                 </h3>
                 <div class="text-center whitespace-nowrap py-1 overflow-hidden overflow-x-scroll noscroll -mr-2">
                     <aside v-for="(legs , index) in $store.state.legTypes" :key="index" @click="events.setLegType(index)" class="w-custom inline-block mr-2">
@@ -12,7 +12,7 @@
                                 <img :src="legs.img" class="w-9/12">
                             </main>
                             <div class="text-sm">
-                                {{legs.name}}
+                                {{$store.state.language[legs.name]}}
                             </div>
                         </section>
                     </aside>
@@ -24,11 +24,11 @@
         <transition name="fade" mode="out-in">
             <main v-show="$store.state.currentPage == 2" class="miniRoutes">
                 <h3 class="color-title text-center font-medium mb-2 text-gray-600">
-                    Table Top Materials
+                    {{$store.state.language.pagematerials}}
                 </h3>
                 <aside v-if="deskMaterials.length > 0" class="text-center text-xs whitespace-nowrap py-1 overflow-hidden overflow-x-scroll noscroll -mr-2">
                     <main v-for="materials in deskMaterials" :key="materials" class="w-28 inline-block align-middle mr-2">
-                        <button @click="events.deskFolder(materials.path)" :class="{'bg-my text-white': $store.state.params.deskMaterial == materials.path}" v-html="materials.text" class="leading-none h-8 w-full rounded-md shadow-sm border border-gray-50"></button>
+                        <button @click="events.deskFolder(materials.path)" :class="{'bg-my text-white': $store.state.params.deskMaterial == materials.path}" v-html="$store.state.language[materials.path]" class="leading-none h-8 w-full rounded-md shadow-sm border border-gray-50"></button>
                     </main>
                 </aside>
                 <transition name="fade" mode="in-out">
@@ -47,7 +47,7 @@
         <transition name="fade" mode="out-in">
             <main v-show="$store.state.currentPage == 3" class="miniRoutes">
                 <h3 class="color-title text-center font-medium text-xl  mb-3 text-gray-600">
-                    Legs Colors
+                    {{$store.state.language.pagecolors}}
                 </h3>
                 <div class="flex flex-wrap w-full justify-center -mr-2">
                     <aside v-for="n in 3" :key="n" class="w-1/4 mr-2">

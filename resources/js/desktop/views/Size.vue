@@ -140,12 +140,12 @@
                <tr>
                   <td></td>
                   <td class="text-center w-4/5">
-                     <input v-model="$store.state.sizepage.w" class="sizeInput mb-2"> in mm (W)
+                     <input v-model="$store.state.sizepage.w" class="sizeInput mb-2"> in mm (L)
                   </td>
                </tr>
                <tr>
                   <td class="text-right">
-                     <input v-model="$store.state.sizepage.l" class="sizeInput"> in mm (L)
+                     <input v-model="$store.state.sizepage.l" class="sizeInput"> in mm (W)
                   </td>
                   <td>
                      <div class="border border-black adaptive ml-2"></div>

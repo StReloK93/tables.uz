@@ -10,20 +10,17 @@
                </button>
             </div>
             <h3 class="font-bold text-gray-700 text-xl mb-1.5">
-               Disclaimer
+               {{$store.state.language.disclaimer}}
             </h3>
-               The colors and graphics used in the Customizer are computer 
-               generated and hence we hold no responsibility of the accuracy of the color 
-               and material difference that may occur when compared to the real items.
-               If you have any concerns regarding the accuracy of colors or materials
-               used here please feel free to contact us directly for more details.
-
+            <p>
+               {{$store.state.language.disclaydesc}}
+            </p>
             <h3 class="font-bold text-gray-700 text-xl my-1.5">
-              Terms and conditions
+              {{$store.state.language.terms}}
             </h3>
-               All content shown is a digital property of 
-               Blueocean International (HK) Ltd., any unauthorized use or copy of our 
-               content will be considered infringement of our intellectual property.
+            <p>
+               {{$store.state.language.termsdesc}}
+            </p>
          </main>
       </transition>
       <main class="zoom-button pb-4">
@@ -93,6 +90,15 @@ export default {
    mounted(){
       window.Engine = initScene(this.$refs.canvas)
       this.engine = Engine.Meshes
+      if(localStorage.getItem('lang')){
+         this.setLang(localStorage.getItem('lang'))
+      }
+   },
+   methods:{
+      setLang(lang){
+         this.lang = lang
+         store.commit('setLang', lang)
+      },
    }
 }
 </script>
