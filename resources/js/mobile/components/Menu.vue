@@ -14,9 +14,15 @@
       <section v-if="menu" class="menu flex items-end fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-25 z-50" @click="toggleMenu(false)">
          <main :class="{'translate-y-0': podmenu}" class="p-5 relative rounded-t-2xl w-full bg-white transform translate-y-full easy-transition" @click.stop="">
 
-            <button @click="toggleMenu(false)" class="absolute top-0 right-0 p-4">
-               <img src="/images/cancel.png" class="w-4">
-            </button>
+            <aside class="absolute top-0 right-0 flex">
+                <div class="uppercase flex items-center font-bold">
+                    <span v-if="lang == 'gk'" @click="setLang('eng')" :class="{'text-blue-900':lang == 'eng'}"  class="text-gray-300 cursor-pointer">eng</span>
+                    <span v-else @click="setLang('gk')" :class="{'text-blue-900':lang == 'gk'}" class="text-gray-300 cursor-pointer">繁</span>
+                </div>
+                <button @click="toggleMenu(false)" class=" p-4">
+                   <img src="/images/cancel.png" class="w-4">
+                </button>
+            </aside>
 
             <button @click="$router.push({ name: 'legstype'})" :class="{ 'border-blue-400 border-l-4 pl-4 text-blue-900 font-bold': isActive == true }" class="leading-3 text-md md:text-md capitalize text-gray-300 easy-transition block mb-3">
                 {{$store.state.language.createYour}}
@@ -45,7 +51,13 @@ export default {
         return {
             isActive: null,
             menu: false,
-            podmenu: false
+            podmenu: false,
+            lang: 'eng'
+        }
+    },
+    mounted(){
+        if(localStorage.getItem('lang')){
+            this.setLang(localStorage.getItem('lang'))
         }
     },
     methods:{
@@ -93,6 +105,10 @@ export default {
         },
         enter() {
             this.podmenu = true
+        },
+        setLang(lang){
+            this.lang = lang
+            store.commit('setLang', lang)
         },
     },
     watch:{

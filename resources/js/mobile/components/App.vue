@@ -90,16 +90,8 @@ export default {
    mounted(){
       window.Engine = initScene(this.$refs.canvas)
       this.engine = Engine.Meshes
-      if(localStorage.getItem('lang')){
-         this.setLang(localStorage.getItem('lang'))
-      }
    },
-   methods:{
-      setLang(lang){
-         this.lang = lang
-         store.commit('setLang', lang)
-      },
-   }
+
 }
 </script>
 <style src="../mobile.css"></style>
