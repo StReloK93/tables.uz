@@ -24,7 +24,7 @@
                 </button>
             </aside>
 
-            <button @click="$router.push({ name: 'legstype'})" :class="{ 'border-blue-400 border-l-4 pl-4 text-blue-900 font-bold': isActive == true }" class="leading-3 text-md md:text-md capitalize text-gray-300 easy-transition block mb-3">
+            <button @click="$router.push({ name: 'legstype'})" :class="{ 'border-blue-400 border-l-4 pl-4 text-blue-900 font-bold': isActive == true }" class="text-md capitalize text-gray-300 easy-transition block mb-3">
                 {{$store.state.language.createYour}}
             </button>
             <!-- <router-link :to="{name: 'designs', params:{ closed: true}}" :class="{ 'border-blue-400 border-l-4 pl-4 text-blue-900 font-bold': isActive == false }" class="leading-3 text-md md:text-md capitalize text-gray-300 easy-transition block">
