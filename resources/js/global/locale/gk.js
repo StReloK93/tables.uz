@@ -99,7 +99,7 @@ export default {
     inputyourname: '請輸入閣下的姓名',
     pleaseusing: '(由於回復時有機會被移至垃圾郵件，請䀆量避免使用hotmail和yahoo作電郵地址)',
     continue: '繼續',
-    thankyou: 'yourlang',
+    thankyou: '感謝您試用我們的升降桌定制服務！ 我們會盡快與您聯繫',
 
     //lamitea
     cw115: "天然橡木",
