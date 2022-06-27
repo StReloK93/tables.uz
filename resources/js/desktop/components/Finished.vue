@@ -103,10 +103,10 @@ export default {
 		async saveSetting(){
 			let contacted = this.email? 'email' : 'phone'
 			const form = {
-				prefers : contacted,
 				name : this.inpname,
 				email : this.inpemail,
 				phone : this.inpphone,
+				prefers : contacted,
 			}
 			const data = await store.dispatch('sendEmail', form)
 			this.finishim = false
